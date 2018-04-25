@@ -15,9 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['middleware' => ['admin','form']], function() {
+Route::group(['middleware' => ['admin']], function() {
     Route::resource('/admin/project/subjects', 'Project\SubjectController');
     Route::resource('/admin/project/categories', 'Project\CategoryController');
     Route::resource('/admin/project/questions', 'Project\QuestionController');
     Route::resource('/admin/project/interests', 'Project\InterestController');
+    Route::resource('/admin/project/abilities', 'Project\AbilityController');
+    Route::resource('/admin/project/qualities', 'Project\QualityController');
 });

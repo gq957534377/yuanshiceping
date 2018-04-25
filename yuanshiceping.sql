@@ -2,15 +2,15 @@
 Navicat MySQL Data Transfer
 
 Source Server         : localhost
-Source Server Version : 50721
+Source Server Version : 50722
 Source Host           : localhost:3306
 Source Database       : yuanshiceping
 
 Target Server Type    : MYSQL
-Target Server Version : 50721
+Target Server Version : 50722
 File Encoding         : 65001
 
-Date: 2018-04-24 17:25:57
+Date: 2018-04-25 20:18:13
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -25,11 +25,13 @@ CREATE TABLE `abilities` (
   `status` tinyint(3) unsigned NOT NULL DEFAULT '1',
   `sort` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT '排序',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='才干，能力';
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='才干，能力';
 
 -- ----------------------------
 -- Records of abilities
 -- ----------------------------
+INSERT INTO `abilities` VALUES ('1', '取悦', '1', '1');
+INSERT INTO `abilities` VALUES ('2', '分析', '1', '2');
 
 -- ----------------------------
 -- Table structure for admin_menu
@@ -45,7 +47,7 @@ CREATE TABLE `admin_menu` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ----------------------------
 -- Records of admin_menu
@@ -66,6 +68,21 @@ INSERT INTO `admin_menu` VALUES ('13', '12', '0', '测评主题管理', 'fa-bars
 INSERT INTO `admin_menu` VALUES ('14', '12', '0', '分类管理', 'fa-bars', '/project/categories', '2018-04-23 20:45:35', '2018-04-23 20:46:34');
 INSERT INTO `admin_menu` VALUES ('15', '12', '0', '测评题管理', 'fa-bars', '/project/questions', '2018-04-24 14:48:12', '2018-04-24 14:48:59');
 INSERT INTO `admin_menu` VALUES ('16', '12', '0', '兴趣', 'fa-bars', '/project/interests', '2018-04-24 15:41:21', '2018-04-24 15:41:21');
+INSERT INTO `admin_menu` VALUES ('17', '0', '0', '用户管理', 'fa-bars', null, '2018-04-25 10:12:22', '2018-04-25 10:12:22');
+INSERT INTO `admin_menu` VALUES ('18', '0', '0', '文章', 'fa-bars', null, '2018-04-25 10:12:38', '2018-04-25 10:12:38');
+INSERT INTO `admin_menu` VALUES ('19', '18', '0', '公告管理', 'fa-bars', null, '2018-04-25 10:13:02', '2018-04-25 10:13:02');
+INSERT INTO `admin_menu` VALUES ('20', '18', '0', '新闻管理', 'fa-bars', null, '2018-04-25 10:13:19', '2018-04-25 10:13:19');
+INSERT INTO `admin_menu` VALUES ('21', '0', '0', '商品', 'fa-bars', '产品', '2018-04-25 10:14:14', '2018-04-25 10:14:14');
+INSERT INTO `admin_menu` VALUES ('22', '21', '0', '订单管理', 'fa-bars', null, '2018-04-25 10:14:34', '2018-04-25 10:14:34');
+INSERT INTO `admin_menu` VALUES ('23', '21', '0', '数据分析', 'fa-bars', null, '2018-04-25 10:15:11', '2018-04-25 10:15:11');
+INSERT INTO `admin_menu` VALUES ('24', '0', '0', '设置中心', 'fa-bars', null, '2018-04-25 10:15:21', '2018-04-25 10:15:21');
+INSERT INTO `admin_menu` VALUES ('25', '21', '0', '评价管理', 'fa-bars', null, '2018-04-25 10:16:35', '2018-04-25 10:16:35');
+INSERT INTO `admin_menu` VALUES ('26', '21', '0', '虚拟评价', 'fa-bars', null, '2018-04-25 10:16:53', '2018-04-25 10:16:53');
+INSERT INTO `admin_menu` VALUES ('27', '0', '0', '小程序后台', 'fa-bars', null, '2018-04-25 10:17:09', '2018-04-25 10:17:09');
+INSERT INTO `admin_menu` VALUES ('28', '0', '0', '优惠券', 'fa-bars', '优惠券', '2018-04-25 10:17:47', '2018-04-25 10:17:47');
+INSERT INTO `admin_menu` VALUES ('29', '27', '0', '轮播管理', 'fa-bars', null, '2018-04-25 10:18:44', '2018-04-25 10:18:44');
+INSERT INTO `admin_menu` VALUES ('30', '12', '0', '才干', 'fa-bars', '/project/abilities', '2018-04-25 14:29:55', '2018-04-25 14:29:55');
+INSERT INTO `admin_menu` VALUES ('31', '12', '0', '素质模型', 'fa-bars', '/project/qualities', '2018-04-25 19:43:03', '2018-04-25 19:43:03');
 
 -- ----------------------------
 -- Table structure for admin_operation_log
@@ -82,7 +99,7 @@ CREATE TABLE `admin_operation_log` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `admin_operation_log_user_id_index` (`user_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=285 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=347 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ----------------------------
 -- Records of admin_operation_log
@@ -371,6 +388,68 @@ INSERT INTO `admin_operation_log` VALUES ('281', '1', 'admin/auth/menu', 'GET', 
 INSERT INTO `admin_operation_log` VALUES ('282', '1', 'admin/auth/menu', 'POST', '127.0.0.1', '{\"parent_id\":\"12\",\"title\":\"\\u5174\\u8da3\",\"icon\":\"fa-bars\",\"uri\":\"\\/project\\/interests\",\"roles\":[null],\"_token\":\"5Uw83oECkz5tUwagsRIdUo96h6gIpxwK2sdNjTfP\"}', '2018-04-24 15:41:21', '2018-04-24 15:41:21');
 INSERT INTO `admin_operation_log` VALUES ('283', '1', 'admin/auth/menu', 'GET', '127.0.0.1', '[]', '2018-04-24 15:41:21', '2018-04-24 15:41:21');
 INSERT INTO `admin_operation_log` VALUES ('284', '1', 'admin/auth/menu', 'GET', '127.0.0.1', '[]', '2018-04-24 15:45:19', '2018-04-24 15:45:19');
+INSERT INTO `admin_operation_log` VALUES ('285', '1', 'admin/project/questions', 'GET', '127.0.0.1', '[]', '2018-04-25 09:55:17', '2018-04-25 09:55:17');
+INSERT INTO `admin_operation_log` VALUES ('286', '1', 'admin/auth/menu', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-25 10:10:59', '2018-04-25 10:10:59');
+INSERT INTO `admin_operation_log` VALUES ('287', '1', 'admin/auth/menu', 'POST', '127.0.0.1', '{\"parent_id\":\"0\",\"title\":\"\\u7528\\u6237\\u7ba1\\u7406\",\"icon\":\"fa-bars\",\"uri\":null,\"roles\":[null],\"_token\":\"KNaVTTzu9YSLobYZCdOhBhqhF9ONAU0cidqjQ1wZ\"}', '2018-04-25 10:12:22', '2018-04-25 10:12:22');
+INSERT INTO `admin_operation_log` VALUES ('288', '1', 'admin/auth/menu', 'GET', '127.0.0.1', '[]', '2018-04-25 10:12:22', '2018-04-25 10:12:22');
+INSERT INTO `admin_operation_log` VALUES ('289', '1', 'admin/auth/menu', 'POST', '127.0.0.1', '{\"parent_id\":\"0\",\"title\":\"\\u6587\\u7ae0\",\"icon\":\"fa-bars\",\"uri\":null,\"roles\":[null],\"_token\":\"KNaVTTzu9YSLobYZCdOhBhqhF9ONAU0cidqjQ1wZ\"}', '2018-04-25 10:12:38', '2018-04-25 10:12:38');
+INSERT INTO `admin_operation_log` VALUES ('290', '1', 'admin/auth/menu', 'GET', '127.0.0.1', '[]', '2018-04-25 10:12:38', '2018-04-25 10:12:38');
+INSERT INTO `admin_operation_log` VALUES ('291', '1', 'admin/auth/menu', 'POST', '127.0.0.1', '{\"parent_id\":\"18\",\"title\":\"\\u516c\\u544a\\u7ba1\\u7406\",\"icon\":\"fa-bars\",\"uri\":null,\"roles\":[null],\"_token\":\"KNaVTTzu9YSLobYZCdOhBhqhF9ONAU0cidqjQ1wZ\"}', '2018-04-25 10:13:02', '2018-04-25 10:13:02');
+INSERT INTO `admin_operation_log` VALUES ('292', '1', 'admin/auth/menu', 'GET', '127.0.0.1', '[]', '2018-04-25 10:13:02', '2018-04-25 10:13:02');
+INSERT INTO `admin_operation_log` VALUES ('293', '1', 'admin/auth/menu', 'POST', '127.0.0.1', '{\"parent_id\":\"18\",\"title\":\"\\u65b0\\u95fb\\u7ba1\\u7406\",\"icon\":\"fa-bars\",\"uri\":null,\"roles\":[null],\"_token\":\"KNaVTTzu9YSLobYZCdOhBhqhF9ONAU0cidqjQ1wZ\"}', '2018-04-25 10:13:19', '2018-04-25 10:13:19');
+INSERT INTO `admin_operation_log` VALUES ('294', '1', 'admin/auth/menu', 'GET', '127.0.0.1', '[]', '2018-04-25 10:13:19', '2018-04-25 10:13:19');
+INSERT INTO `admin_operation_log` VALUES ('295', '1', 'admin/auth/menu', 'POST', '127.0.0.1', '{\"parent_id\":\"0\",\"title\":null,\"icon\":\"fa-bars\",\"uri\":\"\\u4ea7\\u54c1\",\"roles\":[null],\"_token\":\"KNaVTTzu9YSLobYZCdOhBhqhF9ONAU0cidqjQ1wZ\"}', '2018-04-25 10:13:54', '2018-04-25 10:13:54');
+INSERT INTO `admin_operation_log` VALUES ('296', '1', 'admin/auth/menu', 'GET', '127.0.0.1', '[]', '2018-04-25 10:13:54', '2018-04-25 10:13:54');
+INSERT INTO `admin_operation_log` VALUES ('297', '1', 'admin/auth/menu', 'POST', '127.0.0.1', '{\"parent_id\":\"0\",\"title\":\"\\u5546\\u54c1\",\"icon\":\"fa-bars\",\"uri\":\"\\u4ea7\\u54c1\",\"roles\":[null],\"_token\":\"KNaVTTzu9YSLobYZCdOhBhqhF9ONAU0cidqjQ1wZ\"}', '2018-04-25 10:14:14', '2018-04-25 10:14:14');
+INSERT INTO `admin_operation_log` VALUES ('298', '1', 'admin/auth/menu', 'GET', '127.0.0.1', '[]', '2018-04-25 10:14:14', '2018-04-25 10:14:14');
+INSERT INTO `admin_operation_log` VALUES ('299', '1', 'admin/auth/menu', 'POST', '127.0.0.1', '{\"parent_id\":\"21\",\"title\":\"\\u8ba2\\u5355\\u7ba1\\u7406\",\"icon\":\"fa-bars\",\"uri\":null,\"roles\":[null],\"_token\":\"KNaVTTzu9YSLobYZCdOhBhqhF9ONAU0cidqjQ1wZ\"}', '2018-04-25 10:14:34', '2018-04-25 10:14:34');
+INSERT INTO `admin_operation_log` VALUES ('300', '1', 'admin/auth/menu', 'GET', '127.0.0.1', '[]', '2018-04-25 10:14:34', '2018-04-25 10:14:34');
+INSERT INTO `admin_operation_log` VALUES ('301', '1', 'admin/auth/menu', 'POST', '127.0.0.1', '{\"parent_id\":\"21\",\"title\":\"\\u6570\\u636e\\u5206\\u6790\",\"icon\":\"fa-bars\",\"uri\":null,\"roles\":[null],\"_token\":\"KNaVTTzu9YSLobYZCdOhBhqhF9ONAU0cidqjQ1wZ\"}', '2018-04-25 10:15:10', '2018-04-25 10:15:10');
+INSERT INTO `admin_operation_log` VALUES ('302', '1', 'admin/auth/menu', 'GET', '127.0.0.1', '[]', '2018-04-25 10:15:11', '2018-04-25 10:15:11');
+INSERT INTO `admin_operation_log` VALUES ('303', '1', 'admin/auth/menu', 'POST', '127.0.0.1', '{\"parent_id\":\"0\",\"title\":\"\\u8bbe\\u7f6e\\u4e2d\\u5fc3\",\"icon\":\"fa-bars\",\"uri\":null,\"roles\":[null],\"_token\":\"KNaVTTzu9YSLobYZCdOhBhqhF9ONAU0cidqjQ1wZ\"}', '2018-04-25 10:15:21', '2018-04-25 10:15:21');
+INSERT INTO `admin_operation_log` VALUES ('304', '1', 'admin/auth/menu', 'GET', '127.0.0.1', '[]', '2018-04-25 10:15:21', '2018-04-25 10:15:21');
+INSERT INTO `admin_operation_log` VALUES ('305', '1', 'admin/auth/menu', 'POST', '127.0.0.1', '{\"parent_id\":\"21\",\"title\":\"\\u8bc4\\u4ef7\\u7ba1\\u7406\",\"icon\":\"fa-bars\",\"uri\":null,\"roles\":[null],\"_token\":\"KNaVTTzu9YSLobYZCdOhBhqhF9ONAU0cidqjQ1wZ\"}', '2018-04-25 10:16:35', '2018-04-25 10:16:35');
+INSERT INTO `admin_operation_log` VALUES ('306', '1', 'admin/auth/menu', 'GET', '127.0.0.1', '[]', '2018-04-25 10:16:35', '2018-04-25 10:16:35');
+INSERT INTO `admin_operation_log` VALUES ('307', '1', 'admin/auth/menu', 'POST', '127.0.0.1', '{\"parent_id\":\"21\",\"title\":\"\\u865a\\u62df\\u8bc4\\u4ef7\",\"icon\":\"fa-bars\",\"uri\":null,\"roles\":[null],\"_token\":\"KNaVTTzu9YSLobYZCdOhBhqhF9ONAU0cidqjQ1wZ\"}', '2018-04-25 10:16:53', '2018-04-25 10:16:53');
+INSERT INTO `admin_operation_log` VALUES ('308', '1', 'admin/auth/menu', 'GET', '127.0.0.1', '[]', '2018-04-25 10:16:53', '2018-04-25 10:16:53');
+INSERT INTO `admin_operation_log` VALUES ('309', '1', 'admin/auth/menu', 'POST', '127.0.0.1', '{\"parent_id\":\"0\",\"title\":\"\\u5c0f\\u7a0b\\u5e8f\\u540e\\u53f0\",\"icon\":\"fa-bars\",\"uri\":null,\"roles\":[null],\"_token\":\"KNaVTTzu9YSLobYZCdOhBhqhF9ONAU0cidqjQ1wZ\"}', '2018-04-25 10:17:08', '2018-04-25 10:17:08');
+INSERT INTO `admin_operation_log` VALUES ('310', '1', 'admin/auth/menu', 'GET', '127.0.0.1', '[]', '2018-04-25 10:17:09', '2018-04-25 10:17:09');
+INSERT INTO `admin_operation_log` VALUES ('311', '1', 'admin/auth/menu', 'POST', '127.0.0.1', '{\"parent_id\":\"0\",\"title\":null,\"icon\":\"fa-bars\",\"uri\":\"\\u4f18\\u60e0\\u5238\",\"roles\":[null],\"_token\":\"KNaVTTzu9YSLobYZCdOhBhqhF9ONAU0cidqjQ1wZ\"}', '2018-04-25 10:17:38', '2018-04-25 10:17:38');
+INSERT INTO `admin_operation_log` VALUES ('312', '1', 'admin/auth/menu', 'GET', '127.0.0.1', '[]', '2018-04-25 10:17:38', '2018-04-25 10:17:38');
+INSERT INTO `admin_operation_log` VALUES ('313', '1', 'admin/auth/menu', 'POST', '127.0.0.1', '{\"parent_id\":\"0\",\"title\":\"\\u4f18\\u60e0\\u5238\",\"icon\":\"fa-bars\",\"uri\":\"\\u4f18\\u60e0\\u5238\",\"roles\":[null],\"_token\":\"KNaVTTzu9YSLobYZCdOhBhqhF9ONAU0cidqjQ1wZ\"}', '2018-04-25 10:17:47', '2018-04-25 10:17:47');
+INSERT INTO `admin_operation_log` VALUES ('314', '1', 'admin/auth/menu', 'GET', '127.0.0.1', '[]', '2018-04-25 10:17:47', '2018-04-25 10:17:47');
+INSERT INTO `admin_operation_log` VALUES ('315', '1', 'admin/auth/menu', 'POST', '127.0.0.1', '{\"parent_id\":\"27\",\"title\":\"\\u8f6e\\u64ad\\u7ba1\\u7406\",\"icon\":\"fa-bars\",\"uri\":null,\"roles\":[null],\"_token\":\"KNaVTTzu9YSLobYZCdOhBhqhF9ONAU0cidqjQ1wZ\"}', '2018-04-25 10:18:44', '2018-04-25 10:18:44');
+INSERT INTO `admin_operation_log` VALUES ('316', '1', 'admin/auth/menu', 'GET', '127.0.0.1', '[]', '2018-04-25 10:18:44', '2018-04-25 10:18:44');
+INSERT INTO `admin_operation_log` VALUES ('317', '1', 'admin/auth/menu', 'GET', '127.0.0.1', '[]', '2018-04-25 10:25:22', '2018-04-25 10:25:22');
+INSERT INTO `admin_operation_log` VALUES ('318', '1', 'admin/auth/menu', 'GET', '127.0.0.1', '[]', '2018-04-25 14:28:33', '2018-04-25 14:28:33');
+INSERT INTO `admin_operation_log` VALUES ('319', '1', 'admin/auth/menu', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-25 14:28:38', '2018-04-25 14:28:38');
+INSERT INTO `admin_operation_log` VALUES ('320', '1', 'admin/auth/menu', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-25 14:28:43', '2018-04-25 14:28:43');
+INSERT INTO `admin_operation_log` VALUES ('321', '1', 'admin/auth/menu', 'POST', '127.0.0.1', '{\"parent_id\":\"12\",\"title\":\"\\u624d\\u5e72\",\"icon\":\"fa-bars\",\"uri\":\"\\/project\\/abilities\",\"roles\":[null],\"_token\":\"gGYFkTMHIssIjfmjumXHm6itf8gGf8J0mflmhVUo\"}', '2018-04-25 14:29:55', '2018-04-25 14:29:55');
+INSERT INTO `admin_operation_log` VALUES ('322', '1', 'admin/auth/menu', 'GET', '127.0.0.1', '[]', '2018-04-25 14:29:55', '2018-04-25 14:29:55');
+INSERT INTO `admin_operation_log` VALUES ('323', '1', 'admin/auth/menu', 'GET', '127.0.0.1', '[]', '2018-04-25 14:32:46', '2018-04-25 14:32:46');
+INSERT INTO `admin_operation_log` VALUES ('324', '1', 'admin/project/abilities', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-25 14:32:50', '2018-04-25 14:32:50');
+INSERT INTO `admin_operation_log` VALUES ('325', '1', 'admin/project/abilities', 'GET', '127.0.0.1', '[]', '2018-04-25 14:33:15', '2018-04-25 14:33:15');
+INSERT INTO `admin_operation_log` VALUES ('326', '1', 'admin/project/abilities', 'GET', '127.0.0.1', '[]', '2018-04-25 14:34:41', '2018-04-25 14:34:41');
+INSERT INTO `admin_operation_log` VALUES ('327', '1', 'admin/project/abilities/create', 'GET', '127.0.0.1', '[]', '2018-04-25 19:11:36', '2018-04-25 19:11:36');
+INSERT INTO `admin_operation_log` VALUES ('328', '1', 'admin/project/abilities/create', 'GET', '127.0.0.1', '[]', '2018-04-25 19:12:24', '2018-04-25 19:12:24');
+INSERT INTO `admin_operation_log` VALUES ('329', '1', 'admin/project/abilities', 'POST', '127.0.0.1', '{\"name\":\"\\u53d6\\u60a6\",\"sort\":\"1\",\"status\":\"1\",\"_token\":\"qXoD0InckEtOqmFMJJZNzWYQ7gfKuZZBEN7vYFVG\"}', '2018-04-25 19:22:46', '2018-04-25 19:22:46');
+INSERT INTO `admin_operation_log` VALUES ('330', '1', 'admin/project/abilities', 'GET', '127.0.0.1', '[]', '2018-04-25 19:22:47', '2018-04-25 19:22:47');
+INSERT INTO `admin_operation_log` VALUES ('331', '1', 'admin/project/abilities/create', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-25 19:22:55', '2018-04-25 19:22:55');
+INSERT INTO `admin_operation_log` VALUES ('332', '1', 'admin/project/abilities', 'POST', '127.0.0.1', '{\"name\":\"\\u5206\\u6790\",\"sort\":\"2\",\"status\":\"1\",\"_token\":\"qXoD0InckEtOqmFMJJZNzWYQ7gfKuZZBEN7vYFVG\",\"_previous_\":\"http:\\/\\/localhost:8080\\/admin\\/project\\/abilities\"}', '2018-04-25 19:23:02', '2018-04-25 19:23:02');
+INSERT INTO `admin_operation_log` VALUES ('333', '1', 'admin/project/abilities', 'GET', '127.0.0.1', '[]', '2018-04-25 19:23:02', '2018-04-25 19:23:02');
+INSERT INTO `admin_operation_log` VALUES ('334', '1', 'admin/auth/menu', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-25 19:23:24', '2018-04-25 19:23:24');
+INSERT INTO `admin_operation_log` VALUES ('335', '1', 'admin/auth/menu', 'POST', '127.0.0.1', '{\"parent_id\":\"12\",\"title\":\"\\u7d20\\u8d28\\u6a21\\u578b\",\"icon\":\"fa-bars\",\"uri\":\"\\/project\\/qualities\",\"roles\":[null],\"_token\":\"qXoD0InckEtOqmFMJJZNzWYQ7gfKuZZBEN7vYFVG\"}', '2018-04-25 19:43:02', '2018-04-25 19:43:02');
+INSERT INTO `admin_operation_log` VALUES ('336', '1', 'admin/auth/menu', 'GET', '127.0.0.1', '[]', '2018-04-25 19:43:03', '2018-04-25 19:43:03');
+INSERT INTO `admin_operation_log` VALUES ('337', '1', 'admin/auth/menu', 'GET', '127.0.0.1', '[]', '2018-04-25 19:49:18', '2018-04-25 19:49:18');
+INSERT INTO `admin_operation_log` VALUES ('338', '1', 'admin/project/qualities', 'GET', '127.0.0.1', '[]', '2018-04-25 19:49:52', '2018-04-25 19:49:52');
+INSERT INTO `admin_operation_log` VALUES ('339', '1', 'admin/project/qualities', 'GET', '127.0.0.1', '[]', '2018-04-25 19:50:38', '2018-04-25 19:50:38');
+INSERT INTO `admin_operation_log` VALUES ('340', '1', 'admin/project/qualities/create', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-25 19:50:43', '2018-04-25 19:50:43');
+INSERT INTO `admin_operation_log` VALUES ('341', '1', 'admin/project/qualities', 'POST', '127.0.0.1', '{\"name\":\"\\u56e2\\u961f\\u9886\\u5bfc\\u80fd\\u529b\",\"sort\":\"1\",\"status\":\"1\",\"_token\":\"qXoD0InckEtOqmFMJJZNzWYQ7gfKuZZBEN7vYFVG\",\"_previous_\":\"http:\\/\\/localhost:8080\\/admin\\/project\\/qualities\"}', '2018-04-25 19:51:33', '2018-04-25 19:51:33');
+INSERT INTO `admin_operation_log` VALUES ('342', '1', 'admin/project/qualities', 'GET', '127.0.0.1', '[]', '2018-04-25 19:51:33', '2018-04-25 19:51:33');
+INSERT INTO `admin_operation_log` VALUES ('343', '1', 'admin/auth/menu', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-25 19:51:45', '2018-04-25 19:51:45');
+INSERT INTO `admin_operation_log` VALUES ('344', '1', 'admin/project/questions', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-25 19:57:34', '2018-04-25 19:57:34');
+INSERT INTO `admin_operation_log` VALUES ('345', '1', 'admin/project/questions/create', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-25 19:57:37', '2018-04-25 19:57:37');
+INSERT INTO `admin_operation_log` VALUES ('346', '1', 'admin/project/questions/create', 'GET', '127.0.0.1', '[]', '2018-04-25 20:05:03', '2018-04-25 20:05:03');
 
 -- ----------------------------
 -- Table structure for admin_permissions
@@ -634,11 +713,12 @@ CREATE TABLE `qualities` (
   `status` tinyint(3) unsigned NOT NULL DEFAULT '1',
   `sort` smallint(5) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='素质';
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='素质';
 
 -- ----------------------------
 -- Records of qualities
 -- ----------------------------
+INSERT INTO `qualities` VALUES ('1', '团队领导能力', '1', '1');
 
 -- ----------------------------
 -- Table structure for questions

@@ -19,3 +19,9 @@
  */
 
 Encore\Admin\Form::forget(['map', 'editor']);
+
+Encore\Admin\Form::registerBuiltinFields();
+
+Encore\Admin\Form::collectFieldAssets();
+
+Encore\Admin\Grid::registerColumnDisplayer();
