@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['middleware' => ['form']], function() {
+Route::group(['middleware' => ['admin','form']], function() {
     Route::resource('/admin/project/subjects', 'Project\SubjectController');
     Route::resource('/admin/project/categories', 'Project\CategoryController');
     Route::resource('/admin/project/questions', 'Project\QuestionController');
