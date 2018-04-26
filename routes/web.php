@@ -22,4 +22,7 @@ Route::group(['middleware' => ['admin']], function() {
     Route::resource('/admin/project/interests', 'Project\InterestController');
     Route::resource('/admin/project/abilities', 'Project\AbilityController');
     Route::resource('/admin/project/qualities', 'Project\QualityController');
+    Route::resource('/admin/project/personalities', 'Project\PersonalityController');
+
+    Route::get('/admin/project/types', 'Project\TypeController@types');
 });

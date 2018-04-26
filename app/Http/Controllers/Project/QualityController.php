@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Project;
 
-use App\Models\Category;
 use App\Http\Controllers\Controller;
 use App\Models\Subject;
 use Encore\Admin\Facades\Admin;
@@ -10,8 +9,9 @@ use Encore\Admin\Form;
 use Encore\Admin\Layout\Content;
 use Encore\Admin\Controllers\ModelForm;
 use Encore\Admin\Grid;
+use App\Models\Quality;
 
-class CategoryController extends Controller
+class QualityController extends Controller
 {
     use ModelForm;
 
@@ -23,7 +23,7 @@ class CategoryController extends Controller
     public function index()
     {
         return Admin::content(function (Content $content) {
-            $content->header(trans('category.title'));
+            $content->header(trans('quality.title'));
             $content->description(trans('admin.list'));
             $content->body($this->grid()->render());
         });
@@ -37,7 +37,7 @@ class CategoryController extends Controller
     public function create()
     {
         return Admin::content(function (Content $content) {
-            $content->header(trans('category.title'));
+            $content->header(trans('quality.title'));
             $content->description(trans('admin.create'));
             $content->body($this->form());
         });
@@ -54,12 +54,11 @@ class CategoryController extends Controller
     public function edit($id)
     {
         return Admin::content(function (Content $content) use ($id) {
-            $content->header(trans('category.title'));
+            $content->header(trans('quality.title'));
             $content->description(trans('admin.edit'));
             $content->body($this->form()->edit($id));
         });
     }
-
 
     /**
      * Make a grid builder.
@@ -68,12 +67,9 @@ class CategoryController extends Controller
      */
     protected function grid()
     {
-        return Admin::grid(Category::class, function (Grid $grid) {
+        return Admin::grid(Quality::class, function (Grid $grid) {
             $grid->id('ID')->sortable();
-            $grid->subject_id(trans('subject.title'))->display(function ($subject_id){
-                return Subject::getName($subject_id);
-            });
-            $grid->name(trans('category.title'));
+            $grid->name(trans('quality.name'));
             $grid->status(trans('subject.status'))->display(function ($status_id) {
                 return Subject::$STATUS[$status_id];
             });
@@ -99,14 +95,12 @@ class CategoryController extends Controller
     public function form()
     {
 
-        return Admin::form(Category::class, function (Form $form) {
+        return Admin::form(Quality::class, function (Form $form) {
             $form->display('id', 'ID');
-            $form->select('subject_id', trans('category.subject_id'))->options(Subject::selectOptions());
-            $form->text('name', trans('category.name'))->rules('required');
-            $form->radio('is_multi', trans('category.is_multi'))->values(Category::$IS_MULTI)->default(Category::MULTI);
+            $form->text('name', trans('quality.name'))->rules('required');
+            $form->text('sort', trans('subject.sort'));
             $form->radio('status', trans('subject.status'))->values(Subject::$STATUS)->default(Subject::STATUS_ON);
 
         });
     }
-
 }
