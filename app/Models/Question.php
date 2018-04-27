@@ -29,6 +29,7 @@ class Question extends Eloquent
 	protected $casts = [
 		'status' => 'int',
 		'category_id' => 'int',
+		'subject_id' => 'int',
 		'sort' => 'int'
 	];
 
@@ -38,6 +39,12 @@ class Question extends Eloquent
 		'remark',
 		'title',
 		'category_id',
+		'subject_id',
 		'sort'
 	];
+
+	public function subQuestions()
+    {
+        return $this->hasMany('App\Models\SubQuestion');
+    }
 }

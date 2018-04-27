@@ -25,4 +25,7 @@ Route::group(['middleware' => ['admin']], function() {
     Route::resource('/admin/project/personalities', 'Project\PersonalityController');
 
     Route::get('/admin/project/types', 'Project\TypeController@types');
+    Route::get('/admin/import/cat-a', 'Project\ImportQuestionController@catA');
+    Route::get('/admin/import/cat-b', 'Project\ImportQuestionController@catB');
+    Route::get('/admin/import/cat-c', 'Project\ImportQuestionController@catC');
 });

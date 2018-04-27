@@ -53,4 +53,9 @@ class SubQuestion extends Eloquent
     {
         return static::where(['question_id' => $id])->orderBy('sort', 'ASC')->get();
     }
+
+    public function question()
+    {
+        return $this->belongsTo(Question::class);
+    }
 }

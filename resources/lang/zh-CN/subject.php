@@ -5,4 +5,5 @@ return [
     'title' =>'测评主题',
     'status' => '状态',
     'sort' => '排序',
+    'remark' => '备注',
 ];

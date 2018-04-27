@@ -95,4 +95,26 @@ class MyForm extends Form
 
         return $prepared;
     }
+
+    /**
+     * Destroy data entity and remove files.
+     *
+     * @param $id
+     *
+     * @return mixed
+     */
+    public function destroy($id)
+    {
+        $ids = explode(',', $id);
+
+        foreach ($ids as $id) {
+            if (empty($id)) {
+                continue;
+            }
+            $this->deleteFilesAndImages($id);
+            $this->model->find($id)->delete();
+        }
+
+        return true;
+    }
 }

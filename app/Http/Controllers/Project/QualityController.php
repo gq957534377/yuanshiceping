@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Project;
 
 use App\Http\Controllers\Controller;
 use App\Models\Subject;
-use Encore\Admin\Facades\Admin;
-use Encore\Admin\Form;
+use App\Zack\Facades\MyAdmin as Admin;
+use App\Zack\MyForm as Form;
 use Encore\Admin\Layout\Content;
 use Encore\Admin\Controllers\ModelForm;
 use Encore\Admin\Grid;

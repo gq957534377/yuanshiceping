@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Project;
 use App\Models\Category;
 use App\Http\Controllers\Controller;
 use App\Models\Subject;
-use Encore\Admin\Facades\Admin;
-use Encore\Admin\Form;
+use App\Zack\Facades\MyAdmin as Admin;
+use App\Zack\MyForm as Form;
 use Encore\Admin\Layout\Content;
 use Encore\Admin\Controllers\ModelForm;
 use Encore\Admin\Grid;
@@ -103,7 +103,8 @@ class CategoryController extends Controller
             $form->display('id', 'ID');
             $form->select('subject_id', trans('category.subject_id'))->options(Subject::selectOptions());
             $form->text('name', trans('category.name'))->rules('required');
-            $form->radio('is_multi', trans('category.is_multi'))->values(Category::$IS_MULTI)->default(Category::MULTI);
+            $form->textarea('remark', trans('subject.remark'));
+//            $form->radio('is_multi', trans('category.is_multi'))->values(Category::$IS_MULTI)->default(Category::MULTI);
             $form->radio('status', trans('subject.status'))->values(Subject::$STATUS)->default(Subject::STATUS_ON);
 
         });
