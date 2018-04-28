@@ -29,3 +29,10 @@ Route::group(['middleware' => ['admin']], function() {
     Route::get('/admin/import/cat-b', 'Project\ImportQuestionController@catB');
     Route::get('/admin/import/cat-c', 'Project\ImportQuestionController@catC');
 });
+
+
+Route::group(['middleware' => ['web']], function () {
+    Route::get('/home','Home\IndexController@index');
+    Route::get('/evaluation','Home\EvaluationController@index');
+    Route::post('/evaluate','Home\EvaluationController@evaluate');
+});

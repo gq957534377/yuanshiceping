@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50722
 File Encoding         : 65001
 
-Date: 2018-04-27 18:19:29
+Date: 2018-04-28 18:14:57
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -133,7 +133,7 @@ CREATE TABLE `admin_operation_log` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `admin_operation_log_user_id_index` (`user_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=1124 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1148 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ----------------------------
 -- Records of admin_operation_log
@@ -1261,6 +1261,30 @@ INSERT INTO `admin_operation_log` VALUES ('1120', '1', 'admin', 'GET', '127.0.0.
 INSERT INTO `admin_operation_log` VALUES ('1121', '1', 'admin/project/questions', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-27 18:18:46', '2018-04-27 18:18:46');
 INSERT INTO `admin_operation_log` VALUES ('1122', '1', 'admin/project/questions/1/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-27 18:18:54', '2018-04-27 18:18:54');
 INSERT INTO `admin_operation_log` VALUES ('1123', '1', 'admin/project/questions', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-27 18:19:06', '2018-04-27 18:19:06');
+INSERT INTO `admin_operation_log` VALUES ('1124', '1', 'admin', 'GET', '127.0.0.1', '[]', '2018-04-27 21:54:38', '2018-04-27 21:54:38');
+INSERT INTO `admin_operation_log` VALUES ('1125', '1', 'admin/project/personalities', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-27 21:54:49', '2018-04-27 21:54:49');
+INSERT INTO `admin_operation_log` VALUES ('1126', '1', 'admin/project/personalities/create', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-27 21:54:51', '2018-04-27 21:54:51');
+INSERT INTO `admin_operation_log` VALUES ('1127', '1', 'admin/project/personalities/create', 'GET', '127.0.0.1', '[]', '2018-04-27 21:55:41', '2018-04-27 21:55:41');
+INSERT INTO `admin_operation_log` VALUES ('1128', '1', 'admin/project/personalities/create', 'GET', '127.0.0.1', '[]', '2018-04-27 21:55:56', '2018-04-27 21:55:56');
+INSERT INTO `admin_operation_log` VALUES ('1129', '1', 'admin/project/personalities/create', 'GET', '127.0.0.1', '[]', '2018-04-27 21:56:13', '2018-04-27 21:56:13');
+INSERT INTO `admin_operation_log` VALUES ('1130', '1', 'admin/project/personalities/create', 'GET', '127.0.0.1', '[]', '2018-04-27 21:56:45', '2018-04-27 21:56:45');
+INSERT INTO `admin_operation_log` VALUES ('1131', '1', 'admin/project/personalities/create', 'GET', '127.0.0.1', '[]', '2018-04-27 21:57:16', '2018-04-27 21:57:16');
+INSERT INTO `admin_operation_log` VALUES ('1132', '1', 'admin/project/personalities/create', 'GET', '127.0.0.1', '[]', '2018-04-27 21:59:19', '2018-04-27 21:59:19');
+INSERT INTO `admin_operation_log` VALUES ('1133', '1', 'admin/project/personalities/create', 'GET', '127.0.0.1', '[]', '2018-04-27 22:00:08', '2018-04-27 22:00:08');
+INSERT INTO `admin_operation_log` VALUES ('1134', '1', 'admin/project/personalities/create', 'GET', '127.0.0.1', '[]', '2018-04-27 22:03:09', '2018-04-27 22:03:09');
+INSERT INTO `admin_operation_log` VALUES ('1135', '1', 'admin/project/personalities/create', 'GET', '127.0.0.1', '[]', '2018-04-27 22:03:11', '2018-04-27 22:03:11');
+INSERT INTO `admin_operation_log` VALUES ('1136', '1', 'admin/project/personalities/create', 'GET', '127.0.0.1', '[]', '2018-04-27 22:09:16', '2018-04-27 22:09:16');
+INSERT INTO `admin_operation_log` VALUES ('1137', '1', 'admin/project/personalities/create', 'GET', '127.0.0.1', '[]', '2018-04-27 22:09:20', '2018-04-27 22:09:20');
+INSERT INTO `admin_operation_log` VALUES ('1138', '1', 'admin/project/personalities/create', 'GET', '127.0.0.1', '[]', '2018-04-27 22:09:42', '2018-04-27 22:09:42');
+INSERT INTO `admin_operation_log` VALUES ('1139', '1', 'admin/project/personalities/create', 'GET', '127.0.0.1', '[]', '2018-04-27 22:09:45', '2018-04-27 22:09:45');
+INSERT INTO `admin_operation_log` VALUES ('1140', '1', 'admin/project/personalities/create', 'GET', '127.0.0.1', '[]', '2018-04-27 22:10:10', '2018-04-27 22:10:10');
+INSERT INTO `admin_operation_log` VALUES ('1141', '1', 'admin/project/personalities/create', 'GET', '127.0.0.1', '[]', '2018-04-27 22:10:45', '2018-04-27 22:10:45');
+INSERT INTO `admin_operation_log` VALUES ('1142', '1', 'admin/project/personalities/create', 'GET', '127.0.0.1', '[]', '2018-04-27 22:11:47', '2018-04-27 22:11:47');
+INSERT INTO `admin_operation_log` VALUES ('1143', '1', 'admin/api-tester', 'GET', '127.0.0.1', '[]', '2018-04-28 09:25:15', '2018-04-28 09:25:15');
+INSERT INTO `admin_operation_log` VALUES ('1144', '1', 'admin/api-tester/handle', 'POST', '127.0.0.1', '{\"uri\":\"get\",\"method\":null,\"_token\":\"KmJNOnYLHLPJr9u2LfXaVikk3e6D0Tmd5DGiYzih\",\"user\":null}', '2018-04-28 09:25:41', '2018-04-28 09:25:41');
+INSERT INTO `admin_operation_log` VALUES ('1145', '1', 'admin/api-tester/handle', 'POST', '127.0.0.1', '{\"uri\":\"get\",\"method\":null,\"_token\":\"KmJNOnYLHLPJr9u2LfXaVikk3e6D0Tmd5DGiYzih\",\"user\":null}', '2018-04-28 09:31:43', '2018-04-28 09:31:43');
+INSERT INTO `admin_operation_log` VALUES ('1146', '1', 'admin/api-tester', 'GET', '127.0.0.1', '[]', '2018-04-28 09:31:51', '2018-04-28 09:31:51');
+INSERT INTO `admin_operation_log` VALUES ('1147', '1', 'admin/api-tester/handle', 'POST', '127.0.0.1', '{\"uri\":\"get\",\"method\":null,\"_token\":\"KmJNOnYLHLPJr9u2LfXaVikk3e6D0Tmd5DGiYzih\",\"user\":null}', '2018-04-28 09:32:07', '2018-04-28 09:32:07');
 
 -- ----------------------------
 -- Table structure for admin_permissions
