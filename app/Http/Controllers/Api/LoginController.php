@@ -20,17 +20,22 @@ class LoginController extends Controller
     {
         // 判断当前用户open_id是否已经存在
         $user = User::where('open_id', $request->open_id)->first();
-        // 不存在添加用户、返回私人令牌
-        if (empty($user)) {
+
+        // 存在返回私人令牌、修改资料
+        if (!empty($user)) {
             $user->head_url = $request->head_url;
             $user->name = $request->name;
             $user->save();
 
+            if ($user->status != 1) {
+                return $this->sendError('账号禁用', ['账号禁用'], 403);
+            }
             // 获取令牌
             $token = $user->createToken($request->open_id)->accessToken;
             return $this->sendResponse(['token' => $token], '登陆成功');
         }
-        // 存在返回私人令牌、修改资料
+
+        // 不存在添加用户、返回私人令牌
         $user = User::create([
             'open_id' => $request->open_id,
             'name' => $request->name,
