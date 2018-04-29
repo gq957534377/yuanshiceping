@@ -20,8 +20,10 @@ class CreateUsersTable extends Migration
             $table->string('password')->nullable();
             $table->string('open_id')->nullable();
             $table->string('head_url')->nullable();
+            $table->tinyInteger('status')->default(1);
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -21,4 +21,9 @@ Route::get('test', function () {
     return 'hello world';
 });
 
-Route::post('questions', 'Api\EvaluationController@questions');
+Route::group(['namespace' => 'Api'], function () {
+    Route::post('questions', 'EvaluationController@questions');
+    Route::post('login', 'LoginController@login');
+});
+
+
