@@ -80,6 +80,7 @@ class UserController extends Controller
             $grid->column('n', '状态')->display(function () {
                 return $this->status == 1 ? '正常' : '已禁用';
             });
+            $grid->dealer_id('经销商id');
             $grid->created_at('注册时间');
             $grid->updated_at('上次修改时间');
             $grid->disableCreateButton();
