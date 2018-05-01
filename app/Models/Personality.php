@@ -35,4 +35,17 @@ class Personality extends Eloquent
 		'remark',
 		'sort'
 	];
+
+    static public function deleteByMemberId($member_id)
+    {
+        $items = static::all()->toArray();
+        foreach ($items as $item) {
+            $row = MemberPersonalityGrade::where(['member_id'=>$member_id,'personality_id'=>$item['id']])->first();
+
+            if ($row) {
+                $row->where(['member_id'=>$member_id,'personality_id'=>$item['id']])->delete();
+            }
+        }
+
+    }
 }

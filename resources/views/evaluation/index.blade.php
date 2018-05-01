@@ -52,11 +52,11 @@
         function make_b_question(question) {
             var html = '<p>\n' +
                 '                <h4 >'+question.title+question.sub_questions[0].title+' '+question.sub_questions[1].title+'</h4>\n' +
-                '            <input type="radio" name="cat_a['+question.id+']" value="1" checked="checked"> 非常贴切描述我\n' +
-                '            <input type="radio" name="cat_a['+question.id+']" value="2"> 一般\n' +
-                '            <input type="radio" name="cat_a['+question.id+']" value="3"> 中立\n' +
-                '            <input type="radio" name="cat_a['+question.id+']" value="4"> 一般\n' +
-                '            <input type="radio" name="cat_a['+question.id+']" value="5"> 非常贴切描述我\n' +
+                '            <input type="radio" name="cat_b['+question.id+']" value="1" checked="checked"> 非常贴切描述我\n' +
+                '            <input type="radio" name="cat_b['+question.id+']" value="2"> 一般\n' +
+                '            <input type="radio" name="cat_b['+question.id+']" value="3"> 中立\n' +
+                '            <input type="radio" name="cat_b['+question.id+']" value="4"> 一般\n' +
+                '            <input type="radio" name="cat_b['+question.id+']" value="5"> 非常贴切描述我\n' +
                 '\n' +
                 '            </p>';
             $('#cat_b').append(html);
@@ -65,8 +65,8 @@
         function make_c_question(question) {
             var html = '<p>\n' +
                 '                <h4 >'+question.title+'</h4>\n' +
-                '            <input type="radio" name="cat_a['+question.id+']" value="1" checked="checked"> 同意\n' +
-                '            <input type="radio" name="cat_a['+question.id+']" value="0"> 不同意\n' +
+                '            <input type="radio" name="cat_c['+question.id+']" value="1" checked="checked"> 同意\n' +
+                '            <input type="radio" name="cat_c['+question.id+']" value="0"> 不同意\n' +
                 '\n' +
                 '            </p>';
             $('#cat_c').append(html);

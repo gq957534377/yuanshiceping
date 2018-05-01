@@ -33,4 +33,17 @@ class Ability extends Eloquent
 		'status',
 		'sort'
 	];
+
+    static public function deleteByMemberId($member_id)
+    {
+        $items = static::all()->toArray();
+        foreach ($items as $item) {
+            $row = MemberAbilityGrade::where(['member_id'=>$member_id,'ability_id'=>$item['id']])->first();
+
+            if ($row) {
+                $row->where(['member_id'=>$member_id,'ability_id'=>$item['id']])->delete();
+            }
+        }
+
+    }
 }

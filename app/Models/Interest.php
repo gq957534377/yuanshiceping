@@ -39,4 +39,17 @@ class Interest extends Eloquent
 		'detail',
 		'sort'
 	];
+
+	static public function deleteByMemberId($member_id)
+    {
+        $interests = static::all()->toArray();
+        foreach ($interests as $interest) {
+            $row = MemberInterestGrade::where(['member_id'=>$member_id,'interest_id'=>$interest['id']])->first();
+
+            if ($row) {
+                $row->where(['member_id'=>$member_id,'interest_id'=>$interest['id']])->delete();
+            }
+        }
+
+    }
 }
