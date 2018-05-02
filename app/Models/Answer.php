@@ -246,6 +246,11 @@ class Answer extends Eloquent
 
     }
 
+    static public function gradeQuality($member_id)
+    {
+        Quality::grade($member_id);
+    }
+
 
 
 }

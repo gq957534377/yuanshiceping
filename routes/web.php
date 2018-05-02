@@ -28,6 +28,7 @@ Route::group(['middleware' => ['admin']], function() {
     Route::get('/admin/import/cat-a', 'Project\ImportQuestionController@catA');
     Route::get('/admin/import/cat-b', 'Project\ImportQuestionController@catB');
     Route::get('/admin/import/cat-c', 'Project\ImportQuestionController@catC');
+    Route::get('/admin/import/qualities', 'Project\ImportQualityController@index');
 });
 
 

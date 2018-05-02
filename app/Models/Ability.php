@@ -46,4 +46,33 @@ class Ability extends Eloquent
         }
 
     }
+
+    static public function getAllWithSort($member_id)
+    {
+        $items = [];
+        $grades = MemberAbilityGrade::where(['member_id'=>$member_id])->orderBy('grade', 'DESC')->get()->toArray();
+        $abilities = static::getAllIndexById();
+        foreach ($grades as $key => $grade) {
+            $item = [];
+            $item['grade'] = $grade['grade'];
+            $item['sort'] = $key + 1;
+            $item['name'] = $abilities[$grade['ability_id']]['name'];
+            $item['ability_id'] = $grade['ability_id'];
+            $item['member_id'] = $member_id;
+            $items[$grade['ability_id']] = $item;
+        }
+
+        return $items;
+    }
+
+    static public function getAllIndexById()
+    {
+        $data = [];
+        $abilities = static::all();
+        foreach ($abilities as $ability) {
+            $data[$ability->id] = $ability->toArray();
+        }
+        return $data;
+
+    }
 }

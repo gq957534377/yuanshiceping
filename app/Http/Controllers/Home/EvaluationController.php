@@ -18,10 +18,6 @@ class EvaluationController extends Controller
         $member = ['id'=>'3550'];
         $post = $request->post();
 
-        Answer::gradeCatA($member['id']);
-        Answer::gradeCatB($member['id']);
-
-        Answer::gradeCatC($member['id']);
 
 //        $answers = [];
 //        $answers = array_merge($answers, Answer::makeAnswers($post['cat_a'],'cat_a', $member['id']));
@@ -32,7 +28,10 @@ class EvaluationController extends Controller
 //            Answer::insert($answers);
 //        }
 
-
+        Answer::gradeCatA($member['id']);
+        Answer::gradeCatB($member['id']);
+        Answer::gradeCatC($member['id']);
+        Answer::gradeQuality($member['id']); //素质模型
 
 
         return ($post['cat_a']);
