@@ -32,6 +32,10 @@ class EvaluationController extends Controller
         Answer::gradeCatB($member['id']);
         Answer::gradeCatC($member['id']);
         Answer::gradeQuality($member['id']); //素质模型
+        Answer::gradePotential($member['id']); //计算潜能
+        Answer::gradeShake($member['id']); //计算型格
+
+
 
 
         return ($post['cat_a']);

@@ -251,6 +251,18 @@ class Answer extends Eloquent
         Quality::grade($member_id);
     }
 
+    static public function gradePotential($member_id)
+    {
+        Potential::grade($member_id);
+    }
+
+    static public function gradeShake($member_id)
+    {
+        Shake::grade($member_id);
+    }
+
+
+
 
 
 }

@@ -7,8 +7,6 @@
 
 namespace App\Models;
 
-use Reliese\Database\Eloquent\Model as Eloquent;
-
 /**
  * Class Personality
  * 
@@ -20,7 +18,7 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  *
  * @package App\Models
  */
-class Personality extends Eloquent
+class Personality extends Common
 {
 	public $timestamps = false;
 
@@ -81,25 +79,4 @@ class Personality extends Eloquent
         return $name_box;
     }
 
-    static public function getAllIndexById()
-    {
-        $items = [];
-        $models = static::all();
-        foreach ($models as $model) {
-            $items[$model->id] = $model->toArray();
-        }
-        return $items;
-
-    }
-
-    static public function getAllIndexByName()
-    {
-        $items = [];
-        $models = static::all();
-        foreach ($models as $model) {
-            $items[$model->name] = $model->toArray();
-        }
-        return $items;
-
-    }
 }
