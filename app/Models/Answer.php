@@ -261,6 +261,11 @@ class Answer extends Eloquent
         Shake::grade($member_id);
     }
 
+    static public function gradeMajor($member_id)
+    {
+        Major::grade($member_id);
+    }
+
 
 
 

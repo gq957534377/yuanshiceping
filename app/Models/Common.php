@@ -36,11 +36,15 @@ class Common extends Eloquent
 
     static public function indexBy($models, $field)
     {
+
         $items = [];
-        foreach ($models as $model) {
+        foreach ($models as $key => $model) {
+
             $items[$model->$field] = $model->toArray();
+            $items[$model->$field]['sort'] = $key + 1;
         }
         return $items;
     }
+
 
 }

@@ -28,12 +28,13 @@ class EvaluationController extends Controller
 //            Answer::insert($answers);
 //        }
 
-        Answer::gradeCatA($member['id']);
-        Answer::gradeCatB($member['id']);
-        Answer::gradeCatC($member['id']);
+        Answer::gradeCatA($member['id']); //计算兴趣
+        Answer::gradeCatB($member['id']); //才干 能力 得分
+        Answer::gradeCatC($member['id']); // 性格得分
         Answer::gradeQuality($member['id']); //素质模型
         Answer::gradePotential($member['id']); //计算潜能
         Answer::gradeShake($member['id']); //计算型格
+        Answer::gradeMajor($member['id']); //计算专业
 
 
 

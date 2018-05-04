@@ -7,8 +7,6 @@
 
 namespace App\Models;
 
-use Reliese\Database\Eloquent\Model as Eloquent;
-
 /**
  * Class Major
  * 
@@ -22,14 +20,14 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property int $major_category_id
  * @property int $personality_id
  * @property string $personality_name
- * @property int $shake_id
- * @property string $shakes_name
+ * @property int $major_id
+ * @property string $majors_name
  * @property string $potential_ids
  * @property string $potential_names
  *
  * @package App\Models
  */
-class Major extends Eloquent
+class Major extends Common
 {
 	protected $casts = [
 		'status' => 'int',
@@ -38,7 +36,7 @@ class Major extends Eloquent
 		'sort' => 'int',
 		'major_category_id' => 'int',
 		'personality_id' => 'int',
-		'shake_id' => 'int'
+		'major_id' => 'int'
 	];
 
 	protected $fillable = [
@@ -49,9 +47,104 @@ class Major extends Eloquent
 		'major_category_id',
 		'personality_id',
 		'personality_name',
-		'shake_id',
+		'major_id',
 		'shakes_name',
 		'potential_ids',
 		'potential_names'
 	];
+
+    static protected $member_potential_grades;
+    static protected $member_shake_grades;
+    static protected $member_interest_grades;
+
+    static public function grade($member_id)
+    {
+        $majors = static::getAllIndexById();
+        $major_grades = [];
+
+        foreach ($majors as $major) {
+            $major_grades[$major['id']] = [
+                'member_id' => $member_id,
+                'major_id' => $major['id'],
+                'grade' => 0,
+            ];
+        }
+
+        //潜能
+        static::$member_potential_grades = MemberPotentialGrade::where(['member_id'=>$member_id])->orderBy('grade', 'DESC')->get();
+        static::$member_potential_grades = static::indexBy(static::$member_potential_grades, 'potential_id');
+        //型格
+        static::$member_shake_grades = MemberShakeGrade::where(['member_id'=>$member_id])->orderBy('grade', 'DESC')->get();
+        static::$member_shake_grades = static::indexBy(static::$member_shake_grades, 'shake_id');
+        //兴趣
+        static::$member_interest_grades = MemberInterestGrade::where(['member_id'=>$member_id])->orderBy('grade', 'DESC')->get();
+        static::$member_interest_grades = static::indexBy(static::$member_interest_grades, 'interest_id');
+        foreach ($majors as $major) {
+            if ($major['shake_id'] == 0) continue;
+            $major_grades[$major['id']]['grade'] = static::gradeOne($major, $member_id);
+        }
+
+        static::deleteByMemberId($member_id);
+        MemberMajorGrade::insert($major_grades);
+    }
+
+
+    static public function gradeOne($major, $member_id)
+    {
+        //潜能第一（30分）+潜能第二（25分）+潜能第三（20分）+潜能第四（15分）+潜能第五（10分）+
+        //型格第一（15分）/型格第二三（5分）+兴趣第一（10分）/兴趣第二三（5分）
+
+        //潜能第六到第九为0分；型格第四到第六为0分；兴趣第四到第六为0分
+        $grade = 0;
+        $shake_sort_number = static::$member_shake_grades[$major['shake_id']]['sort'];
+        $interest_sort_number = static::$member_interest_grades[$major['interest_id']]['sort'];
+
+        $len = strlen($major['potential_ids']);
+
+        for ($i = 0; $i < $len; $i++) {
+            $potential_id = $major['potential_ids'][$i];
+            $potential_sort_number = static::$member_potential_grades[$potential_id]['sort'];
+            if ($potential_sort_number == 1) {
+                $grade += 30;
+            } elseif ($potential_sort_number == 2) {
+                $grade += 25;
+            } elseif ($potential_sort_number == 3) {
+                $grade += 20;
+            } elseif ($potential_sort_number == 4) {
+                $grade += 15;
+            } elseif ($potential_sort_number == 5) {
+                $grade += 10;
+            }
+        }
+
+
+
+        if ($shake_sort_number == 1) {
+            $grade += 15;
+        } elseif (in_array($shake_sort_number, [2, 3])) {
+            $grade += 5;
+        }
+
+        if ($interest_sort_number == 1) {
+            $grade += 10;
+        } elseif (in_array($interest_sort_number, [2, 3])) {
+            $grade += 5;
+        }
+
+
+        return $grade;
+    }
+
+    static public function deleteByMemberId($member_id)
+    {
+        $items = static::all()->toArray();
+        foreach ($items as $item) {
+            $row = MemberMajorGrade::where(['member_id'=>$member_id,'major_id'=>$item['id']])->first();
+
+            if ($row) {
+                $row->where(['member_id'=>$member_id,'major_id'=>$item['id']])->delete();
+            }
+        }
+
+    }
 }
