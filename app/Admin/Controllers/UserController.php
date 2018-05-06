@@ -2,6 +2,7 @@
 
 namespace App\Admin\Controllers;
 
+use App\Admin\Extensions\AbleUser;
 use App\Admin\Extensions\DisableUser;
 use App\User;
 
@@ -89,7 +90,7 @@ class UserController extends Controller
                 if ($actions->row->status == 1) {
                     $actions->append(new DisableUser($actions->getKey()));
                 } else {
-                    $actions->append('<a href=""><i class="fa fa-unlock"></i></a>');
+                    $actions->append(new AbleUser($actions->getKey()));
                 }
                 $actions->disableEdit();
             });

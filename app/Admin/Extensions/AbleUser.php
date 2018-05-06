@@ -11,7 +11,7 @@ namespace App\Admin\Extensions;
 
 use Encore\Admin\Admin;
 
-class DisableUser
+class AbleUser
 {
     protected $id;
 
@@ -24,10 +24,10 @@ class DisableUser
     {
         return <<<SCRIPT
 
-$('.disable').on('click', function () {
+$('.able').on('click', function () {
     var id = $(this).data('id');
     swal({
-        title: '确定禁用吗？',
+        title: '确定启用吗？',
         text: '',
         type: "warning",
         showCancelButton: true,
@@ -39,11 +39,11 @@ $('.disable').on('click', function () {
     }, function (isConfirm) {
         if (isConfirm) {
             $.ajax({
-                url: '/admin/users_disable/'+id,
+                url: '/admin/users_able/'+id,
                 success: function (data) {
                         swal({
                             title: '成功！',
-                            text: "禁用成功",
+                            text: "启用成功",
                             type: "success",
                             showCancelButton: false,
                             confirmButtonColor: "#DD6B55",
@@ -82,7 +82,7 @@ SCRIPT;
     {
         Admin::script($this->script());
 
-        return "<a class='fa fa-ban disable' data-id='{$this->id}'></a>";
+        return "<a class='fa fa-unlock able' data-id='{$this->id}'></a>";
     }
 
     public function __toString()

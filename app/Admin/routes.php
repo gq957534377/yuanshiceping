@@ -12,4 +12,8 @@ Route::group([
 
     $router->get('/', 'HomeController@index');
     $router->resource('users', 'UserController');
+    // 禁用用户
+    $router->get('users_disable/{user}', 'UserController@disable');
+    // 启用用户
+    $router->get('users_able/{user}', 'UserController@able');
 });
