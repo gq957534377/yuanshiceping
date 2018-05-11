@@ -18,6 +18,7 @@ class LoginRequest extends FormRequest
             if (empty($data = json_decode($str, true)) || !empty($data['errcode'])) return false;
             $this->open_id = $data['openid'];
             $this->session_key = $data['session_key'];
+            $this->union_id = $data['unionid']??null;
             return true;
         }
 
