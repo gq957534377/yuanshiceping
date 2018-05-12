@@ -33,7 +33,7 @@ Route::group(['middleware' => ['admin']], function() {
 
 Route::group(['middleware' => ['web']], function () {
     Route::get('/home','Home\IndexController@index');
-    Route::get('/wechat','WechatController@index');
+    Route::any('/wechat','WechatController@index');
     Route::get('/evaluation','Home\EvaluationController@index');
     Route::post('/evaluate','Home\EvaluationController@evaluate');
 });
