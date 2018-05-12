@@ -13,8 +13,8 @@ class WechatController extends Controller
 
     public function __construct()
     {
-        $this->app = new Application(config('wechat'));
-//        $this->app = Factory::officialAccount(config('wechat'));
+//        $this->app = new Application(config('wechat'));
+        $this->app = Factory::officialAccount(config('wechat'));
     }
 
     public function qrcode()
