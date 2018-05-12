@@ -65,6 +65,9 @@ class WechatController extends Controller
                             if (isset($message['EventKey'])){
                                 // 是通过扫描邀请码进来的
                                 $news = new News();
+                                $news->title = '博主简介';
+                                $news->description = '大丢哥';
+                                $news->url = 'https://www.blog8090.com/#blog';
                                 $news->image = "https://www.blog8090.com/content/images/2017/02/88C022E3-CAC2-4116-98F2-FEE0FA330D20.png";
                                 return $news;
 //                                return new Image('media-id');
