@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use EasyWeChat\Factory;
+use EasyWeChat\Kernel\Messages\Image;
+use EasyWeChat\Kernel\Messages\News;
 use EasyWeChat\Work\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -13,12 +15,31 @@ class WechatController extends Controller
 
     public function __construct()
     {
-        $this->app = new Application(config('wechat'));
-//        $this->app = Factory::officialAccount(config('wechat'));
+        $options = [
+            'app_id' => 'wxd9058ab15676717a',         // AppID
+            'secret' => '8f1c8cac88d4c82f866d1f5d8396b5db',    // AppSecret
+            'token' => 'yuanshiceping',
+            'log' => [
+                'level' => 'debug',
+                'file'  => storage_path('logs/wechat.log'),
+            ],
+            // ...
+        ];
+
+        $this->app = Factory::officialAccount($options);
     }
 
     public function qrcode()
     {
+        $app=$this->app;
+        $result = $app->qrcode->forever();// 或者 $app->qrcode->forever("foo");
+
+        dd($result,$app->qrcode->url('gQF98TwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAySk5pcEJZQTQ5Ml8xMDAwMDAwN3YAAgSfdPZaAwQAAAAA'));
+// Array
+// (
+//     [ticket] => gQFD8TwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAyTmFjVTRWU3ViUE8xR1N4ajFwMWsAAgS2uItZAwQA6QcA
+//     [url] => http://weixin.qq.com/q/02NacU4VSubPO1GSxj1p1k
+// )
         $result = \Curl::to('https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token=' . $this->app->access_token->getToken())
             ->withData(json_encode([
                 'expire_seconds' => 3600*100*10,
@@ -32,18 +53,7 @@ class WechatController extends Controller
 
     public function index()
     {
-        $options = [
-            'app_id' => 'wxd9058ab15676717a',         // AppID
-            'secret' => '8f1c8cac88d4c82f866d1f5d8396b5db',    // AppSecret
-            'token' => 'yuanshiceping',
-            'log' => [
-                'level' => 'debug',
-                'file'  => storage_path('logs/wechat.log'),
-            ],
-            // ...
-        ];
-
-        $app = Factory::officialAccount($options);
+        $app=$this->app;
 
         $app->server->push(function ($message) {
             Log::debug($message);
@@ -53,7 +63,11 @@ class WechatController extends Controller
                         case "subscribe":
                             $contentStr = "欢迎关注方倍工作室 ";
                             if (isset($message['EventKey'])){
-                                $contentStr = "关注二维码场景 ".$message['EventKey'];
+                                // 是通过扫描邀请码进来的
+                                $news = new News();
+                                $news->image = "https://www.blog8090.com/content/images/2017/02/88C022E3-CAC2-4116-98F2-FEE0FA330D20.png";
+                                return $news;
+//                                return new Image('media-id');
                             }
                             break;
                         case "SCAN":
