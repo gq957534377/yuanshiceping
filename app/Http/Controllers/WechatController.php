@@ -32,35 +32,6 @@ class WechatController extends Controller
 
     public function index()
     {
-        //消息自动回复
-//        $this->app->server->push(function ($message){
-//            switch ($message['MsgType']) {
-//                case 'event':
-//                    switch ($message->Event) {
-//                        case "subscribe":
-//                            $contentStr = "欢迎关注方倍工作室 ";
-//                            if (isset($message->EventKey)){
-//                                $contentStr = "关注二维码场景 ".$message->EventKey;
-//                            }
-//                            break;
-//                        case "SCAN":
-//                            $contentStr = "扫描 ".$message->EventKey;
-//                            //要实现统计分析，则需要扫描事件写入数据库，这里可以记录 EventKey及用户OpenID，扫描时间
-//                            break;
-//                        default:
-//                            $contentStr = "";
-//                            break;
-//                    }
-//                    return $contentStr;
-//                case 'text':
-//                    return '你好';
-//                    break;
-//                default:
-//                    return '该功能正在玩命开发中。。。';
-//            }
-//            return "sjhdghsgdh"
-//;        });
-
         $options = [
             'app_id' => 'wxd9058ab15676717a',         // AppID
             'secret' => '8f1c8cac88d4c82f866d1f5d8396b5db',    // AppSecret
@@ -75,7 +46,30 @@ class WechatController extends Controller
         $app = Factory::officialAccount($options);
 
         $app->server->push(function ($message) {
-            return "您好！欢迎使用 EasyWeChat!";
+            switch ($message['MsgType']) {
+                case 'event':
+                    switch ($message->Event) {
+                        case "subscribe":
+                            $contentStr = "欢迎关注方倍工作室 ";
+                            if (isset($message->EventKey)){
+                                $contentStr = "关注二维码场景 ".$message->EventKey;
+                            }
+                            break;
+                        case "SCAN":
+                            $contentStr = "扫描 ".$message->EventKey;
+                            //要实现统计分析，则需要扫描事件写入数据库，这里可以记录 EventKey及用户OpenID，扫描时间
+                            break;
+                        default:
+                            $contentStr = "";
+                            break;
+                    }
+                    return $contentStr;
+                case 'text':
+                    return '你好';
+                    break;
+                default:
+                    return '该功能正在玩命开发中。。。';
+            }
         });
 
         $response = $app->server->serve();
