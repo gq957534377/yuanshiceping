@@ -21,4 +21,13 @@ Route::get('test', function () {
     return 'hello world';
 });
 
-Route::post('questions', 'Api\EvaluationController@questions');
+Route::group(['namespace' => 'Api'], function () {
+    Route::post('questions', 'EvaluationController@questions');
+    Route::post('login', 'LoginController@login');
+    Route::group(['middleware' => 'auth:api'], function () {
+        Route::post('coupons', 'CouponsController@store');
+        Route::post('getCoupon/{coupon}', 'CouponsController@getCoupon');
+    });
+});
+
+
