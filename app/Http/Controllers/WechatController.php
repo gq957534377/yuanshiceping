@@ -81,6 +81,6 @@ class WechatController extends Controller
         $response = $app->server->serve();
 
 // 将响应输出
-        $response->send(); // Laravel 里请使用：return $response;
+        return $response->send(); // Laravel 里请使用：return $response;
     }
 }
