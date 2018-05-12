@@ -33,7 +33,7 @@ class WechatController extends Controller
 
     public function index()
     {
-        Log::debug(111111);
+
         $wechat = app('wechat');
         // 用户输入返回
         $userApi = $wechat->user;
