@@ -61,11 +61,11 @@ class WechatController extends Controller
 //            }
 //            return "sjhdghsgdh"
 //;        });
-dd(config('wechat'));
+
         $options = [
-            'app_id'    => 'wx3cf0f39249eb0exxx',
-            'secret'    => 'f1c242f4f28f735d4687abb469072xxx',
-            'token'     => 'easywechat',
+            'app_id' => 'wxd9058ab15676717a',         // AppID
+            'secret' => '8f1c8cac88d4c82f866d1f5d8396b5db',    // AppSecret
+            'token' => 'yuanshiceping',
             'log' => [
                 'level' => 'debug',
                 'file'  => '/tmp/easywechat.log',
@@ -85,7 +85,5 @@ dd(config('wechat'));
         });
 
         $server->serve()->send();
-
-        return $this->app->server->serve()->send();
     }
 }
