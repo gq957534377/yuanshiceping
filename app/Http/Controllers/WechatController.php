@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Log;
 
 class WechatController extends Controller
 {
-    private $app=null;
+    private $app = null;
 
     public function __construct()
     {
@@ -22,7 +22,7 @@ class WechatController extends Controller
             'token' => 'yuanshiceping',
             'log' => [
                 'level' => 'debug',
-                'file'  => storage_path('logs/wechat.log'),
+                'file' => storage_path('logs/wechat.log'),
             ],
             // ...
         ];
@@ -32,12 +32,12 @@ class WechatController extends Controller
 
     public function qrcode()
     {
-        $app=$this->app;
+        $app = $this->app;
         $result = $app->qrcode->forever(222);// 或者 $app->qrcode->forever("foo");
         $url = $app->qrcode->url($result['ticket']);
         $content = file_get_contents($url);
         file_put_contents(__DIR__ . '/code.jpg', $content);
-dd($app->material->uploadImage(__DIR__ . '/code.jpg'));
+        dd($app->material->uploadImage(__DIR__ . '/code.jpg')['media_id']);
 //        dd($result,$app->qrcode->url('gQF98TwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAySk5pcEJZQTQ5Ml8xMDAwMDAwN3YAAgSfdPZaAwQAAAAA'));
 // Array
 // (
@@ -46,9 +46,9 @@ dd($app->material->uploadImage(__DIR__ . '/code.jpg'));
 // )
         $result = \Curl::to('https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token=' . $this->app->access_token->getToken())
             ->withData(json_encode([
-                'expire_seconds' => 3600*100*10,
-                "action_name"=> "QR_STR_SCENE",
-                "action_info"=> [ "scene"=> ["scene_str"=> 'test'] ]
+                'expire_seconds' => 3600 * 100 * 10,
+                "action_name" => "QR_STR_SCENE",
+                "action_info" => ["scene" => ["scene_str" => 'test']]
             ]))
             ->post();
         $file = \Curl::to('https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=' . urlencode($result->ticket))->get();
@@ -57,24 +57,29 @@ dd($app->material->uploadImage(__DIR__ . '/code.jpg'));
 
     public function index()
     {
-        $app=$this->app;
-//        $app->auto_reply->current();
-
-        $app->server->push(function ($message) {
-            Log::debug($message);
+        $app = $this->app;
+Log::debug($app->user);
+        $app->server->push(function ($message) use ($app) {
             switch ($message['MsgType']) {
                 case 'event':
                     switch ($message['Event']) {
                         case "subscribe":
-                            $contentStr = "欢迎关注方倍工作室 ";
-                            if (isset($message['EventKey'])){
-                                // 是通过扫描邀请码进来的
+                            $contentStr = "欢迎关注,邀请好友扫描二维码关注，累计30个活得测评卡";
+                            // 是通过扫描邀请码进来的
+                            if (isset($message['EventKey'])) {
+                                // 给邀请人积分加一
 
-                                return new Image('eM2DueXbZlo6ehpDC6PJL3KTyeZuEydS4W7ocou7CxQ');
+                                // 根据用户open_id生成二维码并且返回
+                                $result = $app->qrcode->forever(222);// 或者 $app->qrcode->forever("foo");
+                                $url = $app->qrcode->url($result['ticket']);
+                                $content = file_get_contents($url);
+                                $path = __DIR__ . '/' . $result['ticket'] . '.jpg';
+                                file_put_contents($path, $content);
+                                return new Image($app->material->uploadImage($path)['media_id']);
                             }
                             break;
                         case "SCAN":
-                            $contentStr = "扫描 ".$message['EventKey'];
+                            $contentStr = "扫描 " . $message['EventKey'];
                             //要实现统计分析，则需要扫描事件写入数据库，这里可以记录 EventKey及用户OpenID，扫描时间
                             break;
                         default:
