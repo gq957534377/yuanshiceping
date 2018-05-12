@@ -34,7 +34,7 @@ class WechatController extends Controller
     {
         Log::debug(111111);
         //消息自动回复
-        $this->app->server->setMessageHandler(function ($message){
+        $this->app->server->push(function ($message){
             Log::debug($message);
             switch ($message->MsgType) {
                 case 'event':
