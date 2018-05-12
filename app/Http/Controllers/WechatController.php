@@ -29,8 +29,6 @@ class WechatController extends Controller
 
     public function index()
     {
-        dd($this->app);
-        $broadcast = $this->app->broadcast;
         //消息自动回复
         $this->app->server->setMessageHandler(function ($message){
             switch ($message->MsgType) {
