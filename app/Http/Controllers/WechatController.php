@@ -82,13 +82,21 @@ class WechatController extends Controller
                             // 根据用户open_id生成二维码并且返回
                             $result = $app->qrcode->forever($message['FromUserName']);
                             $url = $app->qrcode->url($result['ticket']);
-Log::debug($url);
+                            Log::debug($url);
                             $content = file_get_contents($url);
                             $path = __DIR__ . '/' . $result['ticket'] . '.jpg';
                             file_put_contents($path, $content);
                             $upload = $app->material->uploadImage($path);
                             Log::debug($upload);
-                            return new Image($upload['media_id']);
+//                            return new Image($upload['media_id']);
+                            return new News([
+                                new NewsItem([
+                                    'title' => '欢迎关注,邀请好友扫描二维码关注，累计30个活得测评卡',
+                                    'description' => '...',
+                                    'url' => $url,
+                                    'image' => $url,
+                                ]),
+                            ]);
                             break;
                         case "SCAN":
                             $contentStr = "扫描 " . $message['EventKey'];
