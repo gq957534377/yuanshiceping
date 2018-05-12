@@ -58,7 +58,6 @@ class WechatController extends Controller
     public function index()
     {
         $app = $this->app;
-\Log::debug($app->user);
         $app->server->push(function ($message) use ($app) {
             switch ($message['MsgType']) {
                 case 'event':
@@ -69,13 +68,13 @@ class WechatController extends Controller
                             if (isset($message['EventKey'])) {
                                 // 给邀请人积分加一
                                 // 根据用户open_id生成二维码并且返回
-//                                $result = $app->qrcode->forever(222);
-//                                $url = $app->qrcode->url($result['ticket']);
-                                return 1111;
-//                                $content = file_get_contents($url);
-//                                $path = __DIR__ . '/' . $result['ticket'] . '.jpg';
-//                                file_put_contents($path, $content);
-//                                return new Image($app->material->uploadImage($path)['media_id']);
+                                $result = $app->qrcode->forever(222);
+                                $url = $app->qrcode->url($result['ticket']);
+
+                                $content = file_get_contents($url);
+                                $path = __DIR__ . '/' . $result['ticket'] . '.jpg';
+                                file_put_contents($path, $content);
+                                return new Image($app->material->uploadImage($path)['media_id']);
                             }
                             break;
                         case "SCAN":
