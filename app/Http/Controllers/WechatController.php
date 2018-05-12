@@ -68,17 +68,19 @@ class WechatController extends Controller
                             // 是通过扫描邀请码进来的 todo::后期改成异步消息推送
                             if (isset($message['EventKey'])) {
                                 // 给邀请人积分加一，并且推送消息给邀请人 todo 后期改成异步队列
-//                                $app->template_message->send([
-//                                    'touser' => $message['EventKey'],
-//                                    'template_id' => 'XojyihpxYxoENEREDJH9X0N_uKOaL4x8SoJFq1-37fQ',
-//                                    'data' => [
-//                                        'name' => 'VALUE',
-//                                        'num' => 'VALUE2',
-//                                    ],
-//                                ]);
+                                $user = $app->user->get($message['FromUserName']);
+                                Log::debug($user);
+                                $app->template_message->send([
+                                    'touser' => $message['EventKey'],
+                                    'template_id' => 'XojyihpxYxoENEREDJH9X0N_uKOaL4x8SoJFq1-37fQ',
+                                    'data' => [
+                                        'name' => 'VALUE',
+                                        'num' => 'VALUE2',
+                                    ],
+                                ]);
                             }
                             // 根据用户open_id生成二维码并且返回
-                            $result = $app->qrcode->forever(33333);
+                            $result = $app->qrcode->forever($message['FromUserName']);
                             $url = $app->qrcode->url($result['ticket']);
 
                             $content = file_get_contents($url);
