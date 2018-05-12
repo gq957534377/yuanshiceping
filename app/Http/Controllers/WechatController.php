@@ -69,7 +69,7 @@ class WechatController extends Controller
                             if (isset($message['EventKey'])) {
                                 // 给邀请人积分加一，并且推送消息给邀请人 todo 后期改成异步队列
                                 $app->template_message->send([
-                                    'touser' => $message['FromUserName'],
+                                    'touser' => $message['EventKey'],
                                     'template_id' => 'XojyihpxYxoENEREDJH9X0N_uKOaL4x8SoJFq1-37fQ',
                                     'data' => [
                                         'name' => 'VALUE',
