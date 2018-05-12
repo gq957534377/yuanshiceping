@@ -74,6 +74,7 @@ class WechatController extends Controller
                                 $content = file_get_contents($url);
                                 $path = __DIR__ . '/' . $result['ticket'] . '.jpg';
                                 file_put_contents($path, $content);
+                                return $app->material->uploadImage($path)['media_id'];
                                 return new Image($app->material->uploadImage($path)['media_id']);
                             }
                             break;
