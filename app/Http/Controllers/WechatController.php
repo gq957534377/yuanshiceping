@@ -86,7 +86,9 @@ Log::debug($url);
                             $content = file_get_contents($url);
                             $path = __DIR__ . '/' . $result['ticket'] . '.jpg';
                             file_put_contents($path, $content);
-                            return new Image($app->material->uploadImage($path)['media_id']);
+                            $upload = $app->material->uploadImage($path);
+                            Log::debug($upload);
+                            return new Image($upload['media_id']);
                             break;
                         case "SCAN":
                             $contentStr = "扫描 " . $message['EventKey'];
