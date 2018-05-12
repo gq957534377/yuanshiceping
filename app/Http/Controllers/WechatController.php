@@ -55,6 +55,7 @@ class WechatController extends Controller
     public function index()
     {
         $app=$this->app;
+        $app->auto_reply->current();
 
         $app->server->push(function ($message) {
             Log::debug($message);
@@ -71,6 +72,7 @@ class WechatController extends Controller
                                 $news->url = 'https://www.blog8090.com/#blog';
                                 $news->image = "https://www.blog8090.com/content/images/2017/02/88C022E3-CAC2-4116-98F2-FEE0FA330D20.png";
                                 return $news;
+
 //                                return new Image('media-id');
                             }
                             break;
