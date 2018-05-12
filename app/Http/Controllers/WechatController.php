@@ -34,7 +34,7 @@ class WechatController extends Controller
     {
         //消息自动回复
         $this->app->server->push(function ($message){
-            switch ($message->MsgType) {
+            switch ($message['MsgType']) {
                 case 'event':
                     switch ($message->Event) {
                         case "subscribe":
