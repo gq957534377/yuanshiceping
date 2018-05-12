@@ -101,7 +101,7 @@ class WechatController extends Controller
                                 $url = $app->qrcode->url($result['ticket']);
                                 $newUser['ticket'] = $result['ticket'];
                                 Log::debug($newUser);
-                                User::create($newUser);
+//                                User::create($newUser);
 
                                 $content = file_get_contents($url);
                                 $path = __DIR__ . '/' . $result['ticket'] . '.jpg';
