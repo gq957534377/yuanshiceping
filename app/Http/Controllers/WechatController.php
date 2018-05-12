@@ -83,6 +83,6 @@ Log::debug($message);
             return "{$fromUser->nickname} 您好！欢迎关注 overtrue!";
         });
 
-        $server->serve()->send();
+        return $server->serve()->send();
     }
 }
