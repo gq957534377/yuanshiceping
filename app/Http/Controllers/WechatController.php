@@ -46,6 +46,7 @@ class WechatController extends Controller
         $app = Factory::officialAccount($options);
 
         $app->server->push(function ($message) {
+            Log::debug($message);
             switch ($message['MsgType']) {
                 case 'event':
                     switch ($message->Event) {
