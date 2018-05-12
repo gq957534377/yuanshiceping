@@ -65,10 +65,10 @@ class WechatController extends Controller
             'app_id' => 'wxd9058ab15676717a',         // AppID
             'secret' => '8f1c8cac88d4c82f866d1f5d8396b5db',    // AppSecret
             'token' => 'yuanshiceping',
-            'log' => [
-                'level' => 'debug',
-                'file'  => storage_path('logs/wechat.log'),
-            ],
+//            'log' => [
+//                'level' => 'debug',
+//                'file'  => storage_path('logs/wechat.log'),
+//            ],
             // ...
         ];
 
