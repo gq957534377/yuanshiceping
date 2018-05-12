@@ -58,7 +58,9 @@ class WechatController extends Controller
     public function index()
     {
         $app = $this->app;
+
         $app->server->push(function ($message) use ($app) {
+            Log::debug($message);
             switch ($message['MsgType']) {
                 case 'event':
                     switch ($message['Event']) {
@@ -74,7 +76,6 @@ class WechatController extends Controller
                                 $content = file_get_contents($url);
                                 $path = __DIR__ . '/' . $result['ticket'] . '.jpg';
                                 file_put_contents($path, $content);
-                                return $app->material->uploadImage($path)['media_id'];
                                 return new Image($app->material->uploadImage($path)['media_id']);
                             }
                             break;
