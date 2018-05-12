@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost
-Source Server Version : 50722
-Source Host           : localhost:3306
+Source Server         : vagrant
+Source Server Version : 50716
+Source Host           : 192.168.33.66:3306
 Source Database       : yuanshiceping
 
 Target Server Type    : MYSQL
-Target Server Version : 50722
+Target Server Version : 50716
 File Encoding         : 65001
 
-Date: 2018-04-28 18:14:57
+Date: 2018-05-12 18:14:39
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -102,8 +102,8 @@ INSERT INTO `admin_menu` VALUES ('15', '12', '0', '测评题管理', 'fa-bars', 
 INSERT INTO `admin_menu` VALUES ('16', '12', '0', '兴趣', 'fa-bars', '/project/interests', '2018-04-24 15:41:21', '2018-04-24 15:41:21');
 INSERT INTO `admin_menu` VALUES ('17', '0', '0', '用户管理', 'fa-bars', null, '2018-04-25 10:12:22', '2018-04-25 10:12:22');
 INSERT INTO `admin_menu` VALUES ('18', '0', '0', '文章', 'fa-bars', null, '2018-04-25 10:12:38', '2018-04-25 10:12:38');
-INSERT INTO `admin_menu` VALUES ('19', '18', '0', '公告管理', 'fa-bars', null, '2018-04-25 10:13:02', '2018-04-25 10:13:02');
-INSERT INTO `admin_menu` VALUES ('20', '18', '0', '新闻管理', 'fa-bars', null, '2018-04-25 10:13:19', '2018-04-25 10:13:19');
+INSERT INTO `admin_menu` VALUES ('19', '18', '0', '公告管理', 'fa-bars', 'notices', '2018-04-25 10:13:02', '2018-04-29 15:33:20');
+INSERT INTO `admin_menu` VALUES ('20', '18', '0', '新闻管理', 'fa-bars', 'news', '2018-04-25 10:13:19', '2018-04-29 15:32:42');
 INSERT INTO `admin_menu` VALUES ('21', '0', '0', '商品', 'fa-bars', '产品', '2018-04-25 10:14:14', '2018-04-25 10:14:14');
 INSERT INTO `admin_menu` VALUES ('22', '21', '0', '订单管理', 'fa-bars', null, '2018-04-25 10:14:34', '2018-04-25 10:14:34');
 INSERT INTO `admin_menu` VALUES ('23', '21', '0', '数据分析', 'fa-bars', null, '2018-04-25 10:15:11', '2018-04-25 10:15:11');
@@ -133,7 +133,7 @@ CREATE TABLE `admin_operation_log` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `admin_operation_log_user_id_index` (`user_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=1148 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1292 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ----------------------------
 -- Records of admin_operation_log
@@ -1285,6 +1285,150 @@ INSERT INTO `admin_operation_log` VALUES ('1144', '1', 'admin/api-tester/handle'
 INSERT INTO `admin_operation_log` VALUES ('1145', '1', 'admin/api-tester/handle', 'POST', '127.0.0.1', '{\"uri\":\"get\",\"method\":null,\"_token\":\"KmJNOnYLHLPJr9u2LfXaVikk3e6D0Tmd5DGiYzih\",\"user\":null}', '2018-04-28 09:31:43', '2018-04-28 09:31:43');
 INSERT INTO `admin_operation_log` VALUES ('1146', '1', 'admin/api-tester', 'GET', '127.0.0.1', '[]', '2018-04-28 09:31:51', '2018-04-28 09:31:51');
 INSERT INTO `admin_operation_log` VALUES ('1147', '1', 'admin/api-tester/handle', 'POST', '127.0.0.1', '{\"uri\":\"get\",\"method\":null,\"_token\":\"KmJNOnYLHLPJr9u2LfXaVikk3e6D0Tmd5DGiYzih\",\"user\":null}', '2018-04-28 09:32:07', '2018-04-28 09:32:07');
+INSERT INTO `admin_operation_log` VALUES ('1148', '1', 'admin', 'GET', '192.168.33.1', '[]', '2018-04-29 08:24:37', '2018-04-29 08:24:37');
+INSERT INTO `admin_operation_log` VALUES ('1149', '1', 'admin', 'GET', '192.168.33.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-29 08:25:22', '2018-04-29 08:25:22');
+INSERT INTO `admin_operation_log` VALUES ('1150', '1', 'admin', 'GET', '192.168.33.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-29 08:25:27', '2018-04-29 08:25:27');
+INSERT INTO `admin_operation_log` VALUES ('1151', '1', 'admin', 'GET', '192.168.33.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-29 08:25:42', '2018-04-29 08:25:42');
+INSERT INTO `admin_operation_log` VALUES ('1152', '1', 'admin', 'GET', '192.168.33.1', '[]', '2018-04-29 08:41:11', '2018-04-29 08:41:11');
+INSERT INTO `admin_operation_log` VALUES ('1153', '1', 'admin/project/personalities', 'GET', '192.168.33.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-29 08:41:40', '2018-04-29 08:41:40');
+INSERT INTO `admin_operation_log` VALUES ('1154', '1', 'admin/project/personalities', 'GET', '192.168.33.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-29 08:42:29', '2018-04-29 08:42:29');
+INSERT INTO `admin_operation_log` VALUES ('1155', '1', 'admin/project/qualities', 'GET', '192.168.33.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-29 08:42:43', '2018-04-29 08:42:43');
+INSERT INTO `admin_operation_log` VALUES ('1156', '1', 'admin/project/abilities', 'GET', '192.168.33.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-29 08:42:56', '2018-04-29 08:42:56');
+INSERT INTO `admin_operation_log` VALUES ('1157', '1', 'admin/project/abilities/1/edit', 'GET', '192.168.33.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-29 08:43:09', '2018-04-29 08:43:09');
+INSERT INTO `admin_operation_log` VALUES ('1158', '1', 'admin/project/abilities', 'GET', '192.168.33.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-29 08:43:34', '2018-04-29 08:43:34');
+INSERT INTO `admin_operation_log` VALUES ('1159', '1', 'admin/project/subjects', 'GET', '192.168.33.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-29 08:43:46', '2018-04-29 08:43:46');
+INSERT INTO `admin_operation_log` VALUES ('1160', '1', 'admin/project/subjects/1/edit', 'GET', '192.168.33.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-29 08:44:12', '2018-04-29 08:44:12');
+INSERT INTO `admin_operation_log` VALUES ('1161', '1', 'admin/project/interests', 'GET', '192.168.33.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-29 08:44:32', '2018-04-29 08:44:32');
+INSERT INTO `admin_operation_log` VALUES ('1162', '1', 'admin/project/interests/1/edit', 'GET', '192.168.33.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-29 08:44:47', '2018-04-29 08:44:47');
+INSERT INTO `admin_operation_log` VALUES ('1163', '1', 'admin/project/questions', 'GET', '192.168.33.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-29 08:45:11', '2018-04-29 08:45:11');
+INSERT INTO `admin_operation_log` VALUES ('1164', '1', 'admin/project/questions/1/edit', 'GET', '192.168.33.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-29 08:45:32', '2018-04-29 08:45:32');
+INSERT INTO `admin_operation_log` VALUES ('1165', '1', 'admin/project/questions', 'GET', '192.168.33.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-29 08:46:26', '2018-04-29 08:46:26');
+INSERT INTO `admin_operation_log` VALUES ('1166', '1', 'admin/project/categories', 'GET', '192.168.33.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-29 08:46:53', '2018-04-29 08:46:53');
+INSERT INTO `admin_operation_log` VALUES ('1167', '1', 'admin/project/categories/1/edit', 'GET', '192.168.33.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-29 08:47:11', '2018-04-29 08:47:11');
+INSERT INTO `admin_operation_log` VALUES ('1168', '1', 'admin/project/categories', 'GET', '192.168.33.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-29 08:47:30', '2018-04-29 08:47:30');
+INSERT INTO `admin_operation_log` VALUES ('1169', '1', 'admin/project/questions/1/edit', 'GET', '192.168.33.1', '[]', '2018-04-29 13:03:47', '2018-04-29 13:03:47');
+INSERT INTO `admin_operation_log` VALUES ('1170', '1', 'admin', 'GET', '192.168.33.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-29 13:07:06', '2018-04-29 13:07:06');
+INSERT INTO `admin_operation_log` VALUES ('1171', '1', 'admin/auth/users', 'GET', '192.168.33.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-29 13:27:05', '2018-04-29 13:27:05');
+INSERT INTO `admin_operation_log` VALUES ('1172', '1', 'admin/auth/logout', 'GET', '192.168.33.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-29 13:48:30', '2018-04-29 13:48:30');
+INSERT INTO `admin_operation_log` VALUES ('1173', '1', 'admin/auth/logout', 'GET', '192.168.33.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-29 13:49:53', '2018-04-29 13:49:53');
+INSERT INTO `admin_operation_log` VALUES ('1174', '1', 'admin/project/subjects', 'GET', '192.168.33.1', '[]', '2018-04-29 13:51:27', '2018-04-29 13:51:27');
+INSERT INTO `admin_operation_log` VALUES ('1175', '1', 'admin', 'GET', '192.168.33.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-29 14:06:25', '2018-04-29 14:06:25');
+INSERT INTO `admin_operation_log` VALUES ('1176', '1', 'admin', 'GET', '192.168.33.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-29 14:06:38', '2018-04-29 14:06:38');
+INSERT INTO `admin_operation_log` VALUES ('1177', '1', 'admin', 'GET', '192.168.33.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-29 14:46:23', '2018-04-29 14:46:23');
+INSERT INTO `admin_operation_log` VALUES ('1178', '1', 'admin', 'GET', '192.168.33.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-29 14:46:23', '2018-04-29 14:46:23');
+INSERT INTO `admin_operation_log` VALUES ('1179', '1', 'admin/auth/menu', 'GET', '192.168.33.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-29 14:46:35', '2018-04-29 14:46:35');
+INSERT INTO `admin_operation_log` VALUES ('1180', '1', 'admin/auth/menu/20/edit', 'GET', '192.168.33.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-29 14:46:56', '2018-04-29 14:46:56');
+INSERT INTO `admin_operation_log` VALUES ('1181', '1', 'admin/auth/menu', 'GET', '192.168.33.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-29 14:47:20', '2018-04-29 14:47:20');
+INSERT INTO `admin_operation_log` VALUES ('1182', '1', 'admin/auth/menu/20/edit', 'GET', '192.168.33.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-29 14:47:38', '2018-04-29 14:47:38');
+INSERT INTO `admin_operation_log` VALUES ('1183', '1', 'admin/auth/menu/20', 'PUT', '192.168.33.1', '{\"parent_id\":\"18\",\"title\":\"\\u65b0\\u95fb\\u7ba1\\u7406\",\"icon\":\"fa-bars\",\"uri\":\"project\\/news\",\"roles\":[null],\"_token\":\"Acrdv39Xxn3MVd5PRtUaDVmjZsSAuwgOEa4nWSu7\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/jishi.com\\/admin\\/auth\\/menu\"}', '2018-04-29 14:48:07', '2018-04-29 14:48:07');
+INSERT INTO `admin_operation_log` VALUES ('1184', '1', 'admin/auth/menu', 'GET', '192.168.33.1', '[]', '2018-04-29 14:48:14', '2018-04-29 14:48:14');
+INSERT INTO `admin_operation_log` VALUES ('1185', '1', 'admin/auth/menu/19/edit', 'GET', '192.168.33.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-29 14:48:50', '2018-04-29 14:48:50');
+INSERT INTO `admin_operation_log` VALUES ('1186', '1', 'admin/auth/menu/19/edit', 'GET', '192.168.33.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-29 14:48:57', '2018-04-29 14:48:57');
+INSERT INTO `admin_operation_log` VALUES ('1187', '1', 'admin/auth/menu/19', 'PUT', '192.168.33.1', '{\"parent_id\":\"18\",\"title\":\"\\u516c\\u544a\\u7ba1\\u7406\",\"icon\":\"fa-bars\",\"uri\":\"project\\/notices\",\"roles\":[null],\"_token\":\"Acrdv39Xxn3MVd5PRtUaDVmjZsSAuwgOEa4nWSu7\",\"_method\":\"PUT\"}', '2018-04-29 14:49:53', '2018-04-29 14:49:53');
+INSERT INTO `admin_operation_log` VALUES ('1188', '1', 'admin/auth/menu', 'GET', '192.168.33.1', '[]', '2018-04-29 14:49:58', '2018-04-29 14:49:58');
+INSERT INTO `admin_operation_log` VALUES ('1189', '1', 'admin/auth/menu', 'GET', '192.168.33.1', '[]', '2018-04-29 14:52:48', '2018-04-29 14:52:48');
+INSERT INTO `admin_operation_log` VALUES ('1190', '1', 'admin', 'GET', '192.168.33.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-29 14:53:00', '2018-04-29 14:53:00');
+INSERT INTO `admin_operation_log` VALUES ('1191', '1', 'admin', 'GET', '192.168.33.1', '[]', '2018-04-29 14:58:27', '2018-04-29 14:58:27');
+INSERT INTO `admin_operation_log` VALUES ('1192', '1', 'admin', 'GET', '192.168.33.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-29 15:28:21', '2018-04-29 15:28:21');
+INSERT INTO `admin_operation_log` VALUES ('1193', '1', 'admin', 'GET', '192.168.33.1', '[]', '2018-04-29 15:31:49', '2018-04-29 15:31:49');
+INSERT INTO `admin_operation_log` VALUES ('1194', '1', 'admin/auth/menu', 'GET', '192.168.33.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-29 15:32:02', '2018-04-29 15:32:02');
+INSERT INTO `admin_operation_log` VALUES ('1195', '1', 'admin', 'GET', '192.168.33.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-29 15:32:02', '2018-04-29 15:32:02');
+INSERT INTO `admin_operation_log` VALUES ('1196', '1', 'admin/auth/menu/20/edit', 'GET', '192.168.33.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-29 15:32:15', '2018-04-29 15:32:15');
+INSERT INTO `admin_operation_log` VALUES ('1197', '1', 'admin/auth/menu/20', 'PUT', '192.168.33.1', '{\"parent_id\":\"18\",\"title\":\"\\u65b0\\u95fb\\u7ba1\\u7406\",\"icon\":\"fa-bars\",\"uri\":\"news\",\"roles\":[null],\"_token\":\"Acrdv39Xxn3MVd5PRtUaDVmjZsSAuwgOEa4nWSu7\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/jishi.com\\/admin\\/auth\\/menu\"}', '2018-04-29 15:32:40', '2018-04-29 15:32:40');
+INSERT INTO `admin_operation_log` VALUES ('1198', '1', 'admin/auth/menu', 'GET', '192.168.33.1', '[]', '2018-04-29 15:32:48', '2018-04-29 15:32:48');
+INSERT INTO `admin_operation_log` VALUES ('1199', '1', 'admin/auth/menu/19/edit', 'GET', '192.168.33.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-29 15:33:04', '2018-04-29 15:33:04');
+INSERT INTO `admin_operation_log` VALUES ('1200', '1', 'admin/auth/menu/19', 'PUT', '192.168.33.1', '{\"parent_id\":\"18\",\"title\":\"\\u516c\\u544a\\u7ba1\\u7406\",\"icon\":\"fa-bars\",\"uri\":\"notices\",\"roles\":[null],\"_token\":\"Acrdv39Xxn3MVd5PRtUaDVmjZsSAuwgOEa4nWSu7\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/jishi.com\\/admin\\/auth\\/menu\"}', '2018-04-29 15:33:19', '2018-04-29 15:33:19');
+INSERT INTO `admin_operation_log` VALUES ('1201', '1', 'admin/auth/menu', 'GET', '192.168.33.1', '[]', '2018-04-29 15:33:25', '2018-04-29 15:33:25');
+INSERT INTO `admin_operation_log` VALUES ('1202', '1', 'admin/news', 'GET', '192.168.33.1', '[]', '2018-04-29 15:34:43', '2018-04-29 15:34:43');
+INSERT INTO `admin_operation_log` VALUES ('1203', '1', 'admin/project/qualities', 'GET', '192.168.33.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-29 16:01:52', '2018-04-29 16:01:52');
+INSERT INTO `admin_operation_log` VALUES ('1204', '1', 'admin/project/qualities/1/edit', 'GET', '192.168.33.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-29 16:09:19', '2018-04-29 16:09:19');
+INSERT INTO `admin_operation_log` VALUES ('1205', '1', 'admin/project/qualities', 'GET', '192.168.33.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-29 16:09:31', '2018-04-29 16:09:31');
+INSERT INTO `admin_operation_log` VALUES ('1206', '1', 'admin/project/subjects', 'GET', '192.168.33.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-29 16:09:34', '2018-04-29 16:09:34');
+INSERT INTO `admin_operation_log` VALUES ('1207', '1', 'admin/project/subjects/1/edit', 'GET', '192.168.33.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-29 16:09:51', '2018-04-29 16:09:51');
+INSERT INTO `admin_operation_log` VALUES ('1208', '1', 'admin/news', 'GET', '192.168.33.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-29 17:11:26', '2018-04-29 17:11:26');
+INSERT INTO `admin_operation_log` VALUES ('1209', '1', 'admin/news/create', 'GET', '192.168.33.1', '[]', '2018-04-30 08:03:49', '2018-04-30 08:03:49');
+INSERT INTO `admin_operation_log` VALUES ('1210', '1', 'admin/news/create', 'GET', '192.168.33.1', '[]', '2018-04-30 08:09:24', '2018-04-30 08:09:24');
+INSERT INTO `admin_operation_log` VALUES ('1211', '1', 'admin/news/create', 'GET', '192.168.33.1', '[]', '2018-04-30 08:09:43', '2018-04-30 08:09:43');
+INSERT INTO `admin_operation_log` VALUES ('1212', '1', 'admin/news/create', 'GET', '192.168.33.1', '[]', '2018-04-30 08:13:24', '2018-04-30 08:13:24');
+INSERT INTO `admin_operation_log` VALUES ('1213', '1', 'admin/news/create', 'GET', '192.168.33.1', '[]', '2018-04-30 08:14:55', '2018-04-30 08:14:55');
+INSERT INTO `admin_operation_log` VALUES ('1214', '1', 'admin/news/create', 'GET', '192.168.33.1', '[]', '2018-04-30 08:15:46', '2018-04-30 08:15:46');
+INSERT INTO `admin_operation_log` VALUES ('1215', '1', 'admin/news/create', 'GET', '192.168.33.1', '[]', '2018-04-30 08:51:52', '2018-04-30 08:51:52');
+INSERT INTO `admin_operation_log` VALUES ('1216', '1', 'admin/news/create', 'GET', '192.168.33.1', '[]', '2018-04-30 08:53:39', '2018-04-30 08:53:39');
+INSERT INTO `admin_operation_log` VALUES ('1217', '1', 'admin/news/create', 'GET', '192.168.33.1', '[]', '2018-04-30 08:54:05', '2018-04-30 08:54:05');
+INSERT INTO `admin_operation_log` VALUES ('1218', '1', 'admin/news/create', 'GET', '192.168.33.1', '[]', '2018-04-30 08:55:07', '2018-04-30 08:55:07');
+INSERT INTO `admin_operation_log` VALUES ('1219', '1', 'admin/news/create', 'GET', '192.168.33.1', '[]', '2018-04-30 10:29:41', '2018-04-30 10:29:41');
+INSERT INTO `admin_operation_log` VALUES ('1220', '1', 'admin/auth/login', 'GET', '192.168.33.1', '[]', '2018-04-30 10:30:22', '2018-04-30 10:30:22');
+INSERT INTO `admin_operation_log` VALUES ('1221', '1', 'admin', 'GET', '192.168.33.1', '[]', '2018-04-30 10:44:33', '2018-04-30 10:44:33');
+INSERT INTO `admin_operation_log` VALUES ('1222', '1', 'admin/news', 'GET', '192.168.33.1', '[]', '2018-04-30 10:44:47', '2018-04-30 10:44:47');
+INSERT INTO `admin_operation_log` VALUES ('1223', '1', 'admin/news', 'GET', '192.168.33.1', '[]', '2018-04-30 10:45:10', '2018-04-30 10:45:10');
+INSERT INTO `admin_operation_log` VALUES ('1224', '1', 'admin/news/1/edit', 'GET', '192.168.33.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-30 10:45:19', '2018-04-30 10:45:19');
+INSERT INTO `admin_operation_log` VALUES ('1225', '1', 'admin/news/1/edit', 'GET', '192.168.33.1', '[]', '2018-04-30 10:51:08', '2018-04-30 10:51:08');
+INSERT INTO `admin_operation_log` VALUES ('1226', '1', 'admin/news/1/edit', 'GET', '192.168.33.1', '[]', '2018-04-30 10:51:41', '2018-04-30 10:51:41');
+INSERT INTO `admin_operation_log` VALUES ('1227', '1', 'admin/news/1/edit', 'GET', '192.168.33.1', '[]', '2018-04-30 10:52:01', '2018-04-30 10:52:01');
+INSERT INTO `admin_operation_log` VALUES ('1228', '1', 'admin/news/1/edit', 'GET', '192.168.33.1', '[]', '2018-04-30 10:52:30', '2018-04-30 10:52:30');
+INSERT INTO `admin_operation_log` VALUES ('1229', '1', 'admin/news/1/edit', 'GET', '192.168.33.1', '[]', '2018-04-30 10:54:56', '2018-04-30 10:54:56');
+INSERT INTO `admin_operation_log` VALUES ('1230', '1', 'admin/news', 'GET', '192.168.33.1', '[]', '2018-04-30 10:58:17', '2018-04-30 10:58:17');
+INSERT INTO `admin_operation_log` VALUES ('1231', '1', 'admin/news/1/edit', 'GET', '192.168.33.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-30 11:03:54', '2018-04-30 11:03:54');
+INSERT INTO `admin_operation_log` VALUES ('1232', '1', 'admin/news/1/edit', 'GET', '192.168.33.1', '[]', '2018-04-30 11:05:12', '2018-04-30 11:05:12');
+INSERT INTO `admin_operation_log` VALUES ('1233', '1', 'admin/news/1/edit', 'GET', '192.168.33.1', '[]', '2018-04-30 11:06:21', '2018-04-30 11:06:21');
+INSERT INTO `admin_operation_log` VALUES ('1234', '1', 'admin/news/1/edit', 'GET', '192.168.33.1', '[]', '2018-04-30 11:10:41', '2018-04-30 11:10:41');
+INSERT INTO `admin_operation_log` VALUES ('1235', '1', 'admin/news/1/edit', 'GET', '192.168.33.1', '[]', '2018-04-30 11:12:11', '2018-04-30 11:12:11');
+INSERT INTO `admin_operation_log` VALUES ('1236', '1', 'admin/news/1/edit', 'GET', '192.168.33.1', '[]', '2018-04-30 11:33:00', '2018-04-30 11:33:00');
+INSERT INTO `admin_operation_log` VALUES ('1237', '1', 'admin/news/1/edit', 'GET', '192.168.33.1', '[]', '2018-04-30 11:33:17', '2018-04-30 11:33:17');
+INSERT INTO `admin_operation_log` VALUES ('1238', '1', 'admin/news/1/edit', 'GET', '192.168.33.1', '[]', '2018-04-30 11:38:29', '2018-04-30 11:38:29');
+INSERT INTO `admin_operation_log` VALUES ('1239', '1', 'admin/news/1/edit', 'GET', '192.168.33.1', '[]', '2018-04-30 11:38:55', '2018-04-30 11:38:55');
+INSERT INTO `admin_operation_log` VALUES ('1240', '1', 'admin/news/1/edit', 'GET', '192.168.33.1', '[]', '2018-04-30 11:50:57', '2018-04-30 11:50:57');
+INSERT INTO `admin_operation_log` VALUES ('1241', '1', 'admin/news/1/edit', 'GET', '192.168.33.1', '[]', '2018-04-30 11:51:25', '2018-04-30 11:51:25');
+INSERT INTO `admin_operation_log` VALUES ('1242', '1', 'admin/news/1/edit', 'GET', '192.168.33.1', '[]', '2018-04-30 11:51:58', '2018-04-30 11:51:58');
+INSERT INTO `admin_operation_log` VALUES ('1243', '1', 'admin/news/1/edit', 'GET', '192.168.33.1', '[]', '2018-04-30 11:56:54', '2018-04-30 11:56:54');
+INSERT INTO `admin_operation_log` VALUES ('1244', '1', 'admin/news/1/edit', 'GET', '192.168.33.1', '[]', '2018-04-30 11:58:07', '2018-04-30 11:58:07');
+INSERT INTO `admin_operation_log` VALUES ('1245', '1', 'admin/news', 'GET', '192.168.33.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-30 11:58:48', '2018-04-30 11:58:48');
+INSERT INTO `admin_operation_log` VALUES ('1246', '1', 'admin/news/1/edit', 'GET', '192.168.33.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-30 11:59:02', '2018-04-30 11:59:02');
+INSERT INTO `admin_operation_log` VALUES ('1247', '1', 'admin/news', 'GET', '192.168.33.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-30 11:59:21', '2018-04-30 11:59:21');
+INSERT INTO `admin_operation_log` VALUES ('1248', '1', 'admin/news/create', 'GET', '192.168.33.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-30 11:59:34', '2018-04-30 11:59:34');
+INSERT INTO `admin_operation_log` VALUES ('1249', '1', 'admin/news/create', 'GET', '192.168.33.1', '[]', '2018-04-30 12:01:08', '2018-04-30 12:01:08');
+INSERT INTO `admin_operation_log` VALUES ('1250', '1', 'admin/news/create', 'GET', '192.168.33.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-30 12:06:22', '2018-04-30 12:06:22');
+INSERT INTO `admin_operation_log` VALUES ('1251', '1', 'admin/news/create', 'GET', '192.168.33.1', '[]', '2018-04-30 12:18:27', '2018-04-30 12:18:27');
+INSERT INTO `admin_operation_log` VALUES ('1252', '1', 'admin/news/create', 'GET', '192.168.33.1', '[]', '2018-04-30 12:19:35', '2018-04-30 12:19:35');
+INSERT INTO `admin_operation_log` VALUES ('1253', '1', 'admin/news/create', 'GET', '192.168.33.1', '[]', '2018-04-30 12:23:08', '2018-04-30 12:23:08');
+INSERT INTO `admin_operation_log` VALUES ('1254', '1', 'admin/uploadNews', 'POST', '192.168.33.1', '[]', '2018-04-30 12:23:23', '2018-04-30 12:23:23');
+INSERT INTO `admin_operation_log` VALUES ('1255', '1', 'admin/uploadNews', 'POST', '192.168.33.1', '[]', '2018-04-30 12:23:51', '2018-04-30 12:23:51');
+INSERT INTO `admin_operation_log` VALUES ('1256', '1', 'admin/uploadNews', 'POST', '192.168.33.1', '[]', '2018-04-30 12:27:17', '2018-04-30 12:27:17');
+INSERT INTO `admin_operation_log` VALUES ('1257', '1', 'admin/uploadNews', 'POST', '192.168.33.1', '[]', '2018-04-30 12:28:09', '2018-04-30 12:28:09');
+INSERT INTO `admin_operation_log` VALUES ('1258', '1', 'admin/uploadNews', 'POST', '192.168.33.1', '[]', '2018-04-30 12:46:53', '2018-04-30 12:46:53');
+INSERT INTO `admin_operation_log` VALUES ('1259', '1', 'admin/uploadNews', 'POST', '192.168.33.1', '[]', '2018-04-30 12:47:16', '2018-04-30 12:47:16');
+INSERT INTO `admin_operation_log` VALUES ('1260', '1', 'admin/uploadNews', 'POST', '192.168.33.1', '[]', '2018-04-30 12:48:00', '2018-04-30 12:48:00');
+INSERT INTO `admin_operation_log` VALUES ('1261', '1', 'admin/uploadNews', 'POST', '192.168.33.1', '[]', '2018-04-30 12:49:50', '2018-04-30 12:49:50');
+INSERT INTO `admin_operation_log` VALUES ('1262', '1', 'admin/uploadNews', 'POST', '192.168.33.1', '[]', '2018-04-30 12:50:08', '2018-04-30 12:50:08');
+INSERT INTO `admin_operation_log` VALUES ('1263', '1', 'admin/uploadNews', 'POST', '192.168.33.1', '[]', '2018-04-30 12:50:27', '2018-04-30 12:50:27');
+INSERT INTO `admin_operation_log` VALUES ('1264', '1', 'admin/uploadNews', 'POST', '192.168.33.1', '[]', '2018-04-30 12:51:03', '2018-04-30 12:51:03');
+INSERT INTO `admin_operation_log` VALUES ('1265', '1', 'admin/uploadNews', 'POST', '192.168.33.1', '[]', '2018-04-30 13:15:38', '2018-04-30 13:15:38');
+INSERT INTO `admin_operation_log` VALUES ('1266', '1', 'admin/uploadNews', 'POST', '192.168.33.1', '[]', '2018-04-30 13:17:10', '2018-04-30 13:17:10');
+INSERT INTO `admin_operation_log` VALUES ('1267', '1', 'admin/uploadNews', 'POST', '192.168.33.1', '[]', '2018-04-30 13:18:58', '2018-04-30 13:18:58');
+INSERT INTO `admin_operation_log` VALUES ('1268', '1', 'admin/uploadNews', 'POST', '192.168.33.1', '[]', '2018-04-30 13:19:34', '2018-04-30 13:19:34');
+INSERT INTO `admin_operation_log` VALUES ('1269', '1', 'admin/uploadNews', 'POST', '192.168.33.1', '[]', '2018-04-30 13:20:36', '2018-04-30 13:20:36');
+INSERT INTO `admin_operation_log` VALUES ('1270', '1', 'admin/news', 'POST', '192.168.33.1', '{\"title\":\"asd\",\"keyword\":\"asd\",\"content\":\"<p><img src=\\\"\\/uploads\\/news\\/12gJYFQENhK2E9H0a4yeFHUZxRtDY1imHQbhIahH.jpeg\\\" style=\\\"line-height: 1.42857; max-width: 100%;\\\">asdadasdasdasdasd<\\/p>\",\"like_num\":null,\"read_num\":null,\"_token\":\"z599rvudLWZDXIkHHq5PYOSN4w6hfLmAlDYu2zVc\"}', '2018-04-30 13:36:01', '2018-04-30 13:36:01');
+INSERT INTO `admin_operation_log` VALUES ('1271', '1', 'admin/news', 'GET', '192.168.33.1', '[]', '2018-04-30 13:36:12', '2018-04-30 13:36:12');
+INSERT INTO `admin_operation_log` VALUES ('1272', '1', 'admin/news/2/edit', 'GET', '192.168.33.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-30 13:37:05', '2018-04-30 13:37:05');
+INSERT INTO `admin_operation_log` VALUES ('1273', '1', 'admin/news/2', 'PUT', '192.168.33.1', '{\"title\":\"asd\",\"keyword\":\"asd\",\"content\":\"<p><\\/p><h1 style=\\\"text-align: center;\\\">asdasdasd<\\/h1><p><img src=\\\"\\/uploads\\/news\\/12gJYFQENhK2E9H0a4yeFHUZxRtDY1imHQbhIahH.jpeg\\\" style=\\\"line-height: 1.42857; max-width: 100%;\\\"><\\/p><p>asdadasdasdasdasd&nbsp;&nbsp;<br><\\/p><p><br><\\/p>\",\"like_num\":null,\"read_num\":null,\"_token\":\"z599rvudLWZDXIkHHq5PYOSN4w6hfLmAlDYu2zVc\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/jishi.com\\/admin\\/news\"}', '2018-04-30 13:37:49', '2018-04-30 13:37:49');
+INSERT INTO `admin_operation_log` VALUES ('1274', '1', 'admin/news', 'GET', '192.168.33.1', '[]', '2018-04-30 13:37:56', '2018-04-30 13:37:56');
+INSERT INTO `admin_operation_log` VALUES ('1275', '1', 'admin/news', 'GET', '192.168.33.1', '[]', '2018-04-30 13:41:55', '2018-04-30 13:41:55');
+INSERT INTO `admin_operation_log` VALUES ('1276', '1', 'admin/news/2/edit', 'GET', '192.168.33.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-30 14:38:10', '2018-04-30 14:38:10');
+INSERT INTO `admin_operation_log` VALUES ('1277', '1', 'admin/news/2/edit', 'GET', '192.168.33.1', '[]', '2018-04-30 14:38:55', '2018-04-30 14:38:55');
+INSERT INTO `admin_operation_log` VALUES ('1278', '1', 'admin/news/2', 'PUT', '192.168.33.1', '{\"title\":\"asd\",\"keyword\":\"asd\",\"content\":\"<p><\\/p><h1 style=\\\"text-align: center;\\\">asdasdasd<\\/h1><p><img src=\\\"\\/uploads\\/news\\/12gJYFQENhK2E9H0a4yeFHUZxRtDY1imHQbhIahH.jpeg\\\" style=\\\"line-height: 1.42857; max-width: 100%;\\\"><\\/p><p>asdadasdasdasdasd\\u00a0\\u00a0<br><\\/p><p><br><\\/p>\",\"like_num\":\"1\",\"read_num\":\"0\",\"_token\":\"z599rvudLWZDXIkHHq5PYOSN4w6hfLmAlDYu2zVc\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/jishi.com\\/admin\\/news\"}', '2018-04-30 14:39:36', '2018-04-30 14:39:36');
+INSERT INTO `admin_operation_log` VALUES ('1279', '1', 'admin/news', 'GET', '192.168.33.1', '[]', '2018-04-30 14:39:41', '2018-04-30 14:39:41');
+INSERT INTO `admin_operation_log` VALUES ('1280', '1', 'admin/news/2/edit', 'GET', '192.168.33.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-30 14:39:58', '2018-04-30 14:39:58');
+INSERT INTO `admin_operation_log` VALUES ('1281', '1', 'admin/news', 'GET', '192.168.33.1', '{\"_pjax\":\"#pjax-container\"}', '2018-04-30 14:40:22', '2018-04-30 14:40:22');
+INSERT INTO `admin_operation_log` VALUES ('1282', '1', 'admin', 'GET', '192.168.33.1', '[]', '2018-05-07 21:12:32', '2018-05-07 21:12:32');
+INSERT INTO `admin_operation_log` VALUES ('1283', '1', 'admin/news', 'GET', '192.168.33.1', '{\"_pjax\":\"#pjax-container\"}', '2018-05-07 21:12:59', '2018-05-07 21:12:59');
+INSERT INTO `admin_operation_log` VALUES ('1284', '1', 'admin/news', 'GET', '192.168.33.1', '[]', '2018-05-07 21:30:50', '2018-05-07 21:30:50');
+INSERT INTO `admin_operation_log` VALUES ('1285', '1', 'admin/notices', 'GET', '192.168.33.1', '{\"_pjax\":\"#pjax-container\"}', '2018-05-07 21:31:02', '2018-05-07 21:31:02');
+INSERT INTO `admin_operation_log` VALUES ('1286', '1', 'admin/notices', 'GET', '192.168.33.1', '[]', '2018-05-07 21:33:27', '2018-05-07 21:33:27');
+INSERT INTO `admin_operation_log` VALUES ('1287', '1', 'admin/notices', 'GET', '192.168.33.1', '[]', '2018-05-07 21:34:29', '2018-05-07 21:34:29');
+INSERT INTO `admin_operation_log` VALUES ('1288', '1', 'admin/notices/create', 'GET', '192.168.33.1', '{\"_pjax\":\"#pjax-container\"}', '2018-05-07 21:35:50', '2018-05-07 21:35:50');
+INSERT INTO `admin_operation_log` VALUES ('1289', '1', 'admin/notices', 'POST', '192.168.33.1', '{\"title\":\"\\u6d4b\\u8bd5\",\"content\":\"\\u6d4b\\u8bd5\\u6d4b\\u8bd5\\u6d4b\\u8bd5\\u6d4b\\u8bd5\\u6d4b\\u8bd5\\u6d4b\\u8bd5\\u6d4b\\u8bd5\\u6d4b\\u8bd5\\u6d4b\\u8bd5\",\"_token\":\"F3E9Dvmnczu41eEpM2KRGdqCBwkZ8T0drdJiYP4l\",\"_previous_\":\"http:\\/\\/jishi.com\\/admin\\/notices\"}', '2018-05-07 21:38:15', '2018-05-07 21:38:15');
+INSERT INTO `admin_operation_log` VALUES ('1290', '1', 'admin/notices', 'GET', '192.168.33.1', '[]', '2018-05-07 21:38:24', '2018-05-07 21:38:24');
+INSERT INTO `admin_operation_log` VALUES ('1291', '1', 'admin/notices', 'GET', '192.168.33.1', '[]', '2018-05-07 21:45:51', '2018-05-07 21:45:51');
 
 -- ----------------------------
 -- Table structure for admin_permissions
@@ -1436,7 +1580,7 @@ CREATE TABLE `admin_users` (
 -- ----------------------------
 -- Records of admin_users
 -- ----------------------------
-INSERT INTO `admin_users` VALUES ('1', 'admin', '$2y$10$Ed0bBWqwPkTuY.2BPdXP4OakbrWwG.yWH9UpyBrzktY7en3YdqqLu', 'Administrator', null, null, '2018-04-23 12:58:32', '2018-04-23 12:58:32');
+INSERT INTO `admin_users` VALUES ('1', 'admin', '$2y$10$Ed0bBWqwPkTuY.2BPdXP4OakbrWwG.yWH9UpyBrzktY7en3YdqqLu', 'Administrator', null, 'ygvVKBtD3exRJMI27rYPl6hs69yls3EGYipWMyZ4F62MHarCw9MOcIWK41K8', '2018-04-23 12:58:32', '2018-04-23 12:58:32');
 INSERT INTO `admin_users` VALUES ('2', 'zhaochang', '$2y$10$GomO3QaL8TzvQj/VddPpq.kXEYlKxtQhQNH8mfxyMgk./NQ9eHriC', '赵昌', 'images/切图_01.jpg', null, '2018-04-23 05:35:56', '2018-04-23 05:35:56');
 
 -- ----------------------------
@@ -1515,7 +1659,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ----------------------------
 -- Records of migrations
@@ -1523,6 +1667,49 @@ CREATE TABLE `migrations` (
 INSERT INTO `migrations` VALUES ('1', '2014_10_12_000000_create_users_table', '1');
 INSERT INTO `migrations` VALUES ('2', '2014_10_12_100000_create_password_resets_table', '1');
 INSERT INTO `migrations` VALUES ('3', '2016_01_04_173148_create_admin_tables', '1');
+INSERT INTO `migrations` VALUES ('4', '2018_04_29_153633_create_news_table', '2');
+INSERT INTO `migrations` VALUES ('5', '2018_05_07_211835_create_notices_table', '3');
+
+-- ----------------------------
+-- Table structure for news
+-- ----------------------------
+DROP TABLE IF EXISTS `news`;
+CREATE TABLE `news` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '标题',
+  `keyword` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '关键字',
+  `content` longtext COLLATE utf8mb4_unicode_ci COMMENT '内容',
+  `like_num` int(11) unsigned zerofill DEFAULT '00000000000' COMMENT '点赞数',
+  `read_num` int(11) unsigned zerofill DEFAULT '00000000000' COMMENT '阅读量',
+  `sort` int(11) unsigned zerofill DEFAULT '00000000000' COMMENT '排序',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ----------------------------
+-- Records of news
+-- ----------------------------
+INSERT INTO `news` VALUES ('1', 'asd', 'asd', '12312321', '00000000000', '00000000000', '00000000000', null, null);
+INSERT INTO `news` VALUES ('2', 'asd', 'asd', '<p></p><h1 style=\"text-align: center;\">asdasdasd</h1><p><img src=\"/uploads/news/12gJYFQENhK2E9H0a4yeFHUZxRtDY1imHQbhIahH.jpeg\" style=\"line-height: 1.42857; max-width: 100%;\"></p><p>asdadasdasdasdasd  <br></p><p><br></p>', '00000000001', '00000000000', '00000000000', '2018-04-30 13:36:04', '2018-04-30 14:39:37');
+
+-- ----------------------------
+-- Table structure for notices
+-- ----------------------------
+DROP TABLE IF EXISTS `notices`;
+CREATE TABLE `notices` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '标题',
+  `content` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '内容',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ----------------------------
+-- Records of notices
+-- ----------------------------
+INSERT INTO `notices` VALUES ('1', '测试', '测试测试测试测试测试测试测试测试测试', '2018-05-07 21:38:17', '2018-05-07 21:38:17');
 
 -- ----------------------------
 -- Table structure for password_resets

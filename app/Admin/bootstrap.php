@@ -25,3 +25,8 @@ Encore\Admin\Form::registerBuiltinFields();
 Encore\Admin\Form::collectFieldAssets();
 
 Encore\Admin\Grid::registerColumnDisplayer();
+
+use App\Admin\Extensions\WangEditor;
+use Encore\Admin\Form;
+
+Form::extend('editor', WangEditor::class);
