@@ -58,7 +58,7 @@ dd($app->material->uploadImage(__DIR__ . '/code.jpg'));
     public function index()
     {
         $app=$this->app;
-        $app->auto_reply->current();
+//        $app->auto_reply->current();
 
         $app->server->push(function ($message) {
             Log::debug($message);
