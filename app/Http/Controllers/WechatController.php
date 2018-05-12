@@ -32,7 +32,7 @@ class WechatController extends Controller
 
     public function index()
     {
-        return $this->app->server->serve();
+        return $this->app->server->serve()->send();
         //消息自动回复
         $this->app->server->setMessageHandler(function ($message){
             Log::debug($message);
