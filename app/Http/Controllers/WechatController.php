@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use EasyWeChat\Factory;
 use EasyWeChat\Work\Application;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class WechatController extends Controller
 {
@@ -33,6 +34,7 @@ class WechatController extends Controller
     {
         //消息自动回复
         $this->app->server->setMessageHandler(function ($message){
+            Log::debug($message);
             switch ($message->MsgType) {
                 case 'event':
                     switch ($message->Event) {
