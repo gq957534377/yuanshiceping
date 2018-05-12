@@ -59,10 +59,10 @@ return [
      */
     'official_account' => [
         'default' => [
-            'app_id' => 'wx5cebbb100bf249df',         // AppID
-            'secret' => '8e196585d25b9944f1e59a42d51bc8a0',    // AppSecret
+            'app_id' => 'wxd9058ab15676717a',         // AppID
+            'secret' => '8f1c8cac88d4c82f866d1f5d8396b5db',    // AppSecret
             'token' => 'yuanshiceping',           // Token
-            'aes_key' => 'cd3Fexrz8pJ6rORXPUYONAWmuYl1qkhy7NfPKgUSnkj',                 // EncodingAESKey
+            'aes_key' => '',                 // EncodingAESKey
 
             /*
              * OAuth 配置
