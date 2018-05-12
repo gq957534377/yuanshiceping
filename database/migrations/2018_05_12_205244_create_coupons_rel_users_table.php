@@ -15,7 +15,7 @@ class CreateCouponsRelUsersTable extends Migration
     {
         Schema::create('coupons_rel_users', function (Blueprint $table) {
             $table->increments('id');
-            $table->char('id', 32)->comment('优惠券码');
+            $table->char('coupon_id', 32)->comment('优惠券码');
             $table->integer('user_id')->nullable()->comment('生成人');
             $table->integer('price')->nullable()->comment('优惠金额');
             $table->timestamps();
