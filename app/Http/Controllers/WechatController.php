@@ -57,7 +57,7 @@ class WechatController extends Controller
                     break;
                 default:
                     return '该功能正在玩命开发中。。。';
-            };
+            }
         });
 
         return $this->app->server->serve()->send();
