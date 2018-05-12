@@ -62,7 +62,7 @@ return [
             'app_id' => 'wxd9058ab15676717a',         // AppID
             'secret' => '8f1c8cac88d4c82f866d1f5d8396b5db',    // AppSecret
             'token' => 'yuanshiceping',           // Token
-            'aes_key' => '',                 // EncodingAESKey
+            'aes_key' => null,                 // EncodingAESKey
 
             /*
              * OAuth 配置
