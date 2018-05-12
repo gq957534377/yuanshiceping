@@ -29,8 +29,8 @@ class WechatController extends Controller
 
     public function index()
     {
-        return "111"
-;        //消息自动回复
+        return $this->app->server->serve();
+        //消息自动回复
         $this->app->server->setMessageHandler(function ($message){
             switch ($message->MsgType) {
                 case 'event':
