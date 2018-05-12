@@ -32,6 +32,7 @@ class WechatController extends Controller
 
     public function index()
     {
+        \Log::info(111111);
         //消息自动回复
         $this->app->server->push(function ($message){
 //            switch ($message['MsgType']) {
