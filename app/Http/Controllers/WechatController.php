@@ -68,14 +68,14 @@ class WechatController extends Controller
                             // 是通过扫描邀请码进来的
                             if (isset($message['EventKey'])) {
                                 // 给邀请人积分加一
-
+return 1111;
                                 // 根据用户open_id生成二维码并且返回
-                                $result = $app->qrcode->forever(222);// 或者 $app->qrcode->forever("foo");
-                                $url = $app->qrcode->url($result['ticket']);
-                                $content = file_get_contents($url);
-                                $path = __DIR__ . '/' . $result['ticket'] . '.jpg';
-                                file_put_contents($path, $content);
-                                return new Image($app->material->uploadImage($path)['media_id']);
+//                                $result = $app->qrcode->forever(222);// 或者 $app->qrcode->forever("foo");
+//                                $url = $app->qrcode->url($result['ticket']);
+//                                $content = file_get_contents($url);
+//                                $path = __DIR__ . '/' . $result['ticket'] . '.jpg';
+//                                file_put_contents($path, $content);
+//                                return new Image($app->material->uploadImage($path)['media_id']);
                             }
                             break;
                         case "SCAN":
