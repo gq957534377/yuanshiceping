@@ -76,16 +76,15 @@ class WechatController extends Controller
 //                                        'num' => 'VALUE2',
 //                                    ],
 //                                ]);
-
-                                // 根据用户open_id生成二维码并且返回
-                                $result = $app->qrcode->forever($message['FromUserName']);
-                                $url = $app->qrcode->url($result['ticket']);
-
-                                $content = file_get_contents($url);
-                                $path = __DIR__ . '/' . $result['ticket'] . '.jpg';
-                                file_put_contents($path, $content);
-                                return new Image($app->material->uploadImage($path)['media_id']);
                             }
+                            // 根据用户open_id生成二维码并且返回
+                            $result = $app->qrcode->forever($message['FromUserName']);
+                            $url = $app->qrcode->url($result['ticket']);
+
+                            $content = file_get_contents($url);
+                            $path = __DIR__ . '/' . $result['ticket'] . '.jpg';
+                            file_put_contents($path, $content);
+                            return new Image($app->material->uploadImage($path)['media_id']);
                             break;
                         case "SCAN":
                             $contentStr = "扫描 " . $message['EventKey'];
