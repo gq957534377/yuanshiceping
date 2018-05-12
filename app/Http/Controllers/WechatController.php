@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use EasyWeChat\Factory;
 use EasyWeChat\Kernel\Messages\Image;
 use EasyWeChat\Kernel\Messages\News;
@@ -65,38 +66,76 @@ class WechatController extends Controller
                     switch ($message['Event']) {
                         case "subscribe":
                             $contentStr = "欢迎关注,邀请好友扫描二维码关注，累计30个活得测评卡";
-                            // 是通过扫描邀请码进来的 todo::后期改成异步消息推送
-                            if (isset($message['EventKey'])) {
-                                // 给邀请人积分加一，并且推送消息给邀请人 todo 后期改成异步队列
-                                $user = $app->user->get($message['FromUserName']);
-                                Log::debug($user);
-//                                $app->template_message->send([
-//                                    'touser' => $message['EventKey'],
-//                                    'template_id' => 'XojyihpxYxoENEREDJH9X0N_uKOaL4x8SoJFq1-37fQ',
-//                                    'data' => [
-//                                        'name' => $user['nickname'],
-//                                        'num' => 1,
-//                                    ],
-//                                ]);
-                            }
-                            // 根据用户open_id生成二维码并且返回
-                            $result = $app->qrcode->forever($message['FromUserName']);
-                            $url = $app->qrcode->url($result['ticket']);
-                            Log::debug($url);
-                            $content = file_get_contents($url);
-                            $path = __DIR__ . '/' . $result['ticket'] . '.jpg';
-                            file_put_contents($path, $content);
-                            $upload = $app->material->uploadImage($path);
-                            Log::debug($upload);
+                            // todo 有了unionid之后修改下
+                            $user = User::where(['weChart_id', $message['FromUserName']])->first();
+                            $weChat = $app->user->get($message['FromUserName']);
+                            if (empty($user)) {
+                                $newUser = [
+                                    'name' => $weChat['nickname'],
+                                    'weChart_id' => $weChat['openid'],
+                                    'union_id' => $weChat['unionid']??null,
+                                    'head_url' => $weChat['headimgurl'],
+                                ];
+                                // 是通过扫描邀请码进来的 todo::后期改成异步消息推送
+                                if (isset($message['EventKey'])) {
+                                    // 给邀请人积分加一，并且推送消息给邀请人 todo 后期改成异步队列
+                                    $newUser['inviter_id'] = User::where('weChat_id', $message['EventKey'])->first()->id??null;
+                                    $count = User::where(['inviter_id', $newUser['inviter_id']])->count();
+                                    $app->template_message->send([
+                                        'touser' => $message['EventKey'],
+                                        'template_id' => 'XojyihpxYxoENEREDJH9X0N_uKOaL4x8SoJFq1-37fQ',
+                                        'data' => [
+                                            'name' => $weChat['nickname'],
+                                            'num' => ($count + 1),
+                                        ],
+                                    ]);
+                                }
+                                // todo 如果够了指标，发送通知
+
+                                // 根据用户open_id生成二维码并且返回
+                                $result = $app->qrcode->forever($message['FromUserName']);
+                                $url = $app->qrcode->url($result['ticket']);
+                                $newUser['ticket'] = $result['ticket'];
+                                User::create($newUser);
+
+                                $content = file_get_contents($url);
+                                $path = __DIR__ . '/' . $result['ticket'] . '.jpg';
+                                file_put_contents($path, $content);
+                                $upload = $app->material->uploadImage($path);
+                                Log::debug($upload);
 //                            return new Image($upload['media_id']);
-                            return new News([[
-                                new NewsItem([
-                                    'title' => '欢迎关注,邀请好友扫描二维码关注，累计30个活得测评卡',
-                                    'description' => '...',
-                                    'url' => $url,
-                                    'image' => $url,
-                                ]),
-                            ]]);
+                                return new News([[
+                                    new NewsItem([
+                                        'title' => '欢迎关注,邀请好友扫描二维码关注，累计30个活得测评卡',
+                                        'description' => '...',
+                                        'url' => $url,
+                                        'image' => $url,
+                                    ]),
+                                ]]);
+                            } else {
+                                // 根据用户open_id生成二维码并且返回
+                                if (empty($user->ticket)) {
+                                    $result = $app->qrcode->forever($message['FromUserName']);
+                                    $user->ticket = $result['ticket'];
+                                }
+                                $user->weChat_id = $message['FromUserName'];
+                                $user->save();
+                                $url = $app->qrcode->url($user->ticket);
+                                $content = file_get_contents($url);
+                                $path = __DIR__ . '/' . $user->ticket . '.jpg';
+                                file_put_contents($path, $content);
+                                $upload = $app->material->uploadImage($path);
+                                Log::debug($upload);
+//                            return new Image($upload['media_id']);
+                                return new News([[
+                                    new NewsItem([
+                                        'title' => '欢迎关注,邀请好友扫描二维码关注，累计30个活得测评卡',
+                                        'description' => '...',
+                                        'url' => $url,
+                                        'image' => $url,
+                                    ]),
+                                ]]);
+                            }
                             break;
                         case "SCAN":
                             $contentStr = "扫描 " . $message['EventKey'];
