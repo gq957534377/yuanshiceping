@@ -77,12 +77,13 @@ class WechatController extends Controller
         $server = $app->server;
         $user = $app->user;
 
-        $server->push(function($message) use ($user) {
-            $fromUser = $user->get($message['FromUserName']);
-Log::debug($message);
-            return "{$fromUser->nickname} 您好！欢迎关注 overtrue!";
+        $app->server->push(function ($message) {
+            return "您好！欢迎使用 EasyWeChat!";
         });
 
-        return $server->serve()->send();
+        $response = $app->server->serve();
+
+// 将响应输出
+        $response->send(); // Laravel 里请使用：return $response;
     }
 }
