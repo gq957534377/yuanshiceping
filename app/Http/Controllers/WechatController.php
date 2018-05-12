@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use EasyWeChat\Factory;
 use EasyWeChat\Kernel\Messages\Image;
 use EasyWeChat\Kernel\Messages\News;
+use EasyWeChat\Kernel\Messages\NewsItem;
 use EasyWeChat\Work\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -64,7 +65,7 @@ class WechatController extends Controller
                             $contentStr = "欢迎关注方倍工作室 ";
                             if (isset($message['EventKey'])){
                                 // 是通过扫描邀请码进来的
-                                $news = new News();
+                                $news = new NewsItem();
                                 $news->title = '博主简介';
                                 $news->description = '大丢哥';
                                 $news->url = 'https://www.blog8090.com/#blog';
