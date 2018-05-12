@@ -78,7 +78,7 @@ class WechatController extends Controller
 //                                ]);
                             }
                             // 根据用户open_id生成二维码并且返回
-                            $result = $app->qrcode->forever($message['FromUserName']);
+                            $result = $app->qrcode->forever(33333);
                             $url = $app->qrcode->url($result['ticket']);
 
                             $content = file_get_contents($url);
