@@ -61,7 +61,7 @@ class WechatController extends Controller
 //            }
 //            return "sjhdghsgdh"
 //;        });
-ddd(config('wechat'));
+dd(config('wechat'));
         $options = [
             'app_id'    => 'wx3cf0f39249eb0exxx',
             'secret'    => 'f1c242f4f28f735d4687abb469072xxx',
