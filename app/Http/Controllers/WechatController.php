@@ -49,15 +49,15 @@ class WechatController extends Controller
             Log::debug($message);
             switch ($message['MsgType']) {
                 case 'event':
-                    switch ($message->Event) {
+                    switch ($message['Event']) {
                         case "subscribe":
                             $contentStr = "欢迎关注方倍工作室 ";
-                            if (isset($message->EventKey)){
-                                $contentStr = "关注二维码场景 ".$message->EventKey;
+                            if (isset($message['EventKey'])){
+                                $contentStr = "关注二维码场景 ".$message['EventKey'];
                             }
                             break;
                         case "SCAN":
-                            $contentStr = "扫描 ".$message->EventKey;
+                            $contentStr = "扫描 ".$message['EventKey'];
                             //要实现统计分析，则需要扫描事件写入数据库，这里可以记录 EventKey及用户OpenID，扫描时间
                             break;
                         default:
