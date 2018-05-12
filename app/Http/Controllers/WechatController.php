@@ -67,7 +67,7 @@ class WechatController extends Controller
             'token' => 'yuanshiceping',
             'log' => [
                 'level' => 'debug',
-                'file'  => '/storage/logs/easywechat.log',
+                'file'  => storage_path('logs/wechat.log'),
             ],
             // ...
         ];
