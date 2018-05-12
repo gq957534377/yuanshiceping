@@ -87,7 +87,8 @@ class WechatController extends Controller
                                     $count = User::where(['inviter_id', $newUser['inviter_id']])->count();
                                     $app->template_message->send([
                                         'touser' => $message['EventKey'],
-                                        'template_id' => 'XojyihpxYxoENEREDJH9X0N_uKOaL4x8SoJFq1-37fQ',
+//                                        'template_id' => 'XojyihpxYxoENEREDJH9X0N_uKOaL4x8SoJFq1-37fQ',// guoqing
+                                        'template_id' => 'Hj3J34GjEweQ6aFSmuIZ8GbACGYK7-skjiEam_arUrU',
                                         'data' => [
                                             'name' => $weChat['nickname'],
                                             'num' => ($count + 1),
