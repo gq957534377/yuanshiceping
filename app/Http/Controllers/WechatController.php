@@ -18,8 +18,12 @@ class WechatController extends Controller
     public function __construct()
     {
         $options = [
-            'app_id' => 'wxd9058ab15676717a',         // AppID
-            'secret' => '8f1c8cac88d4c82f866d1f5d8396b5db',    // AppSecret
+            // guoqing
+//            'app_id' => 'wxd9058ab15676717a',         // AppID
+//            'secret' => '8f1c8cac88d4c82f866d1f5d8396b5db',    // AppSecret
+           // jingyue
+            'app_id' => 'wxa069671594673f20',         // AppID
+            'secret' => '42db52a7d53f7b0278fc5d6710dc4628',    // AppSecret
             'token' => 'yuanshiceping',
             'log' => [
                 'level' => 'debug',
