@@ -131,6 +131,21 @@ class WechatController extends Controller
                             }
                             break;
                         case "SCAN":
+                            // 是通过扫描邀请码进来的 todo::后期改成异步消息推送
+                            if (isset($message['EventKey'])) {
+                                // 给邀请人积分加一，并且推送消息给邀请人 todo 后期改成异步队列
+                                $newUser['inviter_id'] = User::where('weChat_id', $message['EventKey'])->first()->id??null;
+                                $count = User::where(['inviter_id', $newUser['inviter_id']])->count();
+                                $app->template_message->send([
+                                    'touser' => $message['EventKey'],
+//                                        'template_id' => 'XojyihpxYxoENEREDJH9X0N_uKOaL4x8SoJFq1-37fQ',// guoqing
+                                    'template_id' => 'Hj3J34GjEweQ6aFSmuIZ8GbACGYK7-skjiEam_arUrU',
+                                    'data' => [
+                                        'name' => $app->user->get($message['FromUserName'])['nickname'],
+                                        'num' => ($count + 1),
+                                    ],
+                                ]);
+                            }
                             $contentStr = "扫描 " . $message['EventKey'];
                             //要实现统计分析，则需要扫描事件写入数据库，这里可以记录 EventKey及用户OpenID，扫描时间
                             break;
