@@ -29,7 +29,7 @@ class WechatController extends Controller
 
     public function index()
     {
-        dd($this->app->server->serve());
+
         return $this->app->server->serve();
         //消息自动回复
         $this->app->server->setMessageHandler(function ($message){
