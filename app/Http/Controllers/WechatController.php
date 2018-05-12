@@ -21,7 +21,7 @@ class WechatController extends Controller
             // guoqing
 //            'app_id' => 'wxd9058ab15676717a',         // AppID
 //            'secret' => '8f1c8cac88d4c82f866d1f5d8396b5db',    // AppSecret
-           // jingyue
+            // jingyue
             'app_id' => 'wxa069671594673f20',         // AppID
             'secret' => '42db52a7d53f7b0278fc5d6710dc4628',    // AppSecret
             'token' => 'yuanshiceping',
@@ -71,7 +71,7 @@ class WechatController extends Controller
                         case "subscribe":
                             $contentStr = "欢迎关注,邀请好友扫描二维码关注，累计30个活得测评卡";
                             // todo 有了unionid之后修改下
-                            $user = User::where('weChart_id',$message['FromUserName'])->first();
+                            $user = User::where('weChart_id', $message['FromUserName'])->first();
                             $weChat = $app->user->get($message['FromUserName']);
                             if (empty($user)) {
                                 $newUser = [
@@ -108,15 +108,7 @@ class WechatController extends Controller
                                 file_put_contents($path, $content);
                                 $upload = $app->material->uploadImage($path);
                                 Log::debug($upload);
-//                            return new Image($upload['media_id']);
-                                return new News([[
-                                    new NewsItem([
-                                        'title' => '欢迎关注,邀请好友扫描二维码关注，累计30个活得测评卡',
-                                        'description' => '...',
-                                        'url' => $url,
-                                        'image' => $url,
-                                    ]),
-                                ]]);
+                                return new Image($upload['media_id']);
                             } else {
                                 // 根据用户open_id生成二维码并且返回
                                 if (empty($user->ticket)) {
