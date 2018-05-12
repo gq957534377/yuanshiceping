@@ -99,6 +99,7 @@ class WechatController extends Controller
                                 // 根据用户open_id生成二维码并且返回
                                 $result = $app->qrcode->forever($message['FromUserName']);
                                 $url = $app->qrcode->url($result['ticket']);
+                                return $url;
                                 $newUser['ticket'] = $result['ticket'];
                                 Log::debug($newUser);
 //                                User::create($newUser);
@@ -118,6 +119,8 @@ class WechatController extends Controller
                                 $user->weChat_id = $message['FromUserName'];
                                 $user->save();
                                 $url = $app->qrcode->url($user->ticket);
+                                return $url;
+
                                 $content = file_get_contents($url);
                                 $path = __DIR__ . '/' . $user->ticket . '.jpg';
                                 file_put_contents($path, $content);
