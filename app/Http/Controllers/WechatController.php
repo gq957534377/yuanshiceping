@@ -54,6 +54,9 @@ class WechatController extends Controller
                             break;
                     }
                     return $contentStr;
+                case 'text':
+                    return '你好' . $this->app->user->get($message->FromUserName)->nickname;
+                    break;
                 default:
                     return '该功能正在玩命开发中。。。';
             };
