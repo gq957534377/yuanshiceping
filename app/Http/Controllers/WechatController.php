@@ -74,15 +74,15 @@ class WechatController extends Controller
                                     'touser' => $message['EventKey'],
                                     'template_id' => 'XojyihpxYxoENEREDJH9X0N_uKOaL4x8SoJFq1-37fQ',
                                     'data' => [
-                                        'name' => 'VALUE',
-                                        'num' => 'VALUE2',
+                                        'name' => $user['nickname'],
+                                        'num' => 1,
                                     ],
                                 ]);
                             }
                             // 根据用户open_id生成二维码并且返回
                             $result = $app->qrcode->forever($message['FromUserName']);
                             $url = $app->qrcode->url($result['ticket']);
-
+Log::debug($url);
                             $content = file_get_contents($url);
                             $path = __DIR__ . '/' . $result['ticket'] . '.jpg';
                             file_put_contents($path, $content);
