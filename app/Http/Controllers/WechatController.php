@@ -33,9 +33,12 @@ class WechatController extends Controller
     public function qrcode()
     {
         $app=$this->app;
-        $result = $app->qrcode->forever();// 或者 $app->qrcode->forever("foo");
-
-        dd($result,$app->qrcode->url('gQF98TwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAySk5pcEJZQTQ5Ml8xMDAwMDAwN3YAAgSfdPZaAwQAAAAA'));
+        $result = $app->qrcode->forever(222);// 或者 $app->qrcode->forever("foo");
+        $url = $app->qrcode->url($result['ticket']);
+        $content = file_get_contents($url);
+        file_put_contents(__DIR__ . '/code.jpg', $content);
+dd($app->material->uploadImage(__DIR__ . '/code.jpg'));
+//        dd($result,$app->qrcode->url('gQF98TwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAySk5pcEJZQTQ5Ml8xMDAwMDAwN3YAAgSfdPZaAwQAAAAA'));
 // Array
 // (
 //     [ticket] => gQFD8TwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAyTmFjVTRWU3ViUE8xR1N4ajFwMWsAAgS2uItZAwQA6QcA
@@ -66,14 +69,8 @@ class WechatController extends Controller
                             $contentStr = "欢迎关注方倍工作室 ";
                             if (isset($message['EventKey'])){
                                 // 是通过扫描邀请码进来的
-                                $news = new NewsItem();
-                                $news->title = '博主简介';
-                                $news->description = '大丢哥';
-                                $news->url = 'https://www.blog8090.com/#blog';
-                                $news->image = "https://www.blog8090.com/content/images/2017/02/88C022E3-CAC2-4116-98F2-FEE0FA330D20.png";
-                                return $news;
 
-//                                return new Image('media-id');
+                                return new Image('eM2DueXbZlo6ehpDC6PJL3KTyeZuEydS4W7ocou7CxQ');
                             }
                             break;
                         case "SCAN":
