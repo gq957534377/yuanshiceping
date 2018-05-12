@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use EasyWeChat\Factory;
 use EasyWeChat\Work\Application;
 use Illuminate\Http\Request;
 
@@ -11,7 +12,8 @@ class WechatController extends Controller
 
     public function __construct()
     {
-        $this->app = new Application(config('wechat'));
+//        $this->app = new Application(config('wechat'));
+        $app = Factory::officialAccount(config('wechat'));
     }
 
     public function qrcode()
