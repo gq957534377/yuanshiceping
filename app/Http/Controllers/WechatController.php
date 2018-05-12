@@ -32,10 +32,8 @@ class WechatController extends Controller
 
     public function index()
     {
-        Log::debug(111111);
         //消息自动回复
         $this->app->server->push(function ($message){
-            Log::debug($message);
             switch ($message->MsgType) {
                 case 'event':
                     switch ($message->Event) {
@@ -62,6 +60,6 @@ class WechatController extends Controller
             };
         });
 
-        return $this->app->server->serve();
+        return $this->app->server->serve()->send();
     }
 }
