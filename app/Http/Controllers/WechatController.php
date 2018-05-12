@@ -89,14 +89,14 @@ class WechatController extends Controller
                             $upload = $app->material->uploadImage($path);
                             Log::debug($upload);
 //                            return new Image($upload['media_id']);
-                            return new News([
+                            return new News([[
                                 new NewsItem([
                                     'title' => '欢迎关注,邀请好友扫描二维码关注，累计30个活得测评卡',
                                     'description' => '...',
                                     'url' => $url,
                                     'image' => $url,
                                 ]),
-                            ]);
+                            ]]);
                             break;
                         case "SCAN":
                             $contentStr = "扫描 " . $message['EventKey'];
