@@ -32,7 +32,6 @@ class WechatController extends Controller
 
     public function index()
     {
-        \Log::info(111111);
         //消息自动回复
 //        $this->app->server->push(function ($message){
 //            switch ($message['MsgType']) {
@@ -80,7 +79,7 @@ class WechatController extends Controller
 
         $server->push(function($message) use ($user) {
             $fromUser = $user->get($message['FromUserName']);
-
+Log::debug($message);
             return "{$fromUser->nickname} 您好！欢迎关注 overtrue!";
         });
 
