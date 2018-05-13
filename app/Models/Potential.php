@@ -65,7 +65,7 @@ class Potential extends Common
     {
         $grade = 0;
         $quality_names = explode('+', $potential['remark']);
-        $number = 1;
+        $number = 0;
         foreach ($quality_names as $quality_name) {
             $grade += static::getQualityGrade($quality_name, $member_id);
             $number++;

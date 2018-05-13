@@ -70,7 +70,6 @@ class Shake extends Common
 
             $shake_grades[$shake['id']]['grade'] = static::gradeOne($shake, $member_id);
         }
-
         static::deleteByMemberId($member_id);
         MemberShakeGrade::insert($shake_grades);
     }
@@ -105,10 +104,8 @@ class Shake extends Common
         $potential_grade = static::getPotentialGrade($shake, $member_id);
         $potential_rank_grade = static::getPotentialRankGrade(static::$member_shake_potential_grades, $shake);
         $interest_rank_grade = static::getInterestRankGrade(static::$member_interest_grades, $shake);
-
         $grade = $potential_grade + $potential_rank_grade + $interest_rank_grade;
-
-        $grade = round(($grade / 140 * 100), 1);
+        $grade = round((($grade / 140) * 100), 1);
         return $grade;
     }
 

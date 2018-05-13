@@ -9,7 +9,7 @@ namespace App\Models;
 
 /**
  * Class Major
- * 
+ *
  * @property int $id
  * @property string $name
  * @property int $status
@@ -100,7 +100,6 @@ class Major extends Common
         $interest_sort_number = static::$member_interest_grades[$major['interest_id']]['sort'];
 
         $len = strlen($major['potential_ids']);
-
         for ($i = 0; $i < $len; $i++) {
             $potential_id = $major['potential_ids'][$i];
             $potential_sort_number = static::$member_potential_grades[$potential_id]['sort'];
@@ -130,7 +129,6 @@ class Major extends Common
         } elseif (in_array($interest_sort_number, [2, 3])) {
             $grade += 5;
         }
-
 
         return $grade;
     }

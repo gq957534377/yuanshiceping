@@ -44,7 +44,7 @@ class Quality extends Eloquent
         1 => 1, //一类
         2 =>  0.5,//二类
         3 =>  0.2, //三类
-        4 =>  -0.5,//四类
+        4 =>  (-0.5),//四类
     ];
     /**
      * 键名 才干排名
@@ -79,16 +79,16 @@ class Quality extends Eloquent
         23 => 1,
         24 => 1,
 
-        25 => -3,
-        26 => -3,
-        27 => -3,
-        28 => -3,
-        29 => -3,
-        30 => -3,
-        31 => -3,
-        32 => -3,
-        33 => -3,
-        34 => -3,
+        25 => (-3),
+        26 => (-3),
+        27 => (-3),
+        28 => (-3),
+        29 => (-3),
+        30 => (-3),
+        31 => (-3),
+        32 => (-3),
+        33 => (-3),
+        34 => (-3),
 
     ];
 
@@ -116,10 +116,9 @@ class Quality extends Eloquent
 
 //            $personality_ids = array_keys($personality_type);
             $ratio = static::getRatio($personality_type, $quality['id']);
-
             $quality_grades[$quality['id']]['grade'] = static::gradeOne($quality, $abilities, $personality_type) * $ratio;
-        }
 
+        }
         static::deleteByMemberId($member_id);
 
         MemberQualityGrade::insert($quality_grades);
@@ -127,7 +126,7 @@ class Quality extends Eloquent
 
     static public function getRatio($personality_type, $quality_id)
     {
-        $ratio = 0.8;
+        $ratio = 1;
         $items = QualityHasPersonality::where(['quality_id'=>$quality_id])->get();
         foreach ($items as $item) {
             $len = strlen($item['type_name']);
@@ -162,13 +161,11 @@ class Quality extends Eloquent
             foreach ($items as $item) {
                 $ability_srot = $abilities[$item['ability_id']]['sort'];
 
-                $grade = static::$GRADES[$ability_srot] * static::$TYPES[$item['type_id']];
+                $grade += static::$GRADES[$ability_srot] * static::$TYPES[$item['type_id']];
             }
-            $grade = round(($grade-$quality['min'])/($quality['max']-$quality['min'])*100,1);
+            $grade = round((($grade-$quality['min'])/($quality['max']-$quality['min']))*100,1);
         }
-
         return $grade;
-
     }
 
     static public function deleteByMemberId($member_id)
