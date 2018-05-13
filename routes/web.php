@@ -29,11 +29,17 @@ Route::group(['middleware' => ['admin']], function() {
     Route::get('/admin/import/cat-b', 'Project\ImportQuestionController@catB');
     Route::get('/admin/import/cat-c', 'Project\ImportQuestionController@catC');
     Route::get('/admin/import/qualities', 'Project\ImportQualityController@index');
+
+
+//    Route::get('/admin/project/news', 'Project\NewsController');
+//    Route::get('/admin/project/notices', 'Project\NoticesController');
 });
 
 
 Route::group(['middleware' => ['web']], function () {
     Route::get('/home','Home\IndexController@index');
+    Route::any('/wechat','WechatController@index');
+    Route::any('/qrcode','WechatController@qrcode');
     Route::get('/evaluation','Home\EvaluationController@index');
     Route::post('/evaluate','Home\EvaluationController@evaluate');
 });
