@@ -39,7 +39,7 @@ class SendSmsWeChatRemind
      */
     public function handle(MessageRemind $event)
     {
-        Log::debug($event);
+        Log::debug($event->user,$event->template_id,$event->data);
         $this->app->template_message->send([
             'touser' => $event->user,
 //                                        'template_id' => 'XojyihpxYxoENEREDJH9X0N_uKOaL4x8SoJFq1-37fQ',// guoqing
