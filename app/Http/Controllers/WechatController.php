@@ -107,11 +107,7 @@ class WechatController extends Controller
                                 Log::debug($newUser);
 //                                User::create($newUser);
 
-                                $content = file_get_contents($url);
-                                $path = __DIR__ . '/' . $result['ticket'] . '.jpg';
-                                file_put_contents($path, $content);
-                                $upload = $app->material->uploadImage($path);
-                                Log::debug($upload);
+                                $upload = $this->uploadImage($url,$user->ticket);
                                 return new Image($upload['media_id']);
                             } else {
                                 // 根据用户open_id生成二维码并且返回
