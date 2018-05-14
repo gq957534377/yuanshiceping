@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('tel')->nullable();
             $table->string('password')->nullable();
             $table->string('open_id')->nullable()->conmment('小程序open_id');
-            $table->string('weChart_id')->nullable()->conmment('公众号open_id');
+            $table->string('weChat_id')->nullable()->conmment('公众号open_id');
             $table->string('ticket')->nullable()->conmment('二维码id');
             $table->string('union_id')->nullable()->conmment('公众号小程序唯一id');
             $table->string('head_url')->nullable();

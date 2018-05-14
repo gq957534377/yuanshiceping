@@ -72,12 +72,12 @@ class WechatController extends Controller
                             Log::debug(1111);
                             $contentStr = "欢迎关注,邀请好友扫描二维码关注，累计30个活得测评卡";
                             // todo 有了unionid之后修改下
-                            $user = User::where('weChart_id', $message['FromUserName'])->first();
+                            $user = User::where('weChat_id', $message['FromUserName'])->first();
                             $weChat = $app->user->get($message['FromUserName']);
                             if (empty($user)) {
                                 $newUser = [
                                     'name' => $weChat['nickname'],
-                                    'weChart_id' => $weChat['openid'],
+                                    'weChat_id' => $weChat['openid'],
                                     'union_id' => $weChat['unionid']??null,
                                     'head_url' => $weChat['headimgurl'],
                                 ];
