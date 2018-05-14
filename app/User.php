@@ -21,4 +21,6 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    // 不允许编辑字段
+    protected $guarded = [];
 }
