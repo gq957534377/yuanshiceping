@@ -6,6 +6,7 @@ use App\Events\MessageRemind;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use EasyWeChat\Factory;
+use Illuminate\Support\Facades\Log;
 
 class SendSmsWeChatRemind
 {
@@ -38,6 +39,7 @@ class SendSmsWeChatRemind
      */
     public function handle(MessageRemind $event)
     {
+        Log::debug($event);
         $this->app->template_message->send([
             'touser' => $event->user,
 //                                        'template_id' => 'XojyihpxYxoENEREDJH9X0N_uKOaL4x8SoJFq1-37fQ',// guoqing

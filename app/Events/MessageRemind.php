@@ -18,11 +18,7 @@ class MessageRemind
     public $template_id;
     public $data;
 
-    /**
-     * Create a new event instance.
-     *
-     * @return void
-     */
+
     public function __construct($user, $template_id, $data)
     {
         $this->user = $user;

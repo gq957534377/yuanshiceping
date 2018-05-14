@@ -88,9 +88,9 @@ class WechatController extends Controller
                                     // 给邀请人积分加一，并且推送消息给邀请人 todo 后期改成异步队列
                                     $newUser['inviter_id'] = User::where('weChat_id', $message['EventKey'])->first()->id??null;
                                     $count = User::where('inviter_id', $newUser['inviter_id'])->count();
-                                    event(new MessageRemind($newUser['inviter_id'] , 'Hj3J34GjEweQ6aFSmuIZ8GbACGYK7-skjiEam_arUrU', ['name'=>$message['FromUserName'],'num'=>$count]));
+                                    event(new MessageRemind($newUser['inviter_id'], 'Hj3J34GjEweQ6aFSmuIZ8GbACGYK7-skjiEam_arUrU', ['name' => $message['FromUserName'], 'num' => $count]));
                                 }
-                                
+
                                 // todo 如果够了指标，发送通知
 
                                 // 根据用户open_id生成二维码并且返回
@@ -98,11 +98,11 @@ class WechatController extends Controller
                                 $url = $app->qrcode->url($result['ticket']);
                                 $newUser['ticket'] = $result['ticket'];
                                 Log::debug($newUser);
-                                $res=User::create($newUser);
+                                $res = User::create($newUser);
                                 Log::debug($res);
                                 return $url;
 
-                                $upload = $this->uploadImage($url,$user->ticket);
+                                $upload = $this->uploadImage($url, $user->ticket);
                                 return new Image($upload['media_id']);
                             } else {
                                 // 根据用户open_id生成二维码并且返回
@@ -116,7 +116,7 @@ class WechatController extends Controller
                                 return $url;
 
                                 // 上传图片素材
-                                $upload = $this->uploadImage($url,$user->ticket);
+                                $upload = $this->uploadImage($url, $user->ticket);
                                 Log::debug($upload);
                                 return new Image($upload['media_id']);
                             }
@@ -168,7 +168,8 @@ class WechatController extends Controller
      * @return array|\EasyWeChat\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
      * @author 郭庆
      */
-    private function uploadImage($url,$file){
+    private function uploadImage($url, $file)
+    {
         $content = file_get_contents($url);
         $path = '/' . $file . '.jpg';
         file_put_contents($path, $content);
