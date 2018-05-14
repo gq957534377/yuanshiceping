@@ -38,6 +38,13 @@ class WechatController extends Controller
 
     public function qrcode()
     {
+        $a = "dssdsds";
+        $b = 0;
+        if ($b == $a) {
+            dd(1);
+        } else {
+            dd(2);
+        }
         $app = $this->app;
         $result = $app->qrcode->forever(222);// 或者 $app->qrcode->forever("foo");
         $url = $app->qrcode->url($result['ticket']);
@@ -90,9 +97,14 @@ class WechatController extends Controller
                                         'name' => $app->user->get($message['FromUserName'])['nickname'],
                                         'num' => ($count + 1)
                                     ]));
+                                    // todo 如果够了指标，发送通知
+                                    if ($count > 5) {
+                                        event(new MessageRemind($eventKey, 'NcATy1qABKC-xe7R-FqT2BwqZxDNEjkxSPO2jSWNtIA', [
+                                            'name' => $app->user->get($message['FromUserName'])['nickname'],
+                                            'num' => 7
+                                        ]));
+                                    }
                                 }
-
-                                // todo 如果够了指标，发送通知
 
                                 // 根据用户open_id生成二维码并且返回
                                 $result = $app->qrcode->forever($weChat['openid']);
