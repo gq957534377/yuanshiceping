@@ -77,7 +77,7 @@ class WechatController extends Controller
                 case 'event':
                     switch ($message['Event']) {
                         case "subscribe":
-                            Log::info(11111111);
+                            Log::info(222222111);
                             // todo 有了unionid之后修改下
                             $user = User::where('weChat_id', $message['FromUserName'])->first();
                             $weChat = $app->user->get($message['FromUserName']);
