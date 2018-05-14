@@ -48,6 +48,18 @@ class SendSmsWeChatRemind
                 'num' => $event->data['num'],
             ],
         ]);
+        // todo 如果够了指标，发送通知
+        if ($event->data['num'] > 1) {
+            Log::info(23456);
+            $res = $this->app->template_message->send([
+                'touser' => $event->user,
+                'template_id' => 'NcATy1qABKC-xe7R-FqT2BwqZxDNEjkxSPO2jSWNtIA',
+                'data' => [
+                    'name' => $event->data['name'],
+                    'num' => 3,
+                ],
+            ]);
+        }
         Log::warning($event->user);
         Log::warning($res);
     }
