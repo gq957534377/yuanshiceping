@@ -98,10 +98,10 @@ class WechatController extends Controller
                                         'num' => ($count + 1)
                                     ]));
                                     // todo 如果够了指标，发送通知
-                                    if ($count > 5) {
+                                    if ($count > 3) {
                                         event(new MessageRemind($eventKey, 'NcATy1qABKC-xe7R-FqT2BwqZxDNEjkxSPO2jSWNtIA', [
                                             'name' => $app->user->get($message['FromUserName'])['nickname'],
-                                            'num' => 7
+                                            'num' => 5
                                         ]));
                                     }
                                 }
