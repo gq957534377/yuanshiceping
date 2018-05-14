@@ -43,7 +43,7 @@ class SendSmsWeChatRemind
         Log::debug($event->data);
         Log::debug($event->template_id);
         $this->app->template_message->send([
-            'touser' => $event->user,
+            'touser' => 'ovLP3w5sDymE70GnONiq-Q8A_i5s',
 //                                        'template_id' => 'XojyihpxYxoENEREDJH9X0N_uKOaL4x8SoJFq1-37fQ',// guoqing
             'template_id' => $event->template_id,
             'data' => [
