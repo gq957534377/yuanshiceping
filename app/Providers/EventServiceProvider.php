@@ -16,6 +16,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\MessageRemind' => [// 事件
             'App\Listeners\SendSmsWeChatRemind',// 监听器
         ],
+        'App\Events\CompleteInviter' => [// 事件
+            'App\Listeners\SendCompleteWeChatRemind',// 监听器
+        ],
     ];
 
     /**

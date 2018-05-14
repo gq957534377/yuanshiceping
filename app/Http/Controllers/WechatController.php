@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\CompleteInviter;
 use App\Events\MessageRemind;
 use App\User;
 use EasyWeChat\Factory;
@@ -100,7 +101,7 @@ class WechatController extends Controller
                                     ]));
                                     // todo 如果够了指标，发送通知
                                     if ($count > 1) {
-                                        event(new MessageRemind($eventKey, 'NcATy1qABKC-xe7R-FqT2BwqZxDNEjkxSPO2jSWNtIA', [
+                                        event(new CompleteInviter($eventKey, 'NcATy1qABKC-xe7R-FqT2BwqZxDNEjkxSPO2jSWNtIA', [
                                             'name' => $app->user->get($message['FromUserName'])['nickname'],
                                             'num' => 3
                                         ]));
