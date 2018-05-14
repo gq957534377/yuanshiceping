@@ -69,6 +69,7 @@ class WechatController extends Controller
                 case 'event':
                     switch ($message['Event']) {
                         case "subscribe":
+                            Log::debug(1111);
                             $contentStr = "欢迎关注,邀请好友扫描二维码关注，累计30个活得测评卡";
                             // todo 有了unionid之后修改下
                             $user = User::where('weChart_id', $message['FromUserName'])->first();
@@ -122,15 +123,14 @@ class WechatController extends Controller
                                 $url = $app->qrcode->url($user->ticket);
                                 return $url;
 
-                                $content = file_get_contents($url);
-                                $path = __DIR__ . '/' . $user->ticket . '.jpg';
-                                file_put_contents($path, $content);
-                                $upload = $app->material->uploadImage($path);
+                                // 上传图片素材
+                                $upload = $this->uploadImage($url,$user->ticket);
                                 Log::debug($upload);
                                 return new Image($upload['media_id']);
                             }
                             break;
                         case "SCAN":
+                            Log::debug(22222);
                             // 是通过扫描邀请码进来的 todo::后期改成异步消息推送
                             if (isset($message['EventKey'])) {
                                 // 给邀请人积分加一，并且推送消息给邀请人 todo 后期改成异步队列
@@ -166,5 +166,20 @@ class WechatController extends Controller
 
 // 将响应输出
         $response->send(); // Laravel 里请使用：return $response;
+    }
+
+    /**
+     * 说明: 上传图片到素材库
+     *
+     * @param $url
+     * @param $file
+     * @return array|\EasyWeChat\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
+     * @author 郭庆
+     */
+    private function uploadImage($url,$file){
+        $content = file_get_contents($url);
+        $path = '/' . $file . '.jpg';
+        file_put_contents($path, $content);
+        return $this->app->material->uploadImage($path);
     }
 }
