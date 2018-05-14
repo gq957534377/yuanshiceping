@@ -39,6 +39,7 @@ class SendSmsWeChatRemind
      */
     public function handle(MessageRemind $event)
     {
+        Log::info('异步发送微信给'.$event->data['name']);
         $this->app->template_message->send([
             'touser' => $event->user,
             'template_id' => $event->template_id,
