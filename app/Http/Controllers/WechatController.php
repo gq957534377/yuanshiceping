@@ -98,7 +98,7 @@ class WechatController extends Controller
                                 // todo 如果够了指标，发送通知
 
                                 // 根据用户open_id生成二维码并且返回
-                                $result = $app->qrcode->forever(1);
+                                $result = $app->qrcode->forever($weChat['openid']);
                                 Log::error($message['FromUserName']);
                                 $url = $app->qrcode->url($result['ticket']);
                                 $newUser['ticket'] = $result['ticket'];
