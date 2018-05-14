@@ -104,7 +104,8 @@ class WechatController extends Controller
                                 $url = $app->qrcode->url($result['ticket']);
                                 $newUser['ticket'] = $result['ticket'];
                                 Log::debug($newUser);
-                                User::create($newUser);
+                                $res=User::create($newUser);
+                                Log::debug($res);
                                 return $url;
 
                                 $upload = $this->uploadImage($url,$user->ticket);
