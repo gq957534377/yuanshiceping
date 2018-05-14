@@ -86,7 +86,7 @@ class WechatController extends Controller
                                     Log::debug($message['EventKey']);
                                     // 给邀请人积分加一，并且推送消息给邀请人 todo 后期改成异步队列
                                     $newUser['inviter_id'] = User::where('weChat_id', $message['EventKey'])->first()->id??null;
-                                    $count = User::where(['inviter_id', $newUser['inviter_id']])->count();
+                                    $count = User::where('inviter_id', $newUser['inviter_id'])->count();
                                     $app->template_message->send([
                                         'touser' => $message['EventKey'],
 //                                        'template_id' => 'XojyihpxYxoENEREDJH9X0N_uKOaL4x8SoJFq1-37fQ',// guoqing
@@ -136,7 +136,7 @@ class WechatController extends Controller
                             if (isset($message['EventKey'])) {
                                 // 给邀请人积分加一，并且推送消息给邀请人 todo 后期改成异步队列
                                 $newUser['inviter_id'] = User::where('weChat_id', $message['EventKey'])->first()->id??null;
-                                $count = User::where(['inviter_id', $newUser['inviter_id']])->count();
+                                $count = User::where('inviter_id', $newUser['inviter_id'])->count();
                                 $app->template_message->send([
                                     'touser' => $message['EventKey'],
 //                                        'template_id' => 'XojyihpxYxoENEREDJH9X0N_uKOaL4x8SoJFq1-37fQ',// guoqing
