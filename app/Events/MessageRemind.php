@@ -14,9 +14,9 @@ class MessageRemind
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    private $user;
-    private $template_id;
-    private $data;
+    public $user;
+    public $template_id;
+    public $data;
 
     /**
      * Create a new event instance.
