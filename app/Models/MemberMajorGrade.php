@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Fri, 04 May 2018 16:49:18 +0800.
+ * Date: Tue, 15 May 2018 10:20:46 +0800.
  */
 
 namespace App\Models;
@@ -15,6 +15,7 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property int $member_id
  * @property int $major_id
  * @property float $grade
+ * @property int $weight
  *
  * @package App\Models
  */
@@ -26,10 +27,12 @@ class MemberMajorGrade extends Eloquent
 	protected $casts = [
 		'member_id' => 'int',
 		'major_id' => 'int',
-		'grade' => 'float'
+		'grade' => 'float',
+		'weight' => 'int'
 	];
 
 	protected $fillable = [
-		'grade'
+		'grade',
+		'weight'
 	];
 }

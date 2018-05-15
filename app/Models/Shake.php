@@ -62,10 +62,17 @@ class Shake extends Common
                 'member_id' => $member_id,
                 'shake_id' => $shake['id'],
                 'grade' => 0,
+                'weight' => $shake['sort'],
             ];
         }
-        static::$member_shake_potential_grades = MemberShakePotentialGrade::where(['member_id'=>$member_id])->orderBy('grade', 'DESC')->get();
-        static::$member_interest_grades = MemberInterestGrade::where(['member_id'=>$member_id])->orderBy('grade', 'DESC')->get();
+        static::$member_shake_potential_grades = MemberShakePotentialGrade::where(['member_id'=>$member_id])
+            ->orderBy('grade', 'DESC')
+            ->orderBy('weight', 'DESC')
+            ->get();
+        static::$member_interest_grades = MemberInterestGrade::where(['member_id'=>$member_id])
+            ->orderBy('grade', 'DESC')
+            ->orderBy('weight', 'DESC')
+            ->get();
         foreach ($shakes as $shake) {
 
             $shake_grades[$shake['id']]['grade'] = static::gradeOne($shake, $member_id);

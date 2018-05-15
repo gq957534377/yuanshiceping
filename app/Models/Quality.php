@@ -103,6 +103,7 @@ class Quality extends Eloquent
                 'member_id' => $member_id,
                 'quality_id' => $quality['id'],
                 'grade' => 0,
+                'weight' => $quality['sort'],
             ];
         }
         //才干排名

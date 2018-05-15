@@ -47,6 +47,7 @@ class Potential extends Common
                 'member_id' => $member_id,
                 'potential_id' => $potential['id'],
                 'grade' => 0,
+                'weight' => $potential['sort'],
             ];
         }
 

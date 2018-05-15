@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Fri, 04 May 2018 15:51:58 +0800.
+ * Date: Tue, 15 May 2018 10:22:03 +0800.
  */
 
 namespace App\Models;
@@ -16,6 +16,7 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property int $shake_id
  * @property string $potential_ids
  * @property float $grade
+ * @property int $weight
  *
  * @package App\Models
  */
@@ -27,11 +28,13 @@ class MemberShakePotentialGrade extends Eloquent
 	protected $casts = [
 		'member_id' => 'int',
 		'shake_id' => 'int',
-		'grade' => 'float'
+		'grade' => 'float',
+		'weight' => 'int'
 	];
 
 	protected $fillable = [
 		'potential_ids',
-		'grade'
+		'grade',
+		'weight'
 	];
 }

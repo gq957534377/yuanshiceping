@@ -91,6 +91,7 @@ class Answer extends Eloquent
                 'member_id' => $member_id,
                 'interest_id' => $interest['id'],
                 'grade' => 0,
+                'weight' => $interest['sort'],
             ];
         }
         $where = [
@@ -139,6 +140,7 @@ class Answer extends Eloquent
                 'member_id' => $member_id,
                 'ability_id' => $ability['id'],
                 'grade' => 0,
+                'weight' => $ability['sort'],
             ];
         }
         $where = [
@@ -204,6 +206,7 @@ class Answer extends Eloquent
                 'member_id' => $member_id,
                 'personality_id' => $personality['id'],
                 'grade' => 0,
+                'weight' => $personality['sort'],
             ];
         }
 
