@@ -50,7 +50,7 @@ class CouponsRelUser extends Model
      */
     public function getStatusAttribute()
     {
-        if ($this->expire_end > strtotime(date('Y-m-d', time()))) {
+        if ($this->expire_end < strtotime(date('Y-m-d', time()))) {
             return false;
         } else {
             return true;
