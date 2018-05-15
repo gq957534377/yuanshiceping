@@ -65,7 +65,10 @@ class Personality extends Common
 
         $name_box = [];
 
-        $items = MemberPersonalityGrade::where(['member_id'=>$member_id])->orderBy('grade', 'DESC')->get();
+        $items = MemberPersonalityGrade::where(['member_id'=>$member_id])
+            ->orderBy('grade', 'DESC')
+            ->orderBy('weight', 'DESC')
+            ->get();
         $personalities = static::getAllIndexById();
 
         foreach ($items as $item) {

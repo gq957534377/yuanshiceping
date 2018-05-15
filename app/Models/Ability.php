@@ -50,7 +50,10 @@ class Ability extends Eloquent
     static public function getAllWithSort($member_id)
     {
         $items = [];
-        $grades = MemberAbilityGrade::where(['member_id'=>$member_id])->orderBy('grade', 'DESC')->get()->toArray();
+        $grades = MemberAbilityGrade::where(['member_id'=>$member_id])
+            ->orderBy('grade', 'DESC')
+            ->orderBy('weight', 'DESC')
+            ->get()->toArray();
         $abilities = static::getAllIndexById();
         foreach ($grades as $key => $grade) {
             $item = [];

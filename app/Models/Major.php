@@ -67,17 +67,27 @@ class Major extends Common
                 'member_id' => $member_id,
                 'major_id' => $major['id'],
                 'grade' => 0,
+                'weight' => $major['sort'],
             ];
         }
 
         //潜能
-        static::$member_potential_grades = MemberPotentialGrade::where(['member_id'=>$member_id])->orderBy('grade', 'DESC')->get();
+        static::$member_potential_grades = MemberPotentialGrade::where(['member_id'=>$member_id])
+            ->orderBy('grade', 'DESC')
+            ->orderBy('weight', 'DESC')
+            ->get();
         static::$member_potential_grades = static::indexBy(static::$member_potential_grades, 'potential_id');
         //型格
-        static::$member_shake_grades = MemberShakeGrade::where(['member_id'=>$member_id])->orderBy('grade', 'DESC')->get();
+        static::$member_shake_grades = MemberShakeGrade::where(['member_id'=>$member_id])
+            ->orderBy('grade', 'DESC')
+            ->orderBy('weight', 'DESC')
+            ->get();
         static::$member_shake_grades = static::indexBy(static::$member_shake_grades, 'shake_id');
         //兴趣
-        static::$member_interest_grades = MemberInterestGrade::where(['member_id'=>$member_id])->orderBy('grade', 'DESC')->get();
+        static::$member_interest_grades = MemberInterestGrade::where(['member_id'=>$member_id])
+            ->orderBy('grade', 'DESC')
+            ->orderBy('weight', 'DESC')
+            ->get();
         static::$member_interest_grades = static::indexBy(static::$member_interest_grades, 'interest_id');
         foreach ($majors as $major) {
             if ($major['shake_id'] == 0) continue;
