@@ -23,6 +23,7 @@ class LoginController extends Controller
 
         // 存在返回私人令牌、修改资料
         if (!empty($user) || !empty($request->union_id) || !empty($user = User::where('union_id', $request->union_id)->first())) {
+            dd(1111);
             $user->head_url = $request->head_url;
             $user->name = $request->name;
             if (!empty($request->union_id)) {
@@ -37,7 +38,7 @@ class LoginController extends Controller
             $token = $user->createToken($request->open_id)->accessToken;
             return $this->sendResponse(['_token' => $token, 'user' => $user], '登陆成功');
         }
-
+        dd(2222);
         // 不存在添加用户、返回私人令牌
         $user = User::create([
             'open_id' => $request->open_id,
