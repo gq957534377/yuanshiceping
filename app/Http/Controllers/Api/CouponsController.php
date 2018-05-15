@@ -83,6 +83,6 @@ class CouponsController extends Controller
         });
         $data = $data->toArray();
         $data['data'] = $coupons;
-        return $this->sendResponse($data, '领取优惠券成功');
+        return $this->sendResponse($data, '获取我的优惠券成功');
     }
 }
