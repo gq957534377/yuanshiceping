@@ -27,6 +27,7 @@ Route::group(['namespace' => 'Api'], function () {
     Route::group(['middleware' => 'auth:api'], function () {
         Route::post('coupons', 'CouponsController@store');
         Route::post('getCoupon/{coupon}', 'CouponsController@getCoupon');
+        Route::get('my_coupons', 'CouponsController@myCoupons');
     });
 });
 

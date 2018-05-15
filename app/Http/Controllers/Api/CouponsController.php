@@ -35,6 +35,9 @@ class CouponsController extends Controller
             'goods_id' => $request->goods_id,
             'min' => $goods->min,
             'max' => $goods->max,
+            'expire_start' => strtotime($request->expire_start),
+            'expire_end' => strtotime($request->expire_end),
+            'remark' => $request->remark
         ];
         Coupon::create($data);
         return $this->sendResponse($data, '生成优惠券成功');
@@ -60,7 +63,26 @@ class CouponsController extends Controller
             'user_id' => $user->id,
             'price' => rand($coupon->min, $coupon->max)
         ];
-        Coupon::create($data);
+        CouponsRelUser::create($data);
+        return $this->sendResponse($data, '领取优惠券成功');
+    }
+
+    /**
+     * 说明: 我的优惠券
+     *
+     * @return \Illuminate\Http\JsonResponse
+     * @author 郭庆
+     */
+    public function myCoupons()
+    {
+        $user = Auth::guard('api')->user();
+
+        $data = CouponsRelUser::where('user_id', $user->id)->paginate(10);
+        $coupons = $data->map(function ($item) {
+            return CouponsRelUser::getItems($item);
+        });
+        $data = $data->toArray();
+        $data['data'] = $coupons;
         return $this->sendResponse($data, '领取优惠券成功');
     }
 }

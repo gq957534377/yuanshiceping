@@ -19,6 +19,9 @@ class CreateCouponsTable extends Migration
             $table->char('goods_id',32)->nullable()->comment('商品id');
             $table->integer('min')->nullable()->comment('优惠最小额度');
             $table->integer('max')->nullable()->comment('优惠最大额度');
+            $table->integer('expire_start')->nullable()->comment('优惠券有效期-开始时间');
+            $table->integer('expire_end')->nullable()->comment('优惠券有效期-结束时间');
+            $table->string('remark')->nullable()->comment('优惠券说明备注');
             $table->timestamps();
         });
     }
