@@ -19,7 +19,7 @@ class LoginController extends Controller
     public function login(LoginRequest $request)
     {
         // 判断当前用户open_id是否已经存在
-        $user = User::where('open_id', $request->open_id)->first();
+        $user = User::where(['open_id'=>$request->open_id])->first();
         // 存在返回私人令牌、修改资料
         if (!empty($user) || !empty($request->union_id) || !empty($user = User::where('union_id', $request->union_id)->first())) {
             if (empty($user)){
