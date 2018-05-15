@@ -14,7 +14,7 @@ class LoginRequest extends FormRequest
     public function authorize()
     {
         if (!empty($this->js_code)) {
-            $str = $this->getCurl('https://api.weixin.qq.com/sns/jscode2session?appid=' . config('services.app_id') . '&secret=' . config('services.secret') . '&js_code=' . $this->js_code . '&grant_type=authorization_code');
+            $str = $this->getCurl('https://api.weixin.qq.com/sns/jscode2session?appid=' . config('services.media.app_id') . '&secret=' . config('services.media.secret') . '&js_code=' . $this->js_code . '&grant_type=authorization_code');
             if (empty($data = json_decode($str, true)) || !empty($data['errcode'])) return false;
             $this->open_id = $data['openid'];
             $this->session_key = $data['session_key'];
