@@ -43,7 +43,7 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         switch ($this->route()->getActionMethod()) {
-            case 'store':
+            case 'login':
                 return [
                     'js_code' => 'required|string',
                     'head_url' => 'required|url',
