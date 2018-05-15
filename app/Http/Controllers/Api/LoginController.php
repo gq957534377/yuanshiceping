@@ -22,7 +22,7 @@ class LoginController extends Controller
         $user = User::where('open_id', $request->open_id)->first();
         // 存在返回私人令牌、修改资料
         if (!empty($user) || !empty($request->union_id) || !empty($user = User::where('union_id', $request->union_id)->first())) {
-            if (!empty($user)){
+            if ((!empty($user))){
                 dd(2122);
             }
             dd(!empty($user), !empty($request->union_id), !empty($user = User::where('union_id', $request->union_id)->first()));
