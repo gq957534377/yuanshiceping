@@ -25,6 +25,7 @@ class LoginController extends Controller
             if (empty($user)){
                 dd(2122);
             }
+            dd(User::where('union_id', $request->union_id)->first());
             dd($user,!empty($user), !empty($request->union_id), !empty($user = User::where('union_id', $request->union_id)->first()));
             $user->head_url = $request->head_url;
             $user->name = $request->name;
