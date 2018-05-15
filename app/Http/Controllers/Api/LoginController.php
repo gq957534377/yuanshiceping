@@ -52,6 +52,6 @@ class LoginController extends Controller
 
         // 获取令牌
         $token = $user->createToken($request->open_id)->accessToken;
-        return $this->sendResponse(['token' => $token], '登陆成功');
+        return $this->sendResponse(['_token' => $token, 'user' => $user], '登陆成功');
     }
 }
