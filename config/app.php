@@ -179,6 +179,7 @@ return [
         Reliese\Coders\CodersServiceProvider::class,
         Laravel\Passport\PassportServiceProvider::class,
         Overtrue\LaravelWeChat\ServiceProvider::class,
+        Orangehill\Iseed\IseedServiceProvider::class,
 
     ],
 
