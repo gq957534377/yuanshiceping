@@ -23,7 +23,7 @@ class LoginController extends Controller
 
         // 存在返回私人令牌、修改资料
         if (!empty($user) || !empty($request->union_id) || !empty($user = User::where('union_id', $request->union_id)->first())) {
-            dd(1111);
+            dd(!empty($user), !empty($request->union_id), !empty($user = User::where('union_id', $request->union_id)->first()));
             $user->head_url = $request->head_url;
             $user->name = $request->name;
             if (!empty($request->union_id)) {
