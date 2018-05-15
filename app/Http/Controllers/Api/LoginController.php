@@ -20,7 +20,6 @@ class LoginController extends Controller
     {
         // 判断当前用户open_id是否已经存在
         $user = User::where('open_id', $request->open_id)->first();
-        dd($user,User::where('open_id', $request->open_id)->get());
         // 存在返回私人令牌、修改资料
         if (!empty($user) || !empty($request->union_id) || !empty($user = User::where('union_id', $request->union_id)->first())) {
             if (empty($user)){
