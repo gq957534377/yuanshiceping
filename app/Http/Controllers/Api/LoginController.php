@@ -18,6 +18,7 @@ class LoginController extends Controller
      */
     public function login(LoginRequest $request)
     {
+        dd($request->all());
         // 判断当前用户open_id是否已经存在
         $user = User::where('open_id', $request->open_id)->first();
 
