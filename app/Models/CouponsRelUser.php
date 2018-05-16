@@ -50,7 +50,7 @@ class CouponsRelUser extends Model
      */
     public function getStatusAttribute()
     {
-        if (empty($this->status) || $this->coupon->expire_end < strtotime(date('Y-m-d', time()))) {
+        if (empty($this->status_cn) || $this->coupon->expire_end < strtotime(date('Y-m-d', time()))) {
             return false;
         } else {
             return true;
@@ -74,7 +74,8 @@ class CouponsRelUser extends Model
             'expire_start' => $item->expire_start_cn,
             'expire_end' => $item->expire_end_cn,
             'remark' => $item->coupon->remark??null,
-            'status' => $item->status,
+            'status' => $item->status_cn,
+            'status_cn' => $item->status,
         ];
     }
 }
