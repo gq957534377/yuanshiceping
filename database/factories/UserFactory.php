@@ -30,5 +30,6 @@ $factory->define(\App\Models\CouponsRelUser::class, function (Faker $faker) {
         'coupon_id' => $faker->randomElement(\App\Models\Coupon::all()->pluck('id')->toArray()),
         'user_id' => \App\User::all()->first()->id??null,
         'price' => random_int(10, 1000),
+        'status' => false
     ];
 });
