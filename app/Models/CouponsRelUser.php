@@ -66,7 +66,7 @@ class CouponsRelUser extends Model
      */
     public static function getItems(self $item)
     {
-        dd($item);
+        dd($item->status);
         return [
             'id' => $item->id,
             'coupon_id' => $item->coupon_id,
