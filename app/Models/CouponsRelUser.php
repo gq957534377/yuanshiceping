@@ -48,9 +48,9 @@ class CouponsRelUser extends Model
      * @return bool
      * @author 郭庆
      */
-    public function getStatusAttribute()
+    public function getStatusCnAttribute()
     {
-        if (empty($this->status_cn) || $this->coupon->expire_end < strtotime(date('Y-m-d', time()))) {
+        if (empty($this->status) || $this->coupon->expire_end < strtotime(date('Y-m-d', time()))) {
             return false;
         } else {
             return true;
@@ -66,7 +66,6 @@ class CouponsRelUser extends Model
      */
     public static function getItems(self $item)
     {
-        dd($item->status);
         return [
             'id' => $item->id,
             'coupon_id' => $item->coupon_id,
