@@ -36,8 +36,8 @@ class Answer extends Eloquent
 
 	protected $fillable = [
 		'member_id',
-		'subjects_id',
-		'categories_id',
+		'subject_id',
+		'category_id',
 		'question_id',
 		'sort',
 		'selected'
@@ -196,6 +196,8 @@ class Answer extends Eloquent
 
     }
 
+
+
     static public function gradeCatC($member_id)
     {
         $personalities = Personality::all()->toArray();
@@ -247,6 +249,21 @@ class Answer extends Eloquent
         Personality::deleteByMemberId($member_id);
         MemberPersonalityGrade::insert($personality_grades);
 
+    }
+
+    static public function gradeInterest($member_id)
+    {
+        static::gradeCatA($member_id);
+    }
+
+    static public function gradeAbility($member_id)
+    {
+        static::gradeCatB($member_id);
+    }
+
+    static public function gradePersonality($member_id)
+    {
+        static::gradeCatC($member_id);
     }
 
     static public function gradeQuality($member_id)

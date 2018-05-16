@@ -41,4 +41,9 @@ class EvaluationController extends Controller
 
         return ($post['cat_a']);
     }
+
+    public function truncate()
+    {
+
+    }
 }
