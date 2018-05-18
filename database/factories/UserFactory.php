@@ -2,6 +2,7 @@
 
 use Faker\Generator as Faker;
 use Ramsey\Uuid\Uuid;
+
 /*
 |--------------------------------------------------------------------------
 | Model Factories
@@ -31,5 +32,16 @@ $factory->define(\App\Models\CouponsRelUser::class, function (Faker $faker) {
         'user_id' => \App\User::all()->first()->id??null,
         'price' => random_int(10, 1000),
         'status' => true
+    ];
+});
+$factory->define(\App\Models\News::class, function (Faker $faker) {
+    return [
+        'title' => $faker->name,
+        'brief' => $faker->name,
+        'banner' => $faker->randomElement(\App\User::all()->pluck('head_url')->toArray()),
+        'content' => $faker->name,
+        'like_num' => $faker->numberBetween(),
+        'read_num' => $faker->numberBetween(),
+        'sort' => $faker->numberBetween(),
     ];
 });
