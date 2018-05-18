@@ -30,7 +30,7 @@ class CouponsController extends Controller
         $user = Auth::guard('api')->user();
 
         $data = [
-            'id' => Uuid::uuid1(),
+            'id' => Uuid::uuid1()->getHex(),
             'user_id' => $user->id,
             'goods_id' => $request->goods_id,
             'min' => $goods->min,
