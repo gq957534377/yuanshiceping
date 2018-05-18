@@ -17,7 +17,9 @@ class NewsController extends Controller
      */
     public function index(Request $request)
     {
-        $data = News::orderBy('updated_at','desc')->paginate($request->per_page??10);
+        $data = News::orderBy('read_num', 'desc')
+            ->orderBy('updated_at', 'desc')
+            ->paginate($request->per_page??10);
         return $this->sendResponse($data, '获取专家专栏成功！');
     }
 
@@ -30,6 +32,6 @@ class NewsController extends Controller
      */
     public function show(News $news)
     {
-        return $this->sendResponse($news,'获取新闻详情成功');
+        return $this->sendResponse($news, '获取新闻详情成功');
     }
 }
