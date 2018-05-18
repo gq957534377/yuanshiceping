@@ -15,7 +15,9 @@ class CreateNewsTable extends Migration
     {
         Schema::create('news', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title',20)->nullable(false)->comment('标题');
+            $table->string('title',100)->nullable()->comment('标题');
+            $table->string('brief',200)->nullable()->comment('简述');
+            $table->string('banner')->nullable()->comment('缩略图');
             $table->string('keyword',50)->nullable()->default('')->comment('关键字');
             $table->longText('content')->nullable()->comment('内容');
             $table->integer('like_num')->nullable()->default(0)->comment('点赞数');

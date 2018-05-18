@@ -24,11 +24,13 @@ Route::get('test', function () {
 Route::group(['namespace' => 'Api'], function () {
     Route::post('questions', 'EvaluationController@questions');
     Route::post('login', 'LoginController@login');
+    Route::get('rand_order', 'HomeController@randOrder');
+    Route::resource('news', 'NewsController');
+    Route::get('comments', 'CommentsController@index');
     Route::group(['middleware' => 'auth:api'], function () {
         Route::post('coupons', 'CouponsController@store');
         Route::post('getCoupon/{coupon}', 'CouponsController@getCoupon');
+        Route::post('comments', 'CommentsController@store');
         Route::get('my_coupons', 'CouponsController@myCoupons');
     });
 });
-
-
