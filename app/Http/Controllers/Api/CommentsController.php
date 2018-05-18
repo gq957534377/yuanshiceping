@@ -32,10 +32,18 @@ class CommentsController extends Controller
         });
         if (!empty($request->per_page) && $request->per_page == 'all') {
             $data = $query->orderBy('updated_at', 'desc')
-                ->get();
+                ->get()
+                ->map(function ($item) {
+                    Comment::getItems($item);
+                });
         } else {
             $data = $query->orderBy('updated_at', 'desc')
                 ->paginate($request->per_page??10);
+            $comments = $data->map(function ($item) {
+                return Comment::getItems($item);
+            });
+            $data = $data->toArray();
+            $data['data'] = $comments;
         }
 
         return $this->sendResponse($data, '获取评论成功！');
