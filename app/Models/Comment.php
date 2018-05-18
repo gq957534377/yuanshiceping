@@ -24,8 +24,8 @@ class Comment extends Model
             'user_id' => $item->user_id,
             'title' => $item->title,
             'content' => str_limit($item->content, 66),
-            'user_head' => $item->user->head_url,
-            'updated_at' => $item->updated_at,
+            'user_head' => $item->user->head_url??null,
+            'updated_at' => (string)$item->updated_at,
         ];
     }
 }
