@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Goods extends Model
 {
     // 主键
-    protected $primaryKey = 'guid';
+    protected $primaryKey = 'id';
 
     // 主键类型
     protected $keyType = 'string';
