@@ -20,4 +20,16 @@ class NewsController extends Controller
         $data = News::orderBy('updated_at','desc')->paginate($request->per_page??10);
         return $this->sendResponse($data, '获取专家专栏成功！');
     }
+
+    /**
+     * 说明: 新闻详情
+     *
+     * @param News $news
+     * @return \Illuminate\Http\JsonResponse
+     * @author 郭庆
+     */
+    public function show(News $news)
+    {
+        return $this->sendResponse($news,'获取新闻详情成功');
+    }
 }
