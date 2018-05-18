@@ -18,7 +18,7 @@ class HomeController extends Controller
      */
     public function randOrder(Faker $faker)
     {
-        $name = $faker->name;
+        $name = str_limit($faker->name,8);
         $result = $faker->randomElement(['完成了', '购买了']);
         $res = $name . '用户刚刚' . $result . '高中测评';
         return $this->sendResponse($res, $res);
