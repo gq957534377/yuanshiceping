@@ -45,3 +45,12 @@ $factory->define(\App\Models\News::class, function (Faker $faker) {
         'sort' => $faker->numberBetween(),
     ];
 });
+$factory->define(\App\Models\Comment::class, function (Faker $faker) {
+    return [
+        'goods_id' => 1,
+        'parent_id' => 1,
+        'user_id' => 1,
+        'content' => $faker->name,
+        'title' => $faker->name,
+    ];
+});

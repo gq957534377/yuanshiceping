@@ -59,6 +59,6 @@ class CommentsController extends Controller
             'content' => $request->get('content'),
         ];
         Comment::create($data);
-        return $this->sendResponse($data, '生成优惠券成功');
+        return $this->sendResponse($data, '评论成功');
     }
 }
