@@ -38,7 +38,7 @@ class CommentsController extends Controller
                 ->paginate($request->per_page??10);
         }
 
-        return $this->sendResponse($data, '获取专家专栏成功！');
+        return $this->sendResponse($data, '获取评论成功！');
     }
 
     /**
