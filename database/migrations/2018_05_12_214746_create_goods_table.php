@@ -14,7 +14,7 @@ class CreateGoodsTable extends Migration
     public function up()
     {
         Schema::create('goods', function (Blueprint $table) {
-            $table->bigIncrements('id')->nullable()->primary('id')->comment('商品ID');
+            $table->bigIncrements('id')->primary('id')->comment('商品ID');
             $table->string('goods_name',32)->nullable()->comment('商品名称');
             $table->string('goods_image')->nullable()->comment('商品图片');
             $table->enum('price_level',['1','2','3'])->nullable()->comment('活动选择：1正式价格，2免费，3活动价格');

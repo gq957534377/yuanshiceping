@@ -20,6 +20,7 @@ class CreateCommentsTable extends Migration
             $table->unsignedInteger('user_id')->nullable();
             $table->string('title')->nullable();
             $table->string('content',1024)->nullable();
+            $table->enum('status',[1,2])->comment('1:显示 2:不显示')->default('2');
             $table->timestamps();
         });
     }
