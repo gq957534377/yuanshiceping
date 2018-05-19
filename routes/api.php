@@ -33,5 +33,6 @@ Route::group(['namespace' => 'Api'], function () {
         Route::post('getCoupon/{coupon}', 'CouponsController@getCoupon');
         Route::post('comments', 'CommentsController@store');
         Route::get('my_coupons', 'CouponsController@myCoupons');
+        Route::resource('orders', 'OrdersController');
     });
 });

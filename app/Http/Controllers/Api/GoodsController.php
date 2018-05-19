@@ -20,6 +20,9 @@ class GoodsController extends Controller
     {
         $data = Good::orderBy('updated_at', 'desc')
             ->paginate($request->per_page??10);
+        foreach ($data as $val) {
+            $val->goods_image = url($val->goods_image);
+        }
         return $this->sendResponse($data, '获取的商品列表成功！');
     }
 
