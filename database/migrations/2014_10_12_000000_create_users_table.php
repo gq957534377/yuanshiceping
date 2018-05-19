@@ -17,6 +17,8 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('dealer_id')->nullable();
             $table->unsignedInteger('inviter_id')->nullable()->comment('邀请人id');
+            $table->enum('sex', [1, 2])->nullable()->comment('性别：1：男 2：女');
+            $table->string('address')->nullable()->comment('地址');
             $table->string('name')->nullable();
             $table->string('tel')->nullable();
             $table->string('password')->nullable();
