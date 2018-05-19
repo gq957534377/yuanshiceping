@@ -20,12 +20,12 @@ class UsersController extends Controller
     public function update(UsersRequest $request)
     {
         $user = Auth::guard('api')->user();
-        User::where('id', $user->id)->update([
+        $result = User::where('id', $user->id)->update([
             'name' => $request->name,
             'sex' => $request->sex,
             'tel' => $request->tel,
             'address' => $request->address,
         ]);
-        return $this->sendResponse('修改成', '修改成功');
+        return $this->sendResponse($request->all(), '修改成功');
     }
 }
