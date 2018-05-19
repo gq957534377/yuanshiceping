@@ -2,7 +2,7 @@
 
 namespace App\Admin\Controllers;
 
-use App\Models\Orders;
+use App\Models\Order;
 
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -11,7 +11,7 @@ use Encore\Admin\Layout\Content;
 use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\ModelForm;
 use App\user;
-use App\Models\Goods;
+use App\Models\Good;
 use Ramsey\Uuid\Uuid;
 
 class OrdersController extends Controller
@@ -74,7 +74,7 @@ class OrdersController extends Controller
      */
     protected function grid()
     {
-        return Admin::grid(Orders::class, function (Grid $grid) {
+        return Admin::grid(Order::class, function (Grid $grid) {
 
             $grid->id('ID')->sortable();
             $grid->order_id('订单号');
@@ -107,12 +107,12 @@ class OrdersController extends Controller
      */
     protected function form()
     {
-        return Admin::form(Orders::class, function (Form $form) {
+        return Admin::form(Order::class, function (Form $form) {
 
             $form->display('id', 'ID');
             $form->display('order_id', '订单号')->default(Uuid::uuid1()->getHex());
             $form->select('goods_id','商品')->options(function(){
-                $goods = Goods::get();
+                $goods = Good::get();
 
                 if($goods) {
                     $array = [0=>'请选择商品'];

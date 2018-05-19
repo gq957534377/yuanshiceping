@@ -11,7 +11,7 @@ use Encore\Admin\Layout\Content;
 use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\ModelForm;
 use App\user;
-use App\Models\Goods;
+use App\Models\Good;
 
 class CommentsController extends Controller
 {
@@ -98,7 +98,7 @@ class CommentsController extends Controller
 
             $form->display('id', 'ID');
             $form->select('goods_id','商品')->options(function(){
-                $goods = Goods::all();
+                $goods = Good::all();
 
                 if($goods) {
                     $array = [0=>'请选择商品'];

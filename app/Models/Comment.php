@@ -15,9 +15,9 @@ class Comment extends Model
         return $this->hasOne(User::class, 'id', 'user_id');
     }
 
-    public function goods()
+    public function good()
     {
-        return $this->hasOne(Goods::class,'id', 'goods_id');
+        return $this->hasOne(Good::class,'id', 'goods_id');
     }
 
     public static function getItems(self $item)
