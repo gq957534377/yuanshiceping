@@ -34,7 +34,7 @@ class CommentsController extends Controller
             $data = $query->orderBy('updated_at', 'desc')
                 ->get()
                 ->map(function ($item) {
-                    Comment::getItems($item);
+                    return Comment::getItems($item);
                 });
         } else {
             $data = $query->orderBy('updated_at', 'desc')
