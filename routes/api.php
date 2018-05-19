@@ -26,7 +26,7 @@ Route::group(['namespace' => 'Api'], function () {
     Route::post('login', 'LoginController@login');
     Route::get('rand_order', 'HomeController@randOrder');
     Route::resource('news', 'NewsController');
-    Route::resource('Goods', 'GoodsController');
+    Route::resource('goods', 'GoodsController');
     Route::get('comments', 'CommentsController@index');
     Route::group(['middleware' => 'auth:api'], function () {
         Route::post('coupons', 'CouponsController@store');

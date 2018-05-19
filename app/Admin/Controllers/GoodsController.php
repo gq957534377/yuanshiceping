@@ -2,7 +2,7 @@
 
 namespace App\Admin\Controllers;
 
-use App\Models\Goods;
+use App\Models\Good;
 
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -72,7 +72,7 @@ class GoodsController extends Controller
      */
     protected function grid()
     {
-        return Admin::grid(Goods::class, function (Grid $grid) {
+        return Admin::grid(Good::class, function (Grid $grid) {
 
             $grid->id('ID')->sortable();
             $grid->goods_name('商品名称');
@@ -111,7 +111,7 @@ class GoodsController extends Controller
      */
     protected function form()
     {
-        return Admin::form(Goods::class, function (Form $form) {
+        return Admin::form(Good::class, function (Form $form) {
             $form->display('id','ID');
             $form->text('goods_name', '商品名称')->placeholder('请输入商品称')->rules('required|max:10');
             $form->image('goods_image','商品图片')->uniqueName()->move('goods');
