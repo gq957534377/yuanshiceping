@@ -23,4 +23,8 @@ Route::group([
 
     $router->resource('goods', 'GoodsController');
 
+    $router->resource('orders', 'OrdersController');
+
+    $router->resource('comments', 'CommentsController');
+
 });

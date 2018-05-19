@@ -9,10 +9,4 @@ class News extends Model
     // 不允许编辑字段
     protected $guarded = [];
 
-    public static function getItems(self $item)
-    {
-        return [
-
-        ];
-    }
 }
