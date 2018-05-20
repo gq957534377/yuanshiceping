@@ -18,7 +18,7 @@ $factory->define(\App\Models\Coupon::class, function (Faker $faker) {
     return [
         'id' => Uuid::uuid1()->getHex(),
         'user_id' => \App\User::all()->first()->id??null,
-        'goods_id' => \App\Models\Goods::all()->first()->id??null,
+        'goods_id' => \App\Models\Good::all()->first()->id??null,
         'min' => random_int(10, 100),
         'max' => random_int(101, 1000),
         'expire_start' => strtotime('2018-05-01'),
