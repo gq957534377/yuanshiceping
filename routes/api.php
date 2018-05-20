@@ -17,12 +17,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('test', function () {
-    return 'hello world';
-});
-
 Route::group(['namespace' => 'Api'], function () {
     Route::post('questions', 'EvaluationController@questions');
+    Route::post('answer', 'EvaluationController@answer');
+    Route::post('grade', 'EvaluationController@grade');
+    Route::post('history', 'EvaluationController@history');
     Route::post('login', 'LoginController@login');
     Route::get('rand_order', 'HomeController@randOrder');
     Route::resource('news', 'NewsController');
