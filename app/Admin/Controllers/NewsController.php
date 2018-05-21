@@ -76,6 +76,9 @@ class NewsController extends Controller
 
             $grid->id('ID')->sortable();
             $grid->title('标题');
+            $grid->banner('缩略图')->display(function ($banner) {
+                return "<img src=".env('APP_URL').'/uploads/'.$banner.">";
+            });
             $grid->keyword('关键字');
             $grid->like_num('点赞量');
             $grid->read_num('阅读量');
@@ -97,10 +100,12 @@ class NewsController extends Controller
             $form->display('id', 'ID');
             $form->text('title','标题')->rules('required|max:20');
             $form->text('keyword','关键字')->rules('required|max:48');
+            $form->image('banner','缩略图')->uniqueName()->move('news');
+
             $form->editor('content','内容')->rules('required');
-            $form->text('like_num', '点赞量')->default(0);
-            $form->text('read_num', '阅读量')->default(0);
-            $form->text('sort', '排序')->default(0);
+            $form->number('like_num', '点赞量')->default(0);
+            $form->number('read_num', '阅读量')->default(0);
+            $form->number('sort', '排序')->default(0);
 
             $form->display('created_at', 'Created At');
             $form->display('updated_at', 'Updated At');

@@ -43,6 +43,21 @@ class CouponsRelUser extends Model
     }
 
     /**
+     * 说明: 优惠券状态
+     *
+     * @return bool
+     * @author 郭庆
+     */
+    public function getStatusCnAttribute()
+    {
+        if (empty($this->status) || $this->coupon->expire_end < strtotime(date('Y-m-d', time()))) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    /**
      * 说明: 返回给前端的字段
      *
      * @param CouponsRelUser $item
@@ -59,6 +74,8 @@ class CouponsRelUser extends Model
             'expire_start' => $item->expire_start_cn,
             'expire_end' => $item->expire_end_cn,
             'remark' => $item->coupon->remark??null,
+            'status' => $item->status_cn,
+            'status_cn' => $item->status,
         ];
     }
 }

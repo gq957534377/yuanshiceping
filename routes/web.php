@@ -41,5 +41,5 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('/wechat','WechatController@index');
     Route::any('/qrcode','WechatController@qrcode');
     Route::get('/evaluation','Home\EvaluationController@index');
-    Route::post('/evaluate','Home\EvaluationController@evaluate');
+    Route::get('/evaluate','Home\EvaluationController@evaluate');
 });

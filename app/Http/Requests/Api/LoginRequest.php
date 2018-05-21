@@ -29,8 +29,6 @@ class LoginRequest extends FormRequest
     {
         return [
             'js_code.required' => '请输入用户授权js_code',
-            'head_url.required' => '请输入用户头像',
-            'name.required' => '请输入用户昵称',
             'head_url.url' => '用户头像必须是正确url格式地址',
         ];
     }
@@ -46,11 +44,10 @@ class LoginRequest extends FormRequest
             case 'login':
                 return [
                     'js_code' => 'required|string',
-                    'head_url' => 'required|url',
-                    'name' => 'required|string|max:255',
+                    'head_url' => 'nullable|url',
+                    'name' => 'nullable|string|max:255',
                 ];
         }
-
     }
 
 

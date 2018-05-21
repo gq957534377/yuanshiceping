@@ -4,13 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Goods extends Model
+class Good extends Model
 {
     // 主键
-    protected $primaryKey = 'guid';
-
-    // 主键类型
-    protected $keyType = 'string';
+    protected $primaryKey = 'id';
 
     // 不允许编辑字段
     protected $guarded = [];

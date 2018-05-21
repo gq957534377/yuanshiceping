@@ -14,7 +14,17 @@ class CreateGoodsTable extends Migration
     public function up()
     {
         Schema::create('goods', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id')->comment('商品ID');
+            $table->string('goods_name',32)->nullable()->comment('商品名称');
+            $table->string('goods_image')->nullable()->comment('商品图片');
+            $table->enum('price_level',['1','2','3'])->nullable()->comment('活动选择：1正式价格，2免费，3活动价格');
+            $table->text('describe')->nullable()->comment('商品描述');
+            $table->text('need_know')->nullable()->comment('测评须知');
+            $table->text('example')->nullable()->comment('案例描述');
+            $table->integer('class_id')->nullable()->comment('分类ID');
+            $table->unsignedDecimal('price',8,2)->nullable()->comment('价格');
+            $table->unsignedDecimal('activity_price',8,2)->nullable()->comment('活动价格');
+            $table->unsignedInteger('people_num')->nullable()->comment('人数');
             $table->timestamps();
         });
     }

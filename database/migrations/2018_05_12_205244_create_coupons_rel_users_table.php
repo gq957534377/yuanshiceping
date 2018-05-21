@@ -18,6 +18,7 @@ class CreateCouponsRelUsersTable extends Migration
             $table->char('coupon_id', 32)->comment('优惠券码');
             $table->integer('user_id')->nullable()->comment('领取人');
             $table->integer('price')->nullable()->comment('优惠金额');
+            $table->boolean('status')->default(true)->comment('状态');
             $table->timestamps();
         });
     }

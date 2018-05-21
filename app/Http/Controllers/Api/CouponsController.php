@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Requests\Api\CouponsRequest;
 use App\Models\Coupon;
 use App\Models\CouponsRelUser;
-use App\Models\Goods;
+use App\Models\Good;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -22,7 +22,7 @@ class CouponsController extends Controller
      */
     public function store(CouponsRequest $request)
     {
-        $goods = Goods::find($request->goods_id);
+        $goods = Good::find($request->goods_id);
         if (empty($goods)) {
             return $this->sendError('商品不存在', $errors = ['商品不存在']);
         }
@@ -30,7 +30,7 @@ class CouponsController extends Controller
         $user = Auth::guard('api')->user();
 
         $data = [
-            'id' => Uuid::uuid1(),
+            'id' => Uuid::uuid1()->getHex(),
             'user_id' => $user->id,
             'goods_id' => $request->goods_id,
             'min' => $goods->min,

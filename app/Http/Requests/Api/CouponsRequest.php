@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\Api;
 
-use App\Models\Goods;
+use App\Models\Good;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -26,7 +26,7 @@ class CouponsRequest extends FormRequest
     public function rules()
     {
         return [
-            'goods_id' => Rule::in(Goods::fluck('id')->toArray())
+            'goods_id' => Rule::in(Good::fluck('id')->toArray())
         ];
     }
 }

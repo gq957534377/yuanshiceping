@@ -33,6 +33,7 @@ class LoginController extends Controller
             if ($user->status != 1) {
                 return $this->sendError('账号禁用', ['账号禁用'], 403);
             }
+
             // 获取令牌
             $token = $user->createToken($request->open_id)->accessToken;
             return $this->sendResponse(['_token' => $token, 'user' => $user], '登陆成功');

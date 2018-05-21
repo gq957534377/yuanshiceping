@@ -1,6 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
+use Ramsey\Uuid\Uuid;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,11 +14,43 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(App\User::class, function (Faker $faker) {
+$factory->define(\App\Models\Coupon::class, function (Faker $faker) {
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
-        'remember_token' => str_random(10),
+        'id' => Uuid::uuid1()->getHex(),
+        'user_id' => \App\User::all()->first()->id??null,
+        'goods_id' => \App\Models\Good::all()->first()->id??null,
+        'min' => random_int(10, 100),
+        'max' => random_int(101, 1000),
+        'expire_start' => strtotime('2018-05-01'),
+        'expire_end' => strtotime('2018-12-31'),
+        'remark' => $faker->name,
+    ];
+});
+$factory->define(\App\Models\CouponsRelUser::class, function (Faker $faker) {
+    return [
+        'coupon_id' => $faker->randomElement(\App\Models\Coupon::all()->pluck('id')->toArray()),
+        'user_id' => \App\User::all()->first()->id??null,
+        'price' => random_int(10, 1000),
+        'status' => true
+    ];
+});
+$factory->define(\App\Models\News::class, function (Faker $faker) {
+    return [
+        'title' => $faker->name,
+        'brief' => $faker->name,
+        'banner' => $faker->randomElement(\App\User::all()->pluck('head_url')->toArray()),
+        'content' => $faker->name,
+        'like_num' => $faker->numberBetween(),
+        'read_num' => $faker->numberBetween(),
+        'sort' => $faker->numberBetween(),
+    ];
+});
+$factory->define(\App\Models\Comment::class, function (Faker $faker) {
+    return [
+        'goods_id' => 1,
+        'parent_id' => 1,
+        'user_id' => 1,
+        'content' => $faker->name,
+        'title' => $faker->name,
     ];
 });
