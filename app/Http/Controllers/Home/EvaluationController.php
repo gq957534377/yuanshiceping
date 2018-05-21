@@ -15,7 +15,7 @@ class EvaluationController extends Controller
 
     public function evaluate(Request $request)
     {
-        $member = ['id'=>'3550'];
+        $member = ['id'=>4];
         $post = $request->post();
 
 
@@ -39,7 +39,7 @@ class EvaluationController extends Controller
 
 
 
-        return ($post['cat_a']);
+        return ($post);
     }
 
     public function truncate()
