@@ -23,6 +23,7 @@ class CreateNewsTable extends Migration
             $table->integer('like_num')->nullable()->default(0)->comment('点赞数');
             $table->integer('read_num')->nullable()->default(0)->comment('阅读量');
             $table->integer('sort')->nullable()->default(0)->comment('排序');
+            $table->enum('banner_status',['1','2'])->comment('1：上轮播，2：不上轮播');
             $table->timestamps();
         });
     }
