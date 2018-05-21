@@ -80,6 +80,9 @@ class NewsController extends Controller
                 return "<img src=".env('APP_URL').'/uploads/'.$banner.">";
             });
             $grid->keyword('关键字');
+            $grid->banner_status('是否上轮播')->display(function ($status) {
+                return $status ? '是' : '否';
+            });
             $grid->like_num('点赞量');
             $grid->read_num('阅读量');
 
@@ -105,6 +108,7 @@ class NewsController extends Controller
             $form->editor('content','内容')->rules('required');
             $form->number('like_num', '点赞量')->default(0);
             $form->number('read_num', '阅读量')->default(0);
+            $form->switch('banner_status', '是否上轮播？');
             $form->number('sort', '排序')->default(0);
 
             $form->display('created_at', 'Created At');

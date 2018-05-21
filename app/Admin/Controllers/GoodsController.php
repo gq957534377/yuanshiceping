@@ -97,9 +97,8 @@ class GoodsController extends Controller
             $grid->created_at('创建时间');
             $grid->updated_at('更新时间');
             $grid->filter(function ($filter) {
-
                 // 设置created_at字段的范围查询
-                $filter->between('created_at', 'Created Time')->datetime();
+                $filter->between('created_at', '创建时间')->datetime();
             });
         });
     }
@@ -126,7 +125,6 @@ class GoodsController extends Controller
             $form->currency('activity_price', '活动价格')->symbol('￥');
             $form->number('people_num', '测评人数');
             $form->textarea('describe', '商品描述')->placeholder('请输入商品描述。。。')->rules('required|max:100');
-
 
             $form->display('created_at', 'Created At');
             $form->display('updated_at', 'Updated At');
