@@ -70,7 +70,7 @@ class WechatController extends Controller
                             $query = $query->where('weChat_id', $message['FromUserName']);
                             $weChat = $app->user->get($message['FromUserName']);
                             $query->when($weChat['unionid']??null, function ($q, $value) {
-                                return $q->where(['union_id' => $value]);
+                                return $q->orWhere(['union_id' => $value]);
                             });
                             $user = $query->first();
                             Log::debug(111111);
