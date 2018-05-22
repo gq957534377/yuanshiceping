@@ -70,7 +70,14 @@ class WechatController extends Controller
                             // todo 有了unionid之后修改下
                             $user = User::where('weChat_id', $message['FromUserName'])->first();
                             $weChat = $app->user->get($message['FromUserName']);
-                            Log::debug($message,$weChat);
+                            if (empty($weChat['nickname'])) {
+                                $weChat = [
+                                    'nickname' => '',
+                                    'openid' => $message['FromUserName'],
+                                    'unionid' => null,
+                                    'headimgurl' => ''
+                                ];
+                            }
                             if (empty($user)) {
                                 $newUser = [
                                     'name' => $weChat['nickname'],
