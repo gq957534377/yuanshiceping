@@ -41,7 +41,7 @@ class SendCompleteWeChatRemind
             Log::info(23456);
             $res = $this->app->template_message->send([
                 'touser' => $event->user,
-                'template_id' => 'NcATy1qABKC-xe7R-FqT2BwqZxDNEjkxSPO2jSWNtIA',
+                'template_id' => 'i2oQo6_iiq5N_6Qa8ApHysvKxVYJhuhbEQgPlffXVQ4',
                 'data' => [
                     'name' => $event->data['name'],
                     'num' => 3,
