@@ -32,8 +32,11 @@ class SendCompleteWeChatRemind
             'touser' => $event->user,
             'template_id' => $event->template_id,
             'data' => [
-                'name' => $event->data['name'],
-                'num' => $event->data['num'],
+                'first' => '邀请新人关注成功通知',
+                'keyword1' => $event->data['name'],
+                'keyword2' => $event->data['num'] . '/' . config('admin.new_user_num'),
+                'keyword3' => '还差 ' . (config('admin.new_user_num') - $event->data['num']) . ' 个邀请，即可获得测评卡',
+                'remark' => '北京基石测评',
             ],
         ]);
         // todo 如果够了指标，发送通知
@@ -41,10 +44,13 @@ class SendCompleteWeChatRemind
             Log::info(23456);
             $res = $this->app->template_message->send([
                 'touser' => $event->user,
-                'template_id' => 'i2oQo6_iiq5N_6Qa8ApHysvKxVYJhuhbEQgPlffXVQ4',
+                'template_id' => 'AZ_z1HIHmkWgviA2JKiZwxWtfzy-FrUSOhGnCsxKQmw',
                 'data' => [
-                    'name' => $event->data['name'],
-                    'num' => 3,
+                    'first' => $event->data['num'] . '恭喜您完成纳新任务',
+                    'keyword1' => '邀请 ' . config('admin.new_user_num') . ' 个新用户获测评卡',
+                    'keyword2' => '完成纳新任务，获得测评卡，卡号：123456',
+                    'keyword3' => date('Y-m-d', time()),
+                    'remark' => '北京基石测评',
                 ],
             ]);
         }

@@ -94,7 +94,7 @@ class WechatController extends Controller
                                     // 给邀请人积分加一，并且推送消息给邀请人 todo 后期改成异步队列
                                     $newUser['inviter_id'] = User::where('weChat_id', $eventKey)->first()->id??null;
                                     $count = User::where('inviter_id', $newUser['inviter_id'])->count();
-                                    event(new MessageRemind($eventKey, 'XojyihpxYxoENEREDJH9X0N_uKOaL4x8SoJFq1-37fQ', [
+                                    event(new MessageRemind($eventKey, 'Fwb3aAlKkwg3tAtyyEq3KoLkKgWlLzBjC9TqOaKZelQ', [
                                         'name' => $app->user->get($message['FromUserName'])['nickname'],
                                         'num' => ($count + 1)
                                     ]));
