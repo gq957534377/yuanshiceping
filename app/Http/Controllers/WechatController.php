@@ -60,7 +60,7 @@ class WechatController extends Controller
     public function index()
     {
         $app = $this->app;
-
+Log::info(1111);
         $app->server->push(function ($message) use ($app) {
             switch ($message['MsgType']) {
                 case 'event':
