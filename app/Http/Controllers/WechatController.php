@@ -59,7 +59,6 @@ class WechatController extends Controller
 
     public function index()
     {
-        return "nihaoa";
         $app = $this->app;
         $app->server->push(function ($message) use ($app) {
             Log::debug($message);
