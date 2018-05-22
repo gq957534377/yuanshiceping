@@ -59,11 +59,21 @@ return [
      */
     'official_account' => [
         'default' => [
+            // guoqing
             'app_id' => 'wxd9058ab15676717a',         // AppID
             'secret' => '8f1c8cac88d4c82f866d1f5d8396b5db',    // AppSecret
+            // jingyue
+//            'app_id' => 'wxa069671594673f20',         // AppID
+//            'secret' => '42db52a7d53f7b0278fc5d6710dc4628',    // AppSecret
+
+//            'app_id' => 'wxd3eba357db0dfc93',         // AppID
+//            'secret' => '8f1c8cac88d4c82f866d1f5d8396b5db',    // AppSecret
             'token' => 'yuanshiceping',           // Token
             'aes_key' => null,                 // EncodingAESKey
-
+            'log' => [
+                'level' => 'debug',
+                'file' => storage_path('logs/wechat.log'),
+            ],
             /*
              * OAuth 配置
              *
