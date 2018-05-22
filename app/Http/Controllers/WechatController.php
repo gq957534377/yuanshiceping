@@ -21,11 +21,11 @@ class WechatController extends Controller
     {
         $options = [
             // guoqing
-//            'app_id' => 'wxd9058ab15676717a',         // AppID
-//            'secret' => '8f1c8cac88d4c82f866d1f5d8396b5db',    // AppSecret
+            'app_id' => 'wxd9058ab15676717a',         // AppID
+            'secret' => '8f1c8cac88d4c82f866d1f5d8396b5db',    // AppSecret
             // jingyue
-            'app_id' => 'wxa069671594673f20',         // AppID
-            'secret' => '42db52a7d53f7b0278fc5d6710dc4628',    // AppSecret
+//            'app_id' => 'wxa069671594673f20',         // AppID
+//            'secret' => '42db52a7d53f7b0278fc5d6710dc4628',    // AppSecret
             'token' => 'yuanshiceping',
             'log' => [
                 'level' => 'debug',
