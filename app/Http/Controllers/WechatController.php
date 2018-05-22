@@ -61,6 +61,7 @@ class WechatController extends Controller
     {
         $app = $this->app;
         $app->server->push(function ($message) use ($app) {
+            Log::debug($message);
             switch ($message['MsgType']??null) {
                 case 'event':
                     switch ($message['Event']) {
