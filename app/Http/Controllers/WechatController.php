@@ -60,7 +60,6 @@ class WechatController extends Controller
     public function index()
     {
         $app = $this->app;
-Log::info(1111);
         $app->server->push(function ($message) use ($app) {
             switch ($message['MsgType']) {
                 case 'event':
@@ -83,7 +82,7 @@ Log::info(1111);
                                     // 给邀请人积分加一，并且推送消息给邀请人 todo 后期改成异步队列
                                     $newUser['inviter_id'] = User::where('weChat_id', $eventKey)->first()->id??null;
                                     $count = User::where('inviter_id', $newUser['inviter_id'])->count();
-                                    event(new MessageRemind($eventKey, 'Hj3J34GjEweQ6aFSmuIZ8GbACGYK7-skjiEam_arUrU', [
+                                    event(new MessageRemind($eventKey, 'XojyihpxYxoENEREDJH9X0N_uKOaL4x8SoJFq1-37fQ', [
                                         'name' => $app->user->get($message['FromUserName'])['nickname'],
                                         'num' => ($count + 1)
                                     ]));
