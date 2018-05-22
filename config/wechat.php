@@ -60,8 +60,8 @@ return [
     'official_account' => [
         'default' => [
             // guoqing
-            'app_id' => 'wxd9058ab15676717a',         // AppID
-            'secret' => '8f1c8cac88d4c82f866d1f5d8396b5db',    // AppSecret
+//            'app_id' => 'wxd9058ab15676717a',         // AppID
+//            'secret' => '8f1c8cac88d4c82f866d1f5d8396b5db',    // AppSecret
             // jingyue
 //            'app_id' => 'wxa069671594673f20',         // AppID
 //            'secret' => '42db52a7d53f7b0278fc5d6710dc4628',    // AppSecret
@@ -72,9 +72,9 @@ return [
 //            'aes_key' => 'KT3XmFKrrP7hqfQ3jBY8kt5OfQtHrFIAvifuweqdzfS',                 // EncodingAESKey
 
             // 服务号
-//            'app_id' => 'wxd3eba357db0dfc93',         // AppID
-//            'secret' => '7bb00d20e7e77a144fffceb8b34150fe',    // AppSecret
-//            'aes_key' => 'KT3XmFKrrP7hqfQ3jBY8kt5OfQtHrFIAvifuweqdzfS',
+            'app_id' => 'wxbf407c5b3f9bc688',         // AppID
+            'secret' => 'c323c1005edd02acac7eb287b1fe2722',    // AppSecret
+            'aes_key' => 'cvkChFuDmBCXvCSqZLRADyrXaaoXbJDslvhxgbuzOVw',
 
             'token' => 'yuanshiceping',           // Token
             'log' => [
