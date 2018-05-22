@@ -60,17 +60,23 @@ return [
     'official_account' => [
         'default' => [
             // guoqing
-//            'app_id' => 'wxd9058ab15676717a',         // AppID
-//            'secret' => '8f1c8cac88d4c82f866d1f5d8396b5db',    // AppSecret
+            'app_id' => 'wxd9058ab15676717a',         // AppID
+            'secret' => '8f1c8cac88d4c82f866d1f5d8396b5db',    // AppSecret
             // jingyue
 //            'app_id' => 'wxa069671594673f20',         // AppID
 //            'secret' => '42db52a7d53f7b0278fc5d6710dc4628',    // AppSecret
 
-        // xianshang
-            'app_id' => 'wxd3eba357db0dfc93',         // AppID
-            'secret' => '7bb00d20e7e77a144fffceb8b34150fe',    // AppSecret
+        // dingyuehao
+//            'app_id' => 'wxd3eba357db0dfc93',         // AppID
+//            'secret' => '7bb00d20e7e77a144fffceb8b34150fe',    // AppSecret
+//            'aes_key' => 'KT3XmFKrrP7hqfQ3jBY8kt5OfQtHrFIAvifuweqdzfS',                 // EncodingAESKey
+
+            // 服务号
+//            'app_id' => 'wxd3eba357db0dfc93',         // AppID
+//            'secret' => '7bb00d20e7e77a144fffceb8b34150fe',    // AppSecret
+//            'aes_key' => 'KT3XmFKrrP7hqfQ3jBY8kt5OfQtHrFIAvifuweqdzfS',
+
             'token' => 'yuanshiceping',           // Token
-            'aes_key' => 'KT3XmFKrrP7hqfQ3jBY8kt5OfQtHrFIAvifuweqdzfS',                 // EncodingAESKey
             'log' => [
                 'level' => 'debug',
                 'file' => storage_path('logs/wechat.log'),
