@@ -73,9 +73,6 @@ class WechatController extends Controller
                                 return $q->orWhere(['union_id' => $value]);
                             });
                             $user = $query->first();
-                            Log::debug(111111);
-                            Log::debug($user);
-                            Log::debug($query->get());
                             if (empty($weChat['nickname'])) {
                                 $weChat = [
                                     'nickname' => '',
