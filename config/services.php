@@ -39,8 +39,8 @@ return [
         // guoqing
 //        'app_id' => 'wxffa5d8b8abc258f6',
 //        'secret' => 'ebb2a3a749d71047f45d4d36fc5b2f0a',
-        'app_id' => 'wx4a1d993386444a10',
-        'secret' => '0c1ffd4e988685d60092e6511e437257'
+        'app_id' => 'wx42b0c68b40525f96',
+        'secret' => 'a83f4652a42d8531e48cf258ecc13158'
     ],
 
 ];
