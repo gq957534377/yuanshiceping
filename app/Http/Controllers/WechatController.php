@@ -61,15 +61,14 @@ class WechatController extends Controller
     {
         $app = $this->app;
         $app->server->push(function ($message) use ($app) {
-            Log::debug($message);
             switch ($message['MsgType']??null) {
                 case 'event':
                     switch ($message['Event']) {
                         case "subscribe":
-                            Log::info(222222111);
                             // todo 有了unionid之后修改下
                             $user = User::where('weChat_id', $message['FromUserName'])->first();
                             $weChat = $app->user->get($message['FromUserName']);
+                            Log::debug($weChat);
                             if (empty($weChat['nickname'])) {
                                 $weChat = [
                                     'nickname' => '',
@@ -106,7 +105,6 @@ class WechatController extends Controller
 
                                 // 根据用户open_id生成二维码并且返回
                                 $result = $app->qrcode->forever($weChat['openid']);
-                                Log::error($message['FromUserName']);
                                 $url = $app->qrcode->url($result['ticket']);
                                 $newUser['ticket'] = $result['ticket'];
                                 User::create($newUser);
@@ -127,7 +125,6 @@ class WechatController extends Controller
 
                                 // 上传图片素材
                                 $upload = $this->uploadImage($url, $user->ticket);
-                                Log::debug($upload);
                                 return new Image($upload['media_id']);
                             }
                             break;
