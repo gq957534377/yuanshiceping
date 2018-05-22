@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Tue, 24 Apr 2018 09:52:26 +0800.
+ * Date: Tue, 22 May 2018 21:39:46 +0800.
  */
 
 namespace App\Models;
@@ -16,6 +16,8 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property string $name
  * @property int $status
  * @property int $sort
+ * @property int $number
+ * @property string $description
  *
  * @package App\Models
  */
@@ -25,13 +27,16 @@ class Ability extends Eloquent
 
 	protected $casts = [
 		'status' => 'int',
-		'sort' => 'int'
+		'sort' => 'int',
+		'number' => 'int'
 	];
 
 	protected $fillable = [
 		'name',
 		'status',
-		'sort'
+		'sort',
+		'number',
+		'description'
 	];
 
     static public function deleteByMemberId($member_id)

@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Tue, 24 Apr 2018 09:52:26 +0800.
+ * Date: Tue, 22 May 2018 21:43:22 +0800.
  */
 
 namespace App\Models;
@@ -19,6 +19,7 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property string $brief
  * @property string $detail
  * @property int $sort
+ * @property string $career
  *
  * @package App\Models
  */
@@ -37,10 +38,11 @@ class Interest extends Eloquent
 		'initial',
 		'brief',
 		'detail',
-		'sort'
+		'sort',
+		'career'
 	];
 
-	static public function deleteByMemberId($member_id)
+    static public function deleteByMemberId($member_id)
     {
         $interests = static::all()->toArray();
         foreach ($interests as $interest) {

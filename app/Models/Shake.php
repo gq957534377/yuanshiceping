@@ -2,10 +2,12 @@
 
 /**
  * Created by Reliese Model.
- * Date: Thu, 03 May 2018 10:08:29 +0800.
+ * Date: Tue, 22 May 2018 21:46:24 +0800.
  */
 
 namespace App\Models;
+
+use Reliese\Database\Eloquent\Model as Eloquent;
 
 /**
  * Class Shake
@@ -22,10 +24,11 @@ namespace App\Models;
  * @property string $interest_name
  * @property string $potential_ids
  * @property string $potential_names
+ * @property string $description
  *
  * @package App\Models
  */
-class Shake extends Common
+class Shake extends Eloquent
 {
 	protected $casts = [
 		'status' => 'int',
@@ -44,11 +47,12 @@ class Shake extends Common
 		'interest_id',
 		'interest_name',
 		'potential_ids',
-		'potential_names'
+		'potential_names',
+		'description'
 	];
 
-	static protected $member_shake_potential_grades;
-	static protected $member_interest_grades;
+    static protected $member_shake_potential_grades;
+    static protected $member_interest_grades;
 
 
     static public function grade($member_id)

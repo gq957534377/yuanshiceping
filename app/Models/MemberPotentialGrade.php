@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Tue, 15 May 2018 10:21:16 +0800.
+ * Date: Tue, 22 May 2018 21:54:10 +0800.
  */
 
 namespace App\Models;
@@ -16,6 +16,7 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property int $potential_id
  * @property float $grade
  * @property int $weight
+ * @property int $personality_type_weight
  *
  * @package App\Models
  */
@@ -28,11 +29,13 @@ class MemberPotentialGrade extends Eloquent
 		'member_id' => 'int',
 		'potential_id' => 'int',
 		'grade' => 'float',
-		'weight' => 'int'
+		'weight' => 'int',
+		'personality_type_weight' => 'int'
 	];
 
 	protected $fillable = [
 		'grade',
-		'weight'
+		'weight',
+		'personality_type_weight'
 	];
 }

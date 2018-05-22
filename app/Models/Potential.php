@@ -2,10 +2,12 @@
 
 /**
  * Created by Reliese Model.
- * Date: Thu, 03 May 2018 10:08:16 +0800.
+ * Date: Tue, 22 May 2018 21:45:37 +0800.
  */
 
 namespace App\Models;
+
+use Reliese\Database\Eloquent\Model as Eloquent;
 
 /**
  * Class Potential
@@ -17,10 +19,12 @@ namespace App\Models;
  * @property int $created_at
  * @property int $updated_at
  * @property int $sort
+ * @property string $description
+ * @property string $shortcoming
  *
  * @package App\Models
  */
-class Potential extends Common
+class Potential extends Eloquent
 {
 	protected $casts = [
 		'status' => 'int',
@@ -33,10 +37,12 @@ class Potential extends Common
 		'name',
 		'status',
 		'remark',
-		'sort'
+		'sort',
+		'description',
+		'shortcoming'
 	];
 
-	static public function grade($member_id)
+    static public function grade($member_id)
     {
         //素质模型
         $potentials = static::getAllIndexById();
