@@ -7,8 +7,6 @@
 
 namespace App\Models;
 
-use Reliese\Database\Eloquent\Model as Eloquent;
-
 /**
  * Class Potential
  * 
@@ -24,7 +22,7 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  *
  * @package App\Models
  */
-class Potential extends Eloquent
+class Potential extends Common
 {
 	protected $casts = [
 		'status' => 'int',

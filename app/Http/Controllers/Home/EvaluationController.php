@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Home;
 
 use App\Models\Answer;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -44,6 +45,22 @@ class EvaluationController extends Controller
 
     public function truncate()
     {
+
+    }
+
+    public function report($member_id)
+    {
+        $user = User::where(['id' => $member_id])->first();
+
+        //用户信息
+        //测评报告
+
+        //潜能得分
+        //潜能js数据
+        //行为模式
+
+        return view('evaluation.report');
+
 
     }
 }

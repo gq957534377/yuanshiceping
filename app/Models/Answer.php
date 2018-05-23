@@ -22,7 +22,7 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  *
  * @package App\Models
  */
-class Answer extends Eloquent
+class Answer extends Common
 {
 	public $timestamps = false;
 
@@ -226,6 +226,7 @@ class Answer extends Eloquent
         $question_ids = array_keys($answers);
 
         $questions = Question::whereIn('id',$question_ids)->with('subQuestions')->get()->toArray();
+
         foreach ($questions as $question) {
 
             $selected = $answers[$question['id']]['selected'];

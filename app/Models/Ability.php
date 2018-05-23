@@ -7,8 +7,6 @@
 
 namespace App\Models;
 
-use Reliese\Database\Eloquent\Model as Eloquent;
-
 /**
  * Class Ability
  * 
@@ -21,7 +19,7 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  *
  * @package App\Models
  */
-class Ability extends Eloquent
+class Ability extends Common
 {
 	public $timestamps = false;
 
@@ -38,6 +36,17 @@ class Ability extends Eloquent
 		'number',
 		'description'
 	];
+
+	static protected $personality_type_abilities = [
+        //SP  沟通、竞争、统率、完美、取悦、行动、自信、追求
+        'SP' => '沟通、竞争、统率、完美、取悦、行动、自信、追求',
+        //SJ   成就、统筹、信仰、专注、责任、排难、公平、审慎、纪律
+        'SJ' => '成就、统筹、信仰、专注、责任、排难、公平、审慎、纪律',
+        //NF  体谅、和谐、包容、个别、积极、交往、关联、适应、伯乐
+        'NF' =>'体谅、和谐、包容、个别、积极、交往、关联、适应、伯乐',
+        //NT  思维、分析、战略、搜集、前瞻、回顾、学习、理念
+        'NT' => '思维、分析、战略、搜集、前瞻、回顾、学习、理念',
+    ];
 
     static public function deleteByMemberId($member_id)
     {
@@ -58,6 +67,7 @@ class Ability extends Eloquent
         $grades = MemberAbilityGrade::where(['member_id'=>$member_id])
             ->orderBy('grade', 'DESC')
             ->orderBy('weight', 'DESC')
+            ->orderBy('personality_type_weight', 'DESC')
             ->get()->toArray();
         $abilities = static::getAllIndexById();
         foreach ($grades as $key => $grade) {
@@ -82,5 +92,52 @@ class Ability extends Eloquent
         }
         return $data;
 
+    }
+
+    /**
+     * 根据风格类型为能力增加权重
+     * @param $personality_type
+     */
+    static public function addPersonalityTypeWeight($personality_type, $member_id)
+    {
+        $key = static::getPersonalityType($personality_type);
+        $weight_abilities = explode('、', static::$personality_type_abilities[$key]);
+        $abilities = static::all();
+        foreach ($abilities as $ability) {
+            if (in_array($ability->name,$weight_abilities)) {
+
+                $where = [
+                    'member_id' => $member_id,
+                    'ability_id' => $ability->id,
+                ];
+                $member_ability_grade = MemberAbilityGrade::where($where)->first();
+                if ($member_ability_grade) {
+
+                    $member_ability_grade->where($where)->update(['personality_type_weight' => 1]);
+                } else {
+                    var_dump('没有这个才干分数');
+                }
+            }
+        }
+
+
+    }
+
+    static public function getPersonalityType($personality_type)
+    {
+        $types = array_keys(static::$personality_type_abilities);
+        foreach ($types as $type) {
+            $len = strlen($type);
+            $current_type = [];
+            for ($i = 0; $i < $len; $i++) {
+                $current_type[] = $type[$i];
+            }
+            $intersect = array_intersect($current_type, $personality_type);
+            if (is_array($intersect) && (count($intersect) == $len)) {
+                return $type;
+            }
+        }
+
+        return false;
     }
 }

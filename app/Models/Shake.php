@@ -7,8 +7,6 @@
 
 namespace App\Models;
 
-use Reliese\Database\Eloquent\Model as Eloquent;
-
 /**
  * Class Shake
  * 
@@ -28,7 +26,7 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  *
  * @package App\Models
  */
-class Shake extends Eloquent
+class Shake extends Common
 {
 	protected $casts = [
 		'status' => 'int',
