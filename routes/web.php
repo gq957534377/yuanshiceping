@@ -35,7 +35,6 @@ Route::group(['middleware' => ['admin']], function() {
 //    Route::get('/admin/project/notices', 'Project\NoticesController');
 });
 
-
 Route::group(['middleware' => ['web']], function () {
     Route::get('/home','Home\IndexController@index');
     Route::any('/wechat','WechatController@index');
