@@ -23,18 +23,18 @@ class EvaluationController extends Controller
 
     public function evaluate(Request $request)
     {
-        $member = ['id'=>4];
+        $member = ['id'=>7];
         $post = $request->post();
 
 
-//        $answers = [];
-//        $answers = array_merge($answers, Answer::makeAnswers($post['cat_a'],'cat_a', $member['id']));
-//        $answers = array_merge($answers, Answer::makeAnswers($post['cat_b'],'cat_b', $member['id']));
-//        $answers = array_merge($answers, Answer::makeAnswers($post['cat_c'],'cat_c', $member['id']));
-//        if (!empty($answers)) {
-//
-//            Answer::insert($answers);
-//        }
+        $answers = [];
+        $answers = array_merge($answers, Answer::makeAnswers($post['cat_a'],'cat_a', $member['id']));
+        $answers = array_merge($answers, Answer::makeAnswers($post['cat_b'],'cat_b', $member['id']));
+        $answers = array_merge($answers, Answer::makeAnswers($post['cat_c'],'cat_c', $member['id']));
+        if (!empty($answers)) {
+
+            Answer::insert($answers);
+        }
 
         Answer::gradeCatA($member['id']); //计算兴趣
         Answer::gradeCatB($member['id']); //才干 能力 得分
@@ -59,7 +59,15 @@ class EvaluationController extends Controller
     {
         $data = [];
         //测评报告
-        $report = new Report();
+        $report = Report::where(['member_id' => $member_id])->first();
+        if (!empty($report)) {
+            if (file_exists(base_path('public'.'/'.$report->path))) {
+                return file_get_contents(base_path('public'.'/'.$report->path));
+            }
+        } else {
+            $report = new Report();
+        }
+
         $report->created_at = time();
         $data['report'] = $report;
         //用户信息
@@ -192,18 +200,24 @@ class EvaluationController extends Controller
         $data['short_second_potential_sorted_quality_grades'] = $short_second_potential_sorted_quality_grades;
 
 
-
-
-
-
-
-
-
-
         //潜能js数据
         //行为模式
         $html = view('evaluation.report',$data)->__toString();
-        file_put_contents('zc.html',$html);
+
+        $report_dir = base_path('public').'/report';
+        if (!is_dir($report_dir)) {
+            mkdir($report_dir);
+        }
+
+        $report_path = $report_dir.'/'.md5($member_id).'.html';
+        $report_url = 'report/'.md5($member_id).'.html';
+
+        file_put_contents($report_path,$html);
+
+        $report->subject_id = 1;
+        $report->member_id = $member_id;
+        $report->path = $report_url;
+        $report->save();
         return $html;
 
 
