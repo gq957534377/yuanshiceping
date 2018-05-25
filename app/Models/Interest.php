@@ -52,4 +52,12 @@ class Interest extends Common
         }
 
     }
+
+    static public function getGradesByMemberId($member_id){
+
+        return MemberInterestGrade::where(['member_id' => $member_id])
+            ->orderBy('grade', 'DESC')
+            ->orderBy('weight', 'DESC')
+            ->get();
+    }
 }

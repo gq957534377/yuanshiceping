@@ -66,8 +66,8 @@ class Ability extends Common
         $items = [];
         $grades = MemberAbilityGrade::where(['member_id'=>$member_id])
             ->orderBy('grade', 'DESC')
-            ->orderBy('weight', 'DESC')
             ->orderBy('personality_type_weight', 'DESC')
+            ->orderBy('weight', 'DESC')
             ->get()->toArray();
         $abilities = static::getAllIndexById();
         foreach ($grades as $key => $grade) {

@@ -195,4 +195,37 @@ class Shake extends Common
         }
 
     }
+
+    static public function getGradesByMemberId($member_id){
+
+        return MemberShakeGrade::where(['member_id' => $member_id])
+            ->orderBy('grade', 'DESC')
+            ->orderBy('weight', 'DESC')
+            ->get();
+    }
+
+    static public function addInterestPotentialGrade($shake_grades, $shakes, $potential_grades, $interest_grades)
+    {
+        $potential_grades = $potential_grades->toArray();
+        $interest_grades = $interest_grades->toArray();
+        $potential_id_grades = array_combine(array_column($potential_grades, 'potential_id'), array_column($potential_grades, 'grade'));
+        $interest_id_grades = array_combine(array_column($interest_grades, 'interest_id'), array_column($interest_grades, 'grade'));
+        if(!empty($shake_grades)) {
+
+            foreach ($shake_grades as &$shake_grade) {
+                $interest_id = $shakes[$shake_grade['shake_id']]['interest_id'];
+                $shake_grade['interest_grade'] = $interest_id_grades[$interest_id];
+                $potential_ids = $shakes[$shake_grade['shake_id']]['potential_ids'];
+                $len = strlen($potential_ids);
+                $potential_grade = 0;
+                for ($i = 0; $i < $len; $i++) {
+                    $potential_grade += $potential_id_grades[$potential_ids[$i]];
+                }
+                $shake_grade['potential_grade'] = $potential_grade / $len;
+
+            }
+        }
+        return $shake_grades;
+
+    }
 }

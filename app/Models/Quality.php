@@ -181,4 +181,36 @@ class Quality extends Common
         }
 
     }
+
+    static public function getGradesByMemberId($member_id){
+
+        return MemberQualityGrade::where(['member_id' => $member_id])
+            ->orderBy('grade', 'DESC')
+            ->orderBy('weight', 'DESC')
+            ->get();
+    }
+
+    /**
+     * 素质模型在100以上的用：超强的
+    素质模型在80以上的用：特别强的
+    素质模型在70以上的用：很强的
+    素质模型在60以上的用：不错的
+    60分以上的有几个就按分数顺序描述几个
+     * @param $grade
+     * @return string
+     */
+    static public function getPrefix($grade)
+    {
+        $prefix = '';
+        if ($grade > 100) {
+            $prefix = '超强的';
+        } elseif ($grade > 80) {
+            $prefix = '特别强的';
+        }elseif ($grade > 70) {
+            $prefix = '很强的';
+        }elseif ($grade > 60) {
+            $prefix = '不错的';
+        }
+        return $prefix;
+    }
 }
