@@ -113,12 +113,11 @@ class WechatController extends Controller
                                 $url = $app->qrcode->url($result['ticket']);
                                 $newUser['ticket'] = $result['ticket'];
                                 User::create($newUser);
-                                return $url;
 
 
                                 $bottomImg = $this->makeImg($newUser['head_url'], $newUser['name'], $url);
 
-                                $upload = $this->uploadImage($bottomImg, $user->ticket);
+                                $upload = $this->uploadImage($bottomImg, $result['ticket']);
                                 return new Image($upload['media_id']);
                             } else {
                                 // 根据用户open_id生成二维码并且返回
@@ -222,7 +221,7 @@ class WechatController extends Controller
     private function uploadImage($url, $file)
     {
         $content = file_get_contents($url);
-        $path = '/' . $file . '.jpg';
+        $path = public_path('tickets' . $file . '.jpg');
         file_put_contents($path, $content);
         return $this->app->material->uploadImage($path);
     }
