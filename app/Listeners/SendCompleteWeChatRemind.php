@@ -28,6 +28,11 @@ class SendCompleteWeChatRemind
     public function handle(CompleteInviter $event)
     {
         Log::info('异步发送微信给' . $event->data['name']);
+        if (config('admin.new_user_num') >= $event->data['num']) {
+            $str = '还差 ' . (config('admin.new_user_num') - $event->data['num']) . ' 个邀请，即可获得测评卡';
+        } else {
+            $str = '截止目前您已经邀请 ' . $event->data['num'] . ' 个';
+        }
         $res = $this->app->template_message->send([
             'touser' => $event->user,
             'template_id' => $event->template_id,
@@ -35,7 +40,7 @@ class SendCompleteWeChatRemind
                 'first' => '邀请新人关注成功通知',
                 'keyword1' => $event->data['name'],
                 'keyword2' => $event->data['num'] . '/' . config('admin.new_user_num'),
-                'keyword3' => '还差 ' . (config('admin.new_user_num') - $event->data['num']) . ' 个邀请，即可获得测评卡',
+                'keyword3' => $str,
                 'remark' => '北京基石测评',
             ],
         ]);
