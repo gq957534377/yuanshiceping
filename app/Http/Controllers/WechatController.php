@@ -193,7 +193,7 @@ class WechatController extends Controller
                     [
                         "type" => "view",
                         "name" => "微课",
-                        "url" => "http://v.qq.com/"
+                        "url" => ""
                     ],
                 ]
             ],
@@ -208,17 +208,17 @@ class WechatController extends Controller
                     [
                         "type" => "view",
                         "name" => "企业简介",
-                        "url" => "http://www.soso.com/"
+                        "url" => ""
                     ],
                     [
                         "type" => "view",
                         "name" => "服务案例",
-                        "url" => "http://v.qq.com/"
+                        "url" => ""
                     ],
                     [
                         "type" => "view",
                         "name" => "联系我们",
-                        "url" => "http://v.qq.com/"
+                        "url" => ""
                     ],
                 ]
             ],
