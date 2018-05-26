@@ -14,19 +14,7 @@ class SendSmsWeChatRemind
 
     public function __construct()
     {
-        $options = [
-            // guoqing
-//            'app_id' => 'wxd9058ab15676717a',         // AppID
-//            'secret' => '8f1c8cac88d4c82f866d1f5d8396b5db',    // AppSecret
-            // jingyue
-            'app_id' => 'wxa069671594673f20',         // AppID
-            'secret' => '42db52a7d53f7b0278fc5d6710dc4628',    // AppSecret
-            'token' => 'yuanshiceping',
-            'log' => [
-                'level' => 'debug',
-                'file' => storage_path('logs/wechat.log'),
-            ],
-        ];
+        $options = config('wechat.official_account.default');
 
         $this->app = Factory::officialAccount($options);
     }
@@ -34,29 +22,40 @@ class SendSmsWeChatRemind
     /**
      * Handle the event.
      *
-     * @param  MessageRemind  $event
+     * @param  MessageRemind $event
      * @return void
      */
     public function handle(MessageRemind $event)
     {
-        Log::info('异步发送微信给'.$event->data['name']);
+        Log::info('异步发送微信给' . $event->data['name']);
+        if (config('admin.new_user_num') >= $event->data['num']) {
+            $str = '还差 ' . (config('admin.new_user_num') - $event->data['num']) . ' 个邀请，即可获得测评卡';
+        } else {
+            $str = '截止目前您已经邀请 ' . $event->data['num'] . ' 个';
+        }
         $res = $this->app->template_message->send([
             'touser' => $event->user,
             'template_id' => $event->template_id,
             'data' => [
-                'name' => $event->data['name'],
-                'num' => $event->data['num'],
+                'first' => '邀请新人关注成功通知',
+                'keyword1' => $event->data['name'],
+                'keyword2' => $event->data['num'] . '/' . config('admin.new_user_num'),
+                'keyword3' => $str,
+                'remark' => '北京基石测评',
             ],
         ]);
         // todo 如果够了指标，发送通知
-        if ($event->data['num'] > 1) {
+        if ($event->data['num'] == config('admin.new_user_num')) {
             Log::info(23456);
             $res = $this->app->template_message->send([
                 'touser' => $event->user,
-                'template_id' => 'NcATy1qABKC-xe7R-FqT2BwqZxDNEjkxSPO2jSWNtIA',
+                'template_id' => 'AZ_z1HIHmkWgviA2JKiZwxWtfzy-FrUSOhGnCsxKQmw',
                 'data' => [
-                    'name' => $event->data['name'],
-                    'num' => 3,
+                    'first' => $event->data['num'] . '恭喜您完成纳新任务',
+                    'keyword1' => '邀请 ' . config('admin.new_user_num') . ' 个新用户获测评卡',
+                    'keyword2' => '完成纳新任务，获得测评卡，卡号：123456',
+                    'keyword3' => date('Y-m-d', time()),
+                    'remark' => '北京基石测评',
                 ],
             ]);
         }
