@@ -236,9 +236,9 @@ class WechatController extends Controller
      */
     public function makeImg($headImg, $name, $qrcode)
     {
-        $headImg = 'http://thirdwx.qlogo.cn/mmopen/Q3auHgzwzM5naNcVupPIMY7VqoXVtA70LD5Tn0boxxA4Hj9UjhFQLaB4P09CtbcbDYtuxxhuUJsFRR6Ah7JZmvWlRiboHUSoYicuLdiaZUeohI/132';
-        $name = 'AAAA-GQ';
-        $qrcode = 'https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=gQEm8TwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAyUzZvRVIwcGhjcmoxMDAwMDAwN2oAAgQL0gNbAwQAAAAA';
+//        $headImg = 'http://thirdwx.qlogo.cn/mmopen/Q3auHgzwzM5naNcVupPIMY7VqoXVtA70LD5Tn0boxxA4Hj9UjhFQLaB4P09CtbcbDYtuxxhuUJsFRR6Ah7JZmvWlRiboHUSoYicuLdiaZUeohI/132';
+//        $name = 'AAAA-GQ';
+//        $qrcode = 'https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=gQEm8TwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAyUzZvRVIwcGhjcmoxMDAwMDAwN2oAAgQL0gNbAwQAAAAA';
         $tx = $this->getImage($headImg, public_path('uploads/wechatHeadImg/'), time() . mt_rand(1, 9999) . '.jpeg', 1);
         $tx = imagecreatefromjpeg($this->headImg($tx['save_path']));
 
