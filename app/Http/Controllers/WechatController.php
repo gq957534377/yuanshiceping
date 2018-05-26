@@ -24,44 +24,12 @@ class WechatController extends Controller
         $this->app = Factory::officialAccount($options);
     }
 
-    public function qrcode()
-    {
-        dd(config('wechat.official_account.default'));
-        $a = "dssdsds";
-        $b = 0;
-        if ($b == $a) {
-            dd(1);
-        } else {
-            dd(2);
-        }
-        $app = $this->app;
-        $result = $app->qrcode->forever(222);// 或者 $app->qrcode->forever("foo");
-        $url = $app->qrcode->url($result['ticket']);
-        $content = file_get_contents($url);
-        file_put_contents(__DIR__ . '/code.jpg', $content);
-        dd($app->material->uploadImage(__DIR__ . '/code.jpg')['media_id']);
-//        dd($result,$app->qrcode->url('gQF98TwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAySk5pcEJZQTQ5Ml8xMDAwMDAwN3YAAgSfdPZaAwQAAAAA'));
-// Array
-// (
-//     [ticket] => gQFD8TwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAyTmFjVTRWU3ViUE8xR1N4ajFwMWsAAgS2uItZAwQA6QcA
-//     [url] => http://weixin.qq.com/q/02NacU4VSubPO1GSxj1p1k
-// )
-        $result = \Curl::to('https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token=' . $this->app->access_token->getToken())
-            ->withData(json_encode([
-                'expire_seconds' => 3600 * 100 * 10,
-                "action_name" => "QR_STR_SCENE",
-                "action_info" => ["scene" => ["scene_str" => 'test']]
-            ]))
-            ->post();
-        $file = \Curl::to('https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=' . urlencode($result->ticket))->get();
-        return response($file, 200)->header('Content-Type', 'image/jpg');
-    }
-
     public function index()
     {
         $app = $this->app;
 
         $app->server->push(function ($message) use ($app) {
+            Log::debug($message);
             switch ($message['MsgType']??null) {
                 case 'event':
                     switch ($message['Event']) {
@@ -118,6 +86,8 @@ class WechatController extends Controller
                                 $bottomImg = $this->makeImg($newUser['head_url'], $newUser['name'], $url);
 
                                 $upload = $this->uploadImage($bottomImg, $result['ticket']);
+                                $this->menu($upload['media_id']);
+                                return '已为您的好友“' . $weChat['nickname'] . '”成功助力，让一份价值988元的”高中生专业选择辅导“测评卡离您的好友更近一步！同时，如果您有需要，点击底部菜单栏  “领取福利” - 选择“免费测评”，生成您的专属海报，也让您的好友帮您助力吧!';
                                 return new Image($upload['media_id']);
                             } else {
                                 // 根据用户open_id生成二维码并且返回
@@ -128,16 +98,44 @@ class WechatController extends Controller
                                 $user->weChat_id = $message['FromUserName'];
                                 $user->save();
                                 $url = $app->qrcode->url($user->ticket);
-                                return $url;
+                                $bottomImg = $this->makeImg($user->head_url, $user->name, $url);
 
-                                // 上传图片素材
-                                $upload = $this->uploadImage($url, $user->ticket);
+                                $upload = $this->uploadImage($bottomImg, $user->ticket);
+                                $this->menu($upload['media_id']);
+                                return '已为您的好友“' . $weChat['nickname'] . '”成功助力，让一份价值988元的”高中生专业选择辅导“测评卡离您的好友更近一步！同时，如果您有需要，点击底部菜单栏  “领取福利” - 选择“免费测评”，生成您的专属海报，也让您的好友帮您助力吧!';
                                 return new Image($upload['media_id']);
                             }
                             break;
                         case "SCAN":
-                            $contentStr = "扫描 " . $message['EventKey'];
-                            //要实现统计分析，则需要扫描事件写入数据库，这里可以记录 EventKey及用户OpenID，扫描时间
+                            if (!empty($message['EventKey'])) {
+                                return '已经为他人助力过，扫码进入，或者取消关注后，再次扫别人海报进入提示';
+                            } else {
+                                return '欢迎关注！点击底部菜单栏  “领取福利” - 选择“免费测评”，会生成您的专属海报，邀请好友帮您扫描助力，即可获得价值988元的“高中生专业选择辅导”测评卡一张~每人只有一次免费机会，活动截止时间：2018-06-23 23:59:59';
+                            }
+                        case "CLICK":
+                            switch ($message['EventKey']) {
+                                case 'get-poster':
+                                    Log::debug(11111);
+                                    $user = User::where('weChat_id', $message['FromUserName'])->first();
+                                    if (empty($user)) return '获取用户信息失败，请联系管理员';
+
+                                    if (!empty($user->poster_id)) {
+                                        return new Image($user->poster_id);
+                                    }
+
+                                    if (empty($user->ticket)) {
+                                        $user->ticket = $this->getQrCode($message['FromUserName'])['ticket'];
+                                    }
+
+                                    $weChat = $app->user->get($message['FromUserName']);
+                                    $user->head_url = $weChat['headimgurl'];
+                                    $user->name = $weChat['nickname'];
+                                    $poster = $this->makeImg($weChat['headimgurl'], $weChat['nickname'], $app->qrcode->url($user->ticket));
+                                    $upload = $this->uploadImage($poster, $user->ticket);
+                                    $user->poster_id = $upload['media_id'];
+                                    $user->save();
+                                    return new Image($upload['media_id']);
+                            }
                             break;
                         default:
                             $contentStr = "";
@@ -157,6 +155,24 @@ class WechatController extends Controller
         $response->send(); // Laravel 里请使用：return $response;
     }
 
+    // 生成海报
+    public function getPoster($wechatId, $head, $name, User $user, $ticket = null)
+    {
+        $app = $this->app;
+        if (empty($ticket)) {
+            $ticket = $this->getQrCode($wechatId)['ticket'];
+        }
+        $url = $app->qrcode->url($ticket);
+        return $this->makeImg($head, $name, $url);
+    }
+
+    // 根据用户open_id生成二维码并且返回
+    public function getQrCode($wechatId)
+    {
+        $app = $this->app;
+        return $app->qrcode->forever($wechatId);
+    }
+
     /**
      * 说明: 设置菜单
      *
@@ -170,9 +186,9 @@ class WechatController extends Controller
                 "name" => "福利领取",
                 "sub_button" => [
                     [
-                        "type" => "view",
+                        "type" => "click",
                         "name" => "免费测评",
-                        "url" => "http://www.soso.com/"
+                        "key" => 'get-poster'
                     ],
                     [
                         "type" => "view",
@@ -207,7 +223,7 @@ class WechatController extends Controller
                 ]
             ],
         ];
-        $app->menu->create($buttons);
+        return $app->menu->create($buttons);
     }
 
     /**
@@ -221,7 +237,7 @@ class WechatController extends Controller
     private function uploadImage($url, $file)
     {
         $content = file_get_contents($url);
-        $path = public_path('tickets/' . $file . '.jpg');
+        $path = public_path('uploads/' . $file . '.jpg');
         file_put_contents($path, $content);
         return $this->app->material->uploadImage($path);
     }
@@ -236,8 +252,9 @@ class WechatController extends Controller
      */
     public function makeImg($headImg, $name, $qrcode)
     {
+        Log::debug($name);
 //        $headImg = 'http://thirdwx.qlogo.cn/mmopen/Q3auHgzwzM5naNcVupPIMY7VqoXVtA70LD5Tn0boxxA4Hj9UjhFQLaB4P09CtbcbDYtuxxhuUJsFRR6Ah7JZmvWlRiboHUSoYicuLdiaZUeohI/132';
-//        $name = 'AAAA-GQ';
+//        $name = 'sssss-GQ';
 //        $qrcode = 'https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=gQEm8TwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAyUzZvRVIwcGhjcmoxMDAwMDAwN2oAAgQL0gNbAwQAAAAA';
         $tx = $this->getImage($headImg, public_path('uploads/wechatHeadImg/'), time() . mt_rand(1, 9999) . '.jpeg', 1);
         $tx = imagecreatefromjpeg($this->headImg($tx['save_path']));
