@@ -135,6 +135,8 @@ class WechatController extends Controller
                                     $user->poster_id = $upload['media_id'];
                                     $user->save();
                                     return new Image($upload['media_id']);
+                                case 'dev':
+                                    return '该功能开发中，敬请期待！';
                             }
                             break;
                         default:
@@ -187,38 +189,38 @@ class WechatController extends Controller
                 "sub_button" => [
                     [
                         "type" => "click",
-                        "name" => "免费测评",
-                        "key" => 'get-poster'
+                        "key" => 'get-poster',
+                        "name" => "免费测评"
                     ],
                     [
-                        "type" => "view",
                         "name" => "微课",
-                        "url" => "https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzU0MTgxNTY0MQ==&scene=123#wechat_redirect"
+                        "type" => "click",
+                        "key" => 'dev',
                     ],
                 ]
             ],
             [
                 "type" => "click",
                 "name" => "测评大厅",
-                "key" => "V1001_TODAY_MUSIC"
+                "key" => "dev"
             ],
             [
                 "name" => "关于我们",
                 "sub_button" => [
                     [
-                        "type" => "view",
                         "name" => "企业简介",
-                        "url" => "https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzU0MTgxNTY0MQ==&scene=123#wechat_redirect"
+                        "type" => "click",
+                        "key" => 'dev',
                     ],
                     [
-                        "type" => "view",
                         "name" => "服务案例",
-                        "url" => "https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzU0MTgxNTY0MQ==&scene=123#wechat_redirect"
+                        "type" => "click",
+                        "key" => 'dev',
                     ],
                     [
-                        "type" => "view",
                         "name" => "联系我们",
-                        "url" => "https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzU0MTgxNTY0MQ==&scene=123#wechat_redirect"
+                        "type" => "click",
+                        "key" => 'dev',
                     ],
                 ]
             ],
