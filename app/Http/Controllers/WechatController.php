@@ -60,49 +60,6 @@ class WechatController extends Controller
     public function index()
     {
         $app = $this->app;
-        $buttons = [
-            [
-                "name" => "福利领取",
-                "sub_button" => [
-                    [
-                        "type" => "view",
-                        "name" => "免费测评",
-                        "url" => "http://www.soso.com/"
-                    ],
-                    [
-                        "type" => "view",
-                        "name" => "微课",
-                        "url" => "http://v.qq.com/"
-                    ],
-                ]
-            ],
-            [
-                "type" => "click",
-                "name" => "测评大厅",
-                "key" => "V1001_TODAY_MUSIC"
-            ],
-            [
-                "name" => "关于我们",
-                "sub_button" => [
-                    [
-                        "type" => "view",
-                        "name" => "企业简介",
-                        "url" => "http://www.soso.com/"
-                    ],
-                    [
-                        "type" => "view",
-                        "name" => "服务案例",
-                        "url" => "http://v.qq.com/"
-                    ],
-                    [
-                        "type" => "view",
-                        "name" => "联系我们",
-                        "url" => "http://v.qq.com/"
-                    ],
-                ]
-            ],
-        ];
-        $app->menu->create($buttons);
 
         $app->server->push(function ($message) use ($app) {
             switch ($message['MsgType']??null) {
@@ -195,7 +152,49 @@ class WechatController extends Controller
                     return '该功能正在玩命开发中。。。';
             }
         });
-
+        $buttons = [
+            [
+                "name" => "福利领取",
+                "sub_button" => [
+                    [
+                        "type" => "view",
+                        "name" => "免费测评",
+                        "url" => "http://www.soso.com/"
+                    ],
+                    [
+                        "type" => "view",
+                        "name" => "微课",
+                        "url" => "http://v.qq.com/"
+                    ],
+                ]
+            ],
+            [
+                "type" => "click",
+                "name" => "测评大厅",
+                "key" => "V1001_TODAY_MUSIC"
+            ],
+            [
+                "name" => "关于我们",
+                "sub_button" => [
+                    [
+                        "type" => "view",
+                        "name" => "企业简介",
+                        "url" => "http://www.soso.com/"
+                    ],
+                    [
+                        "type" => "view",
+                        "name" => "服务案例",
+                        "url" => "http://v.qq.com/"
+                    ],
+                    [
+                        "type" => "view",
+                        "name" => "联系我们",
+                        "url" => "http://v.qq.com/"
+                    ],
+                ]
+            ],
+        ];
+        $app->menu->create($buttons);
         $response = $app->server->serve();
 
 // 将响应输出
