@@ -112,7 +112,7 @@ class WechatController extends Controller
                                 $url = $app->qrcode->url($result['ticket']);
                                 $newUser['ticket'] = $result['ticket'];
                                 User::create($newUser);
-                                $bottomImg = $this->makeImg($newUser['head_url'],$newUser['nickname'],$url);
+                                $bottomImg = $this->makeImg($newUser['head_url'],$newUser['name'],$url);
 
                                 $upload = $this->uploadImage($bottomImg, $user->ticket);
                                 return new Image($upload['media_id']);
