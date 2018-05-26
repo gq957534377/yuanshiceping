@@ -37,6 +37,7 @@ Route::group(['middleware' => ['admin']], function() {
 
 Route::group(['middleware' => ['web']], function () {
     Route::any('/wechat','WechatController@index');
+    Route::get('/wechat_menu','WechatController@menu');
     Route::any('/qrcode','WechatController@qrcode');
     Route::get('/evaluation','Home\EvaluationController@index');
     Route::any('/evaluate','Home\EvaluationController@evaluate');

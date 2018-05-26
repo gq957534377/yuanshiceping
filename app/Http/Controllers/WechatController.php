@@ -152,6 +152,20 @@ class WechatController extends Controller
                     return '该功能正在玩命开发中。。。';
             }
         });
+        $response = $app->server->serve();
+
+// 将响应输出
+        $response->send(); // Laravel 里请使用：return $response;
+    }
+
+    /**
+     * 说明: 设置菜单
+     *
+     * @author 郭庆
+     */
+    public function menu()
+    {
+        $app = $this->app;
         $buttons = [
             [
                 "name" => "福利领取",
@@ -195,12 +209,7 @@ class WechatController extends Controller
             ],
         ];
         $app->menu->create($buttons);
-        $response = $app->server->serve();
-
-// 将响应输出
-        $response->send(); // Laravel 里请使用：return $response;
     }
-
     /**
      * 说明: 上传图片到素材库
      *
