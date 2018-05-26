@@ -221,7 +221,7 @@ class WechatController extends Controller
     private function uploadImage($url, $file)
     {
         $content = file_get_contents($url);
-        $path = public_path('tickets' . $file . '.jpg');
+        $path = public_path('tickets/' . $file . '.jpg');
         file_put_contents($path, $content);
         return $this->app->material->uploadImage($path);
     }
