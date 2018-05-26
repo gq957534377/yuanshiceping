@@ -252,8 +252,9 @@ class WechatController extends Controller
         //微信名
         imagefttext($bottom, 14, 0, 170, 30, imagecolorallocate($bottom, 99, 75, 0), $font, $name);
         // 二维码
-        $aaaaaa=time() . mt_rand(1, 9999) . '.jpeg';
-        $qr = $this->$this->getImage($qrcode, public_path('uploads/qrcode/'), $aaaaaa, 1);
+        $qr = $this->getImage($qrcode, public_path('uploads/qrcode/'), time() . mt_rand(1, 9999) . '.jpeg', 1);
+        $qrcode = imagecreatefromjpeg($qr['save_path']);
+
         $wh = getimagesize($qr['save_path']);
         $w = $wh[0];
         $h = $wh[1];
@@ -261,7 +262,7 @@ class WechatController extends Controller
         $h = $w;
         $new = imagecreatetruecolor(160, 160);
         //copy部分图像并调整
-        imagecopyresized($new, $qr, 0, 0, 0, 0, 160, 160, $w, $h);
+        imagecopyresized($new, $qrcode, 0, 0, 0, 0, 160, 160, $w, $h);
 
         // 合并图像
         imagecopymerge($bottom, $new, 500, 1160, 0, 0, 160, 160, 100);
