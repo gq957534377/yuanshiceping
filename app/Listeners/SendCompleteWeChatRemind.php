@@ -40,7 +40,7 @@ class SendCompleteWeChatRemind
             ],
         ]);
         // todo 如果够了指标，发送通知
-        if ($event->data['num'] > (config('admin.new_user_num')-1)) {
+        if ($event->data['num'] == (config('admin.new_user_num')-1)) {
             Log::info(23456);
             $res = $this->app->template_message->send([
                 'touser' => $event->user,
