@@ -22,7 +22,9 @@
                 type: 'POST',
 
                 success: function (questions) {
-                    $.each(questions, function(i,qestion){
+                    console.log(questions)
+                    $.each(questions.data, function(i,qestion){
+                        console.log(qestion)
                         if (qestion.category_id == 1) {
                             make_a_question(qestion);
                         }else if (qestion.category_id == 2) {

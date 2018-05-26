@@ -155,4 +155,12 @@ class Major extends Common
         }
 
     }
+
+    static public function getGradesByMemberId($member_id){
+
+        return MemberMajorGrade::where(['member_id' => $member_id])
+            ->orderBy('grade', 'DESC')
+            ->orderBy('weight', 'DESC')
+            ->get();
+    }
 }

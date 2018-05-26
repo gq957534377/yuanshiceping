@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Thu, 03 May 2018 10:08:16 +0800.
+ * Date: Tue, 22 May 2018 21:45:37 +0800.
  */
 
 namespace App\Models;
@@ -17,6 +17,8 @@ namespace App\Models;
  * @property int $created_at
  * @property int $updated_at
  * @property int $sort
+ * @property string $description
+ * @property string $shortcoming
  *
  * @package App\Models
  */
@@ -33,10 +35,12 @@ class Potential extends Common
 		'name',
 		'status',
 		'remark',
-		'sort'
+		'sort',
+		'description',
+		'shortcoming'
 	];
 
-	static public function grade($member_id)
+    static public function grade($member_id)
     {
         //素质模型
         $potentials = static::getAllIndexById();
@@ -111,4 +115,73 @@ class Potential extends Common
         }
 
     }
+
+    static public function getGradesByMemberId($member_id){
+
+        return MemberPotentialGrade::where(['member_id' => $member_id])
+            ->orderBy('grade', 'DESC')
+            ->orderBy('weight', 'DESC')
+            ->get();
+    }
+
+    /**
+     * 根据分数划分等级
+     * @param $sorted_grades
+     * @return array
+     */
+    static public function levelGrades($sorted_grades)
+    {
+        $levels = [
+            0 => [
+                'name' => '',
+                'star_img' => 'images/star_5.png',
+                'description' => '这是你最强大的潜能，需要好好发挥和针对性的培养。',
+            ],
+            1 => [
+                'name' => '',
+                'star_img' => 'images/star_4.png',
+                'description' => '这是你非常强大的潜能，需要多多磨练',
+            ],
+            2 => [
+                'name' => '',
+                'star_img' => 'images/star_3.png',
+                'description' => '这是你一般的潜能，对你会有较大的帮助，但不具有至关重要的决定性',
+            ],
+            3 => [
+                'name' => '',
+                'star_img' => 'images/star_1.png',
+                'description' => '这是你最不具备优势的领域，建议最好不要涉及该专业以及从事该类职业，因为这是你天生性格的短板，要改变自己的性格是非常困难，且需要付出非常大代价的，当你在弥补短板的时候会同时导致你最大优势的丧失，这会对你产生不好的影响——如：自信心的打击，成长速度缓慢等',
+            ],
+
+        ];
+        $potentials = static::getAllIndexById();
+
+        if (!empty($sorted_grades)) {
+            foreach ($sorted_grades as $key => $sorted_grade) {
+                if ($key == 0) {
+                    $levels[0]['name'] .= $potentials[$sorted_grade['potential_id']]['name'];
+                } elseif ($key <= 2) {
+                    $levels[1]['name'] .= $potentials[$sorted_grade['potential_id']]['name'];
+                    $levels[1]['name'] .= '/';
+
+                } elseif ($key <= 6) {
+                    $levels[2]['name'] .= $potentials[$sorted_grade['potential_id']]['name'];
+                    $levels[2]['name'] .= '/';
+                } else {
+                    $levels[3]['name'] .= $potentials[$sorted_grade['potential_id']]['name'];
+                    $levels[3]['name'] .= '/';
+                }
+
+            }
+        }
+        return $levels;
+    }
+
+    static public function getQualities($potential_id)
+    {
+        return PotentialHasQuality::where(['potential_id' => $potential_id])->get();
+
+    }
+
+
 }

@@ -7,8 +7,6 @@
 
 namespace App\Models;
 
-use Reliese\Database\Eloquent\Model as Eloquent;
-
 /**
  * Class Category
  * 
@@ -22,7 +20,7 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  *
  * @package App\Models
  */
-class Category extends Eloquent
+class Category extends Common
 {
     const MULTI = 1;
     const SINGLE = 0;

@@ -16,6 +16,7 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property int $ability_id
  * @property float $grade
  * @property int $weight
+ * @property int $personality_type_weight
  *
  * @package App\Models
  */
@@ -28,11 +29,13 @@ class MemberAbilityGrade extends Eloquent
 		'member_id' => 'int',
 		'ability_id' => 'int',
 		'grade' => 'float',
-		'weight' => 'int'
+		'weight' => 'int',
+        'personality_type_weight' => 'int'
 	];
 
 	protected $fillable = [
 		'grade',
-		'weight'
+		'weight',
+        'personality_type_weight'
 	];
 }

@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Thu, 03 May 2018 10:08:29 +0800.
+ * Date: Tue, 22 May 2018 21:46:24 +0800.
  */
 
 namespace App\Models;
@@ -22,6 +22,7 @@ namespace App\Models;
  * @property string $interest_name
  * @property string $potential_ids
  * @property string $potential_names
+ * @property string $description
  *
  * @package App\Models
  */
@@ -44,11 +45,12 @@ class Shake extends Common
 		'interest_id',
 		'interest_name',
 		'potential_ids',
-		'potential_names'
+		'potential_names',
+		'description'
 	];
 
-	static protected $member_shake_potential_grades;
-	static protected $member_interest_grades;
+    static protected $member_shake_potential_grades;
+    static protected $member_interest_grades;
 
 
     static public function grade($member_id)
@@ -191,6 +193,39 @@ class Shake extends Common
                 $row->where(['member_id'=>$member_id,'shake_id'=>$item['id']])->delete();
             }
         }
+
+    }
+
+    static public function getGradesByMemberId($member_id){
+
+        return MemberShakeGrade::where(['member_id' => $member_id])
+            ->orderBy('grade', 'DESC')
+            ->orderBy('weight', 'DESC')
+            ->get();
+    }
+
+    static public function addInterestPotentialGrade($shake_grades, $shakes, $potential_grades, $interest_grades)
+    {
+        $potential_grades = $potential_grades->toArray();
+        $interest_grades = $interest_grades->toArray();
+        $potential_id_grades = array_combine(array_column($potential_grades, 'potential_id'), array_column($potential_grades, 'grade'));
+        $interest_id_grades = array_combine(array_column($interest_grades, 'interest_id'), array_column($interest_grades, 'grade'));
+        if(!empty($shake_grades)) {
+
+            foreach ($shake_grades as &$shake_grade) {
+                $interest_id = $shakes[$shake_grade['shake_id']]['interest_id'];
+                $shake_grade['interest_grade'] = $interest_id_grades[$interest_id];
+                $potential_ids = $shakes[$shake_grade['shake_id']]['potential_ids'];
+                $len = strlen($potential_ids);
+                $potential_grade = 0;
+                for ($i = 0; $i < $len; $i++) {
+                    $potential_grade += $potential_id_grades[$potential_ids[$i]];
+                }
+                $shake_grade['potential_grade'] = $potential_grade / $len;
+
+            }
+        }
+        return $shake_grades;
 
     }
 }

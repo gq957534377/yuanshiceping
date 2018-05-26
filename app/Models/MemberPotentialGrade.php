@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Tue, 15 May 2018 10:21:16 +0800.
+ * Date: Tue, 22 May 2018 21:54:10 +0800.
  */
 
 namespace App\Models;
@@ -33,6 +33,7 @@ class MemberPotentialGrade extends Eloquent
 
 	protected $fillable = [
 		'grade',
-		'weight'
+		'weight',
+
 	];
 }
