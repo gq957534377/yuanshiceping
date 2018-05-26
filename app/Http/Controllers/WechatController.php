@@ -193,7 +193,7 @@ class WechatController extends Controller
                     [
                         "type" => "view",
                         "name" => "微课",
-                        "url" => "#"
+                        "url" => "https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzU0MTgxNTY0MQ==&scene=123#wechat_redirect"
                     ],
                 ]
             ],
@@ -208,17 +208,17 @@ class WechatController extends Controller
                     [
                         "type" => "view",
                         "name" => "企业简介",
-                        "url" => "#"
+                        "url" => "https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzU0MTgxNTY0MQ==&scene=123#wechat_redirect"
                     ],
                     [
                         "type" => "view",
                         "name" => "服务案例",
-                        "url" => "#"
+                        "url" => "https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzU0MTgxNTY0MQ==&scene=123#wechat_redirect"
                     ],
                     [
                         "type" => "view",
                         "name" => "联系我们",
-                        "url" => "#"
+                        "url" => "https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzU0MTgxNTY0MQ==&scene=123#wechat_redirect"
                     ],
                 ]
             ],
