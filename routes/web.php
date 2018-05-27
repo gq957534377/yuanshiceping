@@ -44,4 +44,6 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('/evaluate','Home\EvaluationController@evaluate');
     Route::any('/report/{member_id}','Home\EvaluationController@report');
     Route::any('/api/report/{member_id}','Home\EvaluationController@report');
+
+    Route::any('wechat_notify', 'Api\PayController@createOrderNotify');
 });

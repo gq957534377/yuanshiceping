@@ -24,6 +24,7 @@ Route::group(['namespace' => 'Api'], function () {
     Route::post('history', 'EvaluationController@history');
     Route::post('login', 'LoginController@login');
     Route::get('rand_order', 'HomeController@randOrder');
+    Route::get('get_banner_news', 'NewsController@getBannerNews');
     Route::resource('news', 'NewsController');
     Route::resource('goods', 'GoodsController');
     Route::get('comments', 'CommentsController@index');

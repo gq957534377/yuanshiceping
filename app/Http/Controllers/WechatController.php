@@ -63,10 +63,11 @@ class WechatController extends Controller
                                     // 给邀请人积分加一，并且推送消息给邀请人 todo 后期改成异步队列
                                     $newUser['inviter_id'] = User::where('weChat_id', $eventKey)->first()->id??null;
                                     $count = User::where('inviter_id', $newUser['inviter_id'])->count();
-                                    event(new MessageRemind($eventKey, 'Fwb3aAlKkwg3tAtyyEq3KoLkKgWlLzBjC9TqOaKZelQ', [
-                                        'name' => $app->user->get($message['FromUserName'])['nickname'],
-                                        'num' => ($count + 1)
-                                    ]));
+                                    // todo 通知暫時注釋
+//                                    event(new MessageRemind($eventKey, 'Fwb3aAlKkwg3tAtyyEq3KoLkKgWlLzBjC9TqOaKZelQ', [
+//                                        'name' => $app->user->get($message['FromUserName'])['nickname'],
+//                                        'num' => ($count + 1)
+//                                    ]));
 //                                    // todo 如果够了指标，发送通知
 //                                    if ($count > 1) {
 //                                        event(new CompleteInviter($eventKey, 'NcATy1qABKC-xe7R-FqT2BwqZxDNEjkxSPO2jSWNtIA', [
@@ -108,7 +109,7 @@ class WechatController extends Controller
                             break;
                         case "SCAN":
                             if (!empty($message['EventKey'])) {
-                                return '已经为他人助力过，扫码进入，或者取消关注后，再次扫别人海报进入提示';
+                                return '您已经为他人助力过，不能再次助力';
                             } else {
                                 return '欢迎关注！点击底部菜单栏  “领取福利” - 选择“免费测评”，会生成您的专属海报，邀请好友帮您扫描助力，即可获得价值988元的“高中生专业选择辅导”测评卡一张~每人只有一次免费机会，活动截止时间：2018-06-23 23:59:59';
                             }
