@@ -10,7 +10,7 @@ use Encore\Admin\Facades\Admin;
 use Encore\Admin\Layout\Content;
 use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\ModelForm;
-use App\user;
+use App\User;
 use App\Models\Good;
 
 class CommentsController extends Controller
