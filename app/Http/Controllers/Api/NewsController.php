@@ -49,7 +49,8 @@ class NewsController extends Controller
             ->orderBy('sort', 'desc')
             ->orderBy('read_num', 'desc')
             ->orderBy('updated_at', 'desc')
-            ->limit($request->num??3);
+            ->get();
+//            ->limit($request->num??3);
         return $this->sendResponse($data, '获取首页轮播专家专栏成功！');
     }
 }
