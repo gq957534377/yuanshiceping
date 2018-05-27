@@ -35,4 +35,21 @@ class NewsController extends Controller
     {
         return $this->sendResponse($news, '获取新闻详情成功');
     }
+
+    /**
+     * 说明: 获取首页轮播专家专栏接口
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     * @author 郭庆
+     */
+    public function getBannerNews(Request $request)
+    {
+        $data = News::where(['banner_status' => 1])
+            ->orderBy('sort', 'desc')
+            ->orderBy('read_num', 'desc')
+            ->orderBy('updated_at', 'desc')
+            ->limit($request->num??3);
+        return $this->sendResponse($data, '获取首页轮播专家专栏成功！');
+    }
 }
