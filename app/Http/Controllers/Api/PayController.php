@@ -17,7 +17,7 @@ class PayController extends Controller
      * @param Request $request
      * @return array
      */
-    public function createOrder(Request $request)
+    public function createWechatOrder(Request $request)
     {
         $data = $request->all();
         $payment = \EasyWeChat::payment(); // 微信支付
@@ -54,7 +54,11 @@ class PayController extends Controller
     {
         $data = $request -> all();
         \Log::debug($data);
-        dd($data);
+    }
+
+    public function createOrder(Request $request)
+    {
+        $data = $request -> all();
     }
 
 }
