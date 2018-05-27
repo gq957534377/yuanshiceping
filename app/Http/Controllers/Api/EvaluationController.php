@@ -50,6 +50,7 @@ class EvaluationController extends Controller
         $member_has_subject->category_id = $answer->category_id;
         $member_has_subject->question_id = $answer->question_id;
         $member_has_subject->current_key = $post['current_key'];
+        $member_has_subject->subject_status = 1;
         $member_has_subject->save();
 
         return $this->sendResponse($member_has_subject, 'success');
