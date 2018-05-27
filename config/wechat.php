@@ -129,7 +129,7 @@ return [
              'key'                => env('WECHAT_PAYMENT_KEY', 'key-for-signature'),
              'cert_path'          => env('WECHAT_PAYMENT_CERT_PATH', '/var/www/cert/wechat_pay/apiclient_cert.pem'),    // XXX: 绝对路径！！！！
              'key_path'           => env('WECHAT_PAYMENT_KEY_PATH', '/var/www/cert/wechat_pay/cert/apiclient_key.pem'),      // XXX: 绝对路径！！！！
-             'notify_url'         => 'https://api.jishiceping.com/wechat_pay/wechat-notify',                           // 默认支付结果通知地址
+             'notify_url'         => 'https://api.jishiceping.com/wechat_notify',                           // 默认支付结果通知地址
          ],
          // ...
      ],
