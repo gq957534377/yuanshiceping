@@ -9,7 +9,7 @@
     <meta name="keywords" content="">
     <link href="{{ URL::asset('bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ URL::asset('style.css') }}">
-    <script src="{{ asset('js/echarts.js') }}"></script>
+    <script src="{{ URL::asset('js/echarts.js') }}"></script>
     <script>
         var potentials = {!! json_encode($potentials) !!} //潜能
         var interests = {!! json_encode($interests) !!} //兴趣
