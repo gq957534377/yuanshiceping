@@ -173,16 +173,13 @@
                     @endforeach
                 </div>
                 <p class="font26 color35">你的行为模式：</p>
+                @foreach($best_potential_abilities as $ability)
                 <div>
-                    <h1 class="font32 blue bold">成就</h1>
+                    <h1 class="font32 blue bold">{{ $ability->name }}</h1>
 
-                    <p class="font28 color35"><i></i>总是有使不完的精力，希望自己能在不断的勤奋当中收获更多，每天晚上会因为做了很多而兴奋，会因为做得很少而沮丧。</p>
+                    <p class="font28 color35"><i></i>{{ $ability->description }}</p>
                 </div>
-                <div>
-                    <h1 class="font32 blue bold">行动</h1>
-
-                    <p class="font28 color35"><i></i>动作很快，决定之后立即去做，希望能够在做的过程中总结经验持续改进，属于行动派，没有行动的空想，是最不能忍受的。</p>
-                </div>
+                @endforeach
 
             </div>
 
@@ -213,11 +210,13 @@
                 @endforeach
 
                 <p class="font26 color35">你的行为模式：</p>
-                <div>
-                    <h1 class="font32 blue bold">适应</h1>
+                @foreach($second_potential_abilities as $ability)
+                    <div>
+                        <h1 class="font32 blue bold">{{ $ability->name }}</h1>
 
-                    <p class="font28 color35"><i></i>处世灵活，能够胜任复杂的工作和人际关系，冷静沉着，对大部分的事情看得比较淡薄，不会因为某些事情的改变而难以适应。</p>
-                </div>
+                        <p class="font28 color35"><i></i>{{ $ability->description }}</p>
+                    </div>
+                @endforeach
 
 
             </div>
@@ -373,10 +372,10 @@
 
 
         </div>
-        <div>
-            <p class="font26 color35"><img class="one-img" src="{{ URL::asset('images/icon_tuijian.png') }}" alt="">所推荐专业的详情与未来就业</p>
-            <p class="font28 color35">-以下为个人最佳匹配的10个专业的详情与未来就业空间</p>
-        </div>
+        {{--<div>--}}
+            {{--<p class="font26 color35"><img class="one-img" src="{{ URL::asset('images/icon_tuijian.png') }}" alt="">所推荐专业的详情与未来就业</p>--}}
+            {{--<p class="font28 color35">-以下为个人最佳匹配的10个专业的详情与未来就业空间</p>--}}
+        {{--</div>--}}
     </div>
 </div>
 

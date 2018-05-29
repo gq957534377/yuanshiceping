@@ -183,5 +183,35 @@ class Potential extends Common
 
     }
 
+    static public function getBestAbilities($member_id, $id)
+    {
+        $quality_ids = [];
+        $models = PotentialHasQuality::where(['potential_id' => $id])->select('quality_id')->get();
+        if (!empty($models)) {
+            foreach ($models as $model) {
+                $quality_ids[] = $model->quality_id;
+            }
+        }
+
+        $best_quality_grade = MemberQualityGrade::where(['member_id' => $member_id])
+            ->whereIn('quality_id',$quality_ids)
+            ->orderByDesc('grade')
+            ->orderByDesc('weight')
+            ->first();
+
+        $models = QualityHasAbility::where(['quality_id' => $best_quality_grade->quality_id])
+            ->where(['type_id' => 1])
+            ->get();
+        $ability_ids = [];
+        if (!empty($models)) {
+            foreach ($models as $model) {
+                $ability_ids[] = $model->ability_id;
+            }
+        }
+
+        return Ability::whereIn('id', $ability_ids)->get();
+
+    }
+
 
 }

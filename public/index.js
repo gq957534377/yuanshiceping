@@ -406,50 +406,51 @@ for (var k in shakes) {
 for (var k in shake_grades) {
 
 }
+
+
 option = {
+    grid: {
+        // x:0,
+        // y:0,
+        x2:10,
+        // y2:0
+    },
+
     tooltip : {
         trigger: 'axis',
-        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
-            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
-        }
+        show:false,
     },
     legend: {
-        data:['潜能','兴趣']
+        data:['潜能', '兴趣']
     },
-    grid: {
-        left: '3%',
-        right: '4%',
-        bottom: '3%',
-        containLabel: true
-    },
+
+    calculable : true,
     xAxis : [
+        {
+            type : 'value',
+            boundaryGap : [0, 0.01]
+        }
+    ],
+    yAxis : [
         {
             type : 'category',
             data : xAxis_data
         }
     ],
-    yAxis : [
-        {
-            type : 'value'
-        }
-    ],
     series : [
-
         {
+            clickable:false,
             name:'潜能',
             type:'bar',
-
             data:potential_series_data
         },
         {
+            clickable:false,
             name:'兴趣',
             type:'bar',
-
             data:interest_series_data
-        },
-
-
-
+        }
     ]
 };
+
 shake_chart.setOption(option);

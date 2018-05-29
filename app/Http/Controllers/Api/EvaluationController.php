@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Answer;
+use App\Models\Good;
 use App\Models\MemberHasSubject;
+use App\Models\Order;
 use App\Models\Question;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -102,11 +104,52 @@ class EvaluationController extends Controller
         $where = [
             'member_id' => $post['member_id'],
             'subject_id' => $post['subject_id'],
+            'order_number' => $post['order_number'],
         ];
 
         $history = MemberHasSubject::firstOrCreate($where);
 
         return $this->sendResponse($history, 'success');
+
+    }
+
+    public function histories(Request $request)
+    {
+        $post = $request->post();
+
+        $member_has_subjects = MemberHasSubject::where(['member_id' => $post['member_id']])->get();
+        $member_has_subjects = MemberHasSubject::indexByOrderNumber($member_has_subjects);
+
+        $where = [
+            'user_id' => $post['member_id'],
+        ];
+        $histories = [
+            'finished' => [],
+            'unfinished' => []
+        ];
+        $orders = Order::where($where)->Where(['order_status' => 1])->get();
+        if (!empty($orders)) {
+            foreach ($orders as $order) {
+                $goods = Good::where(['id' => $order->goods_id])->first();
+                $history = [];
+                $history['title'] = $goods->goods_name;
+                $history['payPrice'] = $order->paid_price;
+                $history['price'] = $goods->price;
+                $history['payDate'] = $order->created_at->format('Y-m-d H:i');
+                $history['orderNo'] = $order->order_id;
+                $history['subject_status'] = $member_has_subjects[$order->order_id]['subject_status']??0;
+
+                if ($history['subject_status'] == 2) {
+                    $histories['finished'][] = $history;
+                } else {
+                    $histories['unfinished'][] = $history;
+                }
+
+
+            }
+        }
+
+        return $this->sendResponse($histories, 'success');
 
     }
 }
