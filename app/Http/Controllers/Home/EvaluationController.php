@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Home;
 use App\Models\Answer;
 use App\Models\Interest;
 use App\Models\Major;
+use App\Models\MemberHasSubject;
 use App\Models\Potential;
 use App\Models\PotentialHasQuality;
 use App\Models\Quality;
@@ -50,19 +51,21 @@ class EvaluationController extends Controller
         return ($post);
     }
 
-    public function truncate()
-    {
 
-    }
-
-    public function report($member_id)
+    public function report(Request $request,$member_id)
     {
         $data = [];
+        $order_number = $request->query->get('order_number');
+        $where = [
+            'member_id' => $member_id,
+            'order_number' => $order_number,
+        ];
         //测评报告
-        $report = Report::where(['member_id' => $member_id])->first();
+        $report = Report::where($where)->first();
+
         if (!empty($report)) {
             if (file_exists(base_path('public'.'/'.$report->path))) {
-                return file_get_contents(base_path('public'.'/'.$report->path));
+               // return file_get_contents(base_path('public'.'/'.$report->path));
             }
         } else {
             $report = new Report();
@@ -128,6 +131,10 @@ class EvaluationController extends Controller
             }
         }
         $data['best_potential_sorted_quality_grades'] = $best_potential_sorted_quality_grades;
+        //最佳潜能对应的行为模式
+        //潜能对应的素质模型第一 对应的第一类才干能力
+        $best_potential_abilities = Potential::getBestAbilities($member_id, $potential_grades[0]->potential_id);
+        $data['best_potential_abilities'] = $best_potential_abilities;
 
         //第二潜能对应素质模型
         $second_potential_has_qualities = Potential::getQualities($potential_grades[1]['potential_id']);
@@ -146,6 +153,10 @@ class EvaluationController extends Controller
             }
         }
         $data['second_potential_sorted_quality_grades'] = $second_potential_sorted_quality_grades;
+        //第二潜能对应的行为模式
+        //潜能对应的素质模型第一 对应的第一类才干能力
+        $second_potential_abilities = Potential::getBestAbilities($member_id, $potential_grades[1]->potential_id);
+        $data['second_potential_abilities'] = $second_potential_abilities;
 
         //第三潜能对应素质模型
         $third_potential_has_qualities = Potential::getQualities($potential_grades[2]['potential_id']);
@@ -209,14 +220,15 @@ class EvaluationController extends Controller
             mkdir($report_dir);
         }
 
-        $report_path = $report_dir.'/'.md5($member_id).'.html';
-        $report_url = 'report/'.md5($member_id).'.html';
+        $report_path = $report_dir.'/'.md5($member_id.$order_number).'.html';
+        $report_url = 'report/'.md5($member_id.$order_number).'.html';
 
         file_put_contents($report_path,$html);
 
         $report->subject_id = 1;
         $report->member_id = $member_id;
         $report->path = $report_url;
+        $report->order_number = $order_number;
         $report->save();
         return $html;
 

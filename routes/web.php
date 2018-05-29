@@ -47,3 +47,6 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::any('wechat_notify', 'Api\PayController@createOrderNotify');
 });
+
+
+Route::get('/make-history','Home\EvaluationController@makeHistory');

@@ -45,4 +45,24 @@ class MemberHasSubject extends Eloquent
 		'category_id',
 		'question_id'
 	];
+
+	static public function insertInitHistory($member_id, $subject_id, $order_number)
+    {
+        $history = new self();
+        $history->member_id = $member_id;
+        $history->subject_id = $subject_id;
+        $history->order_number = $order_number;
+        return $history->save();
+
+    }
+
+    static public function indexByOrderNumber($models)
+    {
+        $items = [];
+        foreach ($models as $model) {
+            $items[$model->order_number] = $model->toArray();
+        }
+        return $items;
+
+    }
 }

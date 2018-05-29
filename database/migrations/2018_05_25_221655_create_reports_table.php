@@ -19,6 +19,7 @@ class CreateReportsTable extends Migration {
 			$table->integer('subject_id')->unsigned()->index('subject_id');
 			$table->integer('member_id')->unsigned()->index('member_id');
 			$table->string('path', 545)->default('')->comment('测评报告静态文件地址');
+			$table->string('order_number', 245)->default('')->comment('订单号');
 		});
 	}
 
