@@ -5,6 +5,8 @@ body {
 }
 .container-fluid {
     color: #353535;
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .blue-under-line {

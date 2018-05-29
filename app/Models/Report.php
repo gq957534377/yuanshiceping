@@ -17,6 +17,7 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property int $subject_id
  * @property int $member_id
  * @property string $path
+ * @property string $order_number
  *
  * @package App\Models
  */
@@ -33,6 +34,7 @@ class Report extends Eloquent
 	protected $fillable = [
 		'subject_id',
 		'member_id',
-		'path'
+		'path',
+        'order_number',
 	];
 }
