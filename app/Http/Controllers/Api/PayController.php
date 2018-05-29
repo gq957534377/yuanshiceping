@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use EasyWeChat\Factory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -12,6 +13,15 @@ use function EasyWeChat\Kernel\Support\generate_sign;
 
 class PayController extends Controller
 {
+    private $app = null;
+
+    public function __construct()
+    {
+        $options = config('wechat.payment.default');
+
+        $this->app = Factory::officialAccount($options);
+    }
+
     /**
      * 测评支付微信统一下单
      *
@@ -64,34 +74,21 @@ class PayController extends Controller
         {
             echo "FAIL";exit;
         }
-        \Log::debug($data);die;
 
         $out_trade_no = $data['out_trade_no'];
         $order_id = $data['attach'][0];
         $transaction_id = $data['transaction_id'];
-
-        $orderInfo = Order::where(['id'=>$order_id])->first()->toArray();
-        $userInfo = User::where(['id'=>$orderInfo['uid']])->first()->toArray();
+        $res=$this->app->order->queryByOutTradeNumber($order_id);
+        \Log::debug($res);
         $params = [
             'order' => $out_trade_no,
             'order_num' => $transaction_id,
-            'gname' => $orderInfo['goods_name'],
-            'uname' => $userInfo['nickname'],
-            'explain' => '',
+            'gname' => '',
             'status' => 1,
             'addtime' => date('Y-m-d H:i:s',time()),
         ];
 
-        if ($orderInfo['type'] == 1 || $orderInfo['type']==2 ||$orderInfo['type'] ==3)
-        {
-            Order::where(['id'=>$orderInfo['id']])->update(['status'=>3,'order_num'=>$out_trade_no,'uptime'=>date('Y-m-d H:i:s',time())]);
-            $res = \Log::debug($params);
-        }elseif($orderInfo['type'] == 4 || $orderInfo['type']==5)
-        {
-            Order::where(['id'=>$orderInfo['id']])->update(['status'=>7,'order_num'=>$out_trade_no,'uptime'=>date('Y-m-d H:i:s',time())]);
-            $res = \Log::debug($params);
-        }
-        if ($res) {
+        if (1) {
             return "<xml><return_code><![CDATA[SUCCESS]]></return_code><return_msg><![CDATA[OK]]></return_msg></xml>";
         }else{
             return "<xml><return_code><![CDATA[FAIL]]></return_code><return_msg><![CDATA[FAIL]]></return_msg></xml>";

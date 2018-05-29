@@ -16,6 +16,7 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id')->comment('订单ID');
             $table->uuid('order_id')->comment('订单号');
+            $table->string('transaction_id')->comment('微信订单号');
             $table->unsignedInteger('goods_id')->comment('商品ID');
             $table->unsignedInteger('user_id')->comment('用户ID');
             $table->enum('price_level',['1','2','3'])->comment('活动选择：1正式价格，2免费，3活动价格');
