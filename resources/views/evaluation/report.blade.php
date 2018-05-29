@@ -9,7 +9,10 @@
     <meta name="keywords" content="">
     <link href="{{ URL::asset('bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ URL::asset('style.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('css/nav.css') }}">
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
     <script src="{{ asset('js/echarts.js') }}"></script>
+    <script src="{{ asset('js/nav.js') }}"></script>
     <script>
         var potentials = {!! json_encode($potentials) !!} //潜能
         var interests = {!! json_encode($interests) !!} //兴趣
@@ -32,7 +35,7 @@
 </head>
 <body>
 <div class="container-fluid">
-    <div class="row-fluid">
+    <div class="row-fluid" id="sy">
         <div class="col-xs-12">
             <div class="cover">
                 <div class="created_at_block">
@@ -96,7 +99,7 @@
 
     <div class="row-fluid zc">
         <div class="col-xs-12 contents">
-            <div class="zc-title">
+            <div id="ml" class="zc-title">
                 <img src="{{ URL::asset('images/blue-line.png') }}" alt="" class="img-responsive">
                 <span>目录</span>
             </div>
@@ -114,7 +117,7 @@
         </div>
     </div>
 
-    <div class="row-fluid zc">
+    <div id="qn" class="row-fluid zc">
         <div class="col-xs-12">
             <div class="zc-h2 font30 color333 bold"><i><img src="{{ URL::asset('images/icon_grqn.png') }}" alt=""></i>个人潜能分布总图</div>
             <div class="zc-content font26 color666">
@@ -246,7 +249,7 @@
                     <p class="font28 color35"><i></i>{{ \App\Models\Quality::getPrefix($third_potential_sorted_quality_grade['quality_grade']) }}{{ $third_potential_has_qualities[$third_potential_sorted_quality_grade['quality_id']]['quality_description'] }}</p>
 
                 @endforeach
-                <div>
+                <div id="db">
                     <p class="font26 color35"><img class="one-img" src="{{ URL::asset('images/icon_grdb.png') }}" alt="">个人短板分析</p>
                     <p class="font28 color35">个人短板是指个人最不具备、最欠缺的潜能，是你未来发展道路上应该避免选择的专业和避免从事的职业。长期在短板领域投入精力不仅会让自己承担更大的精神与心理压力，同时无疑是在用自己的短板与他人的优势做比拼，长此以往，会让人逐渐丧失信心，痛苦、挣扎、没有价值感等感觉会随之而来，更谈不上成功！建议：选择的专业和未来从事的职业尽量避开需要该潜能的领域。</p>
                 </div>
@@ -285,7 +288,7 @@
                         @endif
                     @endforeach
                 </div>
-                <div>
+                <div id="xq">
                     <p class="font26 color35"><img class="one-img" src="{{ URL::asset('images/icon_grxq.png') }}" alt="">个人兴趣分析</p>
                     <p class="font28 color35">个人潜能与个人兴趣最佳匹配点主要是从个人最具备的潜能和个人最感兴趣的领域中寻找最匹配的交集之处。本维度旨在寻找到个人既感兴趣又有潜能优势可以长远发展的领域。但若找不到最佳匹配点，建议以个人潜能为最重要的选择专业指标，因为个人潜能在高中生这一年龄阶段已定型且相对清晰，并且后天较难改变；但兴趣却具有不稳定性、可能会随着经历发生变化或者个人虽然感兴趣但并不具备相应的潜能，难以奠定成功的基础。</p>
                 </div>
@@ -341,7 +344,7 @@
 
                 @endforeach
 
-                <div>
+                <div id="tj">
                     <p class="font26 color35"><img class="one-img" src="{{ URL::asset('images/icon_tuijian.png') }}" alt="">个人高匹配度的专业推荐</p>
                     <p class="font28 color35">根据对个人的性格、天赋、行为模式、风格及兴趣等多维度的综合分析与印证，以下你最适合的、最能发挥优势、最容取得突出成就的专业推荐。</p>
                 </div>
@@ -378,6 +381,20 @@
             <p class="font28 color35">-以下为个人最佳匹配的10个专业的详情与未来就业空间</p>
         </div>
     </div>
+</div>
+
+
+<div class="nav">
+    <div class="nvb" href="#sy">报告导航</div>
+    <a class="nvb active" href="#sy">首页</a>
+    <a class="nvb" href="#ml">目录</a>
+    <a class="nvb" href="#qn">个人潜能</a>
+    <a class="nvb" href="#db">个人短板</a>
+    <a class="nvb" href="#xq">个人兴趣</a>
+    <a class="nvb" href="#tj">专业推荐</a>
+</div>
+<div class="switcher">
+    <img style="width:100%;" src="{{ URL::asset('images/icon_nav.png') }}" >
 </div>
 
 <script src="{{ URL::asset('index.js') }}"></script>
