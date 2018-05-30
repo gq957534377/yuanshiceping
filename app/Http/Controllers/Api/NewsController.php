@@ -51,7 +51,12 @@ class NewsController extends Controller
             ->orderBy('updated_at', 'desc')
             ->limit($request->num??3)
             ->get();
-        $data['banner'] = env('APP_URL').'/uploads/'.$data['banner'];
-        return $this->sendResponse($data, '获取首页轮播专家专栏成功！');
+        if(!empty($data)){
+            foreach ($data as $val) {
+                $val['banner']  = env('APP_URL').'/uploads/'.$val['banner'];
+            }
+            return $this->sendResponse($data, '获取首页轮播专家专栏成功！');
+        }
+        return $this->sendResponse(false, '专家专栏没有数据！');
     }
 }
