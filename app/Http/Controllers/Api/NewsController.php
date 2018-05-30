@@ -21,7 +21,14 @@ class NewsController extends Controller
             ->orderBy('read_num', 'desc')
             ->orderBy('updated_at', 'desc')
             ->paginate($request->per_page??10);
-        return $this->sendResponse($data, '获取专家专栏成功！');
+
+        if(!empty($data)){
+            foreach ($data as $val) {
+                $val['banner']  = env('APP_URL').'/uploads/'.$val['banner'];
+            }
+            return $this->sendResponse($data, '获取专家专栏成功！');
+        }
+        return $this->sendResponse(false, '专家专栏没有数据！');
     }
 
     /**
@@ -57,6 +64,6 @@ class NewsController extends Controller
             }
             return $this->sendResponse($data, '获取首页轮播专家专栏成功！');
         }
-        return $this->sendResponse(false, '专家专栏没有数据！');
+        return $this->sendResponse(false, '没有数据！');
     }
 }
