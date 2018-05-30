@@ -90,7 +90,7 @@ class Quality extends Common
 
     ];
 
-	static public function grade($member_id)
+	static public function grade($member_id, $order_number)
     {
         //素质模型
         $qualities = static::getAllIndexById();
@@ -102,14 +102,15 @@ class Quality extends Common
                 'quality_id' => $quality['id'],
                 'grade' => 0,
                 'weight' => $quality['sort'],
+                'order_number' => $order_number,
             ];
         }
         //风格类型
-        $personality_type = Personality::getType($member_id);
+        $personality_type = Personality::getType($member_id, $order_number);
         //在排名前增加权重
-        Ability::addPersonalityTypeWeight($personality_type, $member_id);
+        Ability::addPersonalityTypeWeight($personality_type, $member_id, $order_number);
         //才干排名
-        $abilities = Ability::getAllWithSort($member_id);
+        $abilities = Ability::getAllWithSort($member_id, $order_number);
 
         //风格排名
         foreach ($qualities as $quality) {
@@ -120,7 +121,8 @@ class Quality extends Common
 
         }
 
-        static::deleteByMemberId($member_id);
+//        static::deleteByMemberId($member_id);
+        static::deleteByOrderNumber($order_number);
 
         MemberQualityGrade::insert($quality_grades);
     }
@@ -154,7 +156,7 @@ class Quality extends Common
 
     }
 
-    static public function gradeOne($quality, $abilities, $personality_type = 'NF')
+    static public function gradeOne($quality, $abilities)
     {
         $grade = 0;
         $items = QualityHasAbility::where(['quality_id' => $quality['id']])->get()->toArray();
@@ -182,9 +184,23 @@ class Quality extends Common
 
     }
 
-    static public function getGradesByMemberId($member_id){
+    static public function deleteByOrderNumber($order_number)
+    {
+        $items = static::all()->toArray();
+        foreach ($items as $item) {
+            $row = MemberQualityGrade::where(['order_number'=>$order_number,'quality_id'=>$item['id']])->first();
+
+            if ($row) {
+                $row->where(['order_number'=>$order_number,'quality_id'=>$item['id']])->delete();
+            }
+        }
+
+    }
+
+    static public function getGradesByMemberId($member_id, $order_number){
 
         return MemberQualityGrade::where(['member_id' => $member_id])
+            ->where(['order_number' => $order_number])
             ->orderBy('grade', 'DESC')
             ->orderBy('weight', 'DESC')
             ->get();

@@ -53,54 +53,60 @@ class Shake extends Common
     static protected $member_interest_grades;
 
 
-    static public function grade($member_id)
+    static public function grade($member_id, $order_number)
     {
         $shakes = static::getAllIndexById();
         $shake_grades = [];
 
         foreach ($shakes as $shake) {
-            static::updateMemberShakePotentialGrade($shake, $member_id);
+            static::updateMemberShakePotentialGrade($shake, $member_id, $order_number);
             $shake_grades[$shake['id']] = [
                 'member_id' => $member_id,
                 'shake_id' => $shake['id'],
                 'grade' => 0,
                 'weight' => $shake['sort'],
+                'order_number' => $order_number,
             ];
         }
         static::$member_shake_potential_grades = MemberShakePotentialGrade::where(['member_id'=>$member_id])
+            ->where(['order_number' => $order_number])
             ->orderBy('grade', 'DESC')
             ->orderBy('weight', 'DESC')
             ->get();
         static::$member_interest_grades = MemberInterestGrade::where(['member_id'=>$member_id])
+            ->where(['order_number' => $order_number])
             ->orderBy('grade', 'DESC')
             ->orderBy('weight', 'DESC')
             ->get();
         foreach ($shakes as $shake) {
 
-            $shake_grades[$shake['id']]['grade'] = static::gradeOne($shake, $member_id);
+            $shake_grades[$shake['id']]['grade'] = static::gradeOne($shake, $member_id, $order_number);
         }
-        static::deleteByMemberId($member_id);
+//        static::deleteByMemberId($member_id);
+        static::deleteByOrderNumber($order_number);
         MemberShakeGrade::insert($shake_grades);
     }
 
-    static public function updateMemberShakePotentialGrade($shake, $member_id)
+    static public function updateMemberShakePotentialGrade($shake, $member_id, $order_number)
     {
         $where = [
             'member_id' => $member_id,
             'shake_id' => $shake['id'],
-            'potential_ids' => $shake['potential_ids']
+            'potential_ids' => $shake['potential_ids'],
+            'order_number' => $order_number,
         ];
         $member_shake_potential_grade = MemberShakePotentialGrade::where($where)->first();
         if (!$member_shake_potential_grade) {
             $member_shake_potential_grade = new MemberShakePotentialGrade();
             $member_shake_potential_grade->member_id = $member_id;
+            $member_shake_potential_grade->order_number = $order_number;
             $member_shake_potential_grade->shake_id = $shake['id'];
             $member_shake_potential_grade->potential_ids = $shake['potential_ids'];
-            $member_shake_potential_grade->grade = static::getPotentialGrade($shake, $member_id);
+            $member_shake_potential_grade->grade = static::getPotentialGrade($shake, $member_id, $order_number);
             $member_shake_potential_grade->save();
         } else {
             $data = [
-                'grade' => static::getPotentialGrade($shake, $member_id)
+                'grade' => static::getPotentialGrade($shake, $member_id, $order_number)
             ];
             $member_shake_potential_grade->where($where)->update($data);
         }
@@ -108,9 +114,9 @@ class Shake extends Common
 
     }
 
-    static public function gradeOne($shake, $member_id)
+    static public function gradeOne($shake, $member_id, $order_number)
     {
-        $potential_grade = static::getPotentialGrade($shake, $member_id);
+        $potential_grade = static::getPotentialGrade($shake, $member_id, $order_number);
         $potential_rank_grade = static::getPotentialRankGrade(static::$member_shake_potential_grades, $shake);
         $interest_rank_grade = static::getInterestRankGrade(static::$member_interest_grades, $shake);
         $grade = $potential_grade + $potential_rank_grade + $interest_rank_grade;
@@ -118,14 +124,15 @@ class Shake extends Common
         return $grade;
     }
 
-    static public function getPotentialGrade($shake, $member_id)
+    static public function getPotentialGrade($shake, $member_id, $order_number)
     {
         $len = strlen($shake['potential_ids']);
         $potential_grade = 0;
         for ($i = 0; $i < $len; $i++) {
             $where = [
                 'member_id' => $member_id,
-                'potential_id' => $shake['potential_ids'][$i]
+                'potential_id' => $shake['potential_ids'][$i],
+                'order_number' => $order_number,
             ];
             $member_potential_grade = MemberPotentialGrade::where($where)->first();
             if ($member_potential_grade) {
@@ -191,6 +198,19 @@ class Shake extends Common
 
             if ($row) {
                 $row->where(['member_id'=>$member_id,'shake_id'=>$item['id']])->delete();
+            }
+        }
+
+    }
+
+    static public function deleteByOrderNumber($order_number)
+    {
+        $items = static::all()->toArray();
+        foreach ($items as $item) {
+            $row = MemberShakeGrade::where(['order_number'=>$order_number,'shake_id'=>$item['id']])->first();
+
+            if ($row) {
+                $row->where(['order_number'=>$order_number,'shake_id'=>$item['id']])->delete();
             }
         }
 

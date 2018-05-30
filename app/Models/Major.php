@@ -57,7 +57,7 @@ class Major extends Common
     static protected $member_shake_grades;
     static protected $member_interest_grades;
 
-    static public function grade($member_id)
+    static public function grade($member_id, $order_number)
     {
         $majors = static::getAllIndexById();
         $major_grades = [];
@@ -68,38 +68,43 @@ class Major extends Common
                 'major_id' => $major['id'],
                 'grade' => 0,
                 'weight' => $major['sort'],
+                'order_number' => $order_number,
             ];
         }
 
         //潜能
         static::$member_potential_grades = MemberPotentialGrade::where(['member_id'=>$member_id])
+            ->where(['order_number' => $order_number])
             ->orderBy('grade', 'DESC')
             ->orderBy('weight', 'DESC')
             ->get();
         static::$member_potential_grades = static::indexBy(static::$member_potential_grades, 'potential_id');
         //型格
         static::$member_shake_grades = MemberShakeGrade::where(['member_id'=>$member_id])
+            ->where(['order_number' => $order_number])
             ->orderBy('grade', 'DESC')
             ->orderBy('weight', 'DESC')
             ->get();
         static::$member_shake_grades = static::indexBy(static::$member_shake_grades, 'shake_id');
         //兴趣
         static::$member_interest_grades = MemberInterestGrade::where(['member_id'=>$member_id])
+            ->where(['order_number' => $order_number])
             ->orderBy('grade', 'DESC')
             ->orderBy('weight', 'DESC')
             ->get();
         static::$member_interest_grades = static::indexBy(static::$member_interest_grades, 'interest_id');
         foreach ($majors as $major) {
             if ($major['shake_id'] == 0) continue;
-            $major_grades[$major['id']]['grade'] = static::gradeOne($major, $member_id);
+            $major_grades[$major['id']]['grade'] = static::gradeOne($major, $member_id, $order_number);
         }
 
-        static::deleteByMemberId($member_id);
+//        static::deleteByMemberId($member_id);
+        static::deleteByOrderNumber($order_number);
         MemberMajorGrade::insert($major_grades);
     }
 
 
-    static public function gradeOne($major, $member_id)
+    static public function gradeOne($major, $member_id, $order_number)
     {
         //潜能第一（30分）+潜能第二（25分）+潜能第三（20分）+潜能第四（15分）+潜能第五（10分）+
         //型格第一（15分）/型格第二三（5分）+兴趣第一（10分）/兴趣第二三（5分）
@@ -155,10 +160,23 @@ class Major extends Common
         }
 
     }
+    static public function deleteByOrderNumber($order_number)
+    {
+        $items = static::all()->toArray();
+        foreach ($items as $item) {
+            $row = MemberMajorGrade::where(['order_number'=>$order_number,'major_id'=>$item['id']])->first();
 
-    static public function getGradesByMemberId($member_id){
+            if ($row) {
+                $row->where(['order_number'=>$order_number,'major_id'=>$item['id']])->delete();
+            }
+        }
+
+    }
+
+    static public function getGradesByMemberId($member_id, $order_number){
 
         return MemberMajorGrade::where(['member_id' => $member_id])
+            ->where(['order_number' => $order_number])
             ->orderBy('grade', 'DESC')
             ->orderBy('weight', 'DESC')
             ->get();

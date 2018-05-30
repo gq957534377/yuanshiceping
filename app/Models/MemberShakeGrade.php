@@ -33,6 +33,7 @@ class MemberShakeGrade extends Eloquent
 
 	protected $fillable = [
 		'grade',
-		'weight'
+		'weight',
+        'order_number',
 	];
 }

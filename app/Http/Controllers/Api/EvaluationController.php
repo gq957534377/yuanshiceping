@@ -34,6 +34,7 @@ class EvaluationController extends Controller
             'subject_id' => $post['subject_id'],
             'category_id' => $post['category_id'],
             'question_id' => $post['question_id'],
+            'order_number' => $post['order_number'],
         ];
         $answer = Answer::firstOrCreate($where);
         $answer->selected = $post['selected'];
@@ -44,6 +45,7 @@ class EvaluationController extends Controller
         $where_member_subject = [
             'member_id' => $post['member_id'],
             'subject_id' => $post['subject_id'],
+            'order_number' => $post['order_number'],
         ];
         $member_has_subject = MemberHasSubject::firstOrNew($where_member_subject);
 
@@ -63,31 +65,33 @@ class EvaluationController extends Controller
     {
         $member_id = $request->post('member_id');
         $category_id = $request->post('category_id');
+        $order_number = $request->post('order_number');
 
 
         $where_member_subject = [
             'member_id' => $member_id,
+            'order_number' => $order_number,
         ];
         $member_has_subject = MemberHasSubject::firstOrNew($where_member_subject);
 
         switch ($category_id) {
             case 1:
-                Answer::gradeCatA($member_id); //计算兴趣
+                Answer::gradeCatA($member_id, $order_number); //计算兴趣
                 $member_has_subject->subject_status = 1;
 
                 break;
 
             case 2:
-                Answer::gradeCatB($member_id); //才干 能力 得分
+                Answer::gradeCatB($member_id, $order_number); //才干 能力 得分
                 $member_has_subject->subject_status = 1;
                 break;
 
             case 3:
-                Answer::gradeCatC($member_id); // 性格得分
-                Answer::gradeQuality($member_id); //素质模型
-                Answer::gradePotential($member_id); //计算潜能
-                Answer::gradeShake($member_id); //计算型格
-                Answer::gradeMajor($member_id); //计算专业
+                Answer::gradeCatC($member_id, $order_number); // 性格得分
+                Answer::gradeQuality($member_id, $order_number); //素质模型
+                Answer::gradePotential($member_id, $order_number); //计算潜能
+                Answer::gradeShake($member_id, $order_number); //计算型格
+                Answer::gradeMajor($member_id, $order_number); //计算专业
 
                 $member_has_subject->subject_status = 2;
 
@@ -118,7 +122,10 @@ class EvaluationController extends Controller
         $post = $request->post();
 
         $member_has_subjects = MemberHasSubject::where(['member_id' => $post['member_id']])->get();
-        $member_has_subjects = MemberHasSubject::indexByOrderNumber($member_has_subjects);
+        if ($member_has_subjects) {
+            $member_has_subjects = MemberHasSubject::indexByOrderNumber($member_has_subjects);
+        }
+
 
         $where = [
             'user_id' => $post['member_id'],
@@ -138,16 +145,20 @@ class EvaluationController extends Controller
                 $history['payDate'] = $order->created_at->format('Y-m-d H:i');
                 $history['orderNo'] = $order->order_id;
                 $history['subject_status'] = $member_has_subjects[$order->order_id]['subject_status']??0;
-                $current_no = $member_has_subjects[$order->order_id]['current_key'] + 1;
-                if ($member_has_subjects[$order->order_id]['category_id'] == 1) {
-                    $history['last'] = "上次测到：A类 {$current_no}题";
-                } elseif($member_has_subjects[$order->order_id]['category_id'] == 2) {
-                    $history['last'] = "上次测到：B类 {$current_no}题";
-                }  elseif($member_has_subjects[$order->order_id]['category_id'] == 3) {
-                    $history['last'] = "上次测到：C类 {$current_no}题";
-                } else {
-                    $history['last'] = '';
+                $history['last'] = '';
+                if (isset($member_has_subjects[$order->order_id])) {
+                    $current_no = $member_has_subjects[$order->order_id]['current_key'] + 1;
+                    if ($member_has_subjects[$order->order_id]['category_id'] == 1) {
+                        $history['last'] = "上次测到：A类 {$current_no}题";
+                    } elseif($member_has_subjects[$order->order_id]['category_id'] == 2) {
+                        $history['last'] = "上次测到：B类 {$current_no}题";
+                    }  elseif($member_has_subjects[$order->order_id]['category_id'] == 3) {
+                        $history['last'] = "上次测到：C类 {$current_no}题";
+                    } else {
+                        $history['last'] = '';
+                    }
                 }
+
 
                 if ($history['subject_status'] == 2) {
                     $histories['finished'][] = $history;

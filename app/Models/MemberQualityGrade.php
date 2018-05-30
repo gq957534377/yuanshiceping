@@ -28,7 +28,8 @@ class MemberQualityGrade extends Eloquent
 		'member_id' => 'int',
 		'quality_id' => 'int',
 		'grade' => 'float',
-		'weight' => 'int'
+		'weight' => 'int',
+        'order_number',
 	];
 
 	protected $fillable = [

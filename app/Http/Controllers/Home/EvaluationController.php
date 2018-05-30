@@ -92,17 +92,17 @@ class EvaluationController extends Controller
 
 
         //潜能得分
-        $potential_grades = Potential::getGradesByMemberId($member_id);
+        $potential_grades = Potential::getGradesByMemberId($member_id, $order_number);
         $data['potential_grades'] = $potential_grades;
         $level_grades = Potential::levelGrades($potential_grades);
         $data['level_grades'] = $level_grades;
 
         //素质模型得分
-        $quality_grades = Quality::getGradesByMemberId($member_id);
+        $quality_grades = Quality::getGradesByMemberId($member_id, $order_number);
         $data['quality_grades'] = $quality_grades;
 
         //兴趣得分
-        $interest_grades = Interest::getGradesByMemberId($member_id);
+        $interest_grades = Interest::getGradesByMemberId($member_id, $order_number);
         $data['interest_grades'] = $interest_grades;
 
         //型格得分
@@ -111,7 +111,7 @@ class EvaluationController extends Controller
         $data['shake_grades'] = $shake_grades;
 
         //专业得分
-        $major_grades = Major::getGradesByMemberId($member_id);
+        $major_grades = Major::getGradesByMemberId($member_id, $order_number);
         $data['major_grades'] = $major_grades;
 
         //最佳潜能对应素质模型
@@ -133,7 +133,7 @@ class EvaluationController extends Controller
         $data['best_potential_sorted_quality_grades'] = $best_potential_sorted_quality_grades;
         //最佳潜能对应的行为模式
         //潜能对应的素质模型第一 对应的第一类才干能力
-        $best_potential_abilities = Potential::getBestAbilities($member_id, $potential_grades[0]->potential_id);
+        $best_potential_abilities = Potential::getBestAbilities($member_id, $potential_grades[0]->potential_id, $order_number);
         $data['best_potential_abilities'] = $best_potential_abilities;
 
         //第二潜能对应素质模型
@@ -155,7 +155,7 @@ class EvaluationController extends Controller
         $data['second_potential_sorted_quality_grades'] = $second_potential_sorted_quality_grades;
         //第二潜能对应的行为模式
         //潜能对应的素质模型第一 对应的第一类才干能力
-        $second_potential_abilities = Potential::getBestAbilities($member_id, $potential_grades[1]->potential_id);
+        $second_potential_abilities = Potential::getBestAbilities($member_id, $potential_grades[1]->potential_id, $order_number);
         $data['second_potential_abilities'] = $second_potential_abilities;
 
         //第三潜能对应素质模型

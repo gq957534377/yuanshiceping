@@ -17,6 +17,7 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property string $potential_ids
  * @property float $grade
  * @property int $weight
+ * @property string $order_number
  *
  * @package App\Models
  */
@@ -35,6 +36,7 @@ class MemberShakePotentialGrade extends Eloquent
 	protected $fillable = [
 		'potential_ids',
 		'grade',
-		'weight'
+		'weight',
+        'order_number',
 	];
 }

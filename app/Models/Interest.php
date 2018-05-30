@@ -53,9 +53,31 @@ class Interest extends Common
 
     }
 
-    static public function getGradesByMemberId($member_id){
+    static public function deleteByOrderNumber($order_number)
+    {
+        $interests = static::all()->toArray();
+        foreach ($interests as $interest) {
+            $row = MemberInterestGrade::where(['order_number'=>$order_number,'interest_id'=>$interest['id']])->first();
+
+            if ($row) {
+                $row->where(['order_number'=>$order_number,'interest_id'=>$interest['id']])->delete();
+            }
+        }
+
+    }
+
+    static public function getGradesByMemberId($member_id, $order_number){
 
         return MemberInterestGrade::where(['member_id' => $member_id])
+            ->where(['order_number' => $order_number])
+            ->orderBy('grade', 'DESC')
+            ->orderBy('weight', 'DESC')
+            ->get();
+    }
+
+    static public function getGradesByOrderNumber($order_number){
+
+        return MemberInterestGrade::where(['order_number' => $order_number])
             ->orderBy('grade', 'DESC')
             ->orderBy('weight', 'DESC')
             ->get();

@@ -40,7 +40,7 @@ class Potential extends Common
 		'shortcoming'
 	];
 
-    static public function grade($member_id)
+    static public function grade($member_id, $order_number)
     {
         //素质模型
         $potentials = static::getAllIndexById();
@@ -52,41 +52,44 @@ class Potential extends Common
                 'potential_id' => $potential['id'],
                 'grade' => 0,
                 'weight' => $potential['sort'],
+                'order_number' => $order_number,
             ];
         }
 
 
         foreach ($potentials as $potential) {
 
-            $potential_grades[$potential['id']]['grade'] = static::gradeOne($potential, $member_id);
+            $potential_grades[$potential['id']]['grade'] = static::gradeOne($potential, $member_id, $order_number);
         }
 
-        static::deleteByMemberId($member_id);
+//        static::deleteByMemberId($member_id);
+        static::deleteByOrderNumber($order_number);
         MemberPotentialGrade::insert($potential_grades);
 
     }
 
-    static public function gradeOne($potential, $member_id)
+    static public function gradeOne($potential, $member_id, $order_number)
     {
         $grade = 0;
         $quality_names = explode('+', $potential['remark']);
         $number = 0;
         foreach ($quality_names as $quality_name) {
-            $grade += static::getQualityGrade($quality_name, $member_id);
+            $grade += static::getQualityGrade($quality_name, $member_id, $order_number);
             $number++;
         }
 
         return $grade/$number;
     }
 
-    static public function getQualityGrade($quality_name, $member_id)
+    static public function getQualityGrade($quality_name, $member_id, $order_number)
     {
         $quality_grade = 0;
         $quality = Quality::where(['name' => $quality_name])->first();
         if ($quality) {
             $where = [
                 'quality_id' => $quality->id,
-                'member_id' => $member_id
+                'member_id' => $member_id,
+                'order_number' => $order_number,
             ];
             $member_quality_grade = MemberQualityGrade::where($where)->first();
 
@@ -116,9 +119,23 @@ class Potential extends Common
 
     }
 
-    static public function getGradesByMemberId($member_id){
+    static public function deleteByOrderNumber($order_number)
+    {
+        $items = static::all()->toArray();
+        foreach ($items as $item) {
+            $row = MemberPotentialGrade::where(['order_number'=>$order_number,'potential_id'=>$item['id']])->first();
+
+            if ($row) {
+                $row->where(['order_number'=>$order_number,'potential_id'=>$item['id']])->delete();
+            }
+        }
+
+    }
+
+    static public function getGradesByMemberId($member_id, $order_number){
 
         return MemberPotentialGrade::where(['member_id' => $member_id])
+            ->where(['order_number' => $order_number])
             ->orderBy('grade', 'DESC')
             ->orderBy('weight', 'DESC')
             ->get();
@@ -183,7 +200,7 @@ class Potential extends Common
 
     }
 
-    static public function getBestAbilities($member_id, $id)
+    static public function getBestAbilities($member_id, $id, $order_number)
     {
         $quality_ids = [];
         $models = PotentialHasQuality::where(['potential_id' => $id])->select('quality_id')->get();
@@ -194,6 +211,7 @@ class Potential extends Common
         }
 
         $best_quality_grade = MemberQualityGrade::where(['member_id' => $member_id])
+            ->where(['order_number' => $order_number])
             ->whereIn('quality_id',$quality_ids)
             ->orderByDesc('grade')
             ->orderByDesc('weight')

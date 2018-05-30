@@ -19,6 +19,7 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property int $question_id
  * @property int $sort
  * @property string $selected
+ * @property string $order_number
  *
  * @package App\Models
  */
@@ -31,7 +32,7 @@ class Answer extends Common
 		'subjects_id' => 'int',
 		'categories_id' => 'int',
 		'question_id' => 'int',
-		'sort' => 'int'
+		'sort' => 'int',
 	];
 
 	protected $fillable = [
@@ -40,7 +41,8 @@ class Answer extends Common
 		'category_id',
 		'question_id',
 		'sort',
-		'selected'
+		'selected',
+		'order_number',
 	];
 
 
@@ -81,7 +83,7 @@ class Answer extends Common
         return $answer;
     }
 
-    static public function gradeCatA($member_id)
+    static public function gradeCatA($member_id, $order_number)
     {
         $interests = Interest::all()->toArray();
         $interest_grades = [];
@@ -92,12 +94,14 @@ class Answer extends Common
                 'interest_id' => $interest['id'],
                 'grade' => 0,
                 'weight' => $interest['sort'],
+                'order_number' => $order_number,
             ];
         }
         $where = [
-            'subject_id' => 1,
+//            'subject_id' => 1,
             'category_id' => 1,
-            'member_id' => $member_id
+            'member_id' => $member_id,
+            'order_number' => $order_number,
         ];
         $cat_a_answers = Answer::where($where)->get()->toArray();
         $answers = [];
@@ -124,13 +128,14 @@ class Answer extends Common
 
         }
 
-        Interest::deleteByMemberId($member_id);
+//        Interest::deleteByMemberId($member_id);
+        Interest::deleteByOrderNumber($order_number);
 
         MemberInterestGrade::insert($interest_grades);
 
     }
 
-    static public function gradeCatB($member_id)
+    static public function gradeCatB($member_id, $order_number)
     {
         $abilities = Ability::all()->toArray();
         $ablility_grades = [];
@@ -141,12 +146,14 @@ class Answer extends Common
                 'ability_id' => $ability['id'],
                 'grade' => 0,
                 'weight' => $ability['sort'],
+                'order_number' => $order_number,
             ];
         }
         $where = [
             'subject_id' => 1,
             'category_id' => 2,
-            'member_id' => $member_id
+            'member_id' => $member_id,
+            'order_number' => $order_number,
         ];
         $cat_b_answers = Answer::where($where)->get()->toArray();
         $answers = [];
@@ -191,14 +198,15 @@ class Answer extends Common
 
         }
 
-        Ability::deleteByMemberId($member_id);
+//        Ability::deleteByMemberId($member_id);
+        Ability::deleteByOrderNumber($order_number);
         MemberAbilityGrade::insert($ablility_grades);
 
     }
 
 
 
-    static public function gradeCatC($member_id)
+    static public function gradeCatC($member_id, $order_number)
     {
         $personalities = Personality::all()->toArray();
         $personality_grades = [];
@@ -209,13 +217,16 @@ class Answer extends Common
                 'personality_id' => $personality['id'],
                 'grade' => 0,
                 'weight' => $personality['sort'],
+                'order_number' => $order_number,
             ];
         }
 
         $where = [
-            'subject_id' => 1,
+//            'subject_id' => 1,
             'category_id' => 3,
-            'member_id' => $member_id
+            'member_id' => $member_id,
+            'order_number' => $order_number,
+
         ];
         $cat_c_answers = Answer::where($where)->get()->toArray();
         $answers = [];
@@ -247,44 +258,45 @@ class Answer extends Common
         }
 
 
-        Personality::deleteByMemberId($member_id);
+//        Personality::deleteByMemberId($member_id);
+        Personality::deleteByOrderNumber($order_number);
         MemberPersonalityGrade::insert($personality_grades);
 
     }
 
-    static public function gradeInterest($member_id)
+    static public function gradeInterest($member_id, $order_number)
     {
-        static::gradeCatA($member_id);
+        static::gradeCatA($member_id, $order_number);
     }
 
-    static public function gradeAbility($member_id)
+    static public function gradeAbility($member_id, $order_number)
     {
-        static::gradeCatB($member_id);
+        static::gradeCatB($member_id, $order_number);
     }
 
-    static public function gradePersonality($member_id)
+    static public function gradePersonality($member_id, $order_number)
     {
-        static::gradeCatC($member_id);
+        static::gradeCatC($member_id, $order_number);
     }
 
-    static public function gradeQuality($member_id)
+    static public function gradeQuality($member_id, $order_number)
     {
-        Quality::grade($member_id);
+        Quality::grade($member_id, $order_number);
     }
 
-    static public function gradePotential($member_id)
+    static public function gradePotential($member_id, $order_number)
     {
-        Potential::grade($member_id);
+        Potential::grade($member_id, $order_number);
     }
 
-    static public function gradeShake($member_id)
+    static public function gradeShake($member_id, $order_number)
     {
-        Shake::grade($member_id);
+        Shake::grade($member_id, $order_number);
     }
 
-    static public function gradeMajor($member_id)
+    static public function gradeMajor($member_id, $order_number)
     {
-        Major::grade($member_id);
+        Major::grade($member_id, $order_number);
     }
 
 

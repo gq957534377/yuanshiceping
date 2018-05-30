@@ -61,10 +61,24 @@ class Ability extends Common
 
     }
 
-    static public function getAllWithSort($member_id)
+    static public function deleteByOrderNumber($order_number)
+    {
+        $items = static::all()->toArray();
+        foreach ($items as $item) {
+            $row = MemberAbilityGrade::where(['order_number'=>$order_number,'ability_id'=>$item['id']])->first();
+
+            if ($row) {
+                $row->where(['order_number'=>$order_number,'ability_id'=>$item['id']])->delete();
+            }
+        }
+
+    }
+
+    static public function getAllWithSort($member_id, $order_number)
     {
         $items = [];
         $grades = MemberAbilityGrade::where(['member_id'=>$member_id])
+            ->where(['order_number' => $order_number])
             ->orderBy('grade', 'DESC')
             ->orderBy('personality_type_weight', 'DESC')
             ->orderBy('weight', 'DESC')
@@ -77,6 +91,7 @@ class Ability extends Common
             $item['name'] = $abilities[$grade['ability_id']]['name'];
             $item['ability_id'] = $grade['ability_id'];
             $item['member_id'] = $member_id;
+            $item['order_number'] = $order_number;
             $items[$grade['ability_id']] = $item;
         }
 
@@ -97,8 +112,10 @@ class Ability extends Common
     /**
      * 根据风格类型为能力增加权重
      * @param $personality_type
+     * @param $member_id
+     * @param $order_number
      */
-    static public function addPersonalityTypeWeight($personality_type, $member_id)
+    static public function addPersonalityTypeWeight($personality_type, $member_id, $order_number)
     {
         $key = static::getPersonalityType($personality_type);
         $weight_abilities = explode('、', static::$personality_type_abilities[$key]);
@@ -109,6 +126,7 @@ class Ability extends Common
                 $where = [
                     'member_id' => $member_id,
                     'ability_id' => $ability->id,
+                    'order_number' => $order_number,
                 ];
                 $member_ability_grade = MemberAbilityGrade::where($where)->first();
                 if ($member_ability_grade) {

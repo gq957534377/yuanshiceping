@@ -36,6 +36,7 @@ class MemberAbilityGrade extends Eloquent
 	protected $fillable = [
 		'grade',
 		'weight',
-        'personality_type_weight'
+        'personality_type_weight',
+        'order_number',
 	];
 }
