@@ -40,6 +40,7 @@ class NewsController extends Controller
      */
     public function show(News $news)
     {
+        $news['banner']  = url('uploads/'.$news['banner']);
         return $this->sendResponse($news, '获取新闻详情成功');
     }
 
