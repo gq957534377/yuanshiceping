@@ -138,16 +138,23 @@ class EvaluationController extends Controller
                 $history['payDate'] = $order->created_at->format('Y-m-d H:i');
                 $history['orderNo'] = $order->order_id;
                 $history['subject_status'] = $member_has_subjects[$order->order_id]['subject_status']??0;
-                $current_no = $member_has_subjects[$order->order_id]['current_key'] + 1;
-                if ($member_has_subjects[$order->order_id]['category_id'] == 1) {
-                    $history['last'] = "上次测到：A类 {$current_no}题";
-                } elseif($member_has_subjects[$order->order_id]['category_id'] == 2) {
-                    $history['last'] = "上次测到：B类 {$current_no}题";
-                }  elseif($member_has_subjects[$order->order_id]['category_id'] == 3) {
-                    $history['last'] = "上次测到：C类 {$current_no}题";
+                if(!empty($member_has_subjects[$order->order_id])) {
+                    $current_no = $member_has_subjects[$order->order_id]['current_key'] + 1;
+                    if ($member_has_subjects[$order->order_id]['category_id'] == 1) {
+                        $history['last'] = "上次测到：A类 {$current_no}题";
+                    } elseif($member_has_subjects[$order->order_id]['category_id'] == 2) {
+                        $history['last'] = "上次测到：B类 {$current_no}题";
+                    }  elseif($member_has_subjects[$order->order_id]['category_id'] == 3) {
+                        $history['last'] = "上次测到：C类 {$current_no}题";
+                    } else {
+                        $history['last'] = '';
+                    }
                 } else {
-                    $history['last'] = '';
+
+                    $history['last'] = "未开始测评";
+
                 }
+
 
                 if ($history['subject_status'] == 2) {
                     $histories['finished'][] = $history;
