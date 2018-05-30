@@ -51,7 +51,7 @@ class NewsController extends Controller
             ->orderBy('updated_at', 'desc')
             ->limit($request->num??3)
             ->get();
-
+        $data['banner'] = env('APP_URL').'/uploads/'.$data['banner'];
         return $this->sendResponse($data, '获取首页轮播专家专栏成功！');
     }
 }

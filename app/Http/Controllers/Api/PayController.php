@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
-use EasyWeChat\Factory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Models\Order;
 use Ramsey\Uuid\Uuid;
@@ -13,15 +11,6 @@ use function EasyWeChat\Kernel\Support\generate_sign;
 
 class PayController extends Controller
 {
-    private $app = null;
-
-    public function __construct()
-    {
-        $options = config('wechat.payment.default');
-
-        $this->app = Factory::officialAccount($options);
-    }
-
     /**
      * 测评支付微信统一下单
      *
@@ -31,8 +20,16 @@ class PayController extends Controller
     public function createWechatOrder(Request $request)
     {
         $data = $request->all();
-        $payment = \EasyWeChat::payment(); // 微信支付
+        // 判断价格
+        if($data['price_level'] == 3) {
+            $paid_price = $data['activity_price'];
 
+        } else if($data['price_level'] == 2){
+            $paid_price = 0;
+        } else {
+            $paid_price = $data['price'];
+        }
+        $payment = \EasyWeChat::payment(); // 微信支付
         $orderId = Uuid::uuid1()->getHex();
         $result = $payment->order->unify([
             'body'         => $data['goodName'],
@@ -47,21 +44,15 @@ class PayController extends Controller
 
             $user = User::where(['open_id'=>$data['openId']])->first()->toArray();
             if (empty($user)) return $this->sendResponse(false,'请先登录！');
-            if($data['price_level'] == 3) {
-                $price = $data['activity_price'];
 
-            } else if($data['price_level'] == 2){
-                $price = 0;
-            } else {
-                $price = $data['price'];
-            }
             $order = [
                 'order_id'     => $orderId,
                 'goods_id'     => $data['goodsId'],
                 'user_id'      => $user['id'],
-                'price'        => $price,
+                'price'        => $data['price'],
                 'price_level'  => $data['price_level'],
-                'coupon_price' => $data['coupon_price']
+                'coupon_price' => $data['coupon_price'],
+                'paid_price'   => $paid_price
             ];
             $status = Order::create($order);
 
@@ -117,7 +108,11 @@ class PayController extends Controller
         return $xml;
     }
 
-    //微信支付回调
+    /**
+     * 微信支付回调
+     *
+     * @return string
+     */
     public function createOrderNotify()
     {
         $callback_string = file_get_contents('php://input');
@@ -125,13 +120,12 @@ class PayController extends Controller
         {
             echo "FAIL";exit;
         }
-        \Log::debug($callback_string);
         $data = $this->xml2array($callback_string);
         if ($data==false)
         {
             echo "FAIL";exit;
         }
-        \Log::debug($data);
+        \Log::debug('微信回调数据：'.$data);
 
         $order_id = $data['out_trade_no']; // 订单号
         $transaction_id = $data['transaction_id'];  // 微信订单号
