@@ -145,8 +145,10 @@ class EvaluationController extends Controller
                 $history['payDate'] = $order->created_at->format('Y-m-d H:i');
                 $history['orderNo'] = $order->order_id;
                 $history['subject_status'] = $member_has_subjects[$order->order_id]['subject_status']??0;
+
                 $history['last'] = '';
                 if (isset($member_has_subjects[$order->order_id])) {
+
                     $current_no = $member_has_subjects[$order->order_id]['current_key'] + 1;
                     if ($member_has_subjects[$order->order_id]['category_id'] == 1) {
                         $history['last'] = "上次测到：A类 {$current_no}题";
@@ -157,6 +159,7 @@ class EvaluationController extends Controller
                     } else {
                         $history['last'] = '';
                     }
+
                 }
 
 

@@ -21,7 +21,14 @@ class NewsController extends Controller
             ->orderBy('read_num', 'desc')
             ->orderBy('updated_at', 'desc')
             ->paginate($request->per_page??10);
-        return $this->sendResponse($data, '获取专家专栏成功！');
+
+        if(!empty($data)){
+            foreach ($data as $val) {
+                $val['banner']  = url('uploads/'.$val['banner']);
+            }
+            return $this->sendResponse($data, '获取专家专栏成功！');
+        }
+        return $this->sendResponse(false, '专家专栏没有数据！');
     }
 
     /**
@@ -33,6 +40,7 @@ class NewsController extends Controller
      */
     public function show(News $news)
     {
+        $news['banner']  = url('uploads/'.$news['banner']);
         return $this->sendResponse($news, '获取新闻详情成功');
     }
 
@@ -51,7 +59,12 @@ class NewsController extends Controller
             ->orderBy('updated_at', 'desc')
             ->limit($request->num??3)
             ->get();
-
-        return $this->sendResponse($data, '获取首页轮播专家专栏成功！');
+        if(!empty($data)){
+            foreach ($data as $val) {
+                $val['banner']  = url('uploads/'.$val['banner']);
+            }
+            return $this->sendResponse($data, '获取首页轮播专家专栏成功！');
+        }
+        return $this->sendResponse(false, '没有数据！');
     }
 }

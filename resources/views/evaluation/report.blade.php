@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{{ URL::asset('style.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/nav.css') }}">
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
-    <script src="{{ asset('js/echarts.js') }}"></script>
+    <script src="{{ URL::asset('js/echarts.js') }}"></script>
     <script src="{{ asset('js/nav.js') }}"></script>
     <script>
         var potentials = {!! json_encode($potentials) !!} //潜能

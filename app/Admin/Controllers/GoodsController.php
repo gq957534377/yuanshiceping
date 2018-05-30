@@ -77,7 +77,7 @@ class GoodsController extends Controller
             $grid->id('ID')->sortable();
             $grid->goods_name('商品名称');
             $grid->goods_image('商品图品')->display(function ($goods_image) {
-                return "<img src=".env('APP_URL').'/uploads/'.$goods_image.">";
+                return "<img src=".env('APP_URL').'/uploads/'.$goods_image." width=100>";
             });
 
             $grid->describe('商品描述');
