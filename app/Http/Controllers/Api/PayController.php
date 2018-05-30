@@ -125,7 +125,7 @@ class PayController extends Controller
         {
             echo "FAIL";exit;
         }
-        \Log::debug('微信回调数据：'.$data);
+        \Log::debug($data);
 
         $order_id = $data['out_trade_no']; // 订单号
         $transaction_id = $data['transaction_id'];  // 微信订单号
