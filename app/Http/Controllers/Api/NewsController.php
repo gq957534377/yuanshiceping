@@ -24,7 +24,7 @@ class NewsController extends Controller
 
         if(!empty($data)){
             foreach ($data as $val) {
-                $val['banner']  = env('APP_URL').'/uploads/'.$val['banner'];
+                $val['banner']  = url('uploads/'.$val['banner']);
             }
             return $this->sendResponse($data, '获取专家专栏成功！');
         }
@@ -60,7 +60,7 @@ class NewsController extends Controller
             ->get();
         if(!empty($data)){
             foreach ($data as $val) {
-                $val['banner']  = env('APP_URL').'/uploads/'.$val['banner'];
+                $val['banner']  = url('uploads/'.$val['banner']);
             }
             return $this->sendResponse($data, '获取首页轮播专家专栏成功！');
         }
