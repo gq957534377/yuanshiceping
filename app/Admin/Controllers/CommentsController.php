@@ -76,12 +76,17 @@ class CommentsController extends Controller
         return Admin::grid(Comment::class, function (Grid $grid) {
 
             $grid->id('ID')->sortable();
-            $grid->goods_id('商品名称');
-            $grid->user_id('用户');
-            $grid->content('内容');
-            $grid->status('状态')->display(function ($status) {
-                return $status == 1 ? '显示' : '不显示';
+            $grid->goods_id('商品名称')->display(function($goodId) {
+                return Good::find($goodId)->goods_name;
             });
+            $grid->user_id('用户')->display(function($userId) {
+                return User::find($userId)->name;
+            });
+            $states = [
+                'on'  => ['value' => 1, 'text' => '显示', 'color' => 'primary'],
+                'off' => ['value' => 2, 'text' => '不显示', 'color' => 'default'],
+            ];
+            $grid->status('状态')->switch($states);
             $grid->created_at('创建时间');
             $grid->updated_at('更新时间');
         });
@@ -120,6 +125,7 @@ class CommentsController extends Controller
                     return collect($array)->flatten()->toArray();
                 }
             });
+            $form->switch('status', '是否显示？');
             $form->editor('content','内容')->rules('required');
             $form->display('created_at', 'Created At');
             $form->display('updated_at', 'Updated At');
