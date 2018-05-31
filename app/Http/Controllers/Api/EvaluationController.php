@@ -134,7 +134,8 @@ class EvaluationController extends Controller
             'finished' => [],
             'unfinished' => []
         ];
-        $orders = Order::where($where)->Where(['order_status' => 1])->get();
+        $orders = Order::where($where)->Where(['order_status' => 1])->orderBy('id','desc')->get();
+        dd($orders);
         if (!empty($orders)) {
             foreach ($orders as $order) {
                 $goods = Good::where(['id' => $order->goods_id])->first();
