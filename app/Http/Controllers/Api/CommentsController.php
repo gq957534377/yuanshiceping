@@ -31,13 +31,13 @@ class CommentsController extends Controller
             return $q->where(['user_id' => $value]);
         });
         if (!empty($request->per_page) && $request->per_page == 'all') {
-            $data = $query->orderBy('updated_at', 'desc')
+            $data = $query->where(['status'=>1])->orderBy('updated_at', 'desc')
                 ->get()
                 ->map(function ($item) {
                     return Comment::getItems($item);
                 });
         } else {
-            $data = $query->orderBy('updated_at', 'desc')
+            $data = $query->where(['status'=>1])->orderBy('updated_at', 'desc')
                 ->paginate($request->per_page??10);
             $comments = $data->map(function ($item) {
                 return Comment::getItems($item);
