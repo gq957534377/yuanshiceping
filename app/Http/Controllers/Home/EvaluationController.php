@@ -65,7 +65,7 @@ class EvaluationController extends Controller
 
         if (!empty($report)) {
             if (file_exists(base_path('public'.'/'.$report->path))) {
-               // return file_get_contents(base_path('public'.'/'.$report->path));
+               return file_get_contents(base_path('public'.'/'.$report->path));
             }
         } else {
             $report = new Report();
