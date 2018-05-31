@@ -11,4 +11,9 @@ class Good extends Model
 
     // 不允许编辑字段
     protected $guarded = [];
+
+    public function goodsCategories()
+    {
+        return $this->hasOne(GoodsCategories::class,'id', 'class_id');
+    }
 }

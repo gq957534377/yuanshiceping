@@ -27,4 +27,6 @@ Route::group([
 
     $router->resource('comments', 'CommentsController');
 
+    $router->resource('goodsCategories', 'GoodsCategoriesController');
+
 });

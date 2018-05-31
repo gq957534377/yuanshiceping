@@ -3,6 +3,7 @@
 namespace App\Admin\Controllers;
 
 use App\Models\Good;
+use App\Models\GoodsCategories;
 
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -79,7 +80,9 @@ class GoodsController extends Controller
             $grid->goods_image('商品图品')->display(function ($goods_image) {
                 return "<img src=".env('APP_URL').'/uploads/'.$goods_image." width=100>";
             });
-
+            $grid->class_id('分类名称')->display(function($classId) {
+                return GoodsCategories::find($classId)->title;
+            });
             $grid->describe('商品描述');
             $grid->price_level('活动')->display(function($e){
                 if($e == 1){
@@ -113,6 +116,17 @@ class GoodsController extends Controller
         return Admin::form(Good::class, function (Form $form) {
             $form->display('id','ID');
             $form->text('goods_name', '商品名称')->placeholder('请输入商品称')->rules('required|max:10');
+            $form->select('class_id','分类名称')->options(function(){
+                $cates = GoodsCategories::all();
+
+                if($cates) {
+                    $array = [0=>'请选择分类名称'];
+                    foreach($cates as $key => $cate) {
+                        array_push($array,[$cate->id=>$cate->title]);
+                    }
+                    return collect($array)->flatten()->toArray();
+                }
+            });
             $form->image('goods_image','商品图片')->uniqueName()->move('goods');
             $price_level = [
                 1 => '正常价格',
