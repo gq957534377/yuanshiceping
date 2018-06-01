@@ -64,7 +64,7 @@ class EvaluationController extends Controller
         $report = Report::where($where)->first();
 
         if (!empty($report)) {
-            if (file_exists(base_path('public'.'/'.$report->path))) {
+            if (!empty($report->path) && file_exists(base_path('public'.'/'.$report->path))) {
                return file_get_contents(base_path('public'.'/'.$report->path));
             }
         } else {
