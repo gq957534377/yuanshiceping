@@ -1,4 +1,19 @@
+(function ($) {
+    $.getUrlParam = function (name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]); return null;
+    }
+})(jQuery);
 $(function(){
+    $("#btn-share").click(function() {
+        var userId = window.location.pathname.slice(12);
+        var orderNumber = $.getUrlParam('order_number');
+        wx.miniProgram.navigateTo({url:'/pages/report/share?user_id='+userId+'&order_number='+orderNumber});
+    });
+    $("#btn-home").click(function() {
+        wx.miniProgram.navigateTo({url:'/pages/index/index'});
+    });
     $(".nav a").click(function() {
         activity($(this));
     })

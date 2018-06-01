@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{{ URL::asset('style.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/nav.css') }}">
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.3.2.js"></script>
     <script src="{{ URL::asset('js/echarts.js') }}"></script>
     <script src="{{ asset('js/nav.js') }}"></script>
     <script>
@@ -66,7 +67,7 @@
 
         </div>
     </div>
-    <div class="row-fluid">
+    <div id="qy" class="row-fluid">
         <div class="col-xs-12">
             <div class="preface">
                 <div class="zc-title">
@@ -386,11 +387,14 @@
 <div class="nav">
     <div class="nvb" href="#sy">报告导航</div>
     <a class="nvb active" href="#sy">首页</a>
+    <a class="nvb" href="#qy">前言</a>
     <a class="nvb" href="#ml">目录</a>
     <a class="nvb" href="#qn">个人潜能</a>
     <a class="nvb" href="#db">个人短板</a>
     <a class="nvb" href="#xq">个人兴趣</a>
     <a class="nvb" href="#tj">专业推荐</a>
+    <button class="nvb" id="btn-share">分享报告</button>
+    <button class="nvb" id="btn-home">回到首页</button>
 </div>
 <div class="switcher">
     <img style="width:100%;" src="{{ URL::asset('images/icon_nav.png') }}" >
