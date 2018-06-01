@@ -69,7 +69,7 @@ class PayController extends Controller
 
             // config('wechat.payment.default.key')为商户的key
             $params['paySign'] = generate_sign($params, config('wechat.payment.default.key'));
-
+            $params['order'] = $order;
             return $params;
         } else {
             return $result;
