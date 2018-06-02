@@ -57,7 +57,6 @@ class EvaluationController extends Controller
         $data = [];
         $order_number = $request->query->get('order_number');
         $where = [
-            'member_id' => $member_id,
             'order_number' => $order_number,
         ];
         //测评报告
