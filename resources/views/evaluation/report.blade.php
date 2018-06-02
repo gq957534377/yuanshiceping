@@ -9,7 +9,7 @@
     <meta name="keywords" content="">
     <link href="{{ URL::asset('bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ URL::asset('style.css') }}">
-    <link rel="stylesheet" href="{{ URL::asset('css/nav.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('css/nav.css?__v=20180602210141') }}">
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
     <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.3.2.js"></script>
     <script src="{{ URL::asset('js/echarts.js') }}"></script>
