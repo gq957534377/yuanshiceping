@@ -13,7 +13,7 @@
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
     <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.3.2.js"></script>
     <script src="{{ URL::asset('js/echarts.js') }}"></script>
-    <script src="{{ asset('js/nav.js') }}"></script>
+    <script src="{{ asset('js/nav.js?__v=20180602210141') }}"></script>
     <script>
         var potentials = {!! json_encode($potentials) !!} //潜能
         var interests = {!! json_encode($interests) !!} //兴趣
