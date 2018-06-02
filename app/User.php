@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Order;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -23,4 +24,37 @@ class User extends Authenticatable
     ];
     // 不允许编辑字段
     protected $guarded = [];
+
+    /**
+     * 说明: 我送出的礼物（测评卡）
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @author 郭庆
+     */
+    public function sendOrders()
+    {
+        return $this->belongsToMany(
+            Order::class,
+            'gifts',
+            'send_user',
+            'order_id'
+        );
+    }
+
+
+    /**
+     * 说明: 我收到的礼物（测评卡）
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @author 郭庆
+     */
+    public function receiveOrders()
+    {
+        return $this->belongsToMany(
+            Order::class,
+            'gifts',
+            'receive_user',
+            'order_id'
+        );
+    }
 }
