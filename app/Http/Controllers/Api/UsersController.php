@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Requests\Api\UsersRequest;
 use App\Models\Report;
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
@@ -38,5 +39,18 @@ class UsersController extends Controller
 //            'address' => $request->address,
 //        ]);
         return $this->sendResponse($request->all(), '修改成功');
+    }
+
+    /**
+     * 获取用户邀请人的信息
+     * @param UsersRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getUser(UsersRequest $request)
+    {
+        $user = Auth::guard('api')->user();
+        dd($user);
+        User::where(['inviter_id'=>$user->open_id])->all();
+        return $this->sendResponse($user, '修改成功');
     }
 }

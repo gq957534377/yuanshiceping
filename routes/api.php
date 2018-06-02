@@ -43,4 +43,7 @@ Route::group(['namespace' => 'Api'], function () {
     });
     Route::post('wechat_pay/createWechatOrder', 'PayController@createWechatOrder');
     Route::post('wechat_pay/createOrder', 'PayController@createOrder');
+
+    Route::get('getUser', 'UsersController@getUser');
+
 });
