@@ -91,9 +91,19 @@ class GiftsController extends Controller
         $This = $this;
         DB::beginTransaction();
         try {
-            // 判断该测评卡有没有没领取
+            if ($order->order_status != 1) {
+                return $This->sendError('该测评卡无效！', ['该测评卡无效!'], 500);
+            }
             $order->order_status = 3;
             $order->save();
+
+            if (!empty($gift=Gift::where([
+                'order_id' => $order->id,
+                'send_user' => Auth::guard('api')->user()->id,
+            ])->first())
+            ) {
+                return $This->sendResponse($gift, '发送礼物成功！');
+            }
 
             $gift = Gift::create([
                 'order_id' => $order->id,
@@ -110,13 +120,14 @@ class GiftsController extends Controller
     /**
      * 说明: 领取礼物
      *
-     * @param Gift $gift
+     * @param Order $order
      * @return \Illuminate\Http\JsonResponse
      * @author 郭庆
      */
-    public function store(Gift $gift)
+    public function store(Order $order)
     {
         // 判断该测评卡有没有没领取
+        $gift = Gift::where(['order_id' => $order->id])->first();
         if (!empty($gift->receive_user)) {
             return $this->sendError('该礼物已被他人领取！', ['该礼物已被他人领取!'], 403);
         }
