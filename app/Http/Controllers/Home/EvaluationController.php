@@ -68,14 +68,11 @@ class EvaluationController extends Controller
                return file_get_contents(base_path('public'.'/'.$report->path));
             }
         } else {
-            $report = new Report();
+            exit('没有相关数据');
         }
 
         $report->created_at = time();
         $data['report'] = $report;
-        //用户信息
-        $user = User::where(['id' => $member_id])->first();
-        $data['user'] = $user;
 
         //潜能
         $potentials = Potential::getAllIndexById();
