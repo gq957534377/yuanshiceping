@@ -48,11 +48,11 @@
                 </div>
                 <div class="col-xs-12 clearfix user-info">
                     <div>
-                        <span class="user-name">{{ $user->name }}</span>
-                        <span class="user-gender font28 black888">{{ $user->sex == 1 ? '男' : '女' }}</span>
+                        <span class="user-name">{{ $report->user_name }}</span>
+                        <span class="user-gender font28 black888">{{ $report->gender == 1 ? '男' : '女' }}</span>
                     </div>
                     <div class="user-school">
-                        <span class="font28 black888">{{ $user->address }}</span>
+                        <span class="font28 black888">{{ $report->address }}</span>
                     </div>
                     <div>
                         <i class="blue-under-line"></i>
