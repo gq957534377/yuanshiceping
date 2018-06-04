@@ -146,6 +146,7 @@ class EvaluationController extends Controller
                 $history['orderNo'] = $order->order_id;
                 $history['id'] = $order->id;
                 $history['goods_id'] = $order->goods_id;
+                $history['class_id'] = $order->class_id;
                 $history['subject_status'] = $member_has_subjects[$order->order_id]['subject_status']??0;
 
                 $history['last'] = '';
