@@ -25,7 +25,7 @@ class PayController extends Controller
             $paid_price = $data['activity_price'];
 
         } else if($data['price_level'] == 2){
-            $paid_price = 0;
+            $paid_price = $data['price'];
         } else {
             $paid_price = $data['price'];
         }
