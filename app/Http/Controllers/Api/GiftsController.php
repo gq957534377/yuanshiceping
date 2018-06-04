@@ -32,6 +32,7 @@ class GiftsController extends Controller
             $order = Order::find($gift->order_id);
             $order->send_time = $gift->created_at;
             $order->title = $order->goods->goods_name??'';
+            $order->banner = url($order->goods->goods_image??'');
             $user = User::find($gift->receive_user);
             if (!empty($user)) {
                 $user->receive_time = $gift->updated_at->toDateTimeString();
@@ -68,6 +69,7 @@ class GiftsController extends Controller
             $order = Order::find($gift->order_id);
             $order->send_time = $gift->created_at;
             $order->receive_time = $gift->updated_at;
+            $order->banner = url($order->goods->goods_image??'');
 
             $user = User::find($gift->send_user);
             if (!empty($user)) {
