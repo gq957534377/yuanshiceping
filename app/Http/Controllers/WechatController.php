@@ -136,6 +136,10 @@ class WechatController extends Controller
                                     $user->poster_id = $upload['media_id'];
                                     $user->save();
                                     return new Image($upload['media_id']);
+                                case 'ke_fu':
+                                    return "客服电话：400-101-9859";
+                                case 'shang_wu_he_zuo':
+                                    return "shang_wu_he_zuo";
                                 case 'dev':
                                     return '该功能开发中，敬请期待！';
                             }
@@ -186,42 +190,67 @@ class WechatController extends Controller
         $app = $this->app;
         $buttons = [
             [
-                "name" => "福利领取",
+                "name" => "答疑解惑",
                 "sub_button" => [
                     [
+                        "name" => "如何选专业",
                         "type" => "click",
-                        "key" => 'get-poster',
-                        "name" => "免费测评"
+                        "key" => 'dev',
                     ],
                     [
-                        "name" => "微课",
+                        "name" => "错误的代价",
+                        "type" => "click",
+                        "key" => 'dev',
+                    ],
+                    [
+                        "name" => "课程预告",
+                        "type" => "click",
+                        "key" => 'dev',
+                    ],
+                    [
+                        "name" => "课程回访",
                         "type" => "click",
                         "key" => 'dev',
                     ],
                 ]
             ],
             [
-                "type" => "click",
-                "name" => "测评大厅",
-                "key" => "dev"
+                "name" => "在线测评",
+                "sub_button" => [
+                    [
+                        "type" => "click",
+                        "key" => 'get-poster',
+                        "name" => "申请免费测评"
+                    ],
+                    [
+                        "name" => "查看测评结果",
+                        "type" => "click",
+                        "key" => 'dev',
+                    ],
+                    [
+                        "name" => "立即测评",
+                        "type" => "click",
+                        "key" => 'dev',
+                    ],
+                ]
             ],
             [
                 "name" => "关于我们",
                 "sub_button" => [
                     [
                         "name" => "企业简介",
-                        "type" => "click",
-                        "key" => 'dev',
+                        "type" => "view",
+                        "url" => "https://www.jishiceping.com/"
                     ],
                     [
-                        "name" => "服务案例",
+                        "name" => "联系客服",
                         "type" => "click",
-                        "key" => 'dev',
+                        "key" => 'ke_fu',
                     ],
                     [
-                        "name" => "联系我们",
+                        "name" => "商务合作",
                         "type" => "click",
-                        "key" => 'dev',
+                        "key" => 'shang_wu_he_zuo',
                     ],
                 ]
             ],
