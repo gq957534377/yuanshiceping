@@ -52,7 +52,6 @@ class PayController extends Controller
                 'user_id'      => $user['id'],
                 'price'        => $data['price'],
                 'price_level'  => $data['price_level'],
-                'coupon_price' => $data['coupon_price'],
                 'paid_price'   => $paid_price
             ];
 
