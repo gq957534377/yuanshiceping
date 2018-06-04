@@ -24,7 +24,7 @@ class GiftsController extends Controller
         $user = Auth::guard('api')->user();
 
         if (empty($user->sendOrders->count())) {
-            return $this->sendResponse([], '获取我送出的礼物完成');
+            return $this->sendResponse(['data'=>[]], '获取我送出的礼物完成');
         }
 
         $gifts = Gift::where('send_user', $user->id)->paginate($request->per_page??10);
@@ -61,7 +61,7 @@ class GiftsController extends Controller
     {
         $user = Auth::guard('api')->user();
         if (empty($user->receiveOrders->count())) {
-            return $this->sendResponse([], '获取我收到的礼物完成');
+            return $this->sendResponse(['data'=>[]], '获取我收到的礼物完成');
         }
 
         $gifts = Gift::where('receive_user', $user->id)->paginate($request->per_page??10);
