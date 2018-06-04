@@ -48,12 +48,14 @@ class PayController extends Controller
             $order = [
                 'order_id'     => $orderId,
                 'goods_id'     => $data['goodsId'],
+                'class_id'     => $data['class_id'],
                 'user_id'      => $user['id'],
                 'price'        => $data['price'],
                 'price_level'  => $data['price_level'],
                 'coupon_price' => $data['coupon_price'],
                 'paid_price'   => $paid_price
             ];
+
             $status = Order::create($order);
 
             if(!$status) return $this->sendResponse(false,'请稍后重试');

@@ -145,6 +145,7 @@ class EvaluationController extends Controller
                 $history['payDate'] = $order->created_at->format('Y-m-d H:i');
                 $history['orderNo'] = $order->order_id;
                 $history['id'] = $order->id;
+                $history['goods_id'] = $order->goods_id;
                 $history['subject_status'] = $member_has_subjects[$order->order_id]['subject_status']??0;
 
                 $history['last'] = '';

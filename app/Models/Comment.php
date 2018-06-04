@@ -28,7 +28,7 @@ class Comment extends Model
             'parent_id' => $item->parent_id,
             'user_id' => $item->user_id,
             'title' => $item->title,
-            'content' => str_limit($item->content, 66),
+            'content' => strip_tags(str_limit($item->content, 66),"<img>"),
             'user_head' => $item->user->head_url??null,
             'updated_at' => (string)$item->updated_at,
         ];

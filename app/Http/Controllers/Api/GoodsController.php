@@ -35,6 +35,8 @@ class GoodsController extends Controller
      */
     public function show(Good $good)
     {
+        $good->goods_image = url('uploads/'.$good->goods_image);
+
         return $this->sendResponse($good, '获取商品详情成功');
     }
 }
