@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\MemberHasSubject;
 use App\Models\Order;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
@@ -56,5 +57,10 @@ class User extends Authenticatable
             'receive_user',
             'order_id'
         );
+    }
+
+    public function subjects()
+    {
+        return $this->hasMany(MemberHasSubject::class,'member_id','id');
     }
 }
