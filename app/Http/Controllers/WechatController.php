@@ -194,13 +194,13 @@ class WechatController extends Controller
                 "sub_button" => [
                     [
                         "name" => "如何选专业",
-                        "type" => "click",
-                        "key" => 'dev',
+                        "type" => "media_id",
+                        "media_id" => "5gDK9dQyi2I8VovYWgdN9PED9u2_AH_Biv4p73AEmic"
                     ],
                     [
                         "name" => "错误的代价",
-                        "type" => "click",
-                        "key" => 'dev',
+                        "type" => "media_id",
+                        "media_id" => '5gDK9dQyi2I8VovYWgdN9LC-1gTtZOEqMYxfdWbCf6o',
                     ],
                     [
                         "name" => "课程预告",
@@ -228,9 +228,11 @@ class WechatController extends Controller
                         "key" => 'dev',
                     ],
                     [
-                        "name" => "立即测评",
-                        "type" => "click",
-                        "key" => 'dev',
+                        "type" => "miniprogram",
+                        "name" => "基石测评",
+                        "url" => "https://api.jishiceping.com/mini_report_home",
+                        "appid" => config('services.media.app_id'),
+                        "pagepath" => "pages/index/index"
                     ],
                 ]
             ],
@@ -244,18 +246,23 @@ class WechatController extends Controller
                     ],
                     [
                         "name" => "联系客服",
-                        "type" => "click",
-                        "key" => 'ke_fu',
+                        "type" => "view",
+                        "url" => 'http://beijingpengshengyiyuan.mikecrm.com/kkDBLzo',
                     ],
                     [
                         "name" => "商务合作",
-                        "type" => "click",
-                        "key" => 'shang_wu_he_zuo',
+                        "type" => "media_id",
+                        "media_id" => '5gDK9dQyi2I8VovYWgdN9KrnrrjvkRaeQs5-rFBj6Kc',
                     ],
                 ]
             ],
         ];
         return $app->menu->create($buttons);
+    }
+
+    public function sources(Request $request)
+    {
+        return $this->app->material->list($request->type, $request->offset??0, $request->count??100);
     }
 
     /**
