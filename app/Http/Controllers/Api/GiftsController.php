@@ -64,8 +64,8 @@ class GiftsController extends Controller
      */
     public function receiveOrders(Request $request)
     {
-        $user = Auth::guard('api')->user();
-        if (empty($user->receiveOrders->count())) {
+        $now_user = Auth::guard('api')->user();
+        if (empty($now_user->receiveOrders->count())) {
             return $this->sendResponse([
                 'data' => [],
                 'last_page' => 1,
@@ -74,8 +74,8 @@ class GiftsController extends Controller
             ], '获取我收到的礼物完成');
         }
 
-        $gifts = Gift::where('receive_user', $user->id)->paginate($request->per_page??10);
-        $data = $gifts->map(function ($gift) {
+        $gifts = Gift::where('receive_user', $now_user->id)->paginate($request->per_page??10);
+        $data = $gifts->map(function ($gift) use($now_user){
             $order = Order::find($gift->order_id);
             $order->send_time = $gift->created_at;
             $order->receive_time = $gift->updated_at;
@@ -85,7 +85,7 @@ class GiftsController extends Controller
             if (!empty($user)) {
                 $user->receive_time = $gift->updated_at->toDateTimeString();
                 $user->send_time = $gift->updated_at;
-                $subject = $user->subjects->where('order_number', '=', $order->order_id)->first();
+                $subject = $now_user->subjects->where('order_number', '=', $order->order_id)->first();
                 $user->subject_status = $subject->subject_status??0;
             }
             return [
