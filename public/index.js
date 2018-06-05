@@ -424,7 +424,7 @@ option = {
         data:['潜能', '兴趣']
     },
 
-    calculable : true,
+    calculable : false,
     xAxis : [
         {
             type : 'value',
@@ -492,7 +492,7 @@ option = {
         data:[]
     },
 
-    calculable : true,
+    calculable : false,
     xAxis : [
         {
             type : 'value',
@@ -507,6 +507,7 @@ option = {
     ],
     series : [
         {
+
             clickable:false,
             name:'兴趣',
             type:'bar',
@@ -529,7 +530,7 @@ option = {
                         show: true,
                         position: 'right',
 //                             formatter: '{c}'
-                        formatter: '{b}\n{c}'
+                        formatter: '{c}'
                     }
                 }
             },
