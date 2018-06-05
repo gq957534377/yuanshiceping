@@ -21,10 +21,10 @@ class PayController extends Controller
     {
         $data = $request->all();
         // 判断价格
-        if($data['price_level'] == 3) {
+        if($data['price_level'] == "3") {
             $paid_price = $data['activity_price'];
 
-        } else if($data['price_level'] == 2){
+        } else if($data['price_level'] == "2"){
             $paid_price = $data['price'];
         } else {
             $paid_price = $data['price'];
