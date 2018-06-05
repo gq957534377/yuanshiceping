@@ -140,6 +140,8 @@ class WechatController extends Controller
                                     return "客服电话：400-101-9859";
                                 case 'shang_wu_he_zuo':
                                     return "shang_wu_he_zuo";
+                                case 'preview':
+                                    return '';
                                 case 'dev':
                                     return '该功能开发中，敬请期待！';
                             }
@@ -205,7 +207,7 @@ class WechatController extends Controller
                     [
                         "name" => "课程预告",
                         "type" => "click",
-                        "key" => 'dev',
+                        "key" => 'preview',
                     ],
                     [
                         "name" => "课程回访",
@@ -232,7 +234,7 @@ class WechatController extends Controller
                         "name" => "基石测评",
                         "url" => "https://api.jishiceping.com/mini_report_home",
                         "appid" => config('services.media.app_id'),
-                        "pagepath" => "pages/index/index"
+                        "pagepath" => "pages/home/home"
                     ],
                 ]
             ],
