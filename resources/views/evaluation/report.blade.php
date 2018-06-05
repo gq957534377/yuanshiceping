@@ -18,6 +18,7 @@
         var potentials = {!! json_encode($potentials) !!} //潜能
         var interests = {!! json_encode($interests) !!} //兴趣
         var shakes = {!! json_encode($shakes) !!} //型格
+        var qualities = {!! json_encode($qualities) !!} //素质
 
         var potential_grades = {!! json_encode($potential_grades) !!} //潜能得分
         var quality_grades = {!! json_encode($quality_grades) !!} //素质模型得分
@@ -39,12 +40,9 @@
     <div class="row-fluid" id="sy">
         <div class="col-xs-12">
             <div class="cover">
-                <div class="created_at_block">
-                    <p class="col-xs-12 created_at text-right">{{ date('Y-m-d', $report->created_at) }}</p>
-                    <p class="col-xs-12 created_at text-right">生成</p>
-                </div>
-                <div class="col-xs-8 col-xs-offset-2">
-                    <img class="img-responsive center-block" alt="340x656" src="{{ URL::asset('images/cover.png') }}" />
+
+                <div class="col-xs-12">
+                    <img class="img-responsive center-block" alt="340x656" src="{{ URL::asset('images/logo_cover.png') }}" />
                 </div>
                 <div class="col-xs-12 clearfix user-info">
                     <div>
@@ -57,7 +55,9 @@
                     <div>
                         <i class="blue-under-line"></i>
                     </div>
-
+                    <div class="created_at_block">
+                        <p class="font24 color35">{{ date('Y-m-d', $report->created_at) }}生成</p>
+                    </div>
 
 
                 </div>
@@ -70,104 +70,230 @@
     <div id="qy" class="row-fluid">
         <div class="col-xs-12">
             <div class="preface">
+
                 <div class="zc-title">
-                    <img src="{{ URL::asset('images/blue-line.png') }}" alt="" class="img-responsive">
-                    <span>前言</span>
+                    <div class="zc-title-bg">
+                        <div class="zc-title-text">前言</div>
+                    </div>
                 </div>
                 <div class="col-xs-12 clearfix">
-                    <p>成功心理学的最新研究发现：在外部条件给定的前提下，一个人能否成功，关键在于能否准确识别并全力发挥其天生优势——<span class="emphasis">天赋和性格</span>。</p>
-                    <p>“一母生九子，九子各不同。”每个人都有自己的天赋，就如同每个人都有自己的性格一样，每个人在自己的天赋和与性格匹配的方面学习进步最快、成长空间、潜力最大，能够获得的成就也最大；相反，如果一个人一直在自己的短板、不适合自己性格的方面去努力，只会让自己深陷于泥潭之中，丧失信心、痛苦、挣扎、没有价值感，更谈不上成功！</p>
-                    <p>美国总统罗斯福曾说过：“成功者大都不是天才，他们只是一些有着普普通通品质的人。但他们在适合自己性格的工作中，充分挖掘了自己这些普普通通的品质，从而达到了一个不一般的程度。”</p>
-                    <p>那么自己的性格特点是什么？天赋又是什么？什么才是适合自己的？</p>
-                    <p>90%的高中生不知道自己要学什么专业，适合学什么专业！本测评最大的价值是创始团队用10年的时间潜心研发，并通过为世界500强企业、国内知名企业做人才甄选与评鉴，人才适岗度、胜任能力评估等人力资源系统咨询服务中，不断的搜集与分析各行、各业、各岗位优秀模型，不断的应用与印证，而取得的专业成果，以帮助高中生认知自己、发现自己、选择最适合自己的专业！为高中生未来的成功奠定基石。</p>
-                </div>
-                <div class="col-xs-12">
-                    <p class="slogan">没有最好的专业，只有最适合的专业！</p>
-                    <p class="slogan">你特别的聪明才智就藏在你的性格天赋里！</p>
-                    <p class="slogan">选择大于努力！发现自我，成就未来！</p>
-                </div>
-                <div class="col-xs-12">
-                    <p class="zc-sub-title text-center black888 font30">报告的解读</p>
-                    <p class="zc-h1 text-center">潜能=性格+天赋</p>
-                    <div class="" style="margin-bottom: 3rem">
-                        <i class="blue-under-line center-block"></i>
+                    <p>成功心理学的最新研究发现：在外部条件给定的前提下，一个人能否成功，关键在于能否准确识别并全力发挥其天生优势</p>
+                    <div class="tfhxg">
+                        <div class="tfhxg-text emphasis">天赋和性格</div>
                     </div>
+                    <p>这些取得突出成就的人并不是具备什么天赋异禀的天才而是能够把自己的优势潜能在适合自己的领域中不断的应用和发挥从而获得比常人更大的成功！</p>
+                    <p class="font32 orange">所以自己的优势、潜能、性格是什么？适合在什么专业和领域去发展是对个人的成功至关重要的！</p>
+                    <p>高考专业选择时90%的人都在犯的一个错误——以未来的“钱途”或者个人的兴趣来作为选择专业的根据。这是非常不全面的、甚至是短浅的。今天这个专业赚钱多不代表四年以后依然如此，即使四年以后依然赚钱多但并不代表你的孩子做这行也能赚到钱。同样依据个人的兴趣来选择专业是非常片面的，每个人的兴趣可能会随着经历而变化，尤其高中生这一年龄段社会阅历较少，对自己兴趣的认知是比较表面的，要把兴趣当职业那是需要有性格、天赋、优势等基石测评统称为“潜能”来做支撑的，不是一件简单的事情。为什么很多人把兴趣当职业时会发现自己连人生的唯一的乐趣都被剥夺了呢？原因很简单，那是因为他不具备兴趣所对应的潜能，所以越做越难受、越做越痛苦。那也有一少部分人把自己的兴趣当职业并且取得很好的成就，那是因为他们具备支撑兴趣所对应的潜能。</p>
+                </div>
+                <div class="col-xs-12">
+                    <div class="say font32 blue">
+                        “世上没有绝对的庸才，只有放错位置的人才”。一个人做技术是非常平庸甚至糟糕的，但他可能很适合做与人打交道的职业并能做到优秀。如果在选择专业时不能根据自己的天赋、潜能、性格相匹配，那么就算你具有再大的潜能也无从得到释放和发挥。
+                    </div>
+                    <div class="say font32 blue">
+                        三百六十行，行行出状元！没有最好的专业，只有最适合的专业！没有不能成就人的专业，只有选错专业的人！
+                    </div>
+
+                    <div class="say002 font32">
+                        请您详细阅读此报告，深刻的认知自己，才能在未来的人生职场中占据一个高的起点！
+                    </div>
+
+                </div>
+                <div class="col-xs-12">
+                    <div class="triangle001"></div>
+                    <div class="triangle002"></div>
+
                 </div>
             </div>
 
         </div>
     </div>
 
-    <div class="row-fluid zc">
+    <div class="row-fluid">
         <div class="col-xs-12 contents">
-            <div id="ml" class="zc-title">
-                <img src="{{ URL::asset('images/blue-line.png') }}" alt="" class="img-responsive">
-                <span>目录</span>
+            <div class="zc-title">
+                <div class="zc-title-bg">
+                    <div class="zc-title-text">目录</div>
+                </div>
             </div>
             <ul class="col-xs-12 font28 color333">
-                <li><i></i>个人潜能分布总图（概况）</li>
+                <li><i></i>个人高匹配度的专业推荐</li>
+                <li><i></i>个人28项素质模型</li>
+                <li><i></i>个人潜能分布概况</li>
                 <li><i></i>最佳潜能解析</li>
                 <li><i></i>第二潜能解析</li>
                 <li><i></i>第三潜能解析</li>
-                <li><i></i>个人短板解析2个</li>
+                <li><i></i>个人短板解析</li>
                 <li><i></i>个人专业兴趣解析</li>
                 <li><i></i>个人潜能与个人兴趣最佳匹配点解析</li>
-                <li><i></i>个人高匹配度的专业推荐</li>
                 <li><i></i>所推荐专业的详情与未来就业空间</li>
             </ul>
         </div>
     </div>
 
-    <div id="qn" class="row-fluid zc">
+    <div class="row-fluid">
         <div class="col-xs-12">
-            <div class="zc-h2 font30 color333 bold"><i><img src="{{ URL::asset('images/icon_grqn.png') }}" alt=""></i>个人潜能分布总图</div>
-            <div class="zc-content font26 color666">
-                潜能是人在其性格、天赋和经历相结合下所长期培养出来的，具有在某领域做出突出成就的潜质，是一个人在哪些方面发展能够事半功倍的精确指导。每个人都具有九大类潜能，具体分布因人而异。潜能与性格、天赋和价值取向息息相关，难以在短期内改变，而且强加改变往往使本来的优势潜能不在具有优势，而本来的短板也不会有多大的提升等不可预测的后果，所以强烈建议测试者和家长：关注和培养TA的优势潜能！扬长避短！
-            </div>
-
-            <div class="radar" id="potential_grades"></div>
-
-            <div class="comment">
-                @foreach($level_grades as $level_grade)
-                <div>
-                    <h1 class="emphasis"><i></i>{{ trim($level_grade['name'], '/') }}</h1>
-                    <img src="{{ URL::asset($level_grade['star_img']) }}" alt="">
-                    <p class="font26 color666">{{ $level_grade['description'] }}</p>
+            <div class="zc-title002">
+                <div class="zc-title002-bg">
+                    <div class="zc-title002-text">个人高匹配度的专业推荐</div>
                 </div>
-                @endforeach
-
             </div>
-
+            <div class="say font26 color666">
+                根据对个人的性格、天赋、行为模式、风格及兴趣等多维度的综合分析与印证，以下你最适合的、最能发挥优势、最容取得突出成就的专业推荐。
+            </div>
         </div>
+
     </div>
     <div class="row-fluid zc">
         <div class="col-xs-12">
-
-            <div class="zc-cat-title font29 color333 bold"><i><img src="{{ URL::asset('images/icon_zjqn.png') }}" alt=""></i>最佳潜能解析</div>
-            <div class="zc-content font26 color666">
-                最佳潜能是指个人最本能和最具有优势的潜能，是你未来发展道路上会帮助你取得最大成就的高潜力素养，在此方面应该尽快下最大力度培养与充分发挥，以便不断的沉淀此方面的能力，进而早日获得突出成就
+            <div class="major">
+                <div class="zypp font26 color35">
+                    最佳专业匹配
+                </div>
+                @foreach($major_grades as $key => $major_grade)
+                    @if($key < 10)
+                        <div class="major_line font28 color35"><span class="code">{{ $majors[$major_grade['major_id']]['code'] }}</span><span class="school">{{ $majors[$major_grade['major_id']]['name'] }}</span></div>
+                    @endif
+                @endforeach
             </div>
-            <div class="zc-result">
-                <p class="font26 color888">你的最佳潜能是：<span class="emphasis">{{ $best_potential_name = $potentials[$potential_grades[0]['potential_id']]['name'] }}</span></p>
-                <p class="font26 color666">主要表现在：</p>
-                <p class="font26 color35">{{ $potentials[$potential_grades[0]['potential_id']]['description'] }}</p>
+            <div class="major">
+                <div class="zypp font26 color35">
+                    较佳专业匹配
+                </div>
+                @foreach($major_grades as $key => $major_grade)
+                    @if($key < 20 && $key > 10)
+                        <div class="major_line font28 color35"><span class="code">{{ $majors[$major_grade['major_id']]['code'] }}</span><span class="school">{{ $majors[$major_grade['major_id']]['name'] }}</span></div>
+                    @endif
+                @endforeach
+            </div>
+            <div class="major">
+                <div class="warning">
+
+                </div>
+
+                <p class="font26 color35">-尺有所长，寸有所短，选择专业应谨遵扬长避短，以下
+                    是 <span class="zc-red">你最不适合、最不具备优势、应该避免选择的专业</span>：</p>
+                @foreach(array_reverse($major_grades->toArray()) as $key => $major_grade)
+                    @if($key < 10)
+                        <div class="major_line font28 color35"><span class="code">{{ $majors[$major_grade['major_id']]['code'] }}</span><span class="school">{{ $majors[$major_grade['major_id']]['name'] }}</span></div>
+                    @endif
+                @endforeach
             </div>
 
+
+        </div>
+
+    </div>
+    <div class="row-fluid">
+        <div class="col-xs-12">
+            <div class="zc-title002">
+                <div class="zc-title002-bg">
+                    <div class="zc-title002-text">个人28项素质模型</div>
+                </div>
+            </div>
+            <div class="bar-long" id="quality">
+
+            </div>
+        </div>
+
+    </div>
+    <div class="row-fluid">
+        <div class="col-xs-12">
+            <div class="zc-title002">
+                <div class="zc-title002-bg">
+                    <div class="zc-title002-text">个人潜能分布概况</div>
+                </div>
+            </div>
+            <div class="say font26 color666">
+                潜能是人在其性格、天赋和经历相结合下所长期培养出来的，具有在某领域做出突出成就的潜质，是一个人在哪些方面发展能够事半功倍的精确指导。每个人都具有九大类潜能，具体分布因人而异。潜能与性格、天赋和价值取向息息相关，难以在短期内改变，而且强加改变往往使本来的优势潜能不在具有优势，而本来的短板也不会有多大的提升等不可预测的后果，所以强烈建议测试者和家长：关注和培养TA的优势潜能！扬长避短！
+            </div>
+            <div class="radar" id="potential_grades"></div>
+            <div class="comment">
+                <div class="star_5">
+                    <div class="star_5_title">
+                        {{ trim($level_grades[0]['name'], '/') }}
+                    </div>
+                    <img src="{{ URL::asset($level_grades[0]['star_img']) }}" alt="">
+                    <p class="star_5_text blue font26">这是你  <span class="font36">最强大</span>  的潜能，</p>
+                    <p class="star_5_text blue font26">需要好好发挥和针对性的培养。</p>
+                </div>
+
+                <div class="star_4">
+                    <div class="star_4_title">
+                        @foreach(explode('/', trim($level_grades[1]['name'], '/')) as $name)
+                        <p>{{ $name }}</p>
+                        @endforeach
+                    </div>
+                    <img src="{{ URL::asset($level_grades[1]['star_img']) }}" alt="">
+                    <p class="star_5_text font26">这是你  <span class="font36">非常强大</span>  的潜能，</p>
+                    <p class="star_5_text font26">需要多多磨练</p>
+                </div>
+                <div class="star_3">
+                    <div class="star_3_title">
+                        <p>
+                        @foreach(explode('/', trim($level_grades[2]['name'], '/')) as $key => $name)
+
+                            <span>{{ $name }}</span>
+                            @if ($key==1)
+                        </p>
+                        <p>
+                                @endif
+                                @endforeach
+                        </p>
+
+                    </div>
+                    <img src="{{ URL::asset($level_grades[2]['star_img']) }}" alt="">
+                    <p class="star_5_text font26">这是你  <span class="font36">一般</span>  的潜能，</p>
+                    <p class="star_5_text font26">对你会有较大的帮助，但不具有至关重要的决定性</p>
+                </div>
+
+                <div class="warning">
+
+                </div>
+                <div class="star_2">
+                    <div class="star_2_title">
+                        @foreach(explode('/', trim($level_grades[3]['name'], '/')) as $name)
+                            <p>{{ $name }}</p>
+                        @endforeach
+                    </div>
+                    <img src="{{ URL::asset($level_grades[3]['star_img']) }}" alt="">
+                    <p class="star_5_text font26">这是你  <span class="font36">最不具备优势</span>  的领域，</p>
+                    <p class="star_5_text font26">建议最好不要涉及该专业以及从事该类职业，因为这是你天生性格的短板，要改变自己的性格是非常困难，且需要付出非常大代价的，当你在弥补短板的时候会同时导致你最大优势的丧失，这会对你产生不好的影响——</p>
+                    <p class="star_5_text font26">如：自信心的打击，成长速度缓慢等</p>
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+    <div class="row-fluid zc">
+        <div class="col-xs-12">
+            <div class="zc-title002">
+                <div class="zc-title002-bg">
+                    <div class="zc-title002-text">最佳潜能解析</div>
+                </div>
+            </div>
+            <div class="say font26 color666">
+                最佳潜能是指个人最本能和最具有优势的潜能，是你未来发展道路上会帮助你取得最大成就的高潜力素
+                养，在此方面应该尽快下最大力度培养与充分发挥，以便不断的沉淀此方面的能力，进而早日获得突出成就
+            </div>
+            <div class="font34 text-center bold">你的最佳潜能是</div>
+            <div class="qianneng">{{ $best_potential_name = $potentials[$potential_grades[0]['potential_id']]['name'] }}</div>
             <div class="radar" id="best_potential">
 
 
             </div>
-
             <div class="comment">
-                <p class="font26 color35">你的最佳潜能 <span class="emphasis">{{ $best_potential_name }}</span> 优势具体体现在:</p>
+                <p class="font26 comment_title">你的最佳潜能 <span class="font32">{{ $best_potential_name }}</span> 优势具体体现在:</p>
                 @foreach($best_potential_sorted_quality_grades as $key => $best_potential_sorted_quality_grade)
                     @if($key < (count($best_potential_sorted_quality_grades)-1))
-                <p class="font28 color35"><i></i>{{ \App\Models\Quality::getPrefix($best_potential_sorted_quality_grade['quality_grade']) }}{{ $best_potential_has_qualities[$best_potential_sorted_quality_grade['quality_id']]['quality_description'] }}</p>
+                        <p class="font28 color35"><i></i>{{ \App\Models\Quality::getPrefix($best_potential_sorted_quality_grade['quality_grade']) }}{{ $best_potential_has_qualities[$best_potential_sorted_quality_grade['quality_id']]['quality_description'] }}</p>
                     @endif
                 @endforeach
 
                 <div>
-                    <p class="font26 color35"><img class="one-img" src="{{ URL::asset('images/icon_warning.png') }}" alt="">以下是你最佳潜能 <span class="emphasis">{{ $best_potential_name }}</span> 中的较弱势的素质能力，
+                    <div class="warning"></div>
+                    <p class="font26 color35">以下是你最佳潜能 <span class="emphasis">{{ $best_potential_name }}</span> 中的较弱势的素质能力，
                         建议要重点针对性的进行提升，才能让你的最佳潜能得到
                         更加完美的体现：</p>
                     @foreach($best_potential_sorted_quality_grades as $key => $best_potential_sorted_quality_grade)
@@ -176,178 +302,218 @@
                         @endif
                     @endforeach
                 </div>
-                <p class="font26 color35">你的行为模式：</p>
+                <p class="xwms font26">你的行为模式：</p>
                 @foreach($best_potential_abilities as $ability)
-                <div>
-                    <h1 class="font32 blue bold">{{ $ability->name }}</h1>
-
-                    <p class="font28 color35"><i></i>{{ $ability->description }}</p>
-                </div>
-                @endforeach
-
-            </div>
-
-        </div>
-    </div>
-
-    <div class="row-fluid zc">
-        <div class="col-xs-12">
-            <div class="zc-cat-title font29 color333 bold"><i><img src="{{ URL::asset('images/icon_deqn.png') }}" alt=""></i>{{ $second_potential_name = $potentials[$potential_grades[1]['potential_id']]['name'] }}</div>
-            <div class="zc-content font26 color666">
-                第二潜能是个人在大部分情况下都会表现出来的优势和潜能，同时是对最佳潜能的强力补充，应该针对性培养和发挥，第二潜能也是你比较容易取得突出成就的领域。
-            </div>
-            <div class="zc-result">
-                <p class="font26 color888">你的第二潜能是：<span class="emphasis">{{ $second_potential_name }}</span></p>
-                <p class="font26 color666">主要表现在：</p>
-                <p class="font26 color35">{{ $potentials[$potential_grades[1]['potential_id']]['description'] }}</p>
-            </div>
-
-            <div class="radar" id="second_potential"></div>
-
-            <div class="comment">
-                <p class="font26 color35">你的第二潜能 <span class="emphasis">{{ $second_potential_name }}</span> 优势具体体现在:</p>
-
-                @foreach($second_potential_sorted_quality_grades as $key => $second_potential_sorted_quality_grade)
-
-                        <p class="font28 color35"><i></i>{{ \App\Models\Quality::getPrefix($second_potential_sorted_quality_grade['quality_grade']) }}{{ $second_potential_has_qualities[$second_potential_sorted_quality_grade['quality_id']]['quality_description'] }}</p>
-
-                @endforeach
-
-                <p class="font26 color35">你的行为模式：</p>
-                @foreach($second_potential_abilities as $ability)
                     <div>
-                        <h1 class="font32 blue bold">{{ $ability->name }}</h1>
+                        <div class="yuan font32 bold">{{ $ability->name }}</div>
 
                         <p class="font28 color35"><i></i>{{ $ability->description }}</p>
                     </div>
                 @endforeach
 
+            </div>
+        </div>
+
+    </div>
+    <div class="row-fluid zc">
+        <div class="col-xs-12">
+            <div class="zc-title002">
+                <div class="zc-title002-bg">
+                    <div class="zc-title002-text">{{ $second_potential_name = $potentials[$potential_grades[1]['potential_id']]['name'] }}</div>
+                </div>
+            </div>
+            <div class="say font26 color666">
+                第二潜能是个人在大部分情况下都会表现出来的优势和潜能，同时是对最佳潜能的强力补充，应该针对性培养和发挥，第二潜能也是你比较容易取得突出成就的领域。
+            </div>
+            <div class="font34 text-center bold">你的第二潜能是</div>
+            <div class="qianneng">{{ $best_potential_name = $potentials[$potential_grades[1]['potential_id']]['name'] }}</div>
+            <div class="radar" id="second_potential">
+
 
             </div>
+            <div class="comment">
+                <p class="font26 comment_title">你的第二潜能 <span class="font32">{{ $best_potential_name }}</span> 优势具体体现在:</p>
+                @foreach($second_potential_sorted_quality_grades as $key => $second_potential_sorted_quality_grade)
 
+                    <p class="font28 color35"><i></i>{{ \App\Models\Quality::getPrefix($second_potential_sorted_quality_grade['quality_grade']) }}{{ $second_potential_has_qualities[$second_potential_sorted_quality_grade['quality_id']]['quality_description'] }}</p>
+
+                @endforeach
+
+
+                <p class="xwms font26">你的行为模式：</p>
+                @foreach($second_potential_abilities as $ability)
+                    <div>
+                        <div class="yuan font32 bold">{{ $ability->name }}</div>
+
+                        <p class="font28 color35"><i></i>{{ $ability->description }}</p>
+                    </div>
+                @endforeach
+
+            </div>
         </div>
+
     </div>
 
     <div class="row-fluid zc">
         <div class="col-xs-12">
-            <div class="zc-cat-title font29 color333 bold"><i><img src="{{ URL::asset('images/icon_dsqn.png') }}" alt=""></i>第三潜能解析</div>
-            <div class="zc-content font26 color666">
+            <div class="zc-title002">
+                <div class="zc-title002-bg">
+                    <div class="zc-title002-text">{{ $third_potential_name = $potentials[$potential_grades[2]['potential_id']]['name'] }}</div>
+                </div>
+            </div>
+            <div class="say font26 color666">
                 第三潜能是个人在多数情况下会显现出来的优势和潜能，也是对最佳潜能和第二潜能的补充，也应着重培养和发挥，以保证在全方位发展，具有更大的成长空间。
             </div>
-            <div class="zc-result">
-                <p class="font26 color888">你的第三潜能是：<span class="emphasis">{{ $third_potential_name = $potentials[$potential_grades[2]['potential_id']]['name'] }}</span></p>
-                <p class="font26 color666">主要表现在：</p>
-                <p class="font26 color35">{{ $potentials[$potential_grades[2]['potential_id']]['description'] }}</p>
+            <div class="font34 text-center bold">你的第三潜能是</div>
+            <div class="qianneng">{{ $third_potential_name }}</div>
+            <div class="radar" id="third_potential">
+
+
             </div>
-
-            <div class="radar" id="third_potential"></div>
-
             <div class="comment">
-                <p class="font26 color35">你的第三潜能 <span class="emphasis">{{ $third_potential_name }}</span> 优势具体体现在:</p>
+                <p class="font26 comment_title">你的第三潜能 <span class="font32">{{ $third_potential_name }}</span> 优势具体体现在:</p>
                 @foreach($third_potential_sorted_quality_grades as $key => $third_potential_sorted_quality_grade)
 
                     <p class="font28 color35"><i></i>{{ \App\Models\Quality::getPrefix($third_potential_sorted_quality_grade['quality_grade']) }}{{ $third_potential_has_qualities[$third_potential_sorted_quality_grade['quality_id']]['quality_description'] }}</p>
 
                 @endforeach
-                <div id="db">
-                    <p class="font26 color35"><img class="one-img" src="{{ URL::asset('images/icon_grdb.png') }}" alt="">个人短板分析</p>
-                    <p class="font28 color35">个人短板是指个人最不具备、最欠缺的潜能，是你未来发展道路上应该避免选择的专业和避免从事的职业。长期在短板领域投入精力不仅会让自己承担更大的精神与心理压力，同时无疑是在用自己的短板与他人的优势做比拼，长此以往，会让人逐渐丧失信心，痛苦、挣扎、没有价值感等感觉会随之而来，更谈不上成功！建议：选择的专业和未来从事的职业尽量避开需要该潜能的领域。</p>
-                </div>
-                <div class="zc-result">
-                    <p class="font26 color888">你的第一个短板潜能是：<span class="emphasis">{{ $short_first_potential_name = $potentials[$potential_grades[8]['potential_id']]['name'] }}</span></p>
-                    <p class="font26 color666">主要表现在：</p>
-                    <p class="font26 color35">{{ $potentials[$potential_grades[8]['potential_id']]['shortcoming'] }}</p>
-                </div>
-                <div class="radar" id="short_first_potential"></div>
-                <div class="zc-result">
-                    <p class="font26 color888">你的第一个短板潜能 <span class="emphasis">{{ $short_first_potential_name }}</span> 最欠缺的能力是:</p>
 
-                    @foreach($short_first_potential_sorted_quality_grades as $key => $short_first_potential_sorted_quality_grade)
-                        @if($key == (count($short_first_potential_sorted_quality_grades)-1))
-                            <p class="font26 color35"><i></i>{{ $short_first_potential_has_qualities[$short_first_potential_sorted_quality_grade['quality_id']]['quality_description'] }}</p>
-                        @endif
-                    @endforeach
-                </div>
+
 
             </div>
+        </div>
 
-            <div class="comment">
-                <p class="font26 color35">你的第二个短板潜能 <span class="emphasis">{{ $short_second_potential_name = $potentials[$potential_grades[7]['potential_id']]['name'] }}</span> </p>
+    </div>
 
-                <p class="font28 color35">主要表现在:</p>
-                <p class="font28 color35">{{ $potentials[$potential_grades[7]['potential_id']]['shortcoming'] }}</p>
-
-
-                <div class="radar" id="short_second_potential"></div>
-                <div class="zc-result">
-                    <p class="font26 color888">你的第二个短板潜能 <span class="emphasis">{{ $short_second_potential_name }}</span> 最欠缺的能力是:</p>
-
-                    @foreach($short_second_potential_sorted_quality_grades as $key => $short_second_potential_sorted_quality_grade)
-                        @if($key == (count($short_second_potential_sorted_quality_grades)-1))
-                            <p class="font26 color35"><i></i>{{ $short_second_potential_has_qualities[$short_second_potential_sorted_quality_grade['quality_id']]['quality_description'] }}</p>
-                        @endif
-                    @endforeach
+    <div class="row-fluid zc">
+        <div class="col-xs-12">
+            <div class="zc-title002">
+                <div class="zc-title002-bg">
+                    <div class="zc-title002-text">个人短板分析</div>
                 </div>
-                <div id="xq">
-                    <p class="font26 color35"><img class="one-img" src="{{ URL::asset('images/icon_grxq.png') }}" alt="">个人兴趣分析</p>
-                    <p class="font28 color35">个人潜能与个人兴趣最佳匹配点主要是从个人最具备的潜能和个人最感兴趣的领域中寻找最匹配的交集之处。本维度旨在寻找到个人既感兴趣又有潜能优势可以长远发展的领域。但若找不到最佳匹配点，建议以个人潜能为最重要的选择专业指标，因为个人潜能在高中生这一年龄阶段已定型且相对清晰，并且后天较难改变；但兴趣却具有不稳定性、可能会随着经历发生变化或者个人虽然感兴趣但并不具备相应的潜能，难以奠定成功的基础。</p>
-                </div>
-                <div class="radar" id="interest_grades"></div>
-                <p class="font26 color35">
-                    个人兴趣是专业投入度的基石，至少要做到不排斥，以下的
-                    兴趣就是你基本不会排斥的前三类兴趣，有利于专业的选择。
-                </p>
+            </div>
+            <div class="say font26 color666">
+                个人短板是指个人最不具备、最欠缺的潜能，是你未来发展道路上应该避免选择的专业和避免从事的职业。长期在短板领域投入精力不仅会让自己承担更大的精神与心理压力，同时无疑是在用自己的短板与他人的优势做比拼，长此以往，会让人逐渐丧失信心，痛苦、挣扎、没有价值感等感觉会随之而来，更谈不上成功！建议：选择的专业和未来从事的职业尽量避开需要该潜能的领域。
+            </div>
 
-                @foreach($interest_grades as $key => $interest_grade)
-                    @if($key < 3)
-                <div class="interest">
-                    <h1 class="emphasis"><i></i>{{ $interests[$interest_grade['interest_id']]['name'] }}</h1>
-                    <p class="font26 color35">
-                        主要表现在：
-                    </p>
-                    <p class="font26 color35">{{ $interests[$interest_grade['interest_id']]['detail'] }}
-                    </p>
-                    <p class="font26 color666">
-                        合适的典型职业：
-                    </p>
+            <div class="duanban-title font34 text-center bold">你的个人短板是</div>
+            <div class="duanban">{{ $short_first_potential_name = $potentials[$potential_grades[8]['potential_id']]['name'] }}</div>
+            <div class="zc-result">
+                <p class="font26 color666">主要表现在：</p>
+                <p class="font26 color35">{{ $potentials[$potential_grades[8]['potential_id']]['shortcoming'] }}</p>
+            </div>
+            <div class="radar" id="short_first_potential"></div>
+            <div class="zc-result">
+                <p class="qqnl font26">你的第一个短板潜能 <span class="font32">{{ $short_first_potential_name }}</span> 最欠缺的能力是:</p>
 
-                    <p class="font26 color666">{{ $interests[$interest_grade['interest_id']]['career'] }}</p>
-                </div>
+                @foreach($short_first_potential_sorted_quality_grades as $key => $short_first_potential_sorted_quality_grade)
+                    @if($key == (count($short_first_potential_sorted_quality_grades)-1))
+                        <p class="font26 color35"><i></i>{{ $short_first_potential_has_qualities[$short_first_potential_sorted_quality_grade['quality_id']]['quality_description'] }}</p>
                     @endif
-
                 @endforeach
+            </div>
 
+            <div class="duanban-title font34 text-center bold">你的第二个个人短板潜能是</div>
+            <div class="duanban">{{ $short_first_potential_name = $potentials[$potential_grades[7]['potential_id']]['name'] }}</div>
+            <div class="zc-result">
+                <p class="font26 color666">主要表现在：</p>
+                <p class="font26 color35">{{ $potentials[$potential_grades[7]['potential_id']]['shortcoming'] }}</p>
+            </div>
+            <div class="radar" id="short_second_potential"></div>
+            <div class="zc-result">
+                <p class="qqnl font26">你的第二个短板潜能 <span class="font32">{{ $short_first_potential_name }}</span> 最欠缺的能力是:</p>
 
-
-                <div>
-                    <p class="font26 color35"><img class="one-img" src="{{ URL::asset('images/icon_ppd.png') }}" alt="">个人潜能与个人兴趣最佳匹配点解析</p>
-                    <p class="font28 color35">个人短板是指个人最不具备、最欠缺的潜能，是你未来发展道路上应该避免选择的专业和避免从事的职业。长期在短板领域投入精力不仅会让自己承担更大的精神与心理压力，同时无疑是在用自己的短板与他人的优势做比拼，长此以往，会让人逐渐丧失信心，痛苦、挣扎、没有价值感等感觉会随之而来，更谈不上成功！建议：选择的专业和未来从事的职业尽量避开需要该潜能的领域。</p>
-                </div>
-                <div class="bar" id="shake"></div>
-                <p class="font26 color35">
-                    你的潜能和兴趣进行对比分析后，在专业选择的过程中能够
-                    让你既有潜能的支撑匹配，同时又在兴趣方面也不会排斥的
-                    匹配点如下：
-                </p>
-
-                @foreach($shake_grades as $key => $shake_grade)
-                    @if($key < 3)
-                <div class="shake">
-                    <h1 class="emphasis"><i></i>{{ $shakes[$shake_grade['shake_id']]['name'] }}</h1>
-                    <p class="font26 color35">
-                        主要表现在：
-                    </p>
-                    <p class="font26 color35">{{ $shakes[$shake_grade['shake_id']]['description'] }}</p>
-
-                </div>
+                @foreach($short_second_potential_sorted_quality_grades as $key => $short_second_potential_sorted_quality_grade)
+                    @if($key == (count($short_second_potential_sorted_quality_grades)-1))
+                        <p class="font26 color35"><i></i>{{ $short_second_potential_has_qualities[$short_second_potential_sorted_quality_grade['quality_id']]['quality_description'] }}</p>
                     @endif
-
                 @endforeach
-
-                <div id="tj">
-                    <p class="font26 color35"><img class="one-img" src="{{ URL::asset('images/icon_tuijian.png') }}" alt="">个人高匹配度的专业推荐</p>
-                    <p class="font28 color35">根据对个人的性格、天赋、行为模式、风格及兴趣等多维度的综合分析与印证，以下你最适合的、最能发挥优势、最容取得突出成就的专业推荐。</p>
+            </div>
+        </div>
+    </div>
+    <div class="row-fluid zc">
+        <div class="col-xs-12">
+            <div class="zc-title002">
+                <div class="zc-title002-bg">
+                    <div class="zc-title002-text">个人专业兴趣解析</div>
                 </div>
+            </div>
+            <div class="say font26 color666">
+                个人潜能与个人兴趣最佳匹配点主要是从个人最具备的潜能和个人最感兴趣的领域中寻找最匹配的交集之处。本维度旨在寻找到个人既感兴趣又有潜能优势可以长远发展的领域。但若找不到最佳匹配点，建议以个人潜能为最重要的选择专业指标，因为个人潜能在高中生这一年龄阶段已定型且相对清晰，并且后天较难改变；但兴趣却具有不稳定性、可能会随着经历发生变化或者个人虽然感兴趣但并不具备相应的潜能，难以奠定成功的基础。
+            </div>
+            <div class="radar" id="interest_grades"></div>
+            <p class="font26 color35 bold">
+                个人兴趣是专业投入度的基石，至少要做到不排斥，以下的
+                兴趣就是你基本不会排斥的前三类兴趣，有利于专业的选择。
+            </p>
+            <div class="triangle001"></div>
+            @foreach($interest_grades as $key => $interest_grade)
+                @if($key < 3)
+                    <div class="interest">
+                        <div class="star_5_title">
+                            {{ $interests[$interest_grade['interest_id']]['name'] }}
+                        </div>
+
+                        <p class="font26 color35">
+                            主要表现在：
+                        </p>
+                        <p class="font26 color35">{{ $interests[$interest_grade['interest_id']]['detail'] }}
+                        </p>
+                        <p class="font26 color666">
+                            合适的典型职业：
+                        </p>
+
+                        <p class="font26 color666 bold">{{ $interests[$interest_grade['interest_id']]['career'] }}</p>
+                    </div>
+                @endif
+
+            @endforeach
+
+        </div>
+    </div>
+
+    <div class="row-fluid zc">
+        <div class="col-xs-12">
+            <div class="zc-title003 font28">
+                        <p class="text003-1">个人潜能与个人兴趣</p>
+                        <p class="text003-2">最佳匹配点解析匹配解析</p>
+
+            </div>
+            <div class="say font26 color666">
+                个人潜能与个人兴趣最佳匹配点主要是从个人最具备的潜能和个人最感兴趣的领域中寻找最匹配的交集之处。本维度旨在寻找到个人既感兴趣又有潜能优势可以长远发展的领域。但若找不到最佳匹配点，建议以个人潜能为最重要的选择专业指标，因为个人潜能在高中生这一年龄阶段已定型且相对清晰，并且后天较难改变；但兴趣却具有不稳定性、可能会随着经历发生变化或者个人虽然感兴趣但并不具备相应的潜能，难以奠定成功的基础。
+            </div>
+            <div class="bar" id="shake"></div>
+            <p class="font26 color35">
+                你的潜能和兴趣进行对比分析后，在专业选择的过程中能够
+                让你既有潜能的支撑匹配，同时又在兴趣方面也不会排斥的
+                匹配点如下：
+            </p>
+
+            @foreach($shake_grades as $key => $shake_grade)
+                @if($key < 3)
+                    <div class="interest">
+                        <div class="star_5_title">{{ $shakes[$shake_grade['shake_id']]['name'] }}</div>
+                        <p class="font26 color35">
+                            主要表现在：
+                        </p>
+                        <p class="font26 color35 bold">{{ $shakes[$shake_grade['shake_id']]['description'] }}</p>
+
+                    </div>
+                @endif
+
+            @endforeach
+        </div>
+    </div>
+
+    <div class="row-fluid zc">
+        <div class="col-xs-12">
+            <div class="zc-title003 font28">
+                <p class="text003-1">所推荐专业的详情</p>
+                <p class="text003-2">与未来就业空间</p>
+            </div>
+            <div class="major-10">
+                <p class="font29 color333 bold">以下为</p>
+                <p class="font29 color333 bold">个人最佳匹配的10个专业的详情与未来就业空间</p>
             </div>
 
         </div>
@@ -355,47 +521,55 @@
 
     <div class="row-fluid zc">
         <div class="col-xs-12">
-            <div class="major">
-                <p class="font26 color35">-最佳专业匹配如下</p>
-                @foreach($major_grades as $key => $major_grade)
-                    @if($key < 20)
-                <p class="font28 color35"><span class="code">{{ $majors[$major_grade['major_id']]['code'] }}</span><span class="school">{{ $majors[$major_grade['major_id']]['name'] }}</span></p>
-                    @endif
-                @endforeach
-            </div>
-
-            <div class="major">
-                <p class="font26 color35">-尺有所长，寸有所短，选择专业应谨遵扬长避短，以下
-                    是 <span class="zc-red">你最不适合、最不具备优势、应该避免选择的专业</span>：</p>
-                @foreach(array_reverse($major_grades->toArray()) as $key => $major_grade)
-                    @if($key < 20)
-                        <p class="font28 color35"><span class="code">{{ $majors[$major_grade['major_id']]['code'] }}</span><span class="school">{{ $majors[$major_grade['major_id']]['name'] }}</span></p>
-                    @endif
-                @endforeach
-            </div>
-
-
+            @foreach($major_grades as $key => $major_grade)
+                @if($key < 10)
+                    <div class="major-info">
+                        <div class="major-title zytj">
+                            <p class="font29">{{ $majors[$major_grade['major_id']]['name'] }}</p>
+                            <p class="font29">{{ $majors[$major_grade['major_id']]['code'] }}</p>
+                        </div>
+                        <div class="major-title2 font29 color333 zyms">专业描述</div>
+                        <div class="major-content font28 color666">{{ $major_details[$major_grade['major_id']]['description'] }}</div>
+                        <div class="major-title2 font29 color333 zyms">专业设置目的</div>
+                        <div class="major-content font28 color666">{{ $major_details[$major_grade['major_id']]['goal'] }}</div>
+                        <div class="major-title2 font29 color333 zyms">主修课程</div>
+                        <div class="major-content font28 color666">{{ $major_details[$major_grade['major_id']]['course'] }}</div>
+                        <div class="major-title2 font29 color333 zyms">未来就业空间</div>
+                        <div class="major-content font28 color666">{{ $major_details[$major_grade['major_id']]['career'] }}</div>
+                    </div>
+                @endif
+            @endforeach
         </div>
-        {{--<div>--}}
-            {{--<p class="font26 color35"><img class="one-img" src="{{ URL::asset('images/icon_tuijian.png') }}" alt="">所推荐专业的详情与未来就业</p>--}}
-            {{--<p class="font28 color35">-以下为个人最佳匹配的10个专业的详情与未来就业空间</p>--}}
-        {{--</div>--}}
+    </div>
+
+
+
+</div>
+
+<div class="row-fluid zc">
+    <div class="col-xs-12">
+        <div class="footer">
+            <div class="jieshu">感谢您的测评与阅读！</div>
+            <div class="font34 color333">
+                理想的结果一定是从周密的准备开始，现在你已经深刻的认知了自己和适合自己的专业，下一步就应该去寻找这些适合你的专业在哪些学校中开办，他们在学校中的地位如何，然后根据自己的分数去匹配院校。
+            </div>
+            <div class="jieshu">最后，祝您学业顺利，前程似锦！</div>
+        </div>
+
     </div>
 </div>
-
-
-<div class="nav">
-    <div class="nvb" href="#sy">报告导航</div>
-    <a class="nvb active" href="#sy">首页</a>
-    <a class="nvb" href="#qy">前言</a>
-    <a class="nvb" href="#ml">目录</a>
-    <a class="nvb" href="#qn">个人潜能</a>
-    <a class="nvb" href="#db">个人短板</a>
-    <a class="nvb" href="#xq">个人兴趣</a>
-    <a class="nvb" href="#tj">专业推荐</a>
-    <button class="nvb" id="btn-share">分享报告</button>
-    <button class="nvb" id="btn-home">回到首页</button>
-</div>
+{{--<div class="nav">--}}
+    {{--<div class="nvb" href="#sy">报告导航</div>--}}
+    {{--<a class="nvb active" href="#sy">首页</a>--}}
+    {{--<a class="nvb" href="#qy">前言</a>--}}
+    {{--<a class="nvb" href="#ml">目录</a>--}}
+    {{--<a class="nvb" href="#qn">个人潜能</a>--}}
+    {{--<a class="nvb" href="#db">个人短板</a>--}}
+    {{--<a class="nvb" href="#xq">个人兴趣</a>--}}
+    {{--<a class="nvb" href="#tj">专业推荐</a>--}}
+    {{--<button class="nvb" id="btn-share">分享报告</button>--}}
+    {{--<button class="nvb" id="btn-home">回到首页</button>--}}
+{{--</div>--}}
 <div class="switcher">
     <img style="width:100%;" src="{{ URL::asset('images/icon_nav.png') }}" >
 </div>

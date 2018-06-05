@@ -2,7 +2,10 @@ body {
     max-width: 750px;
     font-size: 62.5%;
     margin: auto auto;
+    line-height: 2rem;
+
 }
+
 .container-fluid {
     color: #353535;
     padding-left: 0;
@@ -16,7 +19,7 @@ body {
     background-color: #00479d;
 }
 .created_at_block {
-    margin-top: 3.2rem;
+    margin-top: 1.6rem;
 }
 .created_at_block .created_at {
     font-size: 1.2rem;
@@ -26,6 +29,9 @@ body {
 }
 .bold {
     font-weight: bold;
+}
+.font24 {
+    font-size: 1.2rem;
 }
 .font26 {
     font-size: 1.3rem;
@@ -41,6 +47,15 @@ body {
 }
 .font32 {
     font-size: 1.6rem;
+}
+.font34 {
+    font-size: 1.7rem;
+}
+.font36 {
+    font-size: 1.8rem;
+}
+.orange {
+    color: #ffb400;
 }
 .blue {
     color: #00479d;
@@ -78,23 +93,48 @@ margin-left: 2rem;
 }
 
 .zc-title {
-    position: relative;
-    margin-bottom: 3rem;
-}
-.zc-title img{
+    text-align: center;
+    margin-bottom: 2.5rem;
 
 }
-.zc-title span {
-    display: block;
-    width: 100%;
-    text-align: center;
-    position: absolute;
-    top: 15%;
-    font-size: 1.7rem;
-    line-height: 1.6rem;
-    font-weight: bold;
-    color: #00479d;
+
+.zc-title .zc-title-bg{
+    margin: auto;
+    width: 18rem;
+    height: 4.3rem;
+    background: url("./images/title-1-2.png") no-repeat;
+    background-size: 100% 100%;
 }
+.zc-title-text {
+    padding-top: 1rem;
+    font-size: 1.7rem;
+    line-height: 2rem;
+    color: #fff;
+}
+
+.zc-title002 {
+    margin-top: 3rem;
+    text-align: center;
+    margin-bottom: 2rem;
+
+}
+
+.zc-title002 .zc-title002-bg{
+    margin: auto;
+    width: 24.85rem;
+    height: 3.8rem;
+    background: url("./images/3-4-5-6-7-8-9-10.png") no-repeat;
+    background-size: 100% 100%;
+}
+.zc-title002-text {
+    padding-top: 1rem;
+    font-size: 1.45rem;
+    line-height: 1.5rem;
+    color: #fff;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
 
 .emphasis {
     font-size: 1.6rem;
@@ -107,7 +147,32 @@ margin-left: 2rem;
 }
 .preface p {
     font-size: 1.4rem;
-    font-weight: bold;
+    /*font-weight: bold;*/
+}
+
+.tfhxg {
+    margin: auto;
+    width: 17rem;
+    height: 1.2rem;
+    background: url("./images/tfhxg.png") no-repeat;
+    background-size:  100% 100%;
+    margin-bottom: 2.1rem;
+
+}
+.tfhxg-text {
+    text-align: center;
+    line-height: 0.9rem;
+}
+
+.say {
+    margin: auto;
+    width: 30.2rem;
+    height: auto;
+    padding: 1.7rem 1.2rem;
+    background-color: #f4f2f3;
+    line-height: 2rem;
+    margin-bottom: 1rem;
+
 }
 
 .slogan {
@@ -122,19 +187,83 @@ margin-left: 2rem;
     color: #00479d;
 }
 
+.triangle001 {
+    margin: 2.1rem auto 0.5rem auto;
+    width: 1.8rem;
+    height: 0.9rem;
+    background: url("./images/yellow_triangle.png") no-repeat;
+    background-size: 100% 100%;
+
+}
+.triangle002 {
+    margin: auto;
+    width: 1.8rem;
+    height: 0.9rem;
+    background: url("./images/yellow_triangle.png") no-repeat;
+    background-size: 100% 100%;
+    margin-bottom: 5rem;
+
+}
 .contents {
 
 }
+.contents ul{
+    margin: 0;
+}
 .contents ul li {
+    padding-left: 1.9rem;
+    padding-top: 0.9rem;
+    width: auto;
+    height: 3.5rem;
+    margin-top: 0;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0.45rem;
     font-size: 1.4rem;
+    color: #fff;
     font-weight: bold;
+    background-color: #ff8a00;
+    border-radius: 0.5rem;
 
 }
+.contents ul li i{
+    display: inline-block;
+    width: 1rem;
+    height: 1.15rem;
+    background: url("./images/white_triangle.png") no-repeat;
+    background-size: 100% 100%;
+    margin-right: 2.3rem;
+}
+.zypp {
+    margin: 2rem auto;
+    width: 25.4rem;
+    height: 5rem;
+    background: url("./images/zypp.png") no-repeat;
+    background-size: 100% 100%;
+    line-height: 5rem;
+    text-align: center;
+    color: #fff;
+}
+.dszx {
+    margin: 2rem auto;
+    width: 25.4rem;
+    height: 5rem;
+    background: url("./images/dszx.png") no-repeat;
+    background-size: 100% 100%;
+    line-height: 5rem;
+    text-align: center;
+    color: #fff;
+}
+
+
 .radar {
     height: 40rem;
 }
 .bar {
     height: 40rem;
+}
+.bar-long {
+    height: 80rem;
 }
 .zc-cat-title {
     margin-top: 7.5rem;
@@ -215,4 +344,277 @@ margin-left: 2rem;
 }
 .zc-red {
     color: #ea1d27;
+}
+.major {
+    clear: both;
+}
+.major .major_line {
+    width: 100%;
+    height: auto;
+
+}
+.major span.code{
+    display: inline-block;
+    margin-left: 1rem;
+
+}
+.major span.school{
+    display: inline-block;
+    float: right;
+    margin-right: 1rem;
+}
+
+.warning {
+    margin: 8.3rem auto 1rem auto;
+    width: 2.4rem;
+    height: 2.1rem;
+    background: url("./images/icon_warning-copy.png") no-repeat;
+    background-size: 100% 100%;
+}
+.star_5 {
+    margin: auto;
+    text-align: center;
+}
+.star_5_title {
+    margin: auto;
+    font-size: 1.6rem;
+    line-height: 5rem;
+    text-align: center;
+    color: #fff;
+    width: 25.4rem;
+    height: 5rem;
+    background: url("./images/dszx.png") no-repeat;
+    background-size: 100% 100%;
+}
+
+.star_5 img {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+.star_4 {
+    color: #ff6600;
+    margin: auto;
+    text-align: center;
+}
+.star_4_title {
+    margin: auto;
+    font-size: 1.6rem;
+    line-height: 5rem;
+    text-align: center;
+    width: 25.4rem;
+    height: 6.2rem;
+    background: url("./images/jgdc.png") no-repeat;
+    background-size: 100% 100%;
+}
+.star_4_title p {
+    margin: 0;
+    padding: 0;
+    display: block;
+    height: 2.1rem;
+    line-height: 4.1rem;
+}
+
+.star_4 img {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+.star_3 {
+    color: #188a2b;
+    margin: auto;
+    text-align: center;
+}
+.star_3_title {
+    margin: auto;
+    font-size: 1.2rem;
+    line-height: 5rem;
+    text-align: center;
+    width: 25.4rem;
+    height: 6.2rem;
+    background: url("./images/swyj.png") no-repeat;
+    background-size: 100% 100%;
+}
+.star_3_title p {
+    margin: 0;
+    padding: 0;
+    display: block;
+    height: 2.1rem;
+    line-height: 4.1rem;
+}
+
+.star_3 img {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+.star_2 {
+    color: #ea1d27;
+    margin: auto;
+    text-align: center;
+}
+.star_2_title {
+    margin: auto;
+    font-size: 1.6rem;
+    line-height: 5rem;
+    text-align: center;
+    width: 25.4rem;
+    height: 6.2rem;
+    background: url("./images/shys.png") no-repeat;
+    background-size: 100% 100%;
+}
+.star_2_title p {
+    margin: 0;
+    padding: 0;
+    display: block;
+    height: 2.1rem;
+    line-height: 4.1rem;
+}
+
+.star_2 img {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+.qianneng {
+    font-size: 1.7rem;
+    line-height: 4.55rem;
+    color: #fff;
+    margin: 1.4rem auto 0;
+    text-align: center;
+    width: 16.7rem;
+    height: 4.55rem;
+    background: url("./images/zjqn.png") no-repeat;
+    background-size: 100% 100%;
+}
+
+.comment_title {
+    padding-left: 1.8rem;
+    color: #fff;
+    line-height: 4.25rem !important;
+    margin-left: -1.8rem !important;
+    width: 33.5rem;
+    height: 4.25rem;
+    background: url("./images/ystx.png") no-repeat;
+    background-size: 100% 100%;
+}
+
+/*行为模式*/
+.xwms {
+    padding-left: 1.8rem;
+    color: #fff;
+    line-height: 4.25rem !important;
+    margin-left: -1.8rem !important;
+    width: 14.9rem;
+    height: 4.25rem;
+    background: url("./images/xwms.png") no-repeat;
+    background-size: 100% 100%;
+}
+.yuan {
+    text-align: center;
+    line-height: 7.4rem;
+    width: 7.4rem;
+    height: 7.4rem;
+    margin: 1rem auto 2rem;
+    color: #fff;
+    background: url("./images/circle.png") no-repeat;
+    background-size: 100% 100%;
+
+}
+.duanban-title {
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+}
+.duanban {
+    margin: auto;
+    text-align: center;
+    font-size: 1.7rem;
+    line-height: 4.65rem;
+    width: 16.8rem;
+    height: 4.65rem;
+    background-color: #e83b3b;
+    color: #fff;
+    font-weight: bold;
+}
+/*欠缺能力*/
+.qqnl {
+    padding-left: 1.8rem;
+    color: #fff;
+    line-height: 4.25rem !important;
+    margin-left: -1.8rem !important;
+    width: 36.8rem;
+    height: 4.25rem;
+    background: url("./images/qqnl.png") no-repeat;
+    background-size: 100% 100%;
+}
+
+.interest .star_5_title{
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.zc-title003 {
+    text-align: center;
+
+    margin:5rem auto 2rem;
+    width: 24.85rem;
+    height: 5.45rem;
+    background: url("./images/12.png") no-repeat;
+    background-size: 100% 100%;
+}
+.zc-title003 p.text003-1 {
+    margin: 0 !important;
+    padding: 0.25rem 0 0 0 !important;
+    color: #fff;
+    line-height: 2.5rem;
+}
+.zc-title003 p.text003-2 {
+    margin: 0 !important;
+    padding:0 !important;
+    color: #fff;
+    line-height: 2.5rem;
+}
+
+.major-10 p{
+    margin: 0 0 0 1.6rem!important;
+}
+/*专业推荐*/
+.major-info {
+    margin-top: 3rem;
+}
+.zytj {
+
+    padding-top: 0.3rem;
+    margin: auto;
+    text-align: center;
+    color: #fff;
+    font-weight: bold;
+    width: 18.9rem;
+    height: 4.95rem;
+    background: url("./images/zytj.png") no-repeat;
+    background-size: 100% 100%;
+}
+.zytj p {
+
+    margin: 0 !important;
+    padding: 0 !important;
+}
+/*专业描述*/
+.zyms {
+    margin:2.5rem auto 1.25rem auto;
+    text-align: center;
+    width: 13.5rem;
+    height: 1.2rem;
+    background: url("./images/zyms.png") no-repeat;
+    background-size: 100% 100%;
+}
+.footer {
+    margin-top: 7rem;
+    line-height: 3.5rem;
+    margin-bottom: 5rem;
+}
+.jieshu{
+    text-align: center;
+    font-size: 2.1rem;
+    color: #ff7800;
 }

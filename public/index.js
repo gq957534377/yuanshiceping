@@ -454,3 +454,88 @@ option = {
 };
 
 shake_chart.setOption(option);
+
+
+//////////////////////////////////
+//28个素质模型
+var quality_chart = echarts.init(document.getElementById('quality'));
+var xAxis_data = [];
+
+var quality_grades_index_by_id = {};
+for (var k in quality_grades) {
+    quality_grades_index_by_id[quality_grades[k].quality_id] = quality_grades[k];
+}
+
+var potential_series_data = [];
+for (var k in qualities) {
+    xAxis_data.push(qualities[k].name);
+    potential_series_data.push(quality_grades_index_by_id[qualities[k].id].grade);
+}
+for (var k in quality_grades) {
+
+}
+
+
+option = {
+    grid: {
+        // x:0,
+        // y:0,
+        x2:10,
+        // y2:0
+    },
+
+    tooltip : {
+        trigger: 'axis',
+        show:false,
+    },
+    legend: {
+        data:[]
+    },
+
+    calculable : true,
+    xAxis : [
+        {
+            type : 'value',
+            boundaryGap : [0, 0.01]
+        }
+    ],
+    yAxis : [
+        {
+            type : 'category',
+            data : xAxis_data
+        }
+    ],
+    series : [
+        {
+            clickable:false,
+            name:'兴趣',
+            type:'bar',
+            itemStyle: {
+                normal: {
+                    //好，这里就是重头戏了，定义一个list，然后根据所以取得不同的值，这样就实现了，
+                    color: function(params) {
+                        // build a color map as your need.
+                        var colorList = [
+                            '#ff5b68','#ff5b68','#ff5b68','#ff5b68','#ff5b68',
+                            '#ff8400','#ff8400','#ff8400','#ff8400','#ff8400','#ff8400',
+                            '#6fc117','#6fc117','#6fc117','#6fc117','#6fc117','#6fc117',
+                            '#17b3c1','#17b3c1','#17b3c1','#17b3c1','#17b3c1','#17b3c1',
+                            '#3283d6','#3283d6','#3283d6','#3283d6','#3283d6','#3283d6',
+                        ];
+                        return colorList[params.dataIndex]
+                    },
+                    //以下为是否显示，显示位置和显示格式的设置了
+                    label: {
+                        show: true,
+                        position: 'right',
+//                             formatter: '{c}'
+                        formatter: '{b}\n{c}'
+                    }
+                }
+            },
+            data:potential_series_data
+        }
+    ]
+};
+console.log(potential_series_data);
+quality_chart.setOption(option);

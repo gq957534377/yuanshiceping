@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Home;
 use App\Models\Answer;
 use App\Models\Interest;
 use App\Models\Major;
+use App\Models\MajorDetail;
 use App\Models\MemberHasSubject;
 use App\Models\Potential;
 use App\Models\PotentialHasQuality;
@@ -62,13 +63,13 @@ class EvaluationController extends Controller
         //测评报告
         $report = Report::where($where)->first();
 
-        if (!empty($report)) {
-            if (!empty($report->path) && file_exists(base_path('public'.'/'.$report->path))) {
-               return file_get_contents(base_path('public'.'/'.$report->path));
-            }
-        } else {
-            exit('没有相关数据');
-        }
+//        if (!empty($report)) {
+//            if (!empty($report->path) && file_exists(base_path('public'.'/'.$report->path))) {
+//               return file_get_contents(base_path('public'.'/'.$report->path));
+//            }
+//        } else {
+//            exit('没有相关数据');
+//        }
 
         $report->created_at = time();
         $data['report'] = $report;
@@ -82,10 +83,15 @@ class EvaluationController extends Controller
         //型格
         $shakes = Shake::getAllIndexById();
         $data['shakes'] = $shakes;
+        //素质
+        $qualities = Quality::getAllIndexById();
+        $data['qualities'] = $qualities;
         //专业
         $majors = Major::getAllIndexById();
         $data['majors'] = $majors;
-
+        //专业详情
+        $major_details = MajorDetail::getAllIndexById();
+        $data['major_details'] = $major_details;
 
         //潜能得分
         $potential_grades = Potential::getGradesByMemberId($member_id, $order_number);
