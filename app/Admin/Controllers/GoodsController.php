@@ -138,7 +138,7 @@ class GoodsController extends Controller
             $form->currency('price', '正常价格')->symbol('￥');
             $form->currency('activity_price', '活动价格')->symbol('￥');
             $form->number('people_num', '测评人数');
-            $form->textarea('describe', '商品描述')->placeholder('请输入商品描述。。。')->rules('required|max:100');
+            $form->textarea('describe', '商品描述')->placeholder('请输入商品描述。。。')->rules('required|max:252');
 
             $form->display('created_at', 'Created At');
             $form->display('updated_at', 'Updated At');
