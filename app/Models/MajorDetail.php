@@ -50,4 +50,15 @@ class MajorDetail extends Eloquent
 		'remark',
 		'sort'
 	];
+
+    static public function getAllIndexById()
+    {
+        $items = [];
+        $models = static::all();
+        foreach ($models as $model) {
+            $items[$model->id] = $model->toArray();
+        }
+        return $items;
+
+    }
 }
