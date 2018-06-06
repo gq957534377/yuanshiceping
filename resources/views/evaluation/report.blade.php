@@ -130,7 +130,7 @@
         </div>
     </div>
 
-    <div class="row-fluid">
+    <div class="row-fluid" id="zytj">
         <div class="col-xs-12">
             <div class="zc-title002">
                 <div class="zc-title002-bg">
@@ -183,7 +183,7 @@
         </div>
 
     </div>
-    <div class="row-fluid">
+    <div class="row-fluid" id="szmx">
         <div class="col-xs-12">
             <div class="zc-title002">
                 <div class="zc-title002-bg">
@@ -196,7 +196,7 @@
         </div>
 
     </div>
-    <div class="row-fluid">
+    <div class="row-fluid" id="qnfb">
         <div class="col-xs-12">
             <div class="zc-title002">
                 <div class="zc-title002-bg">
@@ -266,7 +266,7 @@
         </div>
 
     </div>
-    <div class="row-fluid zc">
+    <div class="row-fluid zc" id="zjqn">
         <div class="col-xs-12">
             <div class="zc-title002">
                 <div class="zc-title002-bg">
@@ -315,7 +315,7 @@
         </div>
 
     </div>
-    <div class="row-fluid zc">
+    <div class="row-fluid zc" id="deqn">
         <div class="col-xs-12">
             <div class="zc-title002">
                 <div class="zc-title002-bg">
@@ -354,7 +354,7 @@
 
     </div>
 
-    <div class="row-fluid zc">
+    <div class="row-fluid zc" id="dsqn">
         <div class="col-xs-12">
             <div class="zc-title002">
                 <div class="zc-title002-bg">
@@ -385,7 +385,7 @@
 
     </div>
 
-    <div class="row-fluid zc">
+    <div class="row-fluid zc" id="grdb">
         <div class="col-xs-12">
             <div class="zc-title002">
                 <div class="zc-title002-bg">
@@ -431,7 +431,7 @@
             </div>
         </div>
     </div>
-    <div class="row-fluid zc">
+    <div class="row-fluid zc" id="zyxq">
         <div class="col-xs-12">
             <div class="zc-title002">
                 <div class="zc-title002-bg">
@@ -472,7 +472,7 @@
         </div>
     </div>
 
-    <div class="row-fluid zc">
+    <div class="row-fluid zc" id="zjpp">
         <div class="col-xs-12">
             <div class="zc-title003 font28">
                         <p class="text003-1">个人潜能与个人兴趣</p>
@@ -505,7 +505,7 @@
         </div>
     </div>
 
-    <div class="row-fluid zc">
+    <div class="row-fluid zc" id="wljy">
         <div class="col-xs-12">
             <div class="zc-title003 font28">
                 <p class="text003-1">所推荐专业的详情</p>
@@ -558,18 +558,25 @@
 
     </div>
 </div>
-{{--<div class="nav">--}}
-    {{--<div class="nvb" href="#sy">报告导航</div>--}}
-    {{--<a class="nvb active" href="#sy">首页</a>--}}
-    {{--<a class="nvb" href="#qy">前言</a>--}}
-    {{--<a class="nvb" href="#ml">目录</a>--}}
-    {{--<a class="nvb" href="#qn">个人潜能</a>--}}
-    {{--<a class="nvb" href="#db">个人短板</a>--}}
-    {{--<a class="nvb" href="#xq">个人兴趣</a>--}}
-    {{--<a class="nvb" href="#tj">专业推荐</a>--}}
-    {{--<button class="nvb" id="btn-share">分享报告</button>--}}
-    {{--<button class="nvb" id="btn-home">回到首页</button>--}}
-{{--</div>--}}
+
+<div class="nav">
+    <!--<div class="nvb" href="#sy">报告导航</div>
+    <a class="nvb active" href="#sy">首页</a>
+    <a class="nvb" href="#qy">前言</a>
+    <a class="nvb" href="#ml">目录</a>-->
+    <a class="nvb" href="#zytj">专业推荐</a>
+    <a class="nvb" href="#szmx">素质模型</a>
+    <a class="nvb" href="#qnfb">潜能分布</a>
+    <a class="nvb" href="#zjqn">最佳潜能</a>
+    <a class="nvb" href="#deqn">第二潜能</a>
+    <a class="nvb" href="#dsqn">第三潜能</a>
+    <a class="nvb" href="#grdb">个人短板</a>
+    <a class="nvb" href="#zyxq">专业兴趣</a>
+    <a class="nvb" href="#zjpp">最佳匹配</a>
+    <a class="nvb" href="#wljy">未来就业</a>
+    <button class="nvb" id="btn-share">分享报告</button>
+    <button class="nvb" id="btn-home">回到首页</button>
+</div>
 <div class="switcher">
     <img style="width:100%;" src="{{ URL::asset('images/icon_nav.png') }}" >
 </div>
