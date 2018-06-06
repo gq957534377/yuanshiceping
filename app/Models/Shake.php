@@ -216,9 +216,10 @@ class Shake extends Common
 
     }
 
-    static public function getGradesByMemberId($member_id){
+    static public function getGradesByMemberId($member_id, $order_number){
 
         return MemberShakeGrade::where(['member_id' => $member_id])
+            ->where(['order_number' => $order_number])
             ->orderBy('grade', 'DESC')
             ->orderBy('weight', 'DESC')
             ->get();

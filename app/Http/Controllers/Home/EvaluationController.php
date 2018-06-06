@@ -6,13 +6,10 @@ use App\Models\Answer;
 use App\Models\Interest;
 use App\Models\Major;
 use App\Models\MajorDetail;
-use App\Models\MemberHasSubject;
 use App\Models\Potential;
-use App\Models\PotentialHasQuality;
 use App\Models\Quality;
 use App\Models\Report;
 use App\Models\Shake;
-use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -46,9 +43,6 @@ class EvaluationController extends Controller
         Answer::gradeShake($member['id']); //计算型格
         Answer::gradeMajor($member['id']); //计算专业
 
-
-
-
         return ($post);
     }
 
@@ -63,13 +57,13 @@ class EvaluationController extends Controller
         //测评报告
         $report = Report::where($where)->first();
 
-        if (!empty($report)) {
-            if (!empty($report->path) && file_exists(base_path('public'.'/'.$report->path))) {
-               return file_get_contents(base_path('public'.'/'.$report->path));
-            }
-        } else {
-            exit('没有相关数据');
-        }
+//        if (!empty($report)) {
+//            if (!empty($report->path) && file_exists(base_path('public'.'/'.$report->path))) {
+//               return file_get_contents(base_path('public'.'/'.$report->path));
+//            }
+//        } else {
+//            exit('没有相关数据');
+//        }
 
         $report->created_at = time();
         $data['report'] = $report;
@@ -108,7 +102,7 @@ class EvaluationController extends Controller
         $data['interest_grades'] = $interest_grades;
 
         //型格得分
-        $shake_grades = Shake::getGradesByMemberId($member_id)->toArray();
+        $shake_grades = Shake::getGradesByMemberId($member_id, $order_number)->toArray();
         $shake_grades = Shake::addInterestPotentialGrade($shake_grades, $shakes, $potential_grades, $interest_grades);
         $data['shake_grades'] = $shake_grades;
 

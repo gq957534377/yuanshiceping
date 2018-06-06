@@ -214,7 +214,7 @@
                     </div>
                     <img src="{{ URL::asset($level_grades[0]['star_img']) }}" alt="">
                     <p class="star_5_text blue font26">这是你  <span class="font36">最强大</span>  的潜能，</p>
-                    <p class="star_5_text blue font26">需要好好发挥和针对性的培养。</p>
+                    <p class="star_5_text blue font26">最具优势的领域，在此方面进行针对性培养和充分的发挥，最容易取得突出成就，继而获得成功。</p>
                 </div>
 
                 <div class="star_4">
@@ -225,7 +225,7 @@
                     </div>
                     <img src="{{ URL::asset($level_grades[1]['star_img']) }}" alt="">
                     <p class="star_5_text font26">这是你  <span class="font36">非常强大</span>  的潜能，</p>
-                    <p class="star_5_text font26">需要多多磨练</p>
+                    <p class="star_5_text font26">在此方面多多磨练和总结提升，会是你比较容易取得突出成就的领域</p>
                 </div>
                 <div class="star_3">
                     <div class="star_3_title">
@@ -243,7 +243,7 @@
                     </div>
                     <img src="{{ URL::asset($level_grades[2]['star_img']) }}" alt="">
                     <p class="star_5_text font26">这是你  <span class="font36">一般</span>  的潜能，</p>
-                    <p class="star_5_text font26">对你会有较大的帮助，但不具有至关重要的决定性</p>
+                    <p class="star_5_text font26">对你综合能力的提升会有较大的帮助，但对你取得突出成就不具有至关重要的决定性作用</p>
                 </div>
 
                 <div class="warning">
@@ -257,8 +257,8 @@
                     </div>
                     <img src="{{ URL::asset($level_grades[3]['star_img']) }}" alt="">
                     <p class="star_5_text font26">这是你  <span class="font36">最不具备优势</span>  的领域，</p>
-                    <p class="star_5_text font26">建议最好不要涉及该专业以及从事该类职业，因为这是你天生性格的短板，要改变自己的性格是非常困难，且需要付出非常大代价的，当你在弥补短板的时候会同时导致你最大优势的丧失，这会对你产生不好的影响——</p>
-                    <p class="star_5_text font26">如：自信心的打击，成长速度缓慢等</p>
+                    <p class="star_5_text font26">建议最好不要涉及该专业以及从事该类型职业，这是你天生性格的短板。每个人要改变自己的性格是非常困难，而且是需要付出非常大代价的事情，当你在弥补短板的同时会导致你最大优势的丧失，并且会对你产生不好的影响——</p>
+                    <p class="star_5_text font26">如：自信心的打击，成长速度缓慢等。成功之道在于最大限度地发挥优势，控制弱点，而不是把重点放在攻克弱点上。</p>
                 </div>
 
 

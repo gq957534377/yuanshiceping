@@ -494,7 +494,9 @@ option = {
 
     calculable : false,
     xAxis : [
+
         {
+            position: "top",
             type : 'value',
             boundaryGap : [0, 0.01]
         }
