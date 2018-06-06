@@ -103,7 +103,7 @@ class WechatController extends Controller
 
                                 $upload = $this->uploadImage($bottomImg, $user->ticket);
                                 $this->menu($upload['media_id']);
-                                return '已为您的好友“' . $weChat['nickname'] . '”成功助力，让一份价值988元的”高中生专业选择辅导“测评卡离您的好友更近一步！同时，如果您有需要，点击底部菜单栏  “领取福利” - 选择“免费测评”，生成您的专属海报，也让您的好友帮您助力吧!';
+                                return '已为您的好友“' . $weChat['nickname'] . '”成功助力，让一份价值985元的”高中生专业选择辅导“测评卡离您的好友更近一步！同时，如果您有需要，点击底部菜单栏  “领取福利” - 选择“免费测评”，生成您的专属海报，也让您的好友帮您助力吧!';
                                 return new Image($upload['media_id']);
                             }
                             break;
