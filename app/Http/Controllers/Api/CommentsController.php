@@ -45,7 +45,6 @@ class CommentsController extends Controller
             $data = $data->toArray();
             $data['data'] = $comments;
         }
-
         return $this->sendResponse($data, '获取评论成功！');
     }
 

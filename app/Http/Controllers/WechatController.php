@@ -136,6 +136,12 @@ class WechatController extends Controller
                                     $user->poster_id = $upload['media_id'];
                                     $user->save();
                                     return new Image($upload['media_id']);
+                                case 'ke_fu':
+                                    return "客服电话：400-101-9859";
+                                case 'shang_wu_he_zuo':
+                                    return "shang_wu_he_zuo";
+                                case 'preview':
+                                    return new Image('5gDK9dQyi2I8VovYWgdN9LRckzM8lXsuQ4MJMIeFOcQ');
                                 case 'dev':
                                     return '该功能开发中，敬请期待！';
                             }
@@ -186,47 +192,79 @@ class WechatController extends Controller
         $app = $this->app;
         $buttons = [
             [
-                "name" => "福利领取",
+                "name" => "答疑解惑",
                 "sub_button" => [
                     [
-                        "type" => "click",
-                        "key" => 'get-poster',
-                        "name" => "免费测评"
+                        "name" => "如何选专业",
+                        "type" => "media_id",
+                        "media_id" => "5gDK9dQyi2I8VovYWgdN9PED9u2_AH_Biv4p73AEmic"
                     ],
                     [
-                        "name" => "微课",
+                        "name" => "错误的代价",
+                        "type" => "media_id",
+                        "media_id" => '5gDK9dQyi2I8VovYWgdN9LC-1gTtZOEqMYxfdWbCf6o',
+                    ],
+                    [
+                        "name" => "课程预告",
+                        "type" => "click",
+                        "key" => 'preview',
+                    ],
+                    [
+                        "name" => "课程回访",
                         "type" => "click",
                         "key" => 'dev',
                     ],
                 ]
             ],
             [
-                "type" => "click",
-                "name" => "测评大厅",
-                "key" => "dev"
+                "name" => "在线测评",
+                "sub_button" => [
+                    [
+                        "type" => "click",
+                        "key" => 'get-poster',
+                        "name" => "申请免费测评"
+                    ],
+                    [
+                        "name" => "查看测评结果",
+                        "type" => "click",
+                        "key" => 'dev',
+                    ],
+                    [
+                        "type" => "miniprogram",
+                        "name" => "基石测评",
+                        "url" => "https://api.jishiceping.com/mini_report_home",
+                        "appid" => config('services.media.app_id'),
+                        "pagepath" => "pages/home/home"
+                    ],
+                ]
             ],
             [
                 "name" => "关于我们",
                 "sub_button" => [
                     [
                         "name" => "企业简介",
-                        "type" => "click",
-                        "key" => 'dev',
+                        "type" => "view",
+                        "url" => "https://www.jishiceping.com/"
                     ],
                     [
-                        "name" => "服务案例",
-                        "type" => "click",
-                        "key" => 'dev',
+                        "name" => "联系客服",
+                        "type" => "view",
+                        "url" => 'http://beijingpengshengyiyuan.mikecrm.com/kkDBLzo',
                     ],
                     [
-                        "name" => "联系我们",
-                        "type" => "click",
-                        "key" => 'dev',
+                        "name" => "商务合作",
+                        "type" => "media_id",
+                        "media_id" => '5gDK9dQyi2I8VovYWgdN9KrnrrjvkRaeQs5-rFBj6Kc',
                     ],
                 ]
             ],
         ];
         return $app->menu->create($buttons);
+    }
+
+    public function sources(Request $request)
+    {
+        return $this->app->material->list($request->type, $request->offset??0, $request->count??100);
     }
 
     /**

@@ -17,6 +17,10 @@
 .nav a {
     border-top:solid 1px #ddd;
 }
+.nav button {
+    border:none;
+    border-top:solid 1px #ddd;
+}
 .nav a:link,a:visited,a:hover{
      text-decoration:none;  /*超链接无下划线*/
  }

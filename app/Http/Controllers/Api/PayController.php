@@ -21,14 +21,15 @@ class PayController extends Controller
     {
         $data = $request->all();
         // 判断价格
-        if($data['price_level'] == 3) {
+        if($data['price_level'] == "3") {
             $paid_price = $data['activity_price'];
 
-        } else if($data['price_level'] == 2){
-            $paid_price = 0;
+        } else if($data['price_level'] == "2"){
+            $paid_price = $data['price'];
         } else {
             $paid_price = $data['price'];
         }
+
         $payment = \EasyWeChat::payment(); // 微信支付
         $orderId = Uuid::uuid1()->getHex();
         $result = $payment->order->unify([
@@ -36,7 +37,7 @@ class PayController extends Controller
             'out_trade_no' => $orderId,
             'trade_type'   => 'JSAPI',  // 必须为JSAPI
             'openid'       => $data['openId'], // 这里的openid为付款人的openid
-            'total_fee'    => 1,                // 算完优惠卷的价格
+            'total_fee'    => intval($paid_price)*100,                // 算完优惠卷的价格
         ]);
 
         // 如果成功生成统一下单的订单，那么进行二次签名
@@ -48,12 +49,13 @@ class PayController extends Controller
             $order = [
                 'order_id'     => $orderId,
                 'goods_id'     => $data['goodsId'],
+                'class_id'     => $data['class_id'],
                 'user_id'      => $user['id'],
                 'price'        => $data['price'],
                 'price_level'  => $data['price_level'],
-                'coupon_price' => $data['coupon_price'],
                 'paid_price'   => $paid_price
             ];
+
             $status = Order::create($order);
 
             if(!$status) return $this->sendResponse(false,'请稍后重试');

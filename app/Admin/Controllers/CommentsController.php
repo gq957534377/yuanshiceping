@@ -84,7 +84,7 @@ class CommentsController extends Controller
             });
             $states = [
                 'on'  => ['value' => 1, 'text' => '显示', 'color' => 'primary'],
-                'off' => ['value' => 2, 'text' => '不显示', 'color' => 'default'],
+                'off' => ['value' => 0, 'text' => '不显示', 'color' => 'defaults'],
             ];
             $grid->status('状态')->switch($states);
             $grid->created_at('创建时间');

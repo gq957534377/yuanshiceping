@@ -12,7 +12,7 @@ $(function(){
         wx.miniProgram.navigateTo({url:'/pages/report/share?user_id='+userId+'&order_number='+orderNumber});
     });
     $("#btn-home").click(function() {
-        wx.miniProgram.navigateTo({url:'/pages/home/home'});
+        wx.miniProgram.switchTab({url:'/pages/home/home'});
     });
     $(".nav a").click(function() {
         activity($(this));
