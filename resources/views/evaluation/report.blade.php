@@ -130,8 +130,8 @@
         </div>
     </div>
 
-    <div class="row-fluid" id="zytj">
-        <div class="col-xs-12">
+    <div class="row-fluid">
+        <div class="col-xs-12" id="zytj">
             <div class="zc-title002">
                 <div class="zc-title002-bg">
                     <div class="zc-title002-text">个人高匹配度的专业推荐</div>
@@ -183,8 +183,8 @@
         </div>
 
     </div>
-    <div class="row-fluid" id="szmx">
-        <div class="col-xs-12">
+    <div class="row-fluid">
+        <div class="col-xs-12" id="szmx">
             <div class="zc-title002">
                 <div class="zc-title002-bg">
                     <div class="zc-title002-text">个人28项素质模型</div>
@@ -196,8 +196,8 @@
         </div>
 
     </div>
-    <div class="row-fluid" id="qnfb">
-        <div class="col-xs-12">
+    <div class="row-fluid">
+        <div class="col-xs-12" id="qnfb">
             <div class="zc-title002">
                 <div class="zc-title002-bg">
                     <div class="zc-title002-text">个人潜能分布概况</div>
@@ -266,8 +266,8 @@
         </div>
 
     </div>
-    <div class="row-fluid zc" id="zjqn">
-        <div class="col-xs-12">
+    <div class="row-fluid zc">
+        <div class="col-xs-12" id="zjqn">
             <div class="zc-title002">
                 <div class="zc-title002-bg">
                     <div class="zc-title002-text">最佳潜能解析</div>
@@ -315,8 +315,8 @@
         </div>
 
     </div>
-    <div class="row-fluid zc" id="deqn">
-        <div class="col-xs-12">
+    <div class="row-fluid zc">
+        <div class="col-xs-12" id="deqn">
             <div class="zc-title002">
                 <div class="zc-title002-bg">
                     <div class="zc-title002-text">{{ $second_potential_name = $potentials[$potential_grades[1]['potential_id']]['name'] }}</div>
@@ -354,8 +354,8 @@
 
     </div>
 
-    <div class="row-fluid zc" id="dsqn">
-        <div class="col-xs-12">
+    <div class="row-fluid zc">
+        <div class="col-xs-12" id="dsqn">
             <div class="zc-title002">
                 <div class="zc-title002-bg">
                     <div class="zc-title002-text">{{ $third_potential_name = $potentials[$potential_grades[2]['potential_id']]['name'] }}</div>
@@ -385,8 +385,8 @@
 
     </div>
 
-    <div class="row-fluid zc" id="grdb">
-        <div class="col-xs-12">
+    <div class="row-fluid zc">
+        <div class="col-xs-12" id="grdb">
             <div class="zc-title002">
                 <div class="zc-title002-bg">
                     <div class="zc-title002-text">个人短板分析</div>
@@ -431,8 +431,8 @@
             </div>
         </div>
     </div>
-    <div class="row-fluid zc" id="zyxq">
-        <div class="col-xs-12">
+    <div class="row-fluid zc">
+        <div class="col-xs-12" id="zyxq">
             <div class="zc-title002">
                 <div class="zc-title002-bg">
                     <div class="zc-title002-text">个人专业兴趣解析</div>
@@ -472,8 +472,8 @@
         </div>
     </div>
 
-    <div class="row-fluid zc" id="zjpp">
-        <div class="col-xs-12">
+    <div class="row-fluid zc">
+        <div class="col-xs-12" id="zjpp">
             <div class="zc-title003 font28">
                         <p class="text003-1">个人潜能与个人兴趣</p>
                         <p class="text003-2">最佳匹配点解析匹配解析</p>
@@ -505,8 +505,8 @@
         </div>
     </div>
 
-    <div class="row-fluid zc" id="wljy">
-        <div class="col-xs-12">
+    <div class="row-fluid zc">
+        <div class="col-xs-12" id="wljy">
             <div class="zc-title003 font28">
                 <p class="text003-1">所推荐专业的详情</p>
                 <p class="text003-2">与未来就业空间</p>
