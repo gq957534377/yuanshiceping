@@ -132,7 +132,7 @@ class WechatController extends Controller
                                     $user->head_url = $weChat['headimgurl'];
                                     $user->name = $weChat['nickname'];
                                     $poster = $this->makeImg($weChat['headimgurl'], $weChat['nickname'], $app->qrcode->url($user->ticket));
-                                    $upload = $this->uploadImage($poster, $user->ticket);
+                                    $upload = $this->uploadImage($poster, $user->ticket); 
                                     $user->poster_id = $upload['media_id'];
                                     $user->save();
                                     return new Image($upload['media_id']);
@@ -142,6 +142,8 @@ class WechatController extends Controller
                                     return "shang_wu_he_zuo";
                                 case 'preview':
                                     return new Image('5gDK9dQyi2I8VovYWgdN9FO95N5psL3zHSjI6OlNMx8');
+                                case 'lookEvaluation':
+                                    return '<a href="https://api.jishiceping.com/api/report/51?order_number=68c7c3b667ea11e8a1c400163e0e96d7">基石测评报告</a>';
                                 case 'dev':
                                     return '该功能开发中，敬请期待！';
                             }
@@ -217,7 +219,7 @@ class WechatController extends Controller
                 ]
             ],
             [
-                "name" => "在线测评",
+                "name" => "关于测评",
                 "sub_button" => [
                     [
                         "type" => "click",
@@ -227,11 +229,11 @@ class WechatController extends Controller
                     [
                         "name" => "查看测评结果",
                         "type" => "click",
-                        "key" => 'dev',
+                        "key" => 'lookEvaluation',
                     ],
                     [
                         "type" => "miniprogram",
-                        "name" => "基石测评",
+                        "name" => "立即测评",
                         "url" => "https://api.jishiceping.com/mini_report_home",
                         "appid" => config('services.media.app_id'),
                         "pagepath" => "pages/home/home"

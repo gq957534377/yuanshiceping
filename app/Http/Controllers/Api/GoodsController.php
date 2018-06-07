@@ -18,7 +18,7 @@ class GoodsController extends Controller
      */
     public function index(Request $request)
     {
-        $data = Good::orderBy('updated_at', 'desc')
+        $data = Good::orderBy('created_at', 'desc')
             ->paginate($request->per_page??10);
         foreach ($data as $val) {
             $val->goods_image = url('uploads/'.$val->goods_image);
