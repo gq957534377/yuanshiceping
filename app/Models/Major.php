@@ -63,6 +63,7 @@ class Major extends Common
         $major_grades = [];
 
         foreach ($majors as $major) {
+            if ($major['shake_id'] == 0) continue;//分类不要只要专业
             $major_grades[$major['id']] = [
                 'member_id' => $member_id,
                 'major_id' => $major['id'],
@@ -94,7 +95,7 @@ class Major extends Common
             ->get();
         static::$member_interest_grades = static::indexBy(static::$member_interest_grades, 'interest_id');
         foreach ($majors as $major) {
-            if ($major['shake_id'] == 0) continue;
+            if ($major['shake_id'] == 0) continue;//分类不要只要专业
             $major_grades[$major['id']]['grade'] = static::gradeOne($major, $member_id, $order_number);
         }
 

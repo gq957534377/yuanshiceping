@@ -519,11 +519,11 @@ option = {
                     color: function(params) {
                         // build a color map as your need.
                         var colorList = [
-                            '#ff5b68','#ff5b68','#ff5b68','#ff5b68','#ff5b68',
-                            '#ff8400','#ff8400','#ff8400','#ff8400','#ff8400','#ff8400',
-                            '#6fc117','#6fc117','#6fc117','#6fc117','#6fc117','#6fc117',
-                            '#17b3c1','#17b3c1','#17b3c1','#17b3c1','#17b3c1','#17b3c1',
                             '#3283d6','#3283d6','#3283d6','#3283d6','#3283d6','#3283d6',
+                            '#17b3c1','#17b3c1','#17b3c1','#17b3c1','#17b3c1','#17b3c1',
+                            '#6fc117','#6fc117','#6fc117','#6fc117','#6fc117','#6fc117',
+                            '#ff8400','#ff8400','#ff8400','#ff8400','#ff8400',
+                            '#ff5b68','#ff5b68','#ff5b68','#ff5b68','#ff5b68',
                         ];
                         return colorList[params.dataIndex]
                     },

@@ -78,7 +78,7 @@ class EvaluationController extends Controller
         $shakes = Shake::getAllIndexById();
         $data['shakes'] = $shakes;
         //素质
-        $qualities = Quality::getAllIndexById();
+        $qualities = Quality::orderBy('sort', 'DESC')->get();
         $data['qualities'] = $qualities;
         //专业
         $majors = Major::getAllIndexById();

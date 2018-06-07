@@ -147,7 +147,7 @@
         <div class="col-xs-12">
             <div class="major">
                 <div class="zypp font26 color35">
-                    最佳专业匹配
+                    最佳匹配专业
                 </div>
                 @foreach($major_grades as $key => $major_grade)
                     @if($key < 10)
@@ -157,7 +157,7 @@
             </div>
             <div class="major">
                 <div class="zypp font26 color35">
-                    较佳专业匹配
+                    较佳匹配专业
                 </div>
                 @foreach($major_grades as $key => $major_grade)
                     @if($key < 20 && $key > 10)
@@ -334,8 +334,9 @@
             <div class="comment">
                 <p class="font26 comment_title">你的第二潜能 <span class="font32">{{ $best_potential_name }}</span> 优势具体体现在:</p>
                 @foreach($second_potential_sorted_quality_grades as $key => $second_potential_sorted_quality_grade)
-
+                    @if ($key < 3)
                     <p class="font28 color35"><i></i>{{ \App\Models\Quality::getPrefix($second_potential_sorted_quality_grade['quality_grade']) }}{{ $second_potential_has_qualities[$second_potential_sorted_quality_grade['quality_id']]['quality_description'] }}</p>
+                    @endif
 
                 @endforeach
 
@@ -373,9 +374,9 @@
             <div class="comment">
                 <p class="font26 comment_title">你的第三潜能 <span class="font32">{{ $third_potential_name }}</span> 优势具体体现在:</p>
                 @foreach($third_potential_sorted_quality_grades as $key => $third_potential_sorted_quality_grade)
-
+                    @if ($key < 3)
                     <p class="font28 color35"><i></i>{{ \App\Models\Quality::getPrefix($third_potential_sorted_quality_grade['quality_grade']) }}{{ $third_potential_has_qualities[$third_potential_sorted_quality_grade['quality_id']]['quality_description'] }}</p>
-
+                    @endif
                 @endforeach
 
 
