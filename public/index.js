@@ -498,7 +498,12 @@ option = {
         {
             position: "top",
             type : 'value',
-            boundaryGap : [0, 0.01]
+            boundaryGap : [0, 0.01],
+            max: "120",
+            axisLabel:{
+                //X轴刻度配置
+                interval:0 //0：表示全部显示不间隔；auto:表示自动根据刻度个数和宽度自动设置间隔个数
+            }
         }
     ],
     yAxis : [
