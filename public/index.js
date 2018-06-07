@@ -25,13 +25,11 @@ var grades_data = [
 
 
 var option = {
-
-
     calculable : true,
     polar : [
         {
             indicator : indicator,
-            radius : 130
+            radius : 100
         }
     ],
     series : [
@@ -85,7 +83,7 @@ var option = {
     polar : [
         {
             indicator : indicator,
-            radius : 130
+            radius : 110
         }
     ],
     series : [
@@ -140,7 +138,7 @@ var option = {
     polar : [
         {
             indicator : indicator,
-            radius : 130
+            radius : 110
         }
     ],
     series : [
@@ -196,7 +194,7 @@ var option = {
     polar : [
         {
             indicator : indicator,
-            radius : 130
+            radius : 110
         }
     ],
     series : [
@@ -253,7 +251,7 @@ var option = {
     polar : [
         {
             indicator : indicator,
-            radius : 130
+            radius : 110
         }
     ],
     series : [
@@ -309,7 +307,7 @@ var option = {
     polar : [
         {
             indicator : indicator,
-            radius : 130
+            radius : 110
         }
     ],
     series : [
@@ -365,7 +363,7 @@ var option = {
     polar : [
         {
             indicator : indicator,
-            radius : 130
+            radius : 110
         }
     ],
     series : [
