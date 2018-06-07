@@ -84,7 +84,7 @@ class EvaluationController extends Controller
         $majors = Major::getAllIndexById();
         $data['majors'] = $majors;
         //专业详情
-        $major_details = MajorDetail::getAllIndexById();
+        $major_details = MajorDetail::getAllIndexByMajorId();
         $data['major_details'] = $major_details;
 
         //潜能得分

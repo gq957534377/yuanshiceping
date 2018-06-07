@@ -61,4 +61,15 @@ class MajorDetail extends Eloquent
         return $items;
 
     }
+
+    static public function getAllIndexByMajorId()
+    {
+        $items = [];
+        $models = static::all();
+        foreach ($models as $model) {
+            $items[$model->major_id] = $model->toArray();
+        }
+        return $items;
+
+    }
 }

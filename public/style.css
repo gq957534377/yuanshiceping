@@ -165,7 +165,7 @@ margin-left: 2rem;
 }
 
 .say {
-    margin: auto;
+    margin:1rem auto auto auto;
     width: 30.2rem;
     height: auto;
     padding: 1.7rem 1.2rem;

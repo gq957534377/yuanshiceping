@@ -160,7 +160,7 @@
                     较佳匹配专业
                 </div>
                 @foreach($major_grades as $key => $major_grade)
-                    @if($key < 20 && $key > 10)
+                    @if($key < 20 && $key >= 10)
                         <div class="major_line font28 color35"><span class="code">{{ $majors[$major_grade['major_id']]['code'] }}</span><span class="school">{{ $majors[$major_grade['major_id']]['name'] }}</span></div>
                     @endif
                 @endforeach
@@ -279,6 +279,9 @@
             </div>
             <div class="font34 text-center bold">你的最佳潜能是</div>
             <div class="qianneng">{{ $best_potential_name = $potentials[$potential_grades[0]['potential_id']]['name'] }}</div>
+            <div class="say font26 color666">
+                {{ $potentials[$potential_grades[0]['potential_id']]['description']}}
+            </div>
             <div class="radar" id="best_potential">
 
 
@@ -303,12 +306,14 @@
                     @endforeach
                 </div>
                 <p class="xwms font26">你的行为模式：</p>
-                @foreach($best_potential_abilities as $ability)
+                @foreach($best_potential_abilities as $key => $ability)
+                    @if($key < 2)
                     <div>
                         <div class="yuan font32 bold">{{ $ability->name }}</div>
 
                         <p class="font28 color35"><i></i>{{ $ability->description }}</p>
                     </div>
+                    @endif
                 @endforeach
 
             </div>
@@ -327,6 +332,9 @@
             </div>
             <div class="font34 text-center bold">你的第二潜能是</div>
             <div class="qianneng">{{ $best_potential_name = $potentials[$potential_grades[1]['potential_id']]['name'] }}</div>
+            <div class="say font26 color666">
+                {{ $potentials[$potential_grades[1]['potential_id']]['description']}}
+            </div>
             <div class="radar" id="second_potential">
 
 
@@ -339,15 +347,27 @@
                     @endif
 
                 @endforeach
-
+                <div>
+                    <div class="warning"></div>
+                    <p class="font26 color35">以下是你第二潜能 <span class="emphasis">{{ $second_potential_name }}</span> 中的较弱势的素质能力，
+                        建议要重点针对性的进行提升，才能让你的第二潜能得到
+                        更加完美的体现：</p>
+                    @foreach($second_potential_sorted_quality_grades as $key => $second_potential_sorted_quality_grade)
+                        @if($key == (count($second_potential_sorted_quality_grades)-1))
+                            <p class="font28 color35"><i></i>{{ \App\Models\Quality::getPrefix($second_potential_sorted_quality_grade['quality_grade']) }}{{ $second_potential_has_qualities[$second_potential_sorted_quality_grade['quality_id']]['quality_description'] }}</p>
+                        @endif
+                    @endforeach
+                </div>
 
                 <p class="xwms font26">你的行为模式：</p>
-                @foreach($second_potential_abilities as $ability)
+                @foreach($second_potential_abilities as $key => $ability)
+                    @if($key < 1)
                     <div>
                         <div class="yuan font32 bold">{{ $ability->name }}</div>
 
                         <p class="font28 color35"><i></i>{{ $ability->description }}</p>
                     </div>
+                    @endif
                 @endforeach
 
             </div>
@@ -367,6 +387,9 @@
             </div>
             <div class="font34 text-center bold">你的第三潜能是</div>
             <div class="qianneng">{{ $third_potential_name }}</div>
+            <div class="say font26 color666">
+                {{ $potentials[$potential_grades[2]['potential_id']]['description']}}
+            </div>
             <div class="radar" id="third_potential">
 
 
@@ -379,7 +402,17 @@
                     @endif
                 @endforeach
 
-
+                <div>
+                    <div class="warning"></div>
+                    <p class="font26 color35">以下是你第三潜能 <span class="emphasis">{{ $best_potential_name }}</span> 中的较弱势的素质能力，
+                        建议要重点针对性的进行提升，才能让你的第三潜能得到
+                        更加完美的体现：</p>
+                    @foreach($third_potential_sorted_quality_grades as $key => $third_potential_sorted_quality_grade)
+                        @if($key == (count($third_potential_sorted_quality_grades)-1))
+                            <p class="font28 color35"><i></i>{{ \App\Models\Quality::getPrefix($third_potential_sorted_quality_grade['quality_grade']) }}{{ $third_potential_has_qualities[$third_potential_sorted_quality_grade['quality_id']]['quality_description'] }}</p>
+                        @endif
+                    @endforeach
+                </div>
 
             </div>
         </div>
@@ -408,7 +441,7 @@
                 <p class="qqnl font26">你的第一个短板潜能 <span class="font32">{{ $short_first_potential_name }}</span> 最欠缺的能力是:</p>
 
                 @foreach($short_first_potential_sorted_quality_grades as $key => $short_first_potential_sorted_quality_grade)
-                    @if($key == (count($short_first_potential_sorted_quality_grades)-1))
+                    @if(60 > ($short_first_potential_sorted_quality_grade['quality_grade'])))
                         <p class="font26 color35"><i></i>{{ $short_first_potential_has_qualities[$short_first_potential_sorted_quality_grade['quality_id']]['quality_description'] }}</p>
                     @endif
                 @endforeach
@@ -425,7 +458,7 @@
                 <p class="qqnl font26">你的第二个短板潜能 <span class="font32">{{ $short_first_potential_name }}</span> 最欠缺的能力是:</p>
 
                 @foreach($short_second_potential_sorted_quality_grades as $key => $short_second_potential_sorted_quality_grade)
-                    @if($key == (count($short_second_potential_sorted_quality_grades)-1))
+                    @if(60 > (($short_second_potential_sorted_quality_grade['quality_grade'])))
                         <p class="font26 color35"><i></i>{{ $short_second_potential_has_qualities[$short_second_potential_sorted_quality_grade['quality_id']]['quality_description'] }}</p>
                     @endif
                 @endforeach
@@ -440,7 +473,7 @@
                 </div>
             </div>
             <div class="say font26 color666">
-                个人潜能与个人兴趣最佳匹配点主要是从个人最具备的潜能和个人最感兴趣的领域中寻找最匹配的交集之处。本维度旨在寻找到个人既感兴趣又有潜能优势可以长远发展的领域。但若找不到最佳匹配点，建议以个人潜能为最重要的选择专业指标，因为个人潜能在高中生这一年龄阶段已定型且相对清晰，并且后天较难改变；但兴趣却具有不稳定性、可能会随着经历发生变化或者个人虽然感兴趣但并不具备相应的潜能，难以奠定成功的基础。
+                个人兴趣按社会元素、职业倾向不同分为六类，每类分数越高代表在此领域的兴趣程度越高。在选择专业的时建议重点关注前3类兴趣。个人兴趣是选择专业非常重要的维度之一，越是感兴趣的领域，在学习时的自主性和效率上越高。建议：选择的专业最好在前三个兴趣分类中，尽量不要选择后3类兴趣分类的专业。
             </div>
             <div class="radar" id="interest_grades"></div>
             <p class="font26 color35 bold">
@@ -530,7 +563,7 @@
                             <p class="font29">{{ $majors[$major_grade['major_id']]['code'] }}</p>
                         </div>
                         <div class="major-title2 font29 color333 zyms">专业描述</div>
-                        <div class="major-content font28 color666">{{ $major_details[$major_grade['major_id']]['description'] }}</div>
+                        <div class="major-content font28 color666">{{$major_grade['major_id']}}{{ $major_details[$major_grade['major_id']]['description'] }}</div>
                         <div class="major-title2 font29 color333 zyms">专业设置目的</div>
                         <div class="major-content font28 color666">{{ $major_details[$major_grade['major_id']]['goal'] }}</div>
                         <div class="major-title2 font29 color333 zyms">主修课程</div>
