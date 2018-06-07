@@ -192,6 +192,28 @@ class WechatController extends Controller
         $app = $this->app;
         $buttons = [
             [
+                "name" => "关于测评",
+                "sub_button" => [
+                    [
+                        "type" => "click",
+                        "key" => 'get-poster',
+                        "name" => "申请免费测评"
+                    ],
+                    [
+                        "name" => "查看测评结果",
+                        "type" => "view",
+                        "url" => 'https://api.jishiceping.com/api/report/51?order_number=68c7c3b667ea11e8a1c400163e0e96d7',
+                    ],
+                    [
+                        "type" => "miniprogram",
+                        "name" => "立即测评",
+                        "url" => "https://api.jishiceping.com/mini_report_home",
+                        "appid" => config('services.media.app_id'),
+                        "pagepath" => "pages/home/home"
+                    ],
+                ]
+            ],
+            [
                 "name" => "答疑解惑",
                 "sub_button" => [
                     [
@@ -216,28 +238,7 @@ class WechatController extends Controller
                     ],
                 ]
             ],
-            [
-                "name" => "关于测评",
-                "sub_button" => [
-                    [
-                        "type" => "click",
-                        "key" => 'get-poster',
-                        "name" => "申请免费测评"
-                    ],
-                    [
-                        "name" => "查看测评结果",
-                        "type" => "view",
-                        "url" => 'https://api.jishiceping.com/api/report/51?order_number=68c7c3b667ea11e8a1c400163e0e96d7',
-                    ],
-                    [
-                        "type" => "miniprogram",
-                        "name" => "立即测评",
-                        "url" => "https://api.jishiceping.com/mini_report_home",
-                        "appid" => config('services.media.app_id'),
-                        "pagepath" => "pages/home/home"
-                    ],
-                ]
-            ],
+
             [
                 "name" => "关于我们",
                 "sub_button" => [
