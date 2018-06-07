@@ -88,7 +88,7 @@ class WechatController extends Controller
 
                                 $upload = $this->uploadImage($bottomImg, $result['ticket']);
                                 $this->menu($upload['media_id']);
-                                return '已为您的好友“' . $weChat['nickname'] . '”成功助力，让一份价值1980元的”高中生专业选择辅导“测评卡离您的好友更近一步！同时，如果您有需要，点击底部菜单栏  “在线测评” - 选择“申请免费测评”，生成您的专属海报，将海报保存分享给朋友圈或群里达到30人扫码关注，即可免费获得1980元高中生专业选择测评，也让您的好友帮您助力吧!';
+                                return '欢迎关注，点击底部菜单栏  “在线测评” - 选择“申请免费测评”，生成您的专属海报，将海报保存分享给朋友圈或群里达到30人扫码关注，即可免费获得1980元高中生专业选择测评，也让您的好友帮您助力吧!';
                                 return new Image($upload['media_id']);
                             } else {
                                 // 根据用户open_id生成二维码并且返回
