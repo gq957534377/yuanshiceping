@@ -243,19 +243,29 @@ class WechatController extends Controller
                 "name" => "关于我们",
                 "sub_button" => [
                     [
-                        "name" => "企业简介",
-                        "type" => "view",
-                        "url" => "https://www.jishiceping.com/"
-                    ],
-                    [
-                        "name" => "联系客服",
-                        "type" => "view",
-                        "url" => 'http://beijingpengshengyiyuan.mikecrm.com/kkDBLzo',
-                    ],
-                    [
-                        "name" => "商务合作",
+                        "name" => "我是谁",
                         "type" => "media_id",
-                        "media_id" => '5gDK9dQyi2I8VovYWgdN9KrnrrjvkRaeQs5-rFBj6Kc',
+                        "media_id" => "5gDK9dQyi2I8VovYWgdN9BpD5AK5C60jL3n26Xu7pp8"
+                    ],
+                    [
+                        "name" => "我能干什么",
+                        "type" => "media_id",
+                        "media_id" => '5gDK9dQyi2I8VovYWgdN9L3JL4DefDquEkR6Th3tqwM',
+                    ],
+                    [
+                        "name" => "我怎么做",
+                        "type" => "media_id",
+                        "media_id" => '5gDK9dQyi2I8VovYWgdN9APz9om27AZGFRyXVueteB4',
+                    ],
+                    [
+                        "name" => "我的可信度",
+                        "type" => "media_id",
+                        "media_id" => '5gDK9dQyi2I8VovYWgdN9J3BE8EXghbCoufwU1x7sU4',
+                    ],
+                    [
+                        "name" => "联系我",
+                        "type" => "media_id",
+                        "media_id" => '5gDK9dQyi2I8VovYWgdN9GNwmedqzsc0IXvTM-gLlKw',
                     ],
                 ]
             ],
