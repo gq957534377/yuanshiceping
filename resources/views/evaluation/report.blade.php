@@ -131,7 +131,7 @@
     </div>
 
     <div class="row-fluid">
-        <div class="col-xs-12">
+        <div class="col-xs-12" id="zytj">
             <div class="zc-title002">
                 <div class="zc-title002-bg">
                     <div class="zc-title002-text">个人高匹配度的专业推荐</div>
@@ -184,7 +184,7 @@
 
     </div>
     <div class="row-fluid">
-        <div class="col-xs-12">
+        <div class="col-xs-12" id="szmx">
             <div class="zc-title002">
                 <div class="zc-title002-bg">
                     <div class="zc-title002-text">个人28项素质模型</div>
@@ -197,7 +197,7 @@
 
     </div>
     <div class="row-fluid">
-        <div class="col-xs-12">
+        <div class="col-xs-12" id="qnfb">
             <div class="zc-title002">
                 <div class="zc-title002-bg">
                     <div class="zc-title002-text">个人潜能分布概况</div>
@@ -267,7 +267,7 @@
 
     </div>
     <div class="row-fluid zc">
-        <div class="col-xs-12">
+        <div class="col-xs-12" id="zjqn">
             <div class="zc-title002">
                 <div class="zc-title002-bg">
                     <div class="zc-title002-text">最佳潜能解析</div>
@@ -316,7 +316,7 @@
 
     </div>
     <div class="row-fluid zc">
-        <div class="col-xs-12">
+        <div class="col-xs-12" id="deqn">
             <div class="zc-title002">
                 <div class="zc-title002-bg">
                     <div class="zc-title002-text">{{ $second_potential_name = $potentials[$potential_grades[1]['potential_id']]['name'] }}</div>
@@ -356,7 +356,7 @@
     </div>
 
     <div class="row-fluid zc">
-        <div class="col-xs-12">
+        <div class="col-xs-12" id="dsqn">
             <div class="zc-title002">
                 <div class="zc-title002-bg">
                     <div class="zc-title002-text">{{ $third_potential_name = $potentials[$potential_grades[2]['potential_id']]['name'] }}</div>
@@ -387,7 +387,7 @@
     </div>
 
     <div class="row-fluid zc">
-        <div class="col-xs-12">
+        <div class="col-xs-12" id="grdb">
             <div class="zc-title002">
                 <div class="zc-title002-bg">
                     <div class="zc-title002-text">个人短板分析</div>
@@ -433,7 +433,7 @@
         </div>
     </div>
     <div class="row-fluid zc">
-        <div class="col-xs-12">
+        <div class="col-xs-12" id="zyxq">
             <div class="zc-title002">
                 <div class="zc-title002-bg">
                     <div class="zc-title002-text">个人专业兴趣解析</div>
@@ -474,7 +474,7 @@
     </div>
 
     <div class="row-fluid zc">
-        <div class="col-xs-12">
+        <div class="col-xs-12" id="zjpp">
             <div class="zc-title003 font28">
                         <p class="text003-1">个人潜能与个人兴趣</p>
                         <p class="text003-2">最佳匹配点解析匹配解析</p>
@@ -507,7 +507,7 @@
     </div>
 
     <div class="row-fluid zc">
-        <div class="col-xs-12">
+        <div class="col-xs-12" id="wljy">
             <div class="zc-title003 font28">
                 <p class="text003-1">所推荐专业的详情</p>
                 <p class="text003-2">与未来就业空间</p>
@@ -559,18 +559,25 @@
 
     </div>
 </div>
-{{--<div class="nav">--}}
-    {{--<div class="nvb" href="#sy">报告导航</div>--}}
-    {{--<a class="nvb active" href="#sy">首页</a>--}}
-    {{--<a class="nvb" href="#qy">前言</a>--}}
-    {{--<a class="nvb" href="#ml">目录</a>--}}
-    {{--<a class="nvb" href="#qn">个人潜能</a>--}}
-    {{--<a class="nvb" href="#db">个人短板</a>--}}
-    {{--<a class="nvb" href="#xq">个人兴趣</a>--}}
-    {{--<a class="nvb" href="#tj">专业推荐</a>--}}
-    {{--<button class="nvb" id="btn-share">分享报告</button>--}}
-    {{--<button class="nvb" id="btn-home">回到首页</button>--}}
-{{--</div>--}}
+
+<div class="nav">
+    <!--<div class="nvb" href="#sy">报告导航</div>
+    <a class="nvb active" href="#sy">首页</a>
+    <a class="nvb" href="#qy">前言</a>
+    <a class="nvb" href="#ml">目录</a>-->
+    <a class="nvb" href="#zytj">专业推荐</a>
+    <a class="nvb" href="#szmx">素质模型</a>
+    <a class="nvb" href="#qnfb">潜能分布</a>
+    <a class="nvb" href="#zjqn">最佳潜能</a>
+    <a class="nvb" href="#deqn">第二潜能</a>
+    <a class="nvb" href="#dsqn">第三潜能</a>
+    <a class="nvb" href="#grdb">个人短板</a>
+    <a class="nvb" href="#zyxq">专业兴趣</a>
+    <a class="nvb" href="#zjpp">最佳匹配</a>
+    <a class="nvb" href="#wljy">未来就业</a>
+    <button class="nvb" id="btn-share">分享报告</button>
+    <button class="nvb" id="btn-home">回到首页</button>
+</div>
 <div class="switcher">
     <img style="width:100%;" src="{{ URL::asset('images/icon_nav.png') }}" >
 </div>
