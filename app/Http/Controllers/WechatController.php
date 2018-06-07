@@ -32,7 +32,7 @@ class WechatController extends Controller
             Log::debug($message);
             switch ($message['MsgType']??null) {
                 case 'event':
-                    switch ($message['Event']) {
+                    switch ($message['Event']) { 
                         case "subscribe":
                             // todo 有了unionid之后修改下
                             $query = User::query();
@@ -88,7 +88,7 @@ class WechatController extends Controller
 
                                 $upload = $this->uploadImage($bottomImg, $result['ticket']);
                                 $this->menu($upload['media_id']);
-                                return '已为您的好友“' . $weChat['nickname'] . '”成功助力，让一份价值988元的”高中生专业选择辅导“测评卡离您的好友更近一步！同时，如果您有需要，点击底部菜单栏  “领取福利” - 选择“免费测评”，生成您的专属海报，也让您的好友帮您助力吧!';
+                                return '已为您的好友“' . $weChat['nickname'] . '”成功助力，让一份价值985元的”高中生专业选择辅导“测评卡离您的好友更近一步！同时，如果您有需要，点击底部菜单栏  “在线测评” - 选择“申请免费测评”，生成您的专属海报，也让您的好友帮您助力吧!';
                                 return new Image($upload['media_id']);
                             } else {
                                 // 根据用户open_id生成二维码并且返回
@@ -103,7 +103,7 @@ class WechatController extends Controller
 
                                 $upload = $this->uploadImage($bottomImg, $user->ticket);
                                 $this->menu($upload['media_id']);
-                                return '已为您的好友“' . $weChat['nickname'] . '”成功助力，让一份价值985元的”高中生专业选择辅导“测评卡离您的好友更近一步！同时，如果您有需要，点击底部菜单栏  “领取福利” - 选择“免费测评”，生成您的专属海报，也让您的好友帮您助力吧!';
+                                return '已为您的好友“' . $weChat['nickname'] . '”成功助力，让一份价值985元的”高中生专业选择辅导“测评卡离您的好友更近一步！同时，如果您有需要，点击底部菜单栏  “在线测评” - 选择“申请免费测评”，生成您的专属海报，也让您的好友帮您助力吧!';
                                 return new Image($upload['media_id']);
                             }
                             break;
@@ -111,7 +111,7 @@ class WechatController extends Controller
                             if (!empty($message['EventKey'])) {
                                 return '您已经为他人助力过，不能再次助力';
                             } else {
-                                return '欢迎关注！点击底部菜单栏  “领取福利” - 选择“免费测评”，会生成您的专属海报，邀请好友帮您扫描助力，即可获得价值988元的“高中生专业选择辅导”测评卡一张~每人只有一次免费机会，活动截止时间：2018-06-23 23:59:59';
+                                return '欢迎关注！点击底部菜单栏  “在线测评” - 选择“申请免费测评”，会生成您的专属海报，邀请好友帮您扫描助力，即可获得价值985元的“高中生专业选择辅导”测评卡一张~每人只有一次免费机会，活动截止时间：2018-06-23 23:59:59';
                             }
                         case "CLICK":
                             switch ($message['EventKey']) {
