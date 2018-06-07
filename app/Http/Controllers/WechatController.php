@@ -210,7 +210,7 @@ class WechatController extends Controller
                         "key" => 'preview',
                     ],
                     [
-                        "name" => "课程回访",
+                        "name" => "课程回放",
                         "type" => "click",
                         "key" => 'dev',
                     ],
