@@ -32,7 +32,7 @@ class WechatController extends Controller
             Log::debug($message);
             switch ($message['MsgType']??null) {
                 case 'event':
-                    switch ($message['Event']) { 
+                    switch ($message['Event']) {
                         case "subscribe":
                             // todo 有了unionid之后修改下
                             $query = User::query();
@@ -88,7 +88,7 @@ class WechatController extends Controller
 
                                 $upload = $this->uploadImage($bottomImg, $result['ticket']);
                                 $this->menu($upload['media_id']);
-                                return '已为您的好友“' . $weChat['nickname'] . '”成功助力，让一份价值985元的”高中生专业选择辅导“测评卡离您的好友更近一步！同时，如果您有需要，点击底部菜单栏  “在线测评” - 选择“申请免费测评”，生成您的专属海报，也让您的好友帮您助力吧!';
+                                return '欢迎关注，点击底部菜单栏  “在线测评” - 选择“申请免费测评”，生成您的专属海报，将海报保存分享给朋友圈或群里达到30人扫码关注，即可免费获得1980元高中生专业选择测评，也让您的好友帮您助力吧!';
                                 return new Image($upload['media_id']);
                             } else {
                                 // 根据用户open_id生成二维码并且返回
@@ -103,7 +103,7 @@ class WechatController extends Controller
 
                                 $upload = $this->uploadImage($bottomImg, $user->ticket);
                                 $this->menu($upload['media_id']);
-                                return '已为您的好友“' . $weChat['nickname'] . '”成功助力，让一份价值985元的”高中生专业选择辅导“测评卡离您的好友更近一步！同时，如果您有需要，点击底部菜单栏  “在线测评” - 选择“申请免费测评”，生成您的专属海报，也让您的好友帮您助力吧!';
+                                return '已为您的好友“' . $weChat['nickname'] . '”成功助力，让一份价值1980元的”高中生专业选择辅导“测评卡离您的好友更近一步！同时，如果您有需要，点击底部菜单栏  “在线测评” - 选择“申请免费测评”，生成您的专属海报，将海报保存分享给朋友圈或群里达到30人扫码关注，即可免费获得1980元高中生专业选择测评，也让您的好友帮您助力吧!';
                                 return new Image($upload['media_id']);
                             }
                             break;
@@ -111,7 +111,7 @@ class WechatController extends Controller
                             if (!empty($message['EventKey'])) {
                                 return '您已经为他人助力过，不能再次助力';
                             } else {
-                                return '欢迎关注！点击底部菜单栏  “在线测评” - 选择“申请免费测评”，会生成您的专属海报，邀请好友帮您扫描助力，即可获得价值985元的“高中生专业选择辅导”测评卡一张~每人只有一次免费机会，活动截止时间：2018-06-23 23:59:59';
+                                return '欢迎关注！点击底部菜单栏  “在线测评” - 选择“申请免费测评”，会生成您的专属海报，将海报保存分享到朋友圈或群里达到30人扫码关注，即可获得价值1980元的“高中生专业选择辅导”测评卡一张~每人只有一次免费机会，活动截止时间：2018-06-23 23:59:59';
                             }
                         case "CLICK":
                             switch ($message['EventKey']) {
@@ -141,7 +141,7 @@ class WechatController extends Controller
                                 case 'shang_wu_he_zuo':
                                     return "shang_wu_he_zuo";
                                 case 'preview':
-                                    return new Image('5gDK9dQyi2I8VovYWgdN9OKzr1JywDtP6mjfGofZZb8');
+                                    return new Image('5gDK9dQyi2I8VovYWgdN9FO95N5psL3zHSjI6OlNMx8');
                                 case 'dev':
                                     return '该功能开发中，敬请期待！';
                             }
@@ -200,7 +200,7 @@ class WechatController extends Controller
                         "media_id" => "5gDK9dQyi2I8VovYWgdN9PED9u2_AH_Biv4p73AEmic"
                     ],
                     [
-                        "name" => "错误的代价",
+                        "name" => "选错的代价",
                         "type" => "media_id",
                         "media_id" => '5gDK9dQyi2I8VovYWgdN9LC-1gTtZOEqMYxfdWbCf6o',
                     ],
@@ -210,14 +210,14 @@ class WechatController extends Controller
                         "key" => 'preview',
                     ],
                     [
-                        "name" => "课程回访",
+                        "name" => "课程回放",
                         "type" => "click",
                         "key" => 'dev',
                     ],
                 ]
             ],
             [
-                "name" => "在线测评",
+                "name" => "关于测评",
                 "sub_button" => [
                     [
                         "type" => "click",
@@ -225,13 +225,13 @@ class WechatController extends Controller
                         "name" => "申请免费测评"
                     ],
                     [
-                        "name" => "查看测评结果",
-                        "type" => "click",
-                        "key" => 'dev',
+                        "name" => "测评结果展示",
+                        "type" => "view",
+                        "url" => 'https://api.jishiceping.com/api/report/51?order_number=68c7c3b667ea11e8a1c400163e0e96d7',
                     ],
                     [
                         "type" => "miniprogram",
-                        "name" => "基石测评",
+                        "name" => "立即测评",
                         "url" => "https://api.jishiceping.com/mini_report_home",
                         "appid" => config('services.media.app_id'),
                         "pagepath" => "pages/home/home"
@@ -242,19 +242,29 @@ class WechatController extends Controller
                 "name" => "关于我们",
                 "sub_button" => [
                     [
-                        "name" => "企业简介",
-                        "type" => "view",
-                        "url" => "https://www.jishiceping.com/"
-                    ],
-                    [
-                        "name" => "联系客服",
-                        "type" => "view",
-                        "url" => 'http://beijingpengshengyiyuan.mikecrm.com/kkDBLzo',
-                    ],
-                    [
-                        "name" => "商务合作",
+                        "name" => "我是谁",
                         "type" => "media_id",
-                        "media_id" => '5gDK9dQyi2I8VovYWgdN9KrnrrjvkRaeQs5-rFBj6Kc',
+                        "media_id" => "5gDK9dQyi2I8VovYWgdN9BpD5AK5C60jL3n26Xu7pp8"
+                    ],
+                    [
+                        "name" => "我能做什么",
+                        "type" => "media_id",
+                        "media_id" => '5gDK9dQyi2I8VovYWgdN9L3JL4DefDquEkR6Th3tqwM',
+                    ],
+                    [
+                        "name" => "我怎么做",
+                        "type" => "media_id",
+                        "media_id" => '5gDK9dQyi2I8VovYWgdN9APz9om27AZGFRyXVueteB4',
+                    ],
+                    [
+                        "name" => "我的可信度",
+                        "type" => "media_id",
+                        "media_id" => '5gDK9dQyi2I8VovYWgdN9J3BE8EXghbCoufwU1x7sU4',
+                    ],
+                    [
+                        "name" => "联系我",
+                        "type" => "media_id",
+                        "media_id" => '5gDK9dQyi2I8VovYWgdN9GNwmedqzsc0IXvTM-gLlKw',
                     ],
                 ]
             ],
