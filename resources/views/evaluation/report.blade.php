@@ -300,7 +300,7 @@
                         建议要重点针对性的进行提升，才能让你的最佳潜能得到
                         更加完美的体现：</p>
                     @foreach($best_potential_sorted_quality_grades as $key => $best_potential_sorted_quality_grade)
-                        @if($key == (count($best_potential_sorted_quality_grades)-1))
+                        @if(60 > (($best_potential_sorted_quality_grade['quality_grade'])))
                             <p class="font28 color35"><i></i>{{ \App\Models\Quality::getPrefix($best_potential_sorted_quality_grade['quality_grade']) }}{{ $best_potential_has_qualities[$best_potential_sorted_quality_grade['quality_id']]['quality_description'] }}</p>
                         @endif
                     @endforeach
@@ -353,7 +353,7 @@
                         建议要重点针对性的进行提升，才能让你的第二潜能得到
                         更加完美的体现：</p>
                     @foreach($second_potential_sorted_quality_grades as $key => $second_potential_sorted_quality_grade)
-                        @if($key == (count($second_potential_sorted_quality_grades)-1))
+                        @if(60 > (($second_potential_sorted_quality_grade['quality_grade'])))
                             <p class="font28 color35"><i></i>{{ \App\Models\Quality::getPrefix($second_potential_sorted_quality_grade['quality_grade']) }}{{ $second_potential_has_qualities[$second_potential_sorted_quality_grade['quality_id']]['quality_description'] }}</p>
                         @endif
                     @endforeach
@@ -408,7 +408,7 @@
                         建议要重点针对性的进行提升，才能让你的第三潜能得到
                         更加完美的体现：</p>
                     @foreach($third_potential_sorted_quality_grades as $key => $third_potential_sorted_quality_grade)
-                        @if($key == (count($third_potential_sorted_quality_grades)-1))
+                        @if(60 > (($third_potential_sorted_quality_grade['quality_grade'])))
                             <p class="font28 color35"><i></i>{{ \App\Models\Quality::getPrefix($third_potential_sorted_quality_grade['quality_grade']) }}{{ $third_potential_has_qualities[$third_potential_sorted_quality_grade['quality_id']]['quality_description'] }}</p>
                         @endif
                     @endforeach
@@ -441,7 +441,7 @@
                 <p class="qqnl font26">你的第一个短板潜能 <span class="font32">{{ $short_first_potential_name }}</span> 最欠缺的能力是:</p>
 
                 @foreach($short_first_potential_sorted_quality_grades as $key => $short_first_potential_sorted_quality_grade)
-                    @if(60 > ($short_first_potential_sorted_quality_grade['quality_grade'])))
+                    @if(60 > $short_first_potential_sorted_quality_grade['quality_grade'])
                         <p class="font26 color35"><i></i>{{ $short_first_potential_has_qualities[$short_first_potential_sorted_quality_grade['quality_id']]['quality_description'] }}</p>
                     @endif
                 @endforeach
