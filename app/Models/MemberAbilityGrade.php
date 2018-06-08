@@ -48,7 +48,7 @@ class MemberAbilityGrade extends Eloquent
             'member_id' => $member_id,
             'order_number' => $order_number,
         ];
-        $models = static::where($where)->orderByDesc('personality_type_weight')->orderByDesc('grade')->orderByDesc('weight')->get();
+        $models = static::where($where)->orderByDesc('grade')->orderByDesc('personality_type_weight')->orderByDesc('weight')->get();
         foreach ($models as $key => $model) {
 
             $temp = $model->toArray();
