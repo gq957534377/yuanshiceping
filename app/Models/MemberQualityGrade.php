@@ -36,4 +36,24 @@ class MemberQualityGrade extends Eloquent
 		'grade',
 		'weight'
 	];
+
+    static public function gradeList($member_id, $order_number)
+    {
+        $list = [];
+        $all = Quality::getAllIndexById();
+        $where = [
+            'member_id' => $member_id,
+            'order_number' => $order_number,
+        ];
+        $models = static::where($where)->orderByDesc('grade')->orderByDesc('weight')->get();
+        foreach ($models as $key => $model) {
+
+            $temp = $model->toArray();
+            $temp['name'] = $all[$temp['quality_id']]['name'];
+            $temp['rank'] = $key + 1;
+            $list[] = $temp;
+        }
+
+        return $list;
+    }
 }

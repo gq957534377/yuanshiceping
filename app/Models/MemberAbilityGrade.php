@@ -39,4 +39,24 @@ class MemberAbilityGrade extends Eloquent
         'personality_type_weight',
         'order_number',
 	];
+
+    static public function gradeList($member_id, $order_number)
+    {
+        $list = [];
+        $all = Ability::getAllIndexById();
+        $where = [
+            'member_id' => $member_id,
+            'order_number' => $order_number,
+        ];
+        $models = static::where($where)->orderByDesc('grade')->orderByDesc('weight')->get();
+        foreach ($models as $key => $model) {
+
+            $temp = $model->toArray();
+            $temp['name'] = $all[$temp['ability_id']]['name'];
+            $temp['rank'] = $key + 1;
+            $list[] = $temp;
+        }
+
+        return $list;
+    }
 }

@@ -6,6 +6,13 @@ use App\Models\Answer;
 use App\Models\Interest;
 use App\Models\Major;
 use App\Models\MajorDetail;
+use App\Models\MemberAbilityGrade;
+use App\Models\MemberInterestGrade;
+use App\Models\MemberMajorGrade;
+use App\Models\MemberPersonalityGrade;
+use App\Models\MemberPotentialGrade;
+use App\Models\MemberQualityGrade;
+use App\Models\MemberShakeGrade;
 use App\Models\Potential;
 use App\Models\Quality;
 use App\Models\Report;
@@ -44,6 +51,45 @@ class EvaluationController extends Controller
         Answer::gradeMajor($member['id']); //计算专业
 
         return ($post);
+    }
+
+    public function reports()
+    {
+        $data = [];
+        $reports = Report::all();
+        $data['reports'] = $reports;
+        return view('evaluation.reports',$data);
+    }
+
+    public function gradeDetail($member_id, $order_number)
+    {
+        $data = [];
+
+        $interest_grades = MemberInterestGrade::gradeList($member_id, $order_number);
+        $data['interest_grades'] = $interest_grades;
+
+        $ability_grades = MemberAbilityGrade::gradeList($member_id, $order_number);
+        $data['ability_grades'] = $ability_grades;
+
+
+//        Answer::gradeCatC($member['id']); // 性格得分
+        $personality_grades = MemberPersonalityGrade::gradeList($member_id, $order_number);
+        $data['personality_grades'] = $personality_grades;
+
+//        Answer::gradeQuality($member['id']); //素质模型
+        $quality_grades = MemberQualityGrade::gradeList($member_id, $order_number);
+        $data['quality_grades'] = $quality_grades;
+//        Answer::gradePotential($member['id']); //计算潜能
+        $potential_grades = MemberPotentialGrade::gradeList($member_id, $order_number);
+        $data['potential_grades'] = $potential_grades;
+//        Answer::gradeShake($member['id']); //计算型格
+        $shake_grades = MemberShakeGrade::gradeList($member_id, $order_number);
+        $data['shake_grades'] = $shake_grades;
+//        Answer::gradeMajor($member['id']); //计算专业
+        $major_grades = MemberMajorGrade::gradeList($member_id, $order_number);
+        $data['major_grades'] = $major_grades;
+        return view('evaluation.grade-detail', $data);
+
     }
 
 

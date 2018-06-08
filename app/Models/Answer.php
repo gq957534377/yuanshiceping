@@ -128,7 +128,6 @@ class Answer extends Common
 
         }
 
-//        Interest::deleteByMemberId($member_id);
         Interest::deleteByOrderNumber($order_number);
 
         MemberInterestGrade::insert($interest_grades);
