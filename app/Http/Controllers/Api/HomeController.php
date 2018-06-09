@@ -20,7 +20,7 @@ class HomeController extends Controller
     {
         $name = str_limit($faker->name,8);
         $result = $faker->randomElement(['完成了', '购买了']);
-        $res = $name . '用户刚刚' . $result . '高中专业选择测评';
+        $res = $name . '刚刚' . $result . '高中生专业选择测评';
         return $this->sendResponse($res, $res);
     }
 }
