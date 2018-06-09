@@ -205,7 +205,7 @@ class WechatController extends Controller
                         "media_id" => '5gDK9dQyi2I8VovYWgdN9LC-1gTtZOEqMYxfdWbCf6o',
                     ],
                     [
-                        "name" => "课程预告",
+                        "name" => "进群听课",
                         "type" => "click",
                         "key" => 'preview',
                     ],
