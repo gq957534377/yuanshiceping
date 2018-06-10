@@ -580,7 +580,7 @@
                             <p class="font29">{{ $majors[$major_grade['major_id']]['code'] }}</p>
                         </div>
                         <div class="major-title2 font29 color333 zyms">专业描述</div>
-                        <div class="major-content font28 color666">{{$major_grade['major_id']}}{{ $major_details[$major_grade['major_id']]['description'] }}</div>
+                        <div class="major-content font28 color666">{{ $major_details[$major_grade['major_id']]['description'] }}</div>
                         <div class="major-title2 font29 color333 zyms">专业设置目的</div>
                         <div class="major-content font28 color666">{{ $major_details[$major_grade['major_id']]['goal'] }}</div>
                         <div class="major-title2 font29 color333 zyms">主修课程</div>
