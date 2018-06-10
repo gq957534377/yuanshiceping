@@ -527,7 +527,7 @@
         <div class="col-xs-12" id="zjpp">
             <div class="zc-title003 font28">
                         <p class="text003-1">个人潜能与个人兴趣</p>
-                        <p class="text003-2">最佳匹配点解析匹配解析</p>
+                        <p class="text003-2">最佳匹配点解析</p>
 
             </div>
             <div class="say font26 color666">
@@ -564,7 +564,7 @@
             </div>
             <div class="major-10">
                 <p class="font29 color333 bold">以下为</p>
-                <p class="font29 color333 bold">个人最佳匹配的10个专业的详情与未来就业空间</p>
+                <p class="font29 color333 bold">个人最佳匹配的10个专业详情与未来就业空间</p>
             </div>
 
         </div>

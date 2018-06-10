@@ -29,7 +29,7 @@ var option = {
     polar : [
         {
             indicator : indicator,
-            radius : 100
+            radius : 90
         }
     ],
     series : [
@@ -83,7 +83,7 @@ var option = {
     polar : [
         {
             indicator : indicator,
-            radius : 110
+            radius : 90
         }
     ],
     series : [
@@ -138,7 +138,7 @@ var option = {
     polar : [
         {
             indicator : indicator,
-            radius : 110
+            radius : 90
         }
     ],
     series : [
@@ -191,10 +191,18 @@ var option = {
 
 
     calculable : true,
+
     polar : [
         {
+            name: {
+                textStyle: {
+                    color: 'red',
+                    fontSize: 10,
+                    itemHeight:10
+                }
+            },
             indicator : indicator,
-            radius : 110
+            radius : 90
         }
     ],
     series : [
@@ -251,7 +259,7 @@ var option = {
     polar : [
         {
             indicator : indicator,
-            radius : 110
+            radius : 90
         }
     ],
     series : [
@@ -307,7 +315,7 @@ var option = {
     polar : [
         {
             indicator : indicator,
-            radius : 110
+            radius : 90
         }
     ],
     series : [
@@ -363,7 +371,7 @@ var option = {
     polar : [
         {
             indicator : indicator,
-            radius : 110
+            radius : 90
         }
     ],
     series : [
@@ -377,7 +385,8 @@ var option = {
                     }
                 }
             },
-            data : grades_data
+            data : grades_data,
+            axisLabel: {show: true, textStyle: {fontSize: 12,color:'red'}},
         }
     ]
 };
