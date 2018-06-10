@@ -277,7 +277,7 @@ var option = {
                 }
             },
             indicator : indicator,
-            radius : 90
+            radius : 110
         }
     ],
     series : [
