@@ -28,6 +28,11 @@ var option = {
     calculable : true,
     polar : [
         {
+            name: {
+                textStyle: {
+                    fontSize: 10,
+                }
+            },
             indicator : indicator,
             radius : 90
         }
@@ -82,6 +87,11 @@ var option = {
     calculable : true,
     polar : [
         {
+            name: {
+                textStyle: {
+                    fontSize: 10,
+                }
+            },
             indicator : indicator,
             radius : 90
         }
@@ -137,6 +147,11 @@ var option = {
     calculable : true,
     polar : [
         {
+            name: {
+                textStyle: {
+                    fontSize: 10,
+                }
+            },
             indicator : indicator,
             radius : 90
         }
@@ -196,13 +211,11 @@ var option = {
         {
             name: {
                 textStyle: {
-                    color: 'red',
                     fontSize: 10,
-                    itemHeight:10
                 }
             },
             indicator : indicator,
-            radius : 90
+            radius : 110
         }
     ],
     series : [
@@ -258,6 +271,11 @@ var option = {
     calculable : true,
     polar : [
         {
+            name: {
+                textStyle: {
+                    fontSize: 10,
+                }
+            },
             indicator : indicator,
             radius : 90
         }
@@ -314,6 +332,11 @@ var option = {
     calculable : true,
     polar : [
         {
+            name: {
+                textStyle: {
+                    fontSize: 10,
+                }
+            },
             indicator : indicator,
             radius : 90
         }
@@ -370,6 +393,11 @@ var option = {
     calculable : true,
     polar : [
         {
+            name: {
+                textStyle: {
+                    fontSize: 10,
+                }
+            },
             indicator : indicator,
             radius : 90
         }
