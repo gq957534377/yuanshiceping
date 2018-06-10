@@ -142,6 +142,8 @@ class WechatController extends Controller
                                     return "shang_wu_he_zuo";
                                 case 'preview':
                                     return new Image('5gDK9dQyi2I8VovYWgdN9NRqC4V5kDdQHNnZc6eWG2o');
+                                case 'curriculumReplay':
+                                    return 'https://www.yizhibo.com/l/Wn5BnVYPTMxXYdKV.html';
                                 case 'dev':
                                     return '该功能开发中，敬请期待！';
                             }
@@ -212,7 +214,7 @@ class WechatController extends Controller
                     [
                         "name" => "课程回放",
                         "type" => "click",
-                        "key" => 'dev',
+                        "key" => 'curriculumReplay',
                     ],
                 ]
             ],
