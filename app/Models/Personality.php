@@ -6,6 +6,7 @@
  */
 
 namespace App\Models;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class Personality
@@ -56,14 +57,16 @@ class Personality extends Common
 
     static public function deleteByOrderNumber($order_number)
     {
-        $items = static::all()->toArray();
-        foreach ($items as $item) {
-            $row = MemberPersonalityGrade::where(['order_number'=>$order_number,'personality_id'=>$item['id']])->first();
-
-            if ($row) {
-                $row->where(['order_number'=>$order_number,'personality_id'=>$item['id']])->delete();
-            }
-        }
+        $sql = "DELETE FROM member_personality_grades WHERE order_number = '{$order_number}'";
+        DB::delete($sql);
+//        $items = static::all()->toArray();
+//        foreach ($items as $item) {
+//            $row = MemberPersonalityGrade::where(['order_number'=>$order_number,'personality_id'=>$item['id']])->first();
+//
+//            if ($row) {
+//                $row->where(['order_number'=>$order_number,'personality_id'=>$item['id']])->delete();
+//            }
+//        }
 
     }
 

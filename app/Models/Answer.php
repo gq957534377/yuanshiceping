@@ -256,8 +256,6 @@ class Answer extends Common
 
         }
 
-
-//        Personality::deleteByMemberId($member_id);
         Personality::deleteByOrderNumber($order_number);
         MemberPersonalityGrade::insert($personality_grades);
 

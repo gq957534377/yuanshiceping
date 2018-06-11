@@ -6,6 +6,7 @@
  */
 
 namespace App\Models;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class Major
@@ -163,14 +164,16 @@ class Major extends Common
     }
     static public function deleteByOrderNumber($order_number)
     {
-        $items = static::all()->toArray();
-        foreach ($items as $item) {
-            $row = MemberMajorGrade::where(['order_number'=>$order_number,'major_id'=>$item['id']])->first();
-
-            if ($row) {
-                $row->where(['order_number'=>$order_number,'major_id'=>$item['id']])->delete();
-            }
-        }
+        $sql = "DELETE FROM member_major_grades WHERE order_number = '{$order_number}'";
+        DB::delete($sql);
+//        $items = static::all()->toArray();
+//        foreach ($items as $item) {
+//            $row = MemberMajorGrade::where(['order_number'=>$order_number,'major_id'=>$item['id']])->first();
+//
+//            if ($row) {
+//                $row->where(['order_number'=>$order_number,'major_id'=>$item['id']])->delete();
+//            }
+//        }
 
     }
 
