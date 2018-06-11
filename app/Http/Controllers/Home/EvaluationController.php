@@ -77,13 +77,13 @@ class EvaluationController extends Controller
         //测评报告
         $report = Report::where($where)->first();
 
-//        if (!empty($report)) {
-//            if (!empty($report->path) && file_exists(base_path('public'.'/'.$report->path))) {
-//               return file_get_contents(base_path('public'.'/'.$report->path));
-//            }
-//        } else {
-//            exit('没有相关数据');
-//        }
+        if (!empty($report)) {
+            if (!empty($report->path) && file_exists(base_path('public'.'/'.$report->path))) {
+               return file_get_contents(base_path('public'.'/'.$report->path));
+            }
+        } else {
+            exit('没有相关数据');
+        }
 
         $report->created_at = time();
         $data['report'] = $report;
