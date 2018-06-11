@@ -154,9 +154,9 @@ class EvaluationController extends Controller
 
                     $current_no = $member_has_subjects[$order->order_id]['current_key'] + 1;
                     if ($member_has_subjects[$order->order_id]['category_id'] == 1) {
-                        $history['last'] = "上次测到：A类 {$current_no}题";
-                    } elseif($member_has_subjects[$order->order_id]['category_id'] == 2) {
                         $history['last'] = "上次测到：B类 {$current_no}题";
+                    } elseif($member_has_subjects[$order->order_id]['category_id'] == 2) {
+                        $history['last'] = "上次测到：A类 {$current_no}题";
                     }  elseif($member_has_subjects[$order->order_id]['category_id'] == 3) {
                         $history['last'] = "上次测到：C类 {$current_no}题";
                     } else {
