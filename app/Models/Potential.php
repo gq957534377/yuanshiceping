@@ -218,7 +218,8 @@ class Potential extends Common
             ->first();
 
         $models = QualityHasAbility::where(['quality_id' => $best_quality_grade->quality_id])
-            ->where(['type_id' => 1])
+//            ->where(['type_id' => 1])
+            ->whereIn('type_id',[1,2,3])
             ->get();
         $ability_ids = [];
         if (!empty($models)) {
