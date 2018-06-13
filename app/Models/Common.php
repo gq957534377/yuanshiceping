@@ -46,5 +46,17 @@ class Common extends Eloquent
         return $items;
     }
 
+    static public function modelIndexBy($models, $field)
+    {
+
+        $items = [];
+        foreach ($models as $key => $model) {
+
+            $items[$model->$field] = $model;
+
+        }
+        return $items;
+    }
+
 
 }

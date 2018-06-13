@@ -7,6 +7,8 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Facades\DB;
+
 /**
  * Class Potential
  * 
@@ -62,7 +64,6 @@ class Potential extends Common
             $potential_grades[$potential['id']]['grade'] = static::gradeOne($potential, $member_id, $order_number);
         }
 
-//        static::deleteByMemberId($member_id);
         static::deleteByOrderNumber($order_number);
         MemberPotentialGrade::insert($potential_grades);
 
@@ -209,6 +210,8 @@ class Potential extends Common
                 $quality_ids[] = $model->quality_id;
             }
         }
+       DB::connection()->enableQueryLog(); // 开启查询日志
+
 
         $best_quality_grade = MemberQualityGrade::where(['member_id' => $member_id])
             ->where(['order_number' => $order_number])
@@ -218,9 +221,10 @@ class Potential extends Common
             ->first();
 
         $models = QualityHasAbility::where(['quality_id' => $best_quality_grade->quality_id])
-//            ->where(['type_id' => 1])
             ->whereIn('type_id',[1,2,3])
             ->get();
+        $sql = DB::getQueryLog();
+
         $ability_ids = [];
         if (!empty($models)) {
             foreach ($models as $model) {
@@ -228,7 +232,23 @@ class Potential extends Common
             }
         }
 
-        return Ability::whereIn('id', $ability_ids)->get();
+        $sorted_ability_grades = MemberAbilityGrade::whereIn('ability_id', $ability_ids)
+            ->where(['order_number' => $order_number])
+            ->orderByDesc('grade')
+            ->orderByDesc('personality_type_weight')
+            ->orderByDesc('weight')
+            ->get();
+
+        $abilities = Ability::whereIn('id', $ability_ids)->get();
+        $abilities = Ability::modelIndexBy($abilities, 'id');
+
+        $sorted_abilities = [];
+
+        foreach ($sorted_ability_grades as $sorted_ability_grade) {
+            $sorted_abilities[] = $abilities[$sorted_ability_grade->ability_id];
+        }
+
+        return $sorted_abilities;
 
     }
 
