@@ -13,6 +13,7 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         '/wechat',
-        '/wechat_notify' // 微信支付回掉
+        '/wechat_notify', // 微信支付回掉
+        '/wechat_login/redirect_uri' // 微信登录回掉
     ];
 }

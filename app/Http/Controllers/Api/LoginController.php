@@ -54,4 +54,10 @@ class LoginController extends Controller
         $token = $user->createToken($request->open_id)->accessToken;
         return $this->sendResponse(['_token' => $token, 'user' => $user], '登陆成功');
     }
+
+    public function redirect_uri(Request $request)
+    {
+        $data = $request -> all();
+        return $this -> sendResponse($data,'微信登录成功');
+    }
 }
