@@ -154,7 +154,7 @@ class WechatController extends Controller
                     }
                     return $contentStr;
                 case 'text':
-                    return '你好';
+                    return '基石测评欢迎您！您的留言已收到，正在联系客服，请耐心等待。如需咨询请添加客服微信：love0509hong';
                     break;
                 default:
                     return '该功能正在玩命开发中。。。';
