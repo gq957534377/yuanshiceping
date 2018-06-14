@@ -47,5 +47,5 @@ Route::group(['namespace' => 'Api'], function () {
     });
     Route::post('wechat_pay/createWechatOrder', 'PayController@createWechatOrder');
     Route::post('wechat_pay/createOrder', 'PayController@createOrder');
-    Route::any('wechat_login/redirect_uri', 'LoginController@redirect_uri');
+    Route::any('wechat_login/redirect_uri', 'LoginController@pc_login');
 });

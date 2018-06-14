@@ -21,15 +21,32 @@ class LoginRequest extends FormRequest
             $this->union_id = $data['unionid']??null;
             return true;
         }
+        if(!empty($this -> code)) {
+            $uri = ' https://api.weixin.qq.com/sns/oauth2/access_token?appid=' . config('services.wechatPc.app_id') . '&code='.$this -> code.'&grant_type=authorization_code';
+
+            $data = json_decode($this -> getCurl($uri));
+            if($data){
+                $this -> openid = $data['openid'];
+                $this -> access_token = $data['access_token'];
+            }
+
+            return true;
+        }
 
         return true;
     }
 
+
+    /**
+     * 验证
+     * @return array
+     */
     public function messages()
     {
         return [
             'js_code.required' => '请输入用户授权js_code',
             'head_url.url' => '用户头像必须是正确url格式地址',
+            'code.required' => '请输入用户授权code',
         ];
     }
 
@@ -46,6 +63,10 @@ class LoginRequest extends FormRequest
                     'js_code' => 'required|string',
                     'head_url' => 'nullable|url',
                     'name' => 'nullable|string|max:255',
+                ];
+            case 'pc_login':
+                return [
+                    'code' => 'required',
                 ];
         }
     }
