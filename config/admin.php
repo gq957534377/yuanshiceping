@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'new_user_num' => 50,
+    'new_user_num' => 30,
     /*
      * Laravel-admin name.
      */
