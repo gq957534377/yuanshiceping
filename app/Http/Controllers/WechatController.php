@@ -213,8 +213,8 @@ class WechatController extends Controller
                     ],
                     [
                         "name" => "课程回放",
-                        "type" => "click",
-                        "key" => 'curriculumReplay',
+                        "type" => "media_id",
+                        "media_id" => '5gDK9dQyi2I8VovYWgdN9MRGnfwvRkTZ-JDiQlUbGSc',
                     ],
                 ]
             ],
