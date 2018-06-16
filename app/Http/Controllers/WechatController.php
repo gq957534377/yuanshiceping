@@ -143,7 +143,7 @@ class WechatController extends Controller
                                 case 'preview':
                                     return new Image('5gDK9dQyi2I8VovYWgdN9GAXXaJC92RUzOCzdiJrymk');
                                 case 'curriculumReplay':
-                                    return 'https://www.yizhibo.com/l/Wn5BnVYPTMxXYdKV.html';
+                                    return 'https://mp.weixin.qq.com/mp/homepage?__biz=MzU0MTgxNTY0MQ%3D%3D&hid=1&sn=d9db2c308424d7ea5bf1000ce27ea288';
                                 case 'dev':
                                     return '该功能开发中，敬请期待！';
                             }
@@ -213,8 +213,8 @@ class WechatController extends Controller
                     ],
                     [
                         "name" => "课程回放",
-                        "type" => "view",
-                        "url" => 'https://mp.weixin.qq.com/mp/homepage?__biz=MzU0MTgxNTY0MQ%3D%3D&hid=1&sn=d9db2c308424d7ea5bf1000ce27ea288'
+                        "type" => "click",
+                        "key" => 'curriculumReplay',
                 ]
             ],
             [
