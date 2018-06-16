@@ -213,8 +213,8 @@ class WechatController extends Controller
                     ],
                     [
                         "name" => "课程回放",
-                        "type" => "click",
-                        "key" => 'curriculumReplay',
+                        "type" => "view",
+                        "url" => 'https://mp.weixin.qq.com/mp/homepage?__biz=MzU0MTgxNTY0MQ%3D%3D&hid=1&sn=d9db2c308424d7ea5bf1000ce27ea288',
                     ],
                 ]
             ],
