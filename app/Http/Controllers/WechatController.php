@@ -265,8 +265,8 @@ class WechatController extends Controller
                     ],
                     [
                         "name" => "联系我",
-                        "type" => "media_id",
-                        "media_id" => '5gDK9dQyi2I8VovYWgdN9GNwmedqzsc0IXvTM-gLlKw',
+                        "type" => "view",
+                        "url" => 'http://p.qiao.baidu.com/cps/chat?siteId=12157630&userId=25728179',
                     ],
                 ]
             ],
