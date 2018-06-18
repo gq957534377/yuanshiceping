@@ -144,7 +144,7 @@ class WechatController extends Controller
                                 case 'shang_wu_he_zuo':
                                     return "shang_wu_he_zuo";
                                 case 'preview':
-                                    return new Image('5gDK9dQyi2I8VovYWgdN9GAXXaJC92RUzOCzdiJrymk');
+                                    return new Image('5gDK9dQyi2I8VovYWgdN9HYe1WC79kx15fQLp97j1NE');
                                 case 'curriculumReplay':
                                     return 'https://mp.weixin.qq.com/mp/homepage?__biz=MzU0MTgxNTY0MQ%3D%3D&hid=1&sn=d9db2c308424d7ea5bf1000ce27ea288-JDiQlUbGSc';
                                 case 'dev':
@@ -210,7 +210,7 @@ class WechatController extends Controller
                         "media_id" => '5gDK9dQyi2I8VovYWgdN9LC-1gTtZOEqMYxfdWbCf6o',
                     ],
                     [
-                        "name" => "进群听课",
+                        "name" => "课程预告",
                         "type" => "click",
                         "key" => 'preview',
                     ],
