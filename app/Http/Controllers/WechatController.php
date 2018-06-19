@@ -144,7 +144,7 @@ class WechatController extends Controller
                                 case 'shang_wu_he_zuo':
                                     return "shang_wu_he_zuo";
                                 case 'preview':
-                                    return new Image('5gDK9dQyi2I8VovYWgdN9HYe1WC79kx15fQLp97j1NE');
+                                    return new Image('5gDK9dQyi2I8VovYWgdN9Gh_sqkzozdT3u1KLoNYTGo');
                                 case 'curriculumReplay':
                                     return 'https://mp.weixin.qq.com/mp/homepage?__biz=MzU0MTgxNTY0MQ%3D%3D&hid=1&sn=d9db2c308424d7ea5bf1000ce27ea288-JDiQlUbGSc';
                                 case 'dev':
