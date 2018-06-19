@@ -78,17 +78,19 @@ class OrdersController extends Controller
 
             $grid->id('ID')->sortable();
             $grid->order_id('订单号');
-            $grid->goods_id('商品名称')->display(function($goodId) {
-                return Good::find($goodId)->goods_name;
-            });
-            $grid->user_id('用户')->display(function($userId) {
-                return User::find($userId)->name;
-            });
+            $grid->goods_id('商品名称');
+//            $grid->goods_id('商品名称')->display(function($goodId) {
+//                return Good::find($goodId)->goods_name;
+//            });
+            $grid->user_id('用户');
+//            $grid->user_id('用户')->display(function($userId) {
+//                return User::find($userId)->name;
+//            });
             $grid->price_level('活动')->display(function($e){
                 if($e == 1){
                     return '正常价格';
                 } else if($e == 2){
-                    return '赠送';
+                    return '限时免费';
                 } else {
                     return '活动价格';
                 }
