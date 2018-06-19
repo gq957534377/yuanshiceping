@@ -10,7 +10,7 @@ use Encore\Admin\Facades\Admin;
 use Encore\Admin\Layout\Content;
 use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\ModelForm;
-use App\user;
+use App\User;
 use App\Models\Good;
 use Ramsey\Uuid\Uuid;
 
@@ -78,14 +78,11 @@ class OrdersController extends Controller
 
             $grid->id('ID')->sortable();
             $grid->order_id('订单号');
-//            $grid->goods_id('商品名称');
             $grid->goods_id('商品名称')->display(function($goodId) {
                 return Good::find($goodId)->goods_name??'';
             });
-//            $grid->user_id('用户');
             $grid->user_id('用户')->display(function($userId) {
-                $user = User::find($userId);
-                return json_encode(json_decode($user))??$userId;
+                return User::find($userId)->name??$userId;
             });
             $grid->price_level('活动')->display(function($e){
                 if($e == 1){
