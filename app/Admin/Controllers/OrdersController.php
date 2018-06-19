@@ -85,7 +85,7 @@ class OrdersController extends Controller
 //            $grid->user_id('用户');
             $grid->user_id('用户')->display(function($userId) {
                 $user = User::find($userId);
-                return !empty($user->name)??$userId;
+                return json_encode(json_decode($user))??$userId;
             });
             $grid->price_level('活动')->display(function($e){
                 if($e == 1){
