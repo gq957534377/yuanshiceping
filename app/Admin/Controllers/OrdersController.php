@@ -97,7 +97,7 @@ class OrdersController extends Controller
             $grid->price('应付价格');
             $grid->paid_price('实付价格');
             $grid->order_status('支付状态')->display(function ($status) {
-                return $status == 1 ? '已支付' : '未支付';
+                return $status == 1 ? '<p style="color:green">已支付</p>' : '<p style="color:red">未支付</p>';
             });
             $grid->created_at('创建时间');
             $grid->updated_at('更新时间');
