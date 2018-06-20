@@ -137,7 +137,7 @@ class OrdersController extends Controller
 
             $form->radio('price_level','活动')->options([1 => '正常价格', 2 => '限时免费', 3 => '活动价格'])->default('1')->stacked();
             $form->currency('price', '正常价格')->symbol('￥');
-            $form->currency('activity_price', '活动价格')->symbol('￥');
+            $form->currency('paid_price', '实付价格')->symbol('￥');
             $form->currency('coupon_price', '优惠卷')->symbol('￥');
             $form->switch('order_status', '是否支付？');
             $form->display('created_at', '创建时间');
