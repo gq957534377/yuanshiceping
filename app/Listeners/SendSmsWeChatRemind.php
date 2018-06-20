@@ -7,6 +7,9 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use EasyWeChat\Factory;
 use Illuminate\Support\Facades\Log;
+use Ramsey\Uuid\Uuid;
+use App\Models\Order;
+use App\User;
 
 class SendSmsWeChatRemind
 {
@@ -46,18 +49,29 @@ class SendSmsWeChatRemind
         ]);
         // todo 如果够了指标，发送通知
         if ($event->data['num'] == config('admin.new_user_num')) {
-            Log::info(23456);
             $res = $this->app->template_message->send([
                 'touser' => $event->user,
                 'template_id' => 'AZ_z1HIHmkWgviA2JKiZwxWtfzy-FrUSOhGnCsxKQmw',
                 'data' => [
                     'first' => $event->data['num'] . '恭喜您完成纳新任务',
                     'keyword1' => '邀请 ' . config('admin.new_user_num') . ' 个新用户获测评卡',
-                    'keyword2' => '完成纳新任务，获得测评卡，卡号：123456',
+                    'keyword2' => '完成纳新任务，获得测评卡，请到小程序，[我的->未完成]里查看',
                     'keyword3' => date('Y-m-d', time()),
                     'remark' => '北京基石测评',
                 ],
             ]);
+
+            $data = [
+                'order_id' => Uuid::uuid1()->getHex(),
+                'user_id' => User::where('weChat_id', $event->user)->first()->id,
+                'goods_id' => 1,
+                'price_level' => 2,
+                'price' => 0.00,
+                'paid_price' => 0.00,
+                'coupon_price' => 0.00,
+                'order_status' => '1'
+            ];
+            Order::create($data);
         }
         Log::warning($event->user);
         Log::warning($res);

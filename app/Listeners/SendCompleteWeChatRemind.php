@@ -57,7 +57,7 @@ class SendCompleteWeChatRemind
                 'touser' => $event->user,
                 'template_id' => 'AZ_z1HIHmkWgviA2JKiZwxWtfzy-FrUSOhGnCsxKQmw',
                 'data' => [
-                    'first' => $event->data['num'] . '恭喜您完成纳新任务',
+                    'first' => $event->data['name'] . '恭喜您完成纳新任务',
                     'keyword1' => '邀请 ' . config('admin.new_user_num') . ' 个新用户获测评卡',
                     'keyword2' => '完成纳新任务，获得测评卡，请到小程序，[我的->未完成]里查看',
                     'keyword3' => date('Y-m-d', time()),
