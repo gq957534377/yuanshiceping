@@ -69,12 +69,12 @@ class WechatController extends Controller
                                         'num' => ($count + 1)
                                     ]));
 //                                    // todo 如果够了指标，发送通知
-                                    if ($count == 30) {
-                                        event(new CompleteInviter($eventKey, 'NcATy1qABKC-xe7R-FqT2BwqZxDNEjkxSPO2jSWNtIA', [
-                                            'name' => $app->user->get($message['FromUserName'])['nickname'],
-                                            'num' => $count
-                                        ]));
-                                    }
+//                                    if (($count+1) == 30) {
+//                                        event(new CompleteInviter($eventKey, 'NcATy1qABKC-xe7R-FqT2BwqZxDNEjkxSPO2jSWNtIA', [
+//                                            'name' => $app->user->get($message['FromUserName'])['nickname'],
+//                                            'num' => ($count+1)
+//                                        ]));
+//                                    }
                                 }
 
                                 // 根据用户open_id生成二维码并且返回
