@@ -127,15 +127,11 @@ class OrdersController extends Controller
                     return collect($array)->flatten()->toArray();
                 }
             });
-            $form->select('user_id','用户')->options(function(){
-                $users = User::all();
+            $form->select('user_id','用户')->options(function($id){
+                $user = User::find($id);
 
-                if($users) {
-                    $array = [0=>'请选择用户'];
-                    foreach($users as $key => $user) {
-                        array_push($array,[$user->id=>$user->name]);
-                    }
-                    return collect($array)->flatten()->toArray();
+                if ($user) {
+                    return [$user->id => $user->name];
                 }
             });
 
