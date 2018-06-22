@@ -232,7 +232,7 @@ class WechatController extends Controller
                     [
                         "name" => "测评结果展示",
                         "type" => "view",
-                        "url" => 'https://api.jishiceping.com/api/report/51?order_number=ea2d7b2e699511e8a45500163e0e96d7',
+                        "url" => 'https://api.jishiceping.com/api/report/null?order_number=fad0148c699511e8be8400163e0e96d7',
                     ],
                     [
                         "type" => "miniprogram",

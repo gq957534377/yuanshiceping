@@ -99,6 +99,7 @@ class PayController extends Controller
             'out_trade_no' => $orderId,
             'trade_type'   => 'JSAPI',  // 必须为JSAPI
             'openid'       => $data['openId'], // 这里的openid为付款人的openid
+            'attach'       => json_encode(['oldOrder_id'=>$data['order_id']]),
             'total_fee'    => 1//intval($data['price'])*100,                // 算完优惠卷的价格
         ]);
 
