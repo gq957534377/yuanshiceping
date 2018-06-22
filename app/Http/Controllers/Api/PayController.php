@@ -204,7 +204,7 @@ class PayController extends Controller
                     'order_status'=>1,
                     'transaction_id'=>$transaction_id
                 ]);
-                Order::where(['order_id'=>$oldOrder_id,])->update(['class_id'=>1]);
+                Order::where(['order_id'=>$oldOrder_id,])->update(['class_id'=>1,'order_status'=>1]);
             } else {
 
                 Order::where(['order_id'=>$order_id])->update(['order_status'=>1,'transaction_id'=>$transaction_id]);
