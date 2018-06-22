@@ -99,7 +99,7 @@ class PayController extends Controller
             'out_trade_no' => $orderId,
             'trade_type'   => 'JSAPI',  // 必须为JSAPI
             'openid'       => $data['openId'], // 这里的openid为付款人的openid
-            'attach'       => json_encode(['oldOrder_id'=>$data['order_id']]),
+            'attach'       => ['oldOrder_id'=>$data['order_id']],
             'total_fee'    => 1//intval($data['price'])*100,                // 算完优惠卷的价格
         ]);
 
@@ -189,7 +189,7 @@ class PayController extends Controller
             echo "FAIL";exit;
         }
         \Log::debug($data);
-        \Log::debug($data['attach']->oldOrder_id);
+        \Log::debug($data['attach']);
 
         $order_id = $data['out_trade_no']; // 订单号
         $transaction_id = $data['transaction_id'];  // 微信订单号
@@ -204,7 +204,7 @@ class PayController extends Controller
                     'order_status'=>1,
                     'transaction_id'=>$transaction_id
                 ]);
-                Order::where(['order_id'=>$data['attach']->oldOrder_id,])->update(['class_id'=>1]);
+                Order::where(['order_id'=>$data['attach']['oldOrder_id'],])->update(['class_id'=>1]);
             } else {
 
                 Order::where(['order_id'=>$order_id])->update(['order_status'=>1,'transaction_id'=>$transaction_id]);
