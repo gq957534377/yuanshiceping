@@ -253,7 +253,7 @@ class EvaluationController extends Controller
 
         $report->subject_id = 1;
         $report->member_id = $member_id;
-        $report->path = $report_url;
+        $report->path = $report_url ?? '';
         $report->order_number = $order_number;
         $report->save();
         return $html;
