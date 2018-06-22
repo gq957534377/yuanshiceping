@@ -15,7 +15,6 @@
 //    return view('welcome');
 //});
 Route::get('/', function(){
-    return json_encode(['oldOrder_id'=>'a54cfa8067d711e8bc5700163e0e96d7']);
     return redirect('/admin');
 });
 

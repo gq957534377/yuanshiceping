@@ -244,7 +244,6 @@ class EvaluationController extends Controller
         if (!is_dir($report_dir)) {
             mkdir($report_dir);
         }
-
         $report_path = $report_dir.'/'.md5($member_id.$order_number).'.html';
         $report_url = 'report/'.md5($member_id.$order_number).'.html';
 

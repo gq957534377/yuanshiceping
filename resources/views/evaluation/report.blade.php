@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
     <link href="{{ URL::asset('bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ URL::asset('style.css?__v=20180621210143') }}">
+    <link rel="stylesheet" href="{{ URL::asset('style.css?__v=20180621210141') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/nav.css?__v=20180602210142') }}">
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
     <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.3.2.js"></script>
@@ -670,7 +670,6 @@
     <a class="nvb" href="#wljy">未来就业</a>
     <button class="nvb" id="btn-share">分享报告</button>
     <button class="nvb" id="btn-home">回到首页</button>
-    <button class="nvb" id="btn-zhi">支付</button>
 </div>
 <div class="switcher">
     <img style="width:100%;" src="{{ URL::asset('images/icon_nav.png') }}" >
