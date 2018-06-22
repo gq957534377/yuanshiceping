@@ -137,6 +137,7 @@ class EvaluationController extends Controller
         $orders = Order::where($where)->Where(['order_status' => 1])->orderBy('id','desc')->get();
         if (!empty($orders)) {
             foreach ($orders as $order) {
+                if($order->goods_id == 4) continue;
                 $goods = Good::where(['id' => $order->goods_id])->first();
                 $history = [];
                 $history['title'] = $goods->goods_name;
