@@ -16,6 +16,7 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id')->comment('订单ID');
             $table->uuid('order_id')->comment('订单号');
+            $table->uuid('oldOrder_id')->comment('关联订单号');
             $table->tinyInteger('class_id')->default(1)>comment('分类ID');
             $table->string('transaction_id')->comment('微信订单号');
             $table->unsignedInteger('goods_id')->comment('商品ID');

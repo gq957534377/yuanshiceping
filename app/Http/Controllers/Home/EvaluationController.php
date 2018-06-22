@@ -240,14 +240,16 @@ class EvaluationController extends Controller
         //行为模式
         $html = view('evaluation.report',$data)->__toString();
 
-        $report_dir = base_path('public').'/report';
-        if (!is_dir($report_dir)) {
-            mkdir($report_dir);
-        }
-        $report_path = $report_dir.'/'.md5($member_id.$order_number).'.html';
-        $report_url = 'report/'.md5($member_id.$order_number).'.html';
+        if($data['class_id'] != 4){
+            $report_dir = base_path('public').'/report';
+            if (!is_dir($report_dir)) {
+                mkdir($report_dir);
+            }
+            $report_path = $report_dir.'/'.md5($member_id.$order_number).'.html';
+            $report_url = 'report/'.md5($member_id.$order_number).'.html';
 
-        file_put_contents($report_path,$html);
+            file_put_contents($report_path,$html);
+        }
 
         $report->subject_id = 1;
         $report->member_id = $member_id;

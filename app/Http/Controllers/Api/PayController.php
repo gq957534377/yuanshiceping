@@ -79,7 +79,7 @@ class PayController extends Controller
     }
 
     /**
-     * 更新订单为全价
+     * 更新体验测评卡订单为全价
      *
      * @param Request $request
      * @return array|\Illuminate\Http\JsonResponse
@@ -99,8 +99,8 @@ class PayController extends Controller
             'out_trade_no' => $orderId,
             'trade_type'   => 'JSAPI',  // 必须为JSAPI
             'openid'       => $data['openId'], // 这里的openid为付款人的openid
-            'attach'       => $data['order_id'],
-            'total_fee'    => 1//intval($data['price'])*100,                // 算完优惠卷的价格
+            'attach'       => $data['order_id'], // 关联订单号
+            'total_fee'    => intval($data['price'])*100,                // 真实付款价格
         ]);
 
         // 如果成功生成统一下单的订单，那么进行二次签名
