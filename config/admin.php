@@ -2,6 +2,7 @@
 
 return [
     'new_user_num' => 30,
+    'experience_price' => 1,
     /*
      * Laravel-admin name.
      */

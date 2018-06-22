@@ -79,6 +79,66 @@ class PayController extends Controller
     }
 
     /**
+     * 更新订单为全价
+     *
+     * @param Request $request
+     * @return array|\Illuminate\Http\JsonResponse
+     */
+    public function updateWechatOrder(Request $request)
+    {
+        $data = $request->all();
+
+        $user = User::where(['open_id'=>$data['openId']])->first()->toArray();
+
+        if (empty($user)) return $this->sendResponse(false,'请先登录！');
+
+        $payment = \EasyWeChat::payment(); // 微信支付
+        $orderId = Uuid::uuid1()->getHex();
+        $result = $payment->order->unify([
+            'body'         => '高中专业选择测评',
+            'out_trade_no' => $orderId,
+            'trade_type'   => 'JSAPI',  // 必须为JSAPI
+            'openid'       => $data['openId'], // 这里的openid为付款人的openid
+            'total_fee'    => 1//intval($data['price'])*100,                // 算完优惠卷的价格
+        ]);
+
+        // 如果成功生成统一下单的订单，那么进行二次签名
+        if ($result['return_code'] === 'SUCCESS') {
+
+            $order = [
+                'order_id'     => $orderId,
+                'goods_id'     => 4,
+                'oldOrder_id'  => $data['order_id'],
+                'class_id'     => 4,
+                'user_id'      => $user['id'],
+                'price'        => $data['price'],
+                'price_level'  => 1,
+                'paid_price'   => $data['price']
+            ];
+            $status = Order::create($order);
+
+            if(!$status) return $this->sendResponse(false,'请稍后重试');
+
+            // 二次签名的参数必须与下面相同
+            $params = [
+                'appId'     => config('wechat.payment.default.app_id'),
+                'timeStamp' => time(),
+                'nonceStr'  => $result['nonce_str'],
+                'package'   => 'prepay_id=' . $result['prepay_id'],
+                'signType'  => 'MD5',
+            ];
+
+            // config('wechat.payment.default.key')为商户的key
+            $params['paySign'] = generate_sign($params, config('wechat.payment.default.key'));
+            $params['order'] = $order;
+            return $params;
+        } else {
+            return $result;
+        }
+
+    }
+
+    /**
      * xml字符串转参数数组
      * @param string $xml xml字符串
      * @return array|bool
@@ -136,8 +196,17 @@ class PayController extends Controller
 
         $order = Order::where(['order_id'=>$order_id,'user_id'=>$user['id']])->first()->toArray();
         if($order) {
+            if($order['class_id'] == 4 && !empty($data['oldOrder_id'])) {
 
-            Order::where(['order_id'=>$order_id])->update(['order_status'=>1,'transaction_id'=>$transaction_id]);
+                Order::where(['order_id'=>$order_id])->update([
+                    'order_status'=>1,
+                    'transaction_id'=>$transaction_id
+                ]);
+                Order::where(['order_id'=>$data['oldOrder_id'],])->update(['class_id'=>1]);
+            } else {
+
+                Order::where(['order_id'=>$order_id])->update(['order_status'=>1,'transaction_id'=>$transaction_id]);
+            }
         } else {
             \Log::debug('微信支付回调查询订单失败：{user_id：'.$user['id'].';open_id:'.$openid.';order_id:'.$order_id.';transaction_id:'.$transaction_id.'}');
             return "<xml><return_code><![CDATA[FAIL]]></return_code><return_msg><![CDATA[FAIL]]></return_msg></xml>";

@@ -11,6 +11,14 @@ $(function(){
         var orderNumber = $.getUrlParam('order_number');
         wx.miniProgram.navigateTo({url:'/pages/report/share?user_id='+userId+'&order_number='+orderNumber});
     });
+    $(".pay-button").click(function() {
+        var userId = window.location.pathname.slice(12);
+        var orderNumber = $.getUrlParam('order_number');
+        var class_id = $(this).data('class');
+        var price = $(this).data('price');
+        wx.miniProgram.navigateTo({
+            url:'/pages/pay/zhifu?user_id='+userId+'&order_number='+orderNumber+'&class_id='+class_id+'&price='+price});
+    });
     $("#btn-home").click(function() {
         wx.miniProgram.switchTab({url:'/pages/home/home'});
     });

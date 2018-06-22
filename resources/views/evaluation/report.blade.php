@@ -8,12 +8,12 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
     <link href="{{ URL::asset('bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ URL::asset('style.css') }}">
-    <link rel="stylesheet" href="{{ URL::asset('css/nav.css?__v=20180602210141') }}">
+    <link rel="stylesheet" href="{{ URL::asset('style.css?__v=20180621210143') }}">
+    <link rel="stylesheet" href="{{ URL::asset('css/nav.css?__v=20180602210142') }}">
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
     <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.3.2.js"></script>
     <script src="{{ URL::asset('js/echarts.js') }}"></script>
-    <script src="{{ asset('js/nav.js?__v=20180602210141') }}"></script>
+    <script src="{{ asset('js/nav.js?__v=20180602210142') }}"></script>
     <script>
         var potentials = {!! json_encode($potentials) !!} //潜能
         var interests = {!! json_encode($interests) !!} //兴趣
@@ -149,9 +149,19 @@
                 <div class="zypp font26 color35">
                     最佳匹配专业
                 </div>
+
                 @foreach($major_grades as $key => $major_grade)
                     @if($key < 10)
-                        <div class="major_line font28 color35"><span class="code">{{ $majors[$major_grade['major_id']]['code'] }}</span><span class="school">{{ $majors[$major_grade['major_id']]['name'] }}</span></div>
+                        @if($class_id==4)
+                            <div class="major-hidden">
+                                <p>体验版只推荐一个专业,如需查看其他专业,请点击！</p>
+                                <button class="major-button pay-button" data-class="{{$class_id}}" data-price="{{config('admin.experience_price')}}">点我查看</button>
+                            </div>
+                        @endif
+                        <div class="major_line font28 color35">
+                            <span class="code">{{ $majors[$major_grade['major_id']]['code']??'' }}</span>
+                            <span class="school">{{ $majors[$major_grade['major_id']]['name']??'' }}</span>
+                        </div>
                     @endif
                 @endforeach
             </div>
@@ -161,7 +171,16 @@
                 </div>
                 @foreach($major_grades as $key => $major_grade)
                     @if($key < 20 && $key >= 10)
-                        <div class="major_line font28 color35"><span class="code">{{ $majors[$major_grade['major_id']]['code'] }}</span><span class="school">{{ $majors[$major_grade['major_id']]['name'] }}</span></div>
+                        @if($class_id==4)
+                            <div class="major-hidden">
+                                <p>体验版只推荐一个专业,如需查看其他专业,请点击！</p>
+                                <button class="major-button pay-button" data-class="{{$class_id}}" data-price="{{config('admin.experience_price')}}">点我查看</button>
+                            </div>
+                        @endif
+                        <div class="major_line font28 color35">
+                            <span class="code">{{ $majors[$major_grade['major_id']]['code']??'' }}</span>
+                            <span class="school">{{ $majors[$major_grade['major_id']]['name']??'' }}</span>
+                        </div>
                     @endif
                 @endforeach
             </div>
@@ -174,7 +193,13 @@
                     是 <span class="zc-red">你最不适合、最不具备优势、应该避免选择的专业</span>：</p>
                 @foreach(array_reverse($major_grades->toArray()) as $key => $major_grade)
                     @if($key < 10)
-                        <div class="major_line font28 color35"><span class="code">{{ $majors[$major_grade['major_id']]['code'] }}</span><span class="school">{{ $majors[$major_grade['major_id']]['name'] }}</span></div>
+                        @if($class_id==4)
+                            <div class="major-hidden">
+                                <p>体验版只推荐一个专业,如需查看其他专业,请点击！</p>
+                                <button class="major-button pay-button" data-class="{{$class_id}}" data-price="{{config('admin.experience_price')}}">点我查看</button>
+                            </div>
+                        @endif
+                        <div class="major_line font28 color35"><span class="code">{{ $majors[$major_grade['major_id']]['code']??'' }}</span><span class="school">{{ $majors[$major_grade['major_id']]['name']??'' }}</span></div>
                     @endif
                 @endforeach
             </div>
@@ -590,18 +615,21 @@
             @foreach($major_grades as $key => $major_grade)
                 @if($key < 10)
                     <div class="major-info">
+                    @if($class_id == 4 && $key > 0)
+                    <div class="detail">体验版只能查看一个专业详情如需查看其他，请到专业推荐点击购买</div>
+                    @endif
                         <div class="major-title zytj">
-                            <p class="font29">{{ $majors[$major_grade['major_id']]['name'] }}</p>
-                            <p class="font29">{{ $majors[$major_grade['major_id']]['code'] }}</p>
+                            <p class="font29">{{ $majors[$major_grade['major_id']]['name']??'' }}</p>
+                            <p class="font29">{{ $majors[$major_grade['major_id']]['code']??'' }}</p>
                         </div>
                         <div class="major-title2 font29 color333 zyms">专业描述</div>
-                        <div class="major-content font28 color666">{{ $major_details[$major_grade['major_id']]['description'] }}</div>
+                        <div class="major-content font28 color666">{{ $major_details[$major_grade['major_id']]['description']??'' }}</div>
                         <div class="major-title2 font29 color333 zyms">专业设置目的</div>
-                        <div class="major-content font28 color666">{{ $major_details[$major_grade['major_id']]['goal'] }}</div>
+                        <div class="major-content font28 color666">{{ $major_details[$major_grade['major_id']]['goal']??'' }}</div>
                         <div class="major-title2 font29 color333 zyms">主修课程</div>
-                        <div class="major-content font28 color666">{{ $major_details[$major_grade['major_id']]['course'] }}</div>
+                        <div class="major-content font28 color666">{{ $major_details[$major_grade['major_id']]['course']??'' }}</div>
                         <div class="major-title2 font29 color333 zyms">未来就业空间</div>
-                        <div class="major-content font28 color666">{{ $major_details[$major_grade['major_id']]['career'] }}</div>
+                        <div class="major-content font28 color666">{{ $major_details[$major_grade['major_id']]['career']??'' }}</div>
                     </div>
                 @endif
             @endforeach
@@ -642,6 +670,7 @@
     <a class="nvb" href="#wljy">未来就业</a>
     <button class="nvb" id="btn-share">分享报告</button>
     <button class="nvb" id="btn-home">回到首页</button>
+    <button class="nvb" id="btn-zhi">支付</button>
 </div>
 <div class="switcher">
     <img style="width:100%;" src="{{ URL::asset('images/icon_nav.png') }}" >
