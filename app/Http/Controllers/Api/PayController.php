@@ -99,7 +99,7 @@ class PayController extends Controller
             'out_trade_no' => $orderId,
             'trade_type'   => 'JSAPI',  // 必须为JSAPI
             'openid'       => $data['openId'], // 这里的openid为付款人的openid
-            'attach'       => json_encode(['oldOrder_id'=>$data['order_id']]),
+            'attach'       => $data['order_id'],
             'total_fee'    => 1//intval($data['price'])*100,                // 算完优惠卷的价格
         ]);
 
@@ -193,19 +193,18 @@ class PayController extends Controller
         $order_id = $data['out_trade_no']; // 订单号
         $transaction_id = $data['transaction_id'];  // 微信订单号
         $openid = $data['openid'];  // 用户ID
-        $oldOrder_id = json_decode($data['attach']);
-        \Log::debug($oldOrder_id);
+        $oldOrder_id = $data['attach'];
         $user = User::where(['open_id'=>$openid])->first()->toArray();
 
         $order = Order::where(['order_id'=>$order_id,'user_id'=>$user['id']])->first()->toArray();
         if($order) {
-            if($order['class_id'] == 4 && !empty($oldOrder_id['oldOrder_id'])) {
+            if($order['class_id'] == 4 && !empty($oldOrder_id)) {
 
                 Order::where(['order_id'=>$order_id])->update([
                     'order_status'=>1,
                     'transaction_id'=>$transaction_id
                 ]);
-                Order::where(['order_id'=>$oldOrder_id['oldOrder_id'],])->update(['class_id'=>1]);
+                Order::where(['order_id'=>$oldOrder_id,])->update(['class_id'=>1]);
             } else {
 
                 Order::where(['order_id'=>$order_id])->update(['order_status'=>1,'transaction_id'=>$transaction_id]);
