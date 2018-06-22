@@ -193,7 +193,7 @@ class PayController extends Controller
         $order_id = $data['out_trade_no']; // 订单号
         $transaction_id = $data['transaction_id'];  // 微信订单号
         $openid = $data['openid'];  // 用户ID
-        $oldOrder_id = $data['attach'];
+        $oldOrder_id = $data['attach'] ?? '';
         $user = User::where(['open_id'=>$openid])->first()->toArray();
 
         $order = Order::where(['order_id'=>$order_id,'user_id'=>$user['id']])->first()->toArray();
