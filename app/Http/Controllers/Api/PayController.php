@@ -189,17 +189,17 @@ class PayController extends Controller
             echo "FAIL";exit;
         }
         \Log::debug($data);
-        \Log::debug($data['attach']);
 
         $order_id = $data['out_trade_no']; // 订单号
         $transaction_id = $data['transaction_id'];  // 微信订单号
         $openid = $data['openid'];  // 用户ID
         $oldOrder_id = json_decode($data['attach']);
+        \Log::debug($oldOrder_id);
         $user = User::where(['open_id'=>$openid])->first()->toArray();
 
         $order = Order::where(['order_id'=>$order_id,'user_id'=>$user['id']])->first()->toArray();
         if($order) {
-            if($order['class_id'] == 4 && !empty($data['oldOrder_id'])) {
+            if($order['class_id'] == 4 && !empty($oldOrder_id['oldOrder_id'])) {
 
                 Order::where(['order_id'=>$order_id])->update([
                     'order_status'=>1,
