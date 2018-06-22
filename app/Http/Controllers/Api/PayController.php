@@ -189,6 +189,7 @@ class PayController extends Controller
             echo "FAIL";exit;
         }
         \Log::debug($data);
+        \Log::debug($data['attach']->oldOrder_id);
 
         $order_id = $data['out_trade_no']; // 订单号
         $transaction_id = $data['transaction_id'];  // 微信订单号
@@ -203,7 +204,7 @@ class PayController extends Controller
                     'order_status'=>1,
                     'transaction_id'=>$transaction_id
                 ]);
-                Order::where(['order_id'=>$data['oldOrder_id'],])->update(['class_id'=>1]);
+                Order::where(['order_id'=>$data['attach']->oldOrder_id,])->update(['class_id'=>1]);
             } else {
 
                 Order::where(['order_id'=>$order_id])->update(['order_status'=>1,'transaction_id'=>$transaction_id]);
