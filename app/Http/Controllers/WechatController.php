@@ -93,6 +93,7 @@ class WechatController extends Controller
                                 return new Image($upload['media_id']);
                             } else {
                                 $eventKey = str_replace('qrscene_', '', $message['EventKey']);
+                                log::debug(['eventKey'=>$eventKey]);
                                 // 获取邀请人
                                 $inviter_name = User::where('weChat_id', $eventKey)->first()->name;
                                 // 根据用户open_id生成二维码并且返回
