@@ -223,7 +223,7 @@ class WechatController extends Controller
                     [
                         "name" => "课程预告",
                         "type" => "media_id",
-                        "media_id" => '5gDK9dQyi2I8VovYWgdN9K0GuzfTU8v6BA-dZBoQ0Xw',
+                        "media_id" => '5gDK9dQyi2I8VovYWgdN9HsCUTjBdL63lCmkdNHK0XI',
                     ],
                     [
                         "name" => "课程回放",
