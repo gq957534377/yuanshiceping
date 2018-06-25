@@ -64,10 +64,10 @@ class WechatController extends Controller
                                     $newUser['inviter_id'] = User::where('weChat_id', $eventKey)->first()->id??null;
                                     $count = User::where('inviter_id', $newUser['inviter_id'])->count();
                                     // todo 通知暫時注釋
-                                    event(new MessageRemind($eventKey, 'Fwb3aAlKkwg3tAtyyEq3KoLkKgWlLzBjC9TqOaKZelQ', [
-                                        'name' => $app->user->get($message['FromUserName'])['nickname'],
-                                        'num' => ($count + 1)
-                                    ]));
+//                                    event(new MessageRemind($eventKey, 'Fwb3aAlKkwg3tAtyyEq3KoLkKgWlLzBjC9TqOaKZelQ', [
+//                                        'name' => $app->user->get($message['FromUserName'])['nickname'],
+//                                        'num' => ($count + 1)
+//                                    ]));
 //                                    // todo 如果够了指标，发送通知
 //                                    if (($count+1) == 30) {
 //                                        event(new CompleteInviter($eventKey, 'NcATy1qABKC-xe7R-FqT2BwqZxDNEjkxSPO2jSWNtIA', [
