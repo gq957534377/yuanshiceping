@@ -338,7 +338,7 @@ var option = {
                 }
             },
             indicator : indicator,
-            radius : 110
+            radius : 100
         }
     ],
     series : [
