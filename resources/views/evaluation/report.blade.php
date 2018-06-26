@@ -345,7 +345,7 @@
                 @foreach($best_potential_abilities as $key => $ability)
                     @if($key < 2)
                     <div>
-                        <div class="yuan font32 bold">{{ $ability->name }}</div>
+{{--                        <div class="yuan font32 bold">{{ $ability->name }}</div>--}}
 
                         <p class="font28 color35"><i></i>{{ $ability->description }}</p>
                     </div>
@@ -408,7 +408,7 @@
                 @foreach($second_potential_abilities as $key => $ability)
                     @if($key < 1)
                     <div>
-                        <div class="yuan font32 bold">{{ $ability->name }}</div>
+                        {{--<div class="yuan font32 bold">{{ $ability->name }}</div>--}}
 
                         <p class="font28 color35"><i></i>{{ $ability->description }}</p>
                     </div>
