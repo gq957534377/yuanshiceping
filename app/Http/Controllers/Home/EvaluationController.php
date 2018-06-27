@@ -39,31 +39,31 @@ class EvaluationController extends Controller
     {
         $data = [];
 
-        Answer::gradeCatA($member_id, $order_number); //计算兴趣
+        //Answer::gradeCatA($member_id, $order_number); //计算兴趣
         $interest_grades = MemberInterestGrade::gradeList($member_id, $order_number);
         $data['interest_grades'] = $interest_grades;
 
-        Answer::gradeCatB($member_id, $order_number); //才干 能力 得分
+        //Answer::gradeCatB($member_id, $order_number); //才干 能力 得分
         $ability_grades = MemberAbilityGrade::gradeList($member_id, $order_number);
         $data['ability_grades'] = $ability_grades;
 
-        Answer::gradeCatC($member_id, $order_number); // 性格得分
+        //Answer::gradeCatC($member_id, $order_number); // 性格得分
         $personality_grades = MemberPersonalityGrade::gradeList($member_id, $order_number);
         $data['personality_grades'] = $personality_grades;
 
-        Answer::gradeQuality($member_id, $order_number); //素质模型
+        //Answer::gradeQuality($member_id, $order_number); //素质模型
         $quality_grades = MemberQualityGrade::gradeList($member_id, $order_number);
         $data['quality_grades'] = $quality_grades;
 
-        Answer::gradePotential($member_id, $order_number); //计算潜能
+        //Answer::gradePotential($member_id, $order_number); //计算潜能
         $potential_grades = MemberPotentialGrade::gradeList($member_id, $order_number);
         $data['potential_grades'] = $potential_grades;
 
-        Answer::gradeShake($member_id, $order_number); //计算型格
+        //Answer::gradeShake($member_id, $order_number); //计算型格
         $shake_grades = MemberShakeGrade::gradeList($member_id, $order_number);
         $data['shake_grades'] = $shake_grades;
 
-        Answer::gradeMajor($member_id, $order_number); //计算专业
+        //Answer::gradeMajor($member_id, $order_number); //计算专业
         $major_grades = MemberMajorGrade::gradeList($member_id, $order_number);
         $data['major_grades'] = $major_grades;
         return view('evaluation.grade-detail', $data);
