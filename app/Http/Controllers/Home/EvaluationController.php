@@ -13,6 +13,7 @@ use App\Models\MemberPersonalityGrade;
 use App\Models\MemberPotentialGrade;
 use App\Models\MemberQualityGrade;
 use App\Models\MemberShakeGrade;
+use App\Models\Order;
 use App\Models\Potential;
 use App\Models\Quality;
 use App\Models\Report;
@@ -80,15 +81,20 @@ class EvaluationController extends Controller
         ];
         //测评报告
         $report = Report::where($where)->first();
-
-        if (!empty($report)) {
-            if (!empty($report->path) && file_exists(base_path('public'.'/'.$report->path))) {
-               return file_get_contents(base_path('public'.'/'.$report->path));
+        $order = Order::where(['order_id'=>$order_number])->first()->toArray();
+        if(!empty($order) && $order['class_id'] != 4) {
+            if (!empty($report)) {
+                if (!empty($report->path) && file_exists(base_path('public'.'/'.$report->path))) {
+                    return file_get_contents(base_path('public'.'/'.$report->path));
+                }
+            } else {
+                exit('没有相关数据');
             }
-        } else {
+        } else if(empty($order)){
             exit('没有相关数据');
         }
 
+        $data['class_id'] = $order['class_id'];
         $report->created_at = time();
         $data['report'] = $report;
 
@@ -230,24 +236,24 @@ class EvaluationController extends Controller
         }
         $data['short_second_potential_sorted_quality_grades'] = $short_second_potential_sorted_quality_grades;
 
-
         //潜能js数据
         //行为模式
         $html = view('evaluation.report',$data)->__toString();
 
-        $report_dir = base_path('public').'/report';
-        if (!is_dir($report_dir)) {
-            mkdir($report_dir);
+        if($data['class_id'] != 4){
+            $report_dir = base_path('public').'/report';
+            if (!is_dir($report_dir)) {
+                mkdir($report_dir);
+            }
+            $report_path = $report_dir.'/'.md5($member_id.$order_number).'.html';
+            $report_url = 'report/'.md5($member_id.$order_number).'.html';
+
+            file_put_contents($report_path,$html);
         }
-
-        $report_path = $report_dir.'/'.md5($member_id.$order_number).'.html';
-        $report_url = 'report/'.md5($member_id.$order_number).'.html';
-
-        file_put_contents($report_path,$html);
 
         $report->subject_id = 1;
         $report->member_id = $member_id;
-        $report->path = $report_url;
+        $report->path = $report_url ?? '';
         $report->order_number = $order_number;
         $report->save();
         return $html;

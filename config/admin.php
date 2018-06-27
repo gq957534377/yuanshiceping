@@ -1,7 +1,8 @@
 <?php
 
 return [
-    'new_user_num' => 50,
+    'new_user_num' => 30, // 服务号邀请人数
+    'experience_price' => 899, // 体验版加价价格
     /*
      * Laravel-admin name.
      */

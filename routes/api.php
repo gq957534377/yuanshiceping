@@ -13,6 +13,10 @@ use Illuminate\Http\Request;
 |
 */
 
+header('Access-Control-Allow-Origin:*');
+header('Access-Control-Allow-Headers:X-Token,Content-Type,Authorization,open_id');
+header('Access-Control-Allow-Methods:*');
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
@@ -43,4 +47,6 @@ Route::group(['namespace' => 'Api'], function () {
     });
     Route::post('wechat_pay/createWechatOrder', 'PayController@createWechatOrder');
     Route::post('wechat_pay/createOrder', 'PayController@createOrder');
+    Route::post('wechat_pay/updateWechatOrder', 'PayController@updateWechatOrder');
+    Route::any('wechat_login/redirect_uri', 'LoginController@pc_login');
 });

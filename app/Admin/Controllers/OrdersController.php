@@ -10,7 +10,7 @@ use Encore\Admin\Facades\Admin;
 use Encore\Admin\Layout\Content;
 use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\ModelForm;
-use App\user;
+use App\User;
 use App\Models\Good;
 use Ramsey\Uuid\Uuid;
 
@@ -78,8 +78,12 @@ class OrdersController extends Controller
 
             $grid->id('ID')->sortable();
             $grid->order_id('订单号');
-            $grid->goods_id('商品名称');
-            $grid->user_id('用户');
+            $grid->goods_id('商品名称')->display(function($goodId) {
+                return Good::find($goodId)->goods_name??'';
+            });
+            $grid->user_id('用户')->display(function($userId) {
+                return User::find($userId)->name??$userId;
+            });
             $grid->price_level('活动')->display(function($e){
                 if($e == 1){
                     return '正常价格';
@@ -93,7 +97,7 @@ class OrdersController extends Controller
             $grid->price('应付价格');
             $grid->paid_price('实付价格');
             $grid->order_status('支付状态')->display(function ($status) {
-                return $status == 1 ? '已支付' : '未支付';
+                return $status == 1 ? '<p style="color:green">已支付</p>' : '<p style="color:red">未支付</p>';
             });
             $grid->created_at('创建时间');
             $grid->updated_at('更新时间');
@@ -123,21 +127,17 @@ class OrdersController extends Controller
                     return collect($array)->flatten()->toArray();
                 }
             });
-            $form->select('user_id','用户')->options(function(){
-                $users = User::all();
+            $form->select('user_id','用户')->options(function($id){
+                $user = User::find($id);
 
-                if($users) {
-                    $array = [0=>'请选择用户'];
-                    foreach($users as $key => $user) {
-                        array_push($array,[$user->id=>$user->name]);
-                    }
-                    return collect($array)->flatten()->toArray();
+                if ($user) {
+                    return [$user->id => $user->name];
                 }
             });
 
             $form->radio('price_level','活动')->options([1 => '正常价格', 2 => '限时免费', 3 => '活动价格'])->default('1')->stacked();
             $form->currency('price', '正常价格')->symbol('￥');
-            $form->currency('activity_price', '活动价格')->symbol('￥');
+            $form->currency('paid_price', '实付价格')->symbol('￥');
             $form->currency('coupon_price', '优惠卷')->symbol('￥');
             $form->switch('order_status', '是否支付？');
             $form->display('created_at', '创建时间');
