@@ -235,11 +235,11 @@ class WechatController extends Controller
             [
                 "name" => "关于测评",
                 "sub_button" => [
-                    [
-                        "type" => "click",
-                        "key" => 'get-poster',
-                        "name" => "申请免费测评"
-                    ],
+//                    [
+//                        "type" => "click",
+//                        "key" => 'get-poster',
+//                        "name" => "申请免费测评"
+//                    ],
                     [
                         "name" => "测评结果展示",
                         "type" => "view",
