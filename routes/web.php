@@ -14,9 +14,11 @@
 //Route::get('/', function () {
 //    return view('welcome');
 //});
-Route::get('/', function(){
-    return redirect('/admin');
-});
+//Route::get('/', function(){
+//
+//    return redirect('/admin');
+//});
+Route::get('/','Home\IndexController@index');
 
 Route::group(['middleware' => ['admin']], function() {
     Route::resource('/admin/project/subjects', 'Project\SubjectController');
