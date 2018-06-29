@@ -3,7 +3,7 @@
 <head>
     <title>北京基石测评 @yield('title')</title>
     <meta name="keywords" content="高中生专业选择测评 高考专业选择测评 性格测评 兴趣测评 专业测评 职业规划 规划未来 平行志愿选择 专业意向 填报志愿 专业选择 人才适岗度 胜任能力评估 高中生规划 职涯发展 选错专业 企业用人标准 热门专业 优势与短板 职业测评 王牌专业 适合的专业 未来热门专业 什么专业好 高考专业选择 报考误区 适合的专业 文科选什么专业好 理科选什么专业好 2018年热门专业 就业前景 科学选专业 报考专业 好专业 专业前景 ">
-    <meta name="description" content="" />
+    <meta name="description" content="北京基石测评以大数据分析为依托，以专业测评系统为桥梁、精准的性格评定，量身打造最适合考生的专业，测评专家直播讲解志愿填报误区，为你的前程点亮明灯！" />
     <meta charset = "utf-8">
     <link rel="icon" href="{{asset('favicon.ico')}}" type="image/x-icon" />
     <!--width - 可视区域的宽度，值可为数字或关键词device-width -->
