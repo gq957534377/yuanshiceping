@@ -19,6 +19,7 @@
 //    return redirect('/admin');
 //});
 Route::get('/','Home\IndexController@index');
+Route::get('/product/{type}','Home\IndexController@product');
 
 Route::group(['middleware' => ['admin']], function() {
     Route::resource('/admin/project/subjects', 'Project\SubjectController');
