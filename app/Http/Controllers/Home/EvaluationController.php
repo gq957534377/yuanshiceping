@@ -71,6 +71,86 @@ class EvaluationController extends Controller
 
     }
 
+    public function gradesPosition($member_id, $order_number)
+    {
+        $data = [];
+        $grade = 0;
+
+        //Answer::gradeCatB($member_id, $order_number); //才干 能力 得分
+        $ability_grades = MemberAbilityGrade::gradeList($member_id, $order_number);
+        $data['ability_grades'] =  array_slice($ability_grades, 0,6);
+        $zhixing = ['成就','统筹','信仰','公平','审慎','纪律','专注','责任','排难'];
+        $siwei = ['分析','回顾','理念','搜集','思维','学习','战略'];
+        foreach ($data['ability_grades'] as $key)
+        {
+            if(in_array($key['name'],$zhixing)) $grade+=5;
+            if($key['name'] == '专注') $grade+=10;
+            if(in_array($key['name'],$siwei)) $grade+=5;
+            if($key['name'] == '分析') $grade+=10;
+
+        }
+        $grade = round(($grade / 30) * 20,2);
+        //Answer::gradeCatC($member_id, $order_number); // 性格得分
+        $personality_grades = MemberPersonalityGrade::gradeList($member_id, $order_number);
+        $data['personality_grades'] = array_slice($personality_grades, 0,4);
+        $array = [];
+        foreach ($data['personality_grades'] as $personality_grade) {
+           array_push($array,$personality_grade['name']);
+        }
+        if(in_array('N',$array)&&in_array('T',$array)) $grade+=10;
+        if(in_array('J',$array)&&in_array('S',$array)) $grade+=10;
+        if(in_array('J',$array)) $grade+=5;
+        if(in_array('T',$array)) $grade+=5;
+
+        //Answer::gradeQuality($member_id, $order_number); //素质模型
+        $quality_grades = MemberQualityGrade::gradeList($member_id, $order_number);
+        $data['quality_grades'] =$quality_grades;
+        foreach ($data['quality_grades'] as $quality_grade) {
+
+            switch ($quality_grade['name'])
+            {
+                case '逻辑性':
+                    $grade = static::judgeGrade($grade,$quality_grade['grade']);
+                    break;
+                case '坚韧性':
+                    $grade = static::judgeGrade($grade,$quality_grade['grade']);
+                    break;
+                case '细节处理能力':
+                    $grade = static::judgeGrade($grade,$quality_grade['grade']);
+                    break;
+                case '总结能力':
+                    $grade = static::judgeGrade($grade,$quality_grade['grade']);
+                    break;
+                case '原则性':
+                    $grade = static::judgeGrade($grade,$quality_grade['grade']);
+                    break;
+            }
+        }
+        //Answer::gradePotential($member_id, $order_number); //计算潜能
+        $potential_grades = MemberPotentialGrade::gradeList($member_id, $order_number);
+        $data['potential_grades'] = $potential_grades;
+        $potential = ['思维研究类','动手执行类','意志坚定类'];
+        foreach ($data['potential_grades'] as $key => $potential_grade) {
+            if($key < 3) {
+                if(in_array($potential_grade['name'],$potential)) $grade +=10;
+            }
+            if($key >=3 || $key <5) {
+                if(in_array($potential_grade['name'],$potential)) $grade +=4;
+            }
+        }
+        return '您于JAVA工程师的匹配度为'.$grade.'%';
+
+    }
+
+    static public function judgeGrade($grade,$quality_grade)
+    {
+        if($quality_grade>60) {
+            $grade+=10;
+        } elseif ($quality_grade=60&&$quality_grade >= 45){
+            $grade+=5;
+        }
+        return $grade;
+    }
 
     public function report(Request $request,$member_id)
     {

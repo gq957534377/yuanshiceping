@@ -52,6 +52,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('/evaluate','Home\EvaluationController@evaluate');
     Route::any('/reports','Home\EvaluationController@reports');
     Route::any('/grade-detail/{member_id}/{order_number}','Home\EvaluationController@gradeDetail');
+    Route::any('/grade-position/{member_id}/{order_number}','Home\EvaluationController@gradesPosition');
     Route::any('/report/{member_id}','Home\EvaluationController@report');
     Route::any('/api/report/{member_id}','Home\EvaluationController@report');
 
