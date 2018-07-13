@@ -37,10 +37,10 @@ Route::group(['middleware' => ['admin']], function() {
     Route::get('/admin/import/qualities', 'Project\ImportQualityController@index');
 
     Route::any('/admin/reports','Home\EvaluationController@reports');
-    Route::any('/admin/grade-detail/{member_id}/{order_number}','Home\EvaluationController@gradeDetail');
-
     Route::any('/admin/report/{member_id}','Home\EvaluationController@report');
-    Route::any('/admin/api/report/{member_id}','Home\EvaluationController@report');
+    Route::any('/admin/grade-detail/{member_id}/{order_number}','Home\EvaluationController@gradeDetail');
+    Route::any('/admin/grade-position/{member_id}/{order_number}','Home\EvaluationController@gradesPosition');
+
 
 //    Route::get('/admin/project/news', 'Project\NewsController');
 //    Route::get('/admin/project/notices', 'Project\NoticesController');
@@ -55,7 +55,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('/qrcode','WechatController@qrcode');
     Route::get('/evaluation','Home\EvaluationController@index');
     Route::any('/evaluate','Home\EvaluationController@evaluate');
-
+    Route::any('/api/report/{member_id}','Home\EvaluationController@report');
 
     Route::any('wechat_notify', 'Api\PayController@createOrderNotify');
 });
