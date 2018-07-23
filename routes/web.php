@@ -40,6 +40,7 @@ Route::group(['middleware' => ['admin']], function() {
     Route::any('/admin/report/{member_id}','Home\EvaluationController@report');
     Route::any('/admin/grade-detail/{member_id}/{order_number}','Home\EvaluationController@gradeDetail');
     Route::any('/admin/grade-position/{member_id}/{order_number}','Home\EvaluationController@gradesPosition');
+    Route::any('/admin/grades/{member_id}/{order_number}','Home\EvaluationController@grades');
 
 
 //    Route::get('/admin/project/news', 'Project\NewsController');

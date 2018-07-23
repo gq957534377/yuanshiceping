@@ -36,6 +36,22 @@ class EvaluationController extends Controller
         return view('evaluation.reports',$data);
     }
 
+    public function grades($member_id,$order_number)
+    {
+
+        Answer::gradeCatB($member_id, $order_number); //才干 能力 得分
+
+        Answer::gradeCatA($member_id, $order_number); //计算兴趣
+
+        Answer::gradeCatC($member_id, $order_number); // 性格得分
+        Answer::gradeQuality($member_id, $order_number); //素质模型
+        Answer::gradePotential($member_id, $order_number); //计算潜能
+        Answer::gradeShake($member_id, $order_number); //计算型格
+        Answer::gradeMajor($member_id, $order_number); //计算专业
+
+        return $this -> gradesPosition($member_id, $order_number);
+    }
+
     public function gradeDetail($member_id, $order_number)
     {
         $data = [];
@@ -71,6 +87,7 @@ class EvaluationController extends Controller
 
     }
 
+    // 计算职业匹配
     public function gradesPosition($member_id, $order_number)
     {
         $data = [];
