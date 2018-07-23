@@ -49,7 +49,7 @@ class EvaluationController extends Controller
         Answer::gradeShake($member_id, $order_number); //计算型格
         Answer::gradeMajor($member_id, $order_number); //计算专业
 
-        return $this -> gradesPosition($member_id, $order_number);
+        return $this -> gradeDetail($member_id, $order_number);
     }
 
     public function gradeDetail($member_id, $order_number)
