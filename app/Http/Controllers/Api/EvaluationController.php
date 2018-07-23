@@ -76,13 +76,13 @@ class EvaluationController extends Controller
 
         switch ($category_id) {
             case 1:
-                Answer::gradeCatA($member_id, $order_number); //计算兴趣
+                Answer::gradeCatB($member_id, $order_number); //才干 能力 得分
                 $member_has_subject->subject_status = 1;
 
                 break;
 
             case 2:
-                Answer::gradeCatB($member_id, $order_number); //才干 能力 得分
+                Answer::gradeCatA($member_id, $order_number); //计算兴趣
                 $member_has_subject->subject_status = 1;
                 break;
 
