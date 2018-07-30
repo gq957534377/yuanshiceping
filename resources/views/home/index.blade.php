@@ -25,7 +25,7 @@
                 </div>
                 <div style="clear:both;"></div>
                 <div class="mt25" style="">
-                    <div class="videolist" vpath="{{asset('/images/pc/tg/bj_05.png')}}" ipath="{{asset('/images/pc/video/js.mp4')}}">
+                    <div class="videolist" ipath="{{asset('/images/js.mp4')}}">
                         <img src="{{asset('images/pc/video.jpg')}}" />
                     </div>
                 </div>
