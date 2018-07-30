@@ -93,10 +93,13 @@ class IndexController extends Controller
                 $val['path'] = url('uploads/' . $val['path']);
             }
         }
-        $details = News::where(['id'=>$id])->first();
+
+        $details = News::find($id);
         if(empty($details)) {
             return back()->withErrors(['参数不正确！']);
         }
+        $details->read_num = $details->read_num + rand(1,10);
+        $details->save();
         return view('home.details',['data'=>$data,'details'=>$details]);
     }
 

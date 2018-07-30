@@ -8,7 +8,7 @@
             <div class="fixclear"></div>
             <ul class="js-wl-list culum-vedio">
                 <li>
-                    <a href="javascrip:;" ipath="{{asset('/images/pingxingzhiyuan.mp4')}}">
+                    <a href="javascrip:;" ipath="{{asset('/images/js.mp4')}}">
                         <div class="wl-img-js">
                             <img src="{{asset('images/pc/culum/6.jpg')}}" alt="">
                         </div>

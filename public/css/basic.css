@@ -121,5 +121,8 @@ input{
 }
 .wx-12{
   max-width:1200px;
-  margin:0 auto;
+  margin: 0 auto;
+}
+.wx-50{
+  width: 50%;
 }
