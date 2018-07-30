@@ -122,8 +122,8 @@ class SowingMapController extends Controller
                  2 => '产品',
                  3 => '案例',
                  4 => '咨询',
-                 5 => '咨询活动',
-                 6 => '关于我们'
+                 5 => '关于我们',
+                 6 => '推广'
             ];
             $form->select('type','类型')->options($option);
             $form->switch('status', '状态')->default(1);
