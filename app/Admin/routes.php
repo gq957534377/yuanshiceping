@@ -29,4 +29,6 @@ Route::group([
 
     $router->resource('goodsCategories', 'GoodsCategoriesController');
 
+    $router->resource('sowingmap', 'SowingMapController');
+
 });

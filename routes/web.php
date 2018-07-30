@@ -18,7 +18,8 @@
 //
 //    return redirect('/admin');
 //});
-Route::get('/','Home\IndexController@index');
+Route::get('/{tab?}','Home\IndexController@index');
+Route::get('/newsDetail/{id}','Home\IndexController@getNewsDetail');
 Route::get('/product/{type}','Home\IndexController@product');
 
 Route::group(['middleware' => ['admin']], function() {

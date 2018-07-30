@@ -1,0 +1,125 @@
+html,
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+form,
+fieldset,
+input,
+textarea,
+p,
+blockquote,
+th,
+td {
+  padding: 0;
+  margin: 0 auto;
+  border: 0 none;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+menu,
+nav,
+section {
+  display: block;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  background-color: #f8f8f8;
+}
+
+ul li,
+ol li {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+a {
+  text-decoration: none;
+  -webkit-backface-visibility: hidden;
+  text-decoration: none;
+}
+
+img {
+  border: 0 none;
+}
+
+textarea {
+  border: none;
+  resize: none;
+  outline: none;
+  background-color: #f6f6f6;
+  font-size: 14px;
+  font-family: 'Monaco', courier, monospace;
+  padding: 20px;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: none;
+}
+button {
+  outline: none;
+}
+input{
+  outline: none;
+}
+.clearfix {
+  clear: both;
+}
+
+.clear {
+  zoom: 1;
+}
+.pa {
+  position: absolute;
+}
+
+.pr {
+  position: relative;
+}
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+.overflow-hide{
+  overflow: hidden;
+}
+.wx-12{
+  max-width:1200px;
+  margin:0 auto;
+}
