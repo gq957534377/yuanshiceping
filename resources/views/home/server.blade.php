@@ -6,7 +6,7 @@
             <img src="{{asset('images/pc/fw/fw_02.png')}}" alt="">
         </div>
         <div class="js-sm-pa">
-            <p>对考生进行多维度的深度认知解析，包含潜能、优势、短板、兴趣、潜能与兴趣匹配点、最佳匹配专业、较佳匹配专业、应避免专业、较佳匹配专业的介绍、课程设置及未来就业方向等。</p>
+            <p>对考生进行多维度的深度认知解析，包含潜能、优势、短板、兴趣、潜能与兴趣匹配点、最佳匹配专业、较佳匹配专业、应避免专业、最佳匹配专业的介绍、课程设置及未来就业方向等。</p>
         </div>
         <!-- 推荐 -->
         <div class="js-sm-con wx-12 overflow-hide">
@@ -95,6 +95,7 @@
             <h2 class="clearfix"></h2>
         </div>
         <h2 class="clearfix"></h2>
+
     </section>
     <section class="js-ty-sm">
         <div class="js-tix-img wx-12">
