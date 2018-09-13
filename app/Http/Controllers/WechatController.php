@@ -244,6 +244,11 @@ class WechatController extends Controller
 //                        "name" => "申请免费测评"
 //                    ],
                     [
+                        "name" => "查看报告",
+                        "type" => "view",
+                        "url" => 'http://student.jishiceping.com/wechatReport/1',
+                    ],
+                    [
                         "name" => "测评结果展示",
                         "type" => "view",
                         "url" => 'https://api.jishiceping.com/api/report/null?order_number=fad0148c699511e8be8400163e0e96d7',
