@@ -27,8 +27,15 @@ class IndexController extends Controller
             return response()->json(['ret' => 'ERROR', 'message' => 'Model Not Found'], 404);
         }
 
+        $data = $this->getSowingMap(1);
+        return view('home.index',['data'=>$data]);
+
+    }
+
+    public function view($tab)
+    {
         switch ($tab) {
-            case '':
+            case 'index':
                 $data = $this->getSowingMap(1);
                 return view('home.index',['data'=>$data]);
             case 'product':

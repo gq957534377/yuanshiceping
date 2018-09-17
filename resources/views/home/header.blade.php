@@ -27,19 +27,19 @@
                 <a class="" href="{{url('/')}}">首页</a>
             </li>
             <li>
-                <a href="{{url('/product')}}">产品</a>
+                <a href="{{url('/view/product')}}">产品</a>
             </li>
             <li>
-                <a href="{{url('server')}}">服务案例</a>
+                <a href="{{url('/view/server')}}">服务案例</a>
             </li>
             <li>
-                <a href="{{url('/news')}}">资讯 / 活动</a>
+                <a href="{{url('/view/news')}}">资讯 / 活动</a>
             </li>
             <li>
-                <a href="{{url('/about')}}">关于基石</a>
+                <a href="{{url('/view/about')}}">关于基石</a>
             </li>
             <li class="cp-cs">
-                <a href="{{url('/culum')}}">
+                <a href="{{url('/view/culum')}}">
                     网络课程
                     <h5 class="fa fa-arrow-circle-o-right" style="color: #fff"></h5>
                 </a>

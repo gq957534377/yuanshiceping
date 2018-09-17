@@ -18,7 +18,8 @@
 //
 //    return redirect('/admin');
 //});
-Route::get('/{tab?}','Home\IndexController@index');
+Route::get('/','Home\IndexController@index');
+Route::get('/view/{tab}','Home\IndexController@view');
 Route::get('/newsDetail/{id}','Home\IndexController@getNewsDetail');
 Route::get('/product/{type}','Home\IndexController@product');
 
@@ -52,7 +53,10 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('/wechat','WechatController@index');
     Route::any('/mini_report_home','WechatController@index');
     Route::get('/wechat_menu','WechatController@menu');
-    Route::get('/wechat_sources','WechatController@sources');
+//    Route::get('/wechat_sources','WechatController@sources');
+    Route::get('/aaa',function(){
+        return 1;
+    });
     Route::get('/wechat_makeImg/{head}/{name}/{url}','WechatController@makeImg');
     Route::any('/qrcode','WechatController@qrcode');
     Route::get('/evaluation','Home\EvaluationController@index');
