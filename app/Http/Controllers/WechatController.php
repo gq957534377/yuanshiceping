@@ -90,7 +90,7 @@ class WechatController extends Controller
                                 $this->menu($upload['media_id']);
 //                                return '填志愿选专业时间越来越近（紧）[抓狂][抓狂][抓狂]，基石测评为考生提供的不仅仅是一个测评报告[轉圈][轉圈]，更是一份对你未来人生有着重要意义的规划图[OK][OK]，家长朋友您还在犹豫吗？[疑問][疑問][疑問]6-7万家长的英明之举，基石测评值得信赖[奮鬥][奮鬥][奮鬥]，为了帮助考生轻松填志愿报专业倾情推出“高中生专业选择测评”98.5元体验版，不需要太多华丽的言语，只要你学以致用，成就人生🙏，快快点击测评吧！';
 //                                return '欢迎关注，点击底部菜单栏  “在线测评” - 选择“申请免费测评”，生成您的专属海报，将海报保存分享给朋友圈或群里达到30人扫码关注，即可免费获得1980元高中生专业选择测评，也让您的好友帮您助力吧!详情咨询客服微信：love0509hong';
-                                return new Image('5gDK9dQyi2I8VovYWgdN9B8nmBt0ufaRpSazg_Ep1Y8');
+                                return new Image('5gDK9dQyi2I8VovYWgdN9N_UDqGZMyddpB_c97YY6g8');
                             } else {
                                 $eventKey = str_replace('qrscene_', '', $message['EventKey']);
                                 log::debug(['eventKey'=>$eventKey]);
@@ -122,7 +122,7 @@ class WechatController extends Controller
                             } else {
 //                                return '欢迎关注！点击底部菜单栏  “在线测评” - 选择“申请免费测评”，会生成您的专属海报，将海报保存分享到朋友圈或群里达到30人扫码关注，即可获得价值1980元的“高中生专业选择辅导”测评卡一张~每人只有一次免费机会，活动截止时间：2018-06-23 23:59:59';
 //                                return '填志愿选专业时间越来越近（紧）[抓狂][抓狂][抓狂]，基石测评为考生提供的不仅仅是一个测评报告[轉圈][轉圈]，更是一份对你未来人生有着重要意义的规划图[OK][OK]，家长朋友您还在犹豫吗？[疑問][疑問][疑問]6-7万家长的英明之举，基石测评值得信赖[奮鬥][奮鬥][奮鬥]，为了帮助考生轻松填志愿报专业倾情推出“高中生专业选择测评”98.5元体验版，不需要太多华丽的言语，只要你学以致用，成就人生🙏，快快点击测评吧！';
-                                return new Image('5gDK9dQyi2I8VovYWgdN9OBtUNSzbjNP0SIABXSib2A');
+                                return new Image('5gDK9dQyi2I8VovYWgdN9N_UDqGZMyddpB_c97YY6g8');
                             }
                         case "CLICK":
                             switch ($message['EventKey']) {
