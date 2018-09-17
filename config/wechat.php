@@ -73,7 +73,8 @@ return [
 
             // 服务号
             'app_id' => 'wxbf407c5b3f9bc688',         // AppID
-            'secret' => 'c323c1005edd02acac7eb287b1fe2722',    // AppSecret
+//            'secret' => 'dc01170d3b33fe031281cf530222fdf4',    // AppSecret
+            'secret' => 'dc01170d3b33fe031281cf530222fdf4',    // AppSecret
             'aes_key' => 'cvkChFuDmBCXvCSqZLRADyrXaaoXbJDslvhxgbuzOVw',
 
             'token' => 'yuanshiceping',           // Token
