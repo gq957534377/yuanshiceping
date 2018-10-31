@@ -58,6 +58,11 @@ class Major extends Common
     static protected $member_shake_grades;
     static protected $member_interest_grades;
 
+    public function hasOneMajorDetail()
+    {
+        return $this->hasOne(MajorDetail::class,'major_id','id');
+    }
+
     static public function grade($member_id, $order_number)
     {
         $majors = static::getAllIndexById();
@@ -179,10 +184,59 @@ class Major extends Common
 
     static public function getGradesByMemberId($member_id, $order_number){
 
-        return MemberMajorGrade::where(['member_id' => $member_id])
+        $grades = MemberMajorGrade::where(['member_id' => $member_id])
             ->where(['order_number' => $order_number])
             ->orderBy('grade', 'DESC')
             ->orderBy('weight', 'DESC')
+            ->limit(20)
             ->get();
+
+        return self::change_major_grades($grades);
+    }
+
+    static public function getShortGradesByMemberId($member_id, $order_number)
+    {
+        return MemberMajorGrade::where(['member_id' => $member_id])
+            ->where(['order_number' => $order_number])
+            ->orderBy('grade', 'ASC')
+            ->orderBy('weight', 'DESC')
+            ->limit(10)
+            ->get();
+    }
+
+    public static function change_major_grades($grades , $step = 5) {
+        $new_arr = [];
+        $arr = [];
+        foreach ($grades as $key => $v) {
+            array_push($arr,(int) $grades[$key]['grade']);
+        }
+        $val_arr = array_count_values($arr);
+        foreach ($val_arr as $key => $item) {
+            if ($item >= $step) {                                                   //如果大于等于步数 执行变更
+//                $n = bcdiv($item , $step);                                        //算出循环的次数$n
+//                $n = self::get_count($item,$step);                                                   //算出循环的次数$n
+                $n = floor($item/$step);                                                   //算出循环的次数$n
+                for ($j = 0 ; $j < $n ; $j++) {                                     //根据$n决定循环几次
+                    for ($k = 0 ; $k < $step - 1 ; $k ++) {                         //根据步数添加数据 结果类似于 71 72 73 74
+                        $new_arr[] = $key + $k + 1;
+                    }
+                }
+                for ($l = 0 ; $l < $item - $n * ($step - 1) ; $l ++) {
+                    $new_arr[] = $key;
+                }
+            } else {                                                                //如果小于步数，直接在新数组里装入原数据
+                $c = $item;
+                for ($i = 0 ; $i < $item ; $i++) {
+                    $new_arr[] = $key + $c;
+                    $c--;
+                }
+            }
+        }
+        rsort($new_arr);                                                            //重新排序数组
+        foreach ($grades as $key => $v) {
+            $grades[$key]['grade'] = $new_arr[$key];
+        }
+
+        return $grades;
     }
 }

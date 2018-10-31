@@ -1,0 +1,617 @@
+$(function(){
+//========================素质模型分析横向柱状图
+var quality = echarts.init(document.getElementById('quality'));
+var builderJson = {
+    "all": 100,
+    "charts": quality_charts,
+};
+var canvas = document.createElement('canvas');
+var ctx = canvas.getContext('2d');
+canvas.width = canvas.height = 100;
+ctx.textAlign = 'center';
+ctx.textBaseline = 'middle';
+ctx.globalAlpha = '';
+ctx.font = '20px Microsoft Yahei';
+ctx.rotate(-Math.PI / 4);
+
+option = {
+    backgroundColor: {
+        type: 'pattern',
+        image: canvas,
+        repeat: 'repeat'
+    },
+    tooltip: {},
+    title: [{
+        x: '25%',
+        textAlign: 'center'
+    }],
+    grid: [{
+        top: 50,
+        width: '90%',
+        bottom: '15%',
+        left: 0,
+        containLabel: true
+    }],
+    xAxis: [{
+        type: 'value',
+        position: 'top',
+        max: builderJson.all,
+        splitLine: {
+            show: false
+        }
+    }],
+    yAxis: [{
+        type: 'category',
+
+        data: Object.keys(builderJson.charts),
+        axisLabel: {
+            interval: 0,
+
+        },
+        splitLine: {
+            show: false
+        }
+    }],
+    series: [{
+        type: 'bar',
+        stack: 'chart',
+        z: 3,
+        label: {
+            normal: {
+                position: 'right',
+                show: true
+            }
+        },
+        itemStyle: {
+            normal: {
+                color: function(params) {
+                    // build a color map as your need.
+                    var colorList = [
+                        //['#489EEC','#0F67B2'],
+                        //['#45BE6F','#277442'],
+                        //['#E773A4','#BD155C']
+                        '#489EEC', '#489EEC', '#489EEC', '#489EEC', '#489EEC',
+                        '#45BE6F', '#45BE6F', '#45BE6F', '#45BE6F', '#45BE6F',
+                        '#E773A4', '#E773A4', '#E773A4', '#E773A4', '#E773A4'
+                    ];
+                    return colorList[params.dataIndex]
+                }
+                // color: new echarts.graphic.LinearGradient(
+                //     0,0,1,0,
+                //     [
+                //         {offset:0,color:'#3977e6'},
+                //         {offset:1,color:'#ffffff'},
+                //     ]
+                // )
+            },
+        },
+
+        data: Object.keys(builderJson.charts).map(function(key) {
+            return builderJson.charts[key];
+        })
+    },
+        {
+            type: 'bar',
+            stack: 'chart',
+            silent: true,
+            itemStyle: {
+                normal: {
+                    color: '#eee'
+                }
+            },
+            data: Object.keys(builderJson.charts).map(function(key) {
+                return builderJson.all - builderJson.charts[key];
+            })
+        }]
+}
+// 使用刚指定的配置项和数据显示图表。
+quality.setOption(option);
+
+//========================个人潜能分析雷达图
+
+// 潜能图
+    var potential_gradesChart = echarts.init(document.getElementById('analysisRadar'));
+    var indicator = [];
+    var potential_grades_index_by_id = {};
+    for (var k in potential_grades) {
+        potential_grades_index_by_id[potential_grades[k].potential_id] = potential_grades[k];
+    }
+
+    var grade_value = [];
+    for (var potential_id in potentials) {
+        var tmp = {
+            text: potentials[potential_id].name+"\n("+potential_grades_index_by_id[potential_id].grade+")",
+            max : 100
+        }
+
+        grade_value.push(potential_grades_index_by_id[potential_id].grade);
+        indicator.push(tmp);
+    }
+
+    var grades_data = [
+        {
+            value: grade_value
+        }
+    ];
+
+
+    var option = {
+        calculable : true,
+        polar : [
+            {
+                name: {
+                    textStyle: {
+                        fontSize: 10,
+                    }
+                },
+                indicator : indicator,
+                radius : 80
+            }
+        ],
+        series : [
+            {
+                name: '',
+                type: 'radar',
+                itemStyle: {
+                    normal: {
+                        areaStyle: {
+                            type: 'default',
+                            color: '#f89970',
+                            opacity: '0.5'
+                        }
+                    }
+                },
+                data :  grades_data
+
+            }
+        ]
+    };
+    potential_gradesChart.setOption(option);
+
+//========================个人潜能分析-优势潜能雷达图
+var potentialRadar1 = echarts.init(document.getElementById('potentialRadar1'));
+//雷达图
+var indicator = [];
+var quality_grades_index_by_id = {};
+for (var k in quality_grades) {
+    quality_grades_index_by_id[quality_grades[k].quality_id] = quality_grades[k];
+}
+
+var grade_value = [];
+for (var quality_id in best_potential_has_qualities) {
+    var tmp = {
+        text: best_potential_has_qualities[quality_id].quality_name+"\n("+quality_grades_index_by_id[quality_id].grade+")",
+        max : 100
+    }
+
+    grade_value.push(quality_grades_index_by_id[quality_id].grade);
+    indicator.push(tmp);
+}
+
+var grades_data = [
+    {
+        value: grade_value
+    }
+];
+options = {
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        x: 'center',
+    },
+    radar: [{
+        indicator: indicator,
+
+        radius: 80
+    }],
+
+    series: [
+
+        {
+            type: 'radar',
+            radarIndex: 0,
+            itemStyle: {
+                normal: {
+                    areaStyle: {
+                        type: 'default',
+                        color: '#f89970',
+                        opacity: '0.5'
+                    }
+                }
+            },
+            data: grades_data,
+        }
+    ]
+};
+// 使用刚指定的配置项和数据显示图表。
+potentialRadar1.setOption(options);
+
+/////////////////////////////////////////
+
+// 第二潜能
+var second_potential_chart = echarts.init(document.getElementById('potentialRadar2'));
+
+var indicator = [];
+var quality_grades_index_by_id = {};
+for (var k in quality_grades) {
+    quality_grades_index_by_id[quality_grades[k].quality_id] = quality_grades[k];
+}
+
+var grade_value = [];
+for (var quality_id in second_potential_has_qualities) {
+    var tmp = {
+        text: second_potential_has_qualities[quality_id].quality_name+"\n("+quality_grades_index_by_id[quality_id].grade+")",
+        max : 100
+    }
+
+    grade_value.push(quality_grades_index_by_id[quality_id].grade);
+    indicator.push(tmp);
+}
+
+var grades_data = [
+    {
+        value: grade_value
+    }
+];
+
+var option = {
+
+
+    calculable : true,
+
+    polar : [
+        {
+            name: {
+                textStyle: {
+                    fontSize: 10,
+                }
+            },
+            indicator : indicator,
+            radius : 80
+        }
+    ],
+    series: [
+
+        {
+            type: 'radar',
+            radarIndex: 0,
+            itemStyle: {
+                normal: {
+                    areaStyle: {
+                        type: 'default',
+                        color: '#f89970',
+                        opacity: '0.5'
+                    }
+                }
+            },
+            data: grades_data,
+        }
+    ]
+};
+
+// 为echarts对象加载数据
+second_potential_chart.setOption(option);
+//////////////////////////////////////////////
+// 第三潜能
+//////////////
+var third_potential_chart = echarts.init(document.getElementById('potentialRadar3'));
+
+var indicator = [];
+var quality_grades_index_by_id = {};
+for (var k in quality_grades) {
+    quality_grades_index_by_id[quality_grades[k].quality_id] = quality_grades[k];
+}
+
+var grade_value = [];
+for (var quality_id in third_potential_has_qualities) {
+    var tmp = {
+        text: third_potential_has_qualities[quality_id].quality_name+"\n("+quality_grades_index_by_id[quality_id].grade+")",
+        max : 100
+    }
+
+    grade_value.push(quality_grades_index_by_id[quality_id].grade);
+    indicator.push(tmp);
+}
+
+var grades_data = [
+    {
+        value: grade_value
+    }
+];
+
+var option = {
+
+
+    calculable : true,
+    polar : [
+        {
+            name: {
+                textStyle: {
+                    fontSize: 10,
+                }
+            },
+            indicator : indicator,
+            radius : 80
+        }
+    ],
+    series : [
+        {
+            name: '',
+            type: 'radar',
+            itemStyle: {
+                normal: {
+                    areaStyle: {
+                        type: 'default',
+                        color: '#f89970',
+                        opacity: '0.5'
+                    }
+                }
+            },
+            data : grades_data
+        }
+    ]
+};
+
+// 为echarts对象加载数据
+third_potential_chart.setOption(option);
+/////////////////////////////////////////////////////////
+
+
+//========================个人潜能分析-劣势潜能雷达图
+var inferiorityRadar = echarts.init(document.getElementById('inferiorityRadar1'));
+var indicator = [];
+var quality_grades_index_by_id = {};
+for (var k in quality_grades) {
+    quality_grades_index_by_id[quality_grades[k].quality_id] = quality_grades[k];
+}
+
+var grade_value = [];
+for (var quality_id in short_first_potential_has_qualities) {
+    var tmp = {
+        text: short_first_potential_has_qualities[quality_id].quality_name+"\n("+quality_grades_index_by_id[quality_id].grade+")",
+        max : 100
+    }
+
+    grade_value.push(quality_grades_index_by_id[quality_id].grade);
+    indicator.push(tmp);
+}
+
+var grades_data = [
+    {
+        value: grade_value
+    }
+];
+options = {
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        x: 'center',
+    },
+    radar: [{
+        indicator: indicator,
+        radius: 80
+    }],
+    series: [
+
+        {
+            type: 'radar',
+            radarIndex: 0,
+            itemStyle: {
+                normal: {
+                    areaStyle: {
+                        type: 'default',
+                        color: '#f89970',
+                        opacity: '0.5'
+                    }
+                }
+            },
+            data: grades_data,
+        }
+    ]
+};
+// 使用刚指定的配置项和数据显示图表。
+inferiorityRadar.setOption(options);
+
+/////////////////////////////////////////////////////////
+// 短板第二潜能
+//////////////
+var short_second_potential_chart = echarts.init(document.getElementById('inferiorityRadar2'));
+
+var indicator = [];
+var quality_grades_index_by_id = {};
+for (var k in quality_grades) {
+    quality_grades_index_by_id[quality_grades[k].quality_id] = quality_grades[k];
+}
+
+var grade_value = [];
+for (var quality_id in short_second_potential_has_qualities) {
+    var tmp = {
+        text: short_second_potential_has_qualities[quality_id].quality_name+"\n("+quality_grades_index_by_id[quality_id].grade+")",
+        max : 100
+    }
+
+    grade_value.push(quality_grades_index_by_id[quality_id].grade);
+    indicator.push(tmp);
+}
+
+var grades_data = [
+    {
+        value: grade_value
+    }
+];
+
+var option = {
+
+
+    calculable : true,
+    polar : [
+        {
+            name: {
+                textStyle: {
+                    fontSize: 10,
+                }
+            },
+            indicator : indicator,
+            radius : 80
+        }
+    ],
+    series : [
+        {
+            name: '',
+            type: 'radar',
+            itemStyle: {
+                normal: {
+                    areaStyle: {
+                        type: 'default',
+                        color: '#f89970',
+                        opacity: '0.5'
+                    }
+                }
+            },
+            data : grades_data,
+            axisLabel: {show: true, textStyle: {fontSize: 12,color:'red'}},
+        }
+    ]
+};
+
+// 为echarts对象加载数据
+short_second_potential_chart.setOption(option);
+
+
+//========================个人潜能分析-个人专业兴趣解析雷达图
+var interestRadar = echarts.init(document.getElementById('interestRadar'));
+var indicator = [];
+var interest_grades_index_by_id = {};
+for (var k in interest_grades) {
+    interest_grades_index_by_id[interest_grades[k].interest_id] = interest_grades[k];
+}
+
+var grade_value = [];
+for (var interest_id in interests) {
+    var tmp = {
+        text: interests[interest_id].name+"\n("+interest_grades_index_by_id[interest_id].grade+")",
+        max : 100
+    }
+
+    grade_value.push(interest_grades_index_by_id[interest_id].grade);
+    indicator.push(tmp);
+}
+
+var grades_data = [
+    {
+        value: grade_value
+    }
+];
+//雷达图
+options = {
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        x: 'center',
+    },
+    radar: [{
+        indicator:indicator,
+
+        radius: 80
+    }],
+
+    series: [
+
+        {
+            type: 'radar',
+            radarIndex: 0,
+            itemStyle: {
+                normal: {
+                    areaStyle: {
+                        type: 'default',
+                        color: '#f89970',
+                        opacity: '0.5'
+                    }
+                }
+            },
+            data: grades_data
+        }
+    ]
+};
+// 使用刚指定的配置项和数据显示图表。
+interestRadar.setOption(options);
+
+//========================最佳匹配点解析横向柱状图
+var matchGraph = echarts.init(document.getElementById('matchGraph'));
+var xAxis_data = [];
+
+var shake_grades_index_by_id = {};
+for (var k in shake_grades) {
+    shake_grades_index_by_id[shake_grades[k].shake_id] = shake_grades[k];
+}
+var interest_series_data = [];
+var potential_series_data = [];
+for (var k in shakes) {
+    xAxis_data.push(shakes[k].name);
+    interest_series_data.push(shake_grades_index_by_id[shakes[k].id].interest_grade);
+    potential_series_data.push(shake_grades_index_by_id[shakes[k].id].potential_grade);
+}
+var option = {
+
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['优秀', '一般', '劣势']
+    },
+    grid: {
+        left: '0',
+        right: '0',
+        bottom: '8%',
+        top: '18%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        position: 'top',
+        boundaryGap: false
+
+    },
+    yAxis: {
+        type: 'category',
+
+        axisTick: { //坐标轴小标记
+            show: false
+        },
+        axisLine: { //坐标轴
+            show: false,
+
+        },
+        splitLine: {
+            lineStyle: {
+                color: ['rgba(255,255,255,0.3)']
+            }
+        },
+
+        data: xAxis_data
+    },
+    series: [
+        {
+            clickable: false,
+            name:'潜能',
+            type: 'bar',
+            color: '#6191EC',
+            data: potential_series_data
+        },
+        {
+            type: 'bar',
+            name:'兴趣',
+            color: '#C15261',
+            data:interest_series_data
+        }
+    ]
+};
+// 使用刚指定的配置项和数据显示图表。
+matchGraph.setOption(option);
+})

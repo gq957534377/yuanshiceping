@@ -1,0 +1,389 @@
+.answerFlow{
+	padding:2rem 1.875rem 0;
+	width: 100%;
+	height: 100%;
+	background: #FFFFFF;
+}
+.anser_notice{
+	position: relative;
+	padding: 0.9rem 0.8rem 1.875rem;
+	font-size: 0.6rem;
+	border-radius: 0.8rem;
+	border: 0.1rem dashed #053D7E;
+}
+.anser_notice li{
+	line-height: 1rem;
+}
+.anser_notice li:nth-child(1) span{
+	position: absolute;
+	top: -0.7rem;
+	left: 50%;
+	transform: translateX(-50%);	
+	-webkit-transform: translateX(-50%);	
+	font-size: 1.5rem;
+	color: #053D7E;
+}
+.anser_notice li:nth-child(2){
+	font-weight: bold;
+	font-size: 0.8rem;
+	text-align: center;
+}
+/*流程图*/
+.answer_flow{
+	padding-top: 1.5rem;
+	padding-bottom: 1.6rem;
+}
+.answer_flow li{
+	position: relative;
+	display: inline-block;
+	text-align: center;
+	vertical-align: middle;
+}
+.answer_flow li:nth-child(odd){
+	margin-right: 4.175rem;
+}
+.answer_flow li:nth-child(-n+2){
+	margin-bottom:1.25rem;
+}
+.answer_flow li:nth-child(3){
+	margin-left: 3.75rem;
+}
+
+.answer_flow li span:first-child{
+	display: inline-block;
+	padding-top: 1rem;
+	width: 2.975rem;
+	height: 2.975rem;
+	font-size: 1.6rem;
+	color: #FFFFFF;
+	vertical-align: middle;
+	text-align: center;
+	background: url(../images/answer_flow_grey.png) no-repeat;
+	background-size: 100% 100%;
+}
+.answer_flow li span:last-child{
+	position: absolute;
+	top: 1.3rem;
+	right: -4rem;
+	font-size: 2.2rem;
+}
+.answer_flow li:nth-child(1) span:last-child{
+	right: -5.5rem;
+	transform: rotate(40deg);
+	-webkit-transform: rotate(40deg);
+}
+.answer_flow li:nth-child(2) span:last-child{
+	top: 4rem;
+	right: inherit;
+	left: -4.5rem;
+	transform: rotate(173deg);
+	-webkit-transform: rotate(173deg);
+}
+.answer_flow li:nth-child(3) span:last-child{
+	right: -4.8rem;
+	font-size: 4.5rem;
+}
+
+.answer_flow li>div{
+	font-size: 0.6rem;
+	color: #989898;
+}
+.answer_flow li.bg span:first-child{
+	width: 2.975rem;
+	height: 2.975rem;
+	background: url(../images/answer_flow_blue.png) no-repeat;
+	background-size: 100% 100%;
+}
+.answer_flow li.bg>div{
+	color: #000000;
+}
+.star_btn{
+	display: block;
+	margin: 0 auto;
+	padding: 0.6rem;
+	width: 100%;
+	color: #FFFFFF;
+	font-size: 0.7rem;
+	text-align: center;
+	border-radius: 0.4rem;
+	background: #053D7E;
+}
+
+
+/*==============================答题页===========================*/
+.answer{
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background: #ECECEC;
+	z-index: -10;
+}
+.answerBox{
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: 0 auto;
+	padding-top: 4.075rem;
+}
+
+.answer .answer_top{
+	display: block;
+	width: 100%;
+}
+.timeBox{
+	float: right;
+	padding: 0.25rem 0.25rem 0.25rem 0.4rem ;
+	font-size: 0.6rem;
+	width: 4rem;
+	border-top-left-radius: 0.8rem;
+	border-bottom-left-radius: 0.8rem;
+	background: #FFFFFF;
+}
+.timeBox img{
+	padding-right: 0.25rem;
+	width: 1rem;
+	vertical-align: middle;
+}
+/*答题盒子*/
+.answerContent{
+	margin: 1rem auto 0;
+	padding: 0 1rem 2.1rem;
+	width: 90%;
+	border-radius: 0.8rem;
+	background: #FFFFFF;
+}
+.answer_num{
+	padding: 0.25rem 0 0.9rem 0;
+	text-align: center;
+	font-size: 0.9rem;
+}
+.cur_num{
+	font-size: 0.65rem;
+}
+.answer_title{
+	height: 5.5rem;
+	line-height: 1.375rem;
+	font-size: 0.9rem;
+	color: #000000;
+	font-weight: 600;
+	overflow: hidden;
+}
+.answer_option{
+	margin-top: 1rem;
+}
+.answer_option li{
+	margin-bottom: 0.5rem;
+	padding: 0 1rem;
+	width: 100%;
+	height: 2.15rem;
+	line-height: 2.15rem;
+	color: #000000;
+	font-size: 0.6rem;
+	border-radius: 1.6rem;
+	border: 0.05rem solid #ECECEC;
+	overflow: hidden;
+}
+.answer_option li span{
+	position: relative;
+	float: right;
+	display: inline-block;
+	margin-top: 0.55rem;
+	width: 0.8rem;
+	height: 0.8rem;
+	vertical-align: middle;
+	border-radius: 50%;
+	border: 0.1rem solid #053d7e;
+}
+
+.answer_option li span.answer_list_three{
+	margin-top: 0.3rem;
+}
+
+.answer_option li span.answer_list_three{
+	margin-top: 0.55rem;
+}
+
+.answer_option li.bg{
+	background: #ECECEC;
+}
+
+.answer_option li.bg span::after{
+	position: absolute;
+	top: 0.1rem;
+	left: 0.1rem;
+	display: inline-block;
+	content: "";
+	width: 0.4rem;
+	height: 0.4rem;
+	border-radius: 50%;
+	background: #053d7e;
+}
+
+
+/*=================================性格测评===============================*/
+.answer_two .answer_title{
+	height: 3.6rem;
+}
+.answer_two .answer_option li{
+	position: relative;
+	padding: 0.6rem 0.725rem;
+	height: 2.75rem;
+	font-size: 0.6rem;	
+	line-height: 0.9rem;
+}
+.answer_two .answer_option li p{
+	float: left;
+	width: 82%;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	-webkit-transform: translateY(-50%);
+	font-size: 0.6rem;	
+	color: #000000;
+	vertical-align: middle;
+}
+/*--------------------------性格答题页弹框*/
+.answer_two_mark1 .mark,.answer_two_mark2 .mark,.answer_two_mark3 .mark{
+	margin-top: 8.5rem;
+	padding-top: 1rem;
+	padding-bottom: 0.8rem;
+}
+
+.answer_two_mark1 .mark h3,.answer_two_mark2 .mark h3,.answer_two_mark3 .mark h3{
+	margin-bottom: 1.125rem;
+	padding-top: 0.275rem;
+	padding-bottom: 1.1rem;
+	border-bottom: 0.05em solid #CCCCCC;
+	font-size: 0.8em;
+	color: #333333;
+	text-align: center;
+}
+.answer_two_mark1 .mark p,.answer_two_mark2 .mark p,.answer_two_mark3 .mark p{
+	line-height: 1rem;
+	font-size: 0.65rem;
+	color: #333333;
+	text-align: center;
+}
+
+.rest_btn,.continue_btn{
+	width: 89%;
+	font-size: 0.8rem;
+}
+.continue_btn{
+	color: #666666;
+	border: 0.05rem solid #999999;
+	background: #FFFFFF;
+}
+.rest_btn{
+	display: block;
+	margin:0.925rem auto 0.45rem ;
+	background: #003C83;
+	color: #FFF;
+}
+/*==================================天赋测评=============================*/
+.star_btn_last{
+	display: block;
+	margin: 0 auto;
+	padding: 0.6rem;
+	width: 100%;
+	color: #FFFFFF;
+	font-size: 0.7rem;
+	text-align: center;
+	border-radius: 0.4rem;
+	background: #989898;
+}
+.star_btn_last.bg{
+	background: #053D7E;
+}
+.answer_three .answerBox{
+	padding-top: 1rem;
+}
+.answer_three_title{
+	overflow: hidden
+}
+.answer_three_title li{
+	width: 48%;
+	font-size: 0.75rem;
+}
+.answer_three_title li p{
+	font-size: 0.75rem;
+	color: #000000;
+	font-weight: bold;
+}
+.answer_three_title li p:last-child{
+	height: 4.5rem;
+	line-height: 1.1rem;
+	overflow: hidden;
+}
+.answer_three_title li:first-child{
+	float: left;
+}
+.answer_three_title li:last-child{
+	float: right;
+}
+.answer_three_title li:last-child p{
+	text-align: right;
+}
+/*-------------------------提示弹框---------------------*/
+/*题目提示*/
+.title_mark .mark{
+	margin: 3.6rem auto 0;
+	padding: 0.8rem 0.5rem 0;
+	width: 90%;
+	border-radius: 0.8rem;
+	background: #FFFFFF;
+}
+.arrow_box{
+	margin: 0 auto;
+	padding: 1.5rem;
+	width: 80%;
+	overflow: hidden;
+}
+.arrow_box li{
+	float: left;
+}
+.arrow_box li:last-child{
+	float: right;
+}
+.arrow_box li img{
+	width: 3.725rem;
+}
+.mark_tip{
+	display: block;
+	margin: 0 auto !important;
+	padding-bottom: 2.45rem;
+	width: 80%;
+	line-height: 1.375rem;
+	font-size: 1rem;
+	color: #FFFFFF;
+}
+.next_btn{
+	display: block;
+	margin: 0 auto;
+	width: 6.875rem;
+	height: 2.325rem;
+	color: #FFFFFF;
+	font-size: 0.9rem;
+	background: url(../images/answer_mark_btn.png) no-repeat;
+	background-size: 100% 100%;
+}
+/*选项提示*/
+.option_mark .mark{
+	margin: 0.75rem auto 0;
+	padding: 0.5rem;
+}
+.option_mark .mark_tip{
+	padding-top: 4rem;
+	padding-bottom: 0;
+}
+.mark_option_pic{
+	display: block;
+	margin: 0 auto;
+	width: 2.15rem;
+}
+/*开始测试*/
+.star_mark p{
+	padding-top: 55%;
+}

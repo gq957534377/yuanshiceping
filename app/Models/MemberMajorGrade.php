@@ -56,4 +56,9 @@ class MemberMajorGrade extends Eloquent
 
         return $list;
     }
+
+    public function hasOneMajor()
+    {
+        return $this->hasOne(Major::class,'id','major_id');
+    }
 }

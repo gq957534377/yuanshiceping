@@ -1,0 +1,109 @@
+
+.userInfo{
+	padding: 1.775rem 1.125rem 0;
+}
+.userInfo_tip{
+	padding: 2rem 0 3.5rem;
+	color: #FFFFFF;
+	font-size: 0.75rem;
+	text-align: center;
+}
+.userInfo_tip i{
+	font-size: 0.7rem;
+	font-weight: bold;
+}
+.userInfo_list{
+	padding: 0 0 2.5rem 0;
+}
+.userInfo_list li{
+	position: relative;
+	padding: 1.3rem 0 0.5rem 0;
+	font-size: 0.65rem;
+	color: #999999;
+	border-bottom: 0.05rem solid #999999 !important;
+}
+.userInfo_list li span:nth-child(2){
+	display: inline-block;
+	margin-left: 2.5rem;
+	font-size: 0.8rem;
+	color: #FFFFFF;
+}
+.userInfo_list li input{
+	display: inline-block;
+	margin-bottom: 0;
+	width: 70%;
+	font-size: 0.6rem;
+	text-align: right;
+	color: rgba(255,255,255);
+	background: none !important;
+}
+
+.userInfo_list li:nth-child(2) div{
+	display: inline-block;
+	float: right;
+	width: 10%;
+}
+.userInfo_list li:nth-child(2) div:nth-child(4){
+	margin-right: 0.8rem;
+}
+.userInfo_list li:nth-child(2) div input{
+	margin-right: 0.5rem;
+}
+.userInfo_list li:nth-child(2) div>input{
+    display: none;
+}
+
+.userInfo_list li:nth-child(2) div>label{
+    position: relative;
+}
+.userInfo_list li:nth-child(2) div>label::before{
+    display: inline-block;
+    content: "";
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 50%;
+    border: 1px solid rgb(219, 219, 219);
+    margin-right: 0.2rem;
+    vertical-align: middle;
+}
+
+.userInfo_list li:nth-child(2) div>input:checked+label::after{
+    display: inline-block;
+    content: "";
+    width: 0.35rem;
+    height: 0.32rem;
+    border-radius: 50%;
+    position: absolute;
+    left: 0.15rem;
+    bottom: 0.25rem;
+    background-color: white;
+}
+.iconfont{
+	position: absolute;
+	left: 0.875rem;
+	top: 1.3rem;
+	color: #FFFFFF;
+	font-size: 1rem;
+}
+.icon-mima{
+	left: 0.5rem;
+}
+.icon-biyan{
+	position: absolute;
+	left: inherit;
+	right: 0.875rem;
+}
+/*开始测评按钮*/
+
+.str_cp_btn.bg{
+	background: #053D7E;
+}
+.userInfo_notice{
+	padding-top: 2.4rem;
+	font-size: 0.5rem;
+	color: #FFFFFF;
+	text-align: center;
+}
+.userInfo_notice li{
+	line-height: 1rem;
+}

@@ -1,0 +1,42 @@
+.clause_background{
+	display: block;
+	width: 100%;
+	height: 3750px;
+}
+.wrap_clause .content{
+	padding: 1rem;
+}
+.clause{
+	padding: 0.95rem 0.5rem;
+	background: #FFFFFF;
+	border-radius: 0.4rem;
+}
+.clause h1{
+	padding-bottom: 1rem;
+	font-size: 0.7rem;
+	color: #000000;
+	text-align: center;
+}
+.clause p{
+	font-size: 0.6rem;
+	color: #000000;
+}
+.padding_b_1{
+	padding-bottom: 1rem;
+}
+.under_line{
+	text-decoration: underline;
+}
+.text_indent{
+	text-indent: 1.2rem;
+}
+.font_weight{
+	font-weight: bold;
+}
+.clause p span{
+	font-weight: bold;
+	text-decoration: underline;
+}
+.text_right{
+	text-align: right;
+}

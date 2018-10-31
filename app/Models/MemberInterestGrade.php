@@ -37,6 +37,11 @@ class MemberInterestGrade extends Eloquent
         'order_number',
 	];
 
+    public function hasOneInterest()
+    {
+        return $this->hasOne(Interest::class, 'id', 'interest_id');
+    }
+
 	static public function gradeList($member_id, $order_number)
     {
         $list = [];

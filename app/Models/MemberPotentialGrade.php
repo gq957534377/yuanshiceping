@@ -37,6 +37,11 @@ class MemberPotentialGrade extends Eloquent
         'order_number',
 	];
 
+    public function hasOnePotential()
+    {
+        return $this->hasOne(Potential::class, 'id', 'potential_id');
+    }
+
     static public function gradeList($member_id, $order_number)
     {
         $list = [];

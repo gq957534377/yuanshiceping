@@ -1,0 +1,29 @@
+@media screen and (max-width: 320px) {
+	/*流程页*/
+	.answer_flow{
+		padding-top: 1.5rem;
+		padding-bottom: 1.375rem;
+	}
+	.answer_flow li:nth-child(3){
+		margin-left: 2rem;
+	}
+	.answer_flow li:nth-child(odd){
+		margin-right: 4rem;
+	}
+	/*天赋流程页*/
+	.answerFlow_three .answer_flow li span:first-child{
+		padding-top: 0.5rem;
+		width: 2.1rem;
+		height: 2.1rem;
+		font-size: 1rem;
+	}
+}
+@media screen and (min-width: 414px) {
+	
+}
+@media screen and (min-width: 768px) {
+	.answer_flow{
+		margin: 0 auto;
+		width: 60%;
+	}
+}

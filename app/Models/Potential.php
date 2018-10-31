@@ -42,6 +42,11 @@ class Potential extends Common
 		'shortcoming'
 	];
 
+    public function hasManyPotentialHasQuality()
+    {
+        return $this->hasMany(PotentialHasQuality::class, 'potential_id', 'id');
+    }
+
     static public function grade($member_id, $order_number)
     {
         //素质模型
@@ -139,6 +144,16 @@ class Potential extends Common
             ->where(['order_number' => $order_number])
             ->orderBy('grade', 'DESC')
             ->orderBy('weight', 'DESC')
+            ->get();
+    }
+
+    static public function getGradesByMemberIdAsc($member_id, $order_number){
+
+        return MemberPotentialGrade::where(['member_id' => $member_id])
+            ->where(['order_number' => $order_number])
+            ->orderBy('grade', 'ASC')
+            ->orderBy('weight', 'DESC')
+            ->limit(2)
             ->get();
     }
 

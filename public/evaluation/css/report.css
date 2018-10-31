@@ -1,0 +1,957 @@
+.padding_2{
+    padding: 0 2rem;
+}
+p{
+    text-align: justify;
+}
+h4{
+    font-size: 0.75rem;
+    line-height: 1.125rem;
+}
+/*头部、导航*/
+.report_header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 0.25rem 0;
+    width: 100%;
+    background: #FFFFFF;
+    border-bottom: 0.05rem solid #999999;
+    text-align: center;
+    z-index: 999;
+}
+
+.switchBtn {
+    float: left;
+    padding-left: 0.7rem;
+    font-size: 0.9rem;
+    color: #053D7E;
+}
+
+.report_title {
+    display: inline-block;
+    font-size: 0.75rem;
+    margin-left: -1.225rem;
+}
+/*首页*/
+.home {
+    padding-top: 2.12rem;
+}
+
+.logo {
+    display: block;
+    margin: 0 auto;
+    width: 6.225rem;
+}
+
+.left_nav {
+    display: none;
+    position: absolute;
+    top: 1.6rem;
+    left: 0;
+    width: 4.5rem;
+}
+
+.left_nav li {
+    box-sizing: border-box;
+    padding: 0.6rem 0.4rem;
+    background: #666666;
+    color: #FFFFFF;
+    font-size: 0.6rem;
+}
+
+.left_nav li:hover {
+    background: #444444;
+}
+
+.home_title {
+    position: relative;
+    padding-top: 1.625rem;
+}
+
+.home_big_title {
+    font-size: 2rem;
+    margin: 0 auto !important;
+    padding-bottom: 1.45rem;
+    width: 2rem;
+    line-height: 3rem;
+    text-align: center;
+    color: #000000;
+}
+
+.home_report_tit {
+    position: absolute;
+    top: 6.35rem;
+    right: 4.2rem;
+    box-sizing: border-box;
+    display: inline-block;
+    padding: 0.6rem;
+    text-align: center;
+    line-height: 1.8rem;
+    width: 2.5rem;
+    font-size: 0.9rem;
+    color: #fff;
+    background: #053D7E;
+}
+
+.home_title i {
+    position: absolute;
+    display: block;
+    width: 0.05rem;
+    height: 6rem;
+    background: #1154A3;
+    transform: rotate(35deg);
+    -webkit-transform: rotate(35deg);
+}
+
+.home_line1 {
+    top: -0.5rem;
+    right: 5rem;
+}
+
+.home_line2 {
+    top: 10.625rem;
+    left: 4.5rem;
+}
+
+.home>p {
+    line-height: 1rem;
+    font-size: 0.6rem;
+    color: #666666;
+    text-align: center;
+}
+
+.home>p:nth-child(3) {
+    font-size: 0.75rem;
+    padding-bottom: 0.5rem;
+    color: #000000;
+}
+
+.home>p:nth-child(4) {
+    padding-bottom: 0.6rem;
+}
+/*-------------目录*/
+.list_report{
+    padding: 2rem 1rem;
+}
+.list_report_title{
+    margin: 0 auto 2rem;
+    width: 57%;
+    height: 1.85rem;
+    line-height: 1.85rem;
+    padding-left: 4.5rem;
+    color: #FFFFFF;
+    font-size: 0.8rem;
+    /*text-align: center;*/
+    background: url(../images/report_title.png) no-repeat;
+    background-size: 100% 100%;
+}
+
+.list_report>ul li{
+    margin-bottom: 0.875rem;
+    overflow: hidden;
+}
+.list_report>ul li:last-child{
+    margin-bottom: 0;
+}
+.list_report>ul li span{
+    float: left;
+    display: block;
+    margin-right: 0.275rem;
+    width: 1.75rem;
+    height: 1.75rem;
+    line-height: 1.75rem;
+    border-radius: 0.2rem;
+    background: #FF9A08;
+    font-size: 0.9rem;
+    color: #FFFFFF;
+    font-weight: bold;
+    text-align: center;
+}
+.list_report>ul li p{
+    float: left;
+    box-sizing: border-box;
+    padding-left: 0.5rem;
+    padding-right: 0.875rem;
+    width: 87%;
+    height: 1.75rem;
+    line-height: 1.75rem;
+    color: #FFFFFF;
+    font-size: 0.7rem;
+    border-radius: 0.2rem;
+    background: #FF9A08;
+    overflow: hidden;
+}
+
+/*-------------------前言*/
+
+.list_report_look{
+    margin: 0 auto 0.85rem;
+    padding: 1.85rem 0.5rem 0;
+    width: 80%;
+    height: 10.825rem;
+    background: url(../images/report_lis_back.png) no-repeat;
+    background-size: 100% 100%;
+    font-size: 0.7rem;
+    font-weight: bold;
+}
+.list_report_p{
+    font-size: 0.7rem;
+    overflow: hidden;
+    height: 2.9rem;
+    transition: all 1s;
+    -webkit-transition: all 1s;
+}
+.list_report_p p{
+    text-align: justify;
+}
+.show{
+    height: 41rem;
+    transition: all 1s;
+    -webkit-transition: all 1s;
+}
+.top_arrow:before{
+    display: inline-block;
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+}
+.click_show{
+    padding-top: 1.3rem;
+}
+.click_show p{
+    font-size: 0.6rem;
+    text-align: center;
+    color: #666;
+}
+.click_show span{
+    display: block;
+    text-align: center;
+    font-size: 1.2rem;
+}
+.tip {
+    padding: 0 2rem 0.6rem;
+    font-size: 0.65rem !important;
+    text-align: left;
+    color: #7F0101 !important;
+}
+
+/*-------------个人最佳匹配专业推荐/个人应避免专业*/
+.circlechart{
+    position: relative;
+    display: block;
+    margin: 0 auto;
+    padding: 0.1rem;
+    width: 2.35rem;
+    height: 2.35rem;
+    font-size: 0.6rem;
+    color: #666666;
+}
+.circlechart span{
+    position: absolute;
+    top: 0.8rem;
+    left: 0.7rem;
+    width: 100%;
+}
+
+.report_content_title {
+    margin: 2rem auto 1.5rem;
+    font-size: 0.8rem;
+    color: #FFFFFF;
+    padding-left: 3.9rem;
+    width: 78.6%;
+    height: 2rem;
+    line-height: 2rem;
+}
+.report_content_title1{
+    background: url(../images/report_title1.png) no-repeat;
+    background-size:100% 100% ;
+}
+.report_content_title2{
+    padding-left: 5.1rem;
+    background: url(../images/report_title2.png) no-repeat;
+    background-size:100% 100% ;
+}
+.report_content_title3{
+    background: url(../images/report_title3.png) no-repeat;
+    background-size:100% 100% ;
+}
+.report_content_title4{
+    background: url(../images/report_title4.png) no-repeat;
+    background-size:100% 100% ;
+}
+.report_content_title5{
+    padding-left: 4.7rem;
+    background: url(../images/report_title5.png) no-repeat;
+    background-size:100% 100% ;
+}
+.report_content_title6{
+    background: url(../images/report_title6.png) no-repeat;
+    background-size:100% 100% ;
+}
+.report_content_title7{
+    padding-left: 4.7rem;
+    background: url(../images/report_title7.png) no-repeat;
+    background-size:100% 100% ;
+}
+.report_content_title8{
+    padding-top: 0.3rem;
+    padding-left: 2rem;
+    background: url(../images/report_title8.png) no-repeat;
+    background-size:100% 100% ;
+}
+.report_content_title p{
+    display: inline-block;
+    font-size: 0.8rem;
+    color: #FFFFFF;
+}
+.report_content_title span{
+    display: inline-block;
+    padding-right: 2.5rem;
+    font-size: 1.4rem;
+    color: #1154A3;
+}
+.major_recommend_list {
+    padding: 0.65rem 1.5rem 0;
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+    -webkit-justify-content: space-between;
+    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    overflow: hidden;
+}
+
+.major_recommend_list li {
+    box-sizing: border-box;
+    float: left;
+    margin-bottom: 0.75rem;
+    padding:0.5rem;
+    width: 48%;
+    height: 7rem;
+    border: 0.05rem solid #157035;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+}
+.major_recommend_list li:visited{
+    opacity: 0.6;
+}
+.major_recommend_list li h5{
+    line-height: 1.125rem;
+    color: #000000;
+    font-size: 0.6rem;
+    text-align: center;
+}
+.major_recommend_list li p {
+    line-height:0.8rem;
+    font-size: 0.5rem;
+    color: #666666;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+}
+.major_recommend>p,.select_import>p{
+    padding: 0 2rem;
+    font-size: 0.7rem;
+    color: #000000;
+    line-height: 1.05rem;
+}
+.major_recommend>p:nth-child(2){
+    padding-bottom: 0.75rem;
+}
+
+/*/个人应避免专业*/
+.major_recommends .major_recommend_list li{
+    border: 0.05rem solid #af011d;
+}
+
+.survey_ul{
+    margin: 2rem auto;
+    padding: 0.75rem 1.175rem;
+    width: 89%;
+    font-size: 0.7rem;
+    border: 0.1rem dashed #222222;
+    border-radius: 0.8rem;
+}
+.survey_ul li{
+    position: relative;
+    font-size: 0.65rem;
+}
+.survey_ul li:first-child{
+    font-size: 0.7rem;
+    font-weight: bold;
+}
+.survey_ul li span{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.survey_ul li p{
+    display: inline-block;
+    margin-left: 1rem;
+    width: 92%;
+    font-size: 0.7rem;
+    line-height: 1rem;
+}
+.tip_mark{
+    position: relative;
+    margin: 1.5rem auto 0;
+    padding: 1.5rem 2.575rem;
+    width: 89%;
+    height: 11.2rem;
+    background: url(../images/report_list_table.png) no-repeat;
+    background-size: 100% 100%;
+}
+.line{
+    position: absolute;
+    top: 4.375rem;
+    left: 1.1rem;
+    width: 0.1rem;
+    height: 4rem;
+    background: #D8D8D8;
+}
+.tip_mark p{
+    color: #222222;
+    font-size: 0.7rem;
+    line-height: 1.25rem;
+    text-align: center;
+}
+.tip_mark p:first-child{
+    font-size: 0.75rem;
+    line-height: 1.5rem;
+}
+.tip_mark p:nth-child(3){
+    color: #000000;
+
+}
+.tip_mark p:nth-child(4){
+    font-weight: bold;
+}
+/*------------------------个人28项素质模型解析*/
+.quality_title{
+    margin: 0 auto;
+    padding-top: 1.8rem;
+    width: 80%;
+    overflow: hidden;
+    text-align: center;
+}
+.quality_title li{
+    float: left;
+    margin-right: 0.7rem;
+    font-size: 0.6rem;
+    vertical-align: middle;
+}
+.quality_title li span{
+    display: inline-block;
+    margin-right: 0.3rem;
+    width: 1.3rem;
+    height: 0.8rem;
+    vertical-align: middle;
+}
+.quality_title li:nth-child(4) span{
+    background: #CC4861;
+}
+.quality_title li:nth-child(3) span{
+    background: #1D74BF;
+}
+.quality_title li:nth-child(2) span{
+    background: #308B50;
+}
+.quality_title li:nth-child(1) span{
+    background: #FF9A08;
+}
+
+/*------------------------个人九大潜能分布概况*/
+
+.personal_potential h4{
+    display: inline-block;
+    margin:0  0 0.5rem 2rem;
+    padding:0.15rem 0 0.15rem 0.5rem;
+    width: 7.175rem;
+    height: 1.4rem;
+    background: url(../images/report_h4_background.png) no-repeat;
+    background-size: 100% 100%;
+    font-size: 0.75rem;
+    color: #FFFFFF;
+    font-weight: 100;
+    opacity: 1;
+}
+
+.personal_potential div a{
+    display: inline-block;
+    margin-left: 0.5rem;
+    font-size: 0.6rem;
+    color: #3470D4;
+    text-decoration: underline;
+    font-weight: 400;
+}
+.personal_potential>p{
+    margin: 0 2rem;
+    padding-bottom: 0.5rem;
+    text-indent: 1.5rem;
+    font-size: 0.7rem;
+    color: #000000;
+}
+/*雷达图*/
+#analysisRadar,#potentialRadar1,#potentialRadar2,#potentialRadar3,#inferiorityRadar1,#inferiorityRadar2,#interestRadar{
+    margin: 0 auto;
+    width: 15rem;
+    height: 12rem;
+}
+.canvasBox>div{
+    margin: 0 auto;
+}
+
+/*----------------------------个人优势潜能解析*/
+.tab{
+    display: flex;
+    display: -webkit-flex;
+    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    margin: 0.5rem auto 0;
+    width: 90%;
+    overflow: hidden;
+    border-radius: 0.8rem 0.8rem 0 0;
+    box-shadow:0.4rem 0.1rem 0.6rem rgba(35,31,32,.1);
+}
+
+.tab li{
+    float: left;
+    padding: 0.3rem 0;
+    width: 33.3%;
+    font-size: 0.55rem;
+    color: #000000;
+    text-align: center;
+    border: 0.05rem solid #FF9A08;
+}
+.personal_potential_advantage .tab li{
+    padding: 0.15rem 0;
+}
+.tab li:last-child{
+    border-top-right-radius: 0.8rem;
+}
+.tab li:first-child{
+    border-top-left-radius: 0.8rem;
+}
+.tab li span{
+    display: block;
+    margin-top: -0.2rem;
+    font-size: 0.5rem;
+}
+.tab li.bg{
+    color: #FFFFFF;
+    background: #FF9A08;
+}
+.tab_list{
+    display: none;
+    margin: 0 auto;
+    padding: 1.25rem 0 0;
+    width: 90%;
+    font-size: 0.75rem;
+    color: #000000;
+}
+.personal_potential_border{
+    position: relative;
+    box-sizing: border-box;
+    margin-top: 0.5rem;
+    width: 100%;
+    padding: 1rem 1rem 0.65rem 1rem;
+    border-radius: 0.4rem;
+    border: 0.05rem solid #FF9A08;
+    background: #FAFAFA;
+}
+
+.personal_potential_border span{
+    position: absolute;
+    top: -0.65rem;
+    left: 0.5rem;
+    display: block;
+    padding: 0.2rem 0;
+    text-align: center;
+    width: 5.75rem;
+    color: #FFFFFF;
+    font-size: 0.75rem;
+    background: #FF9A08;
+    z-index: 1;
+    border-radius: 0.2rem;
+}
+.personal_potential_border>p{
+    text-indent: 1.5rem;
+    font-size: 0.7rem;
+}
+.tab_list h4{
+    padding: 0;
+    font-size: 0.75rem;
+    line-height: 1rem;
+}
+.tab_list>p{
+    font-size: 0.75rem;
+    padding-bottom: 0.5rem;
+}
+.subtitle{
+    position: relative;
+    padding-bottom: 0 !important;
+    padding-top: 1rem;
+    font-size: 0.75rem;
+}
+
+.personal_potential_tab_list>p{
+    padding-left:1rem ;
+    padding-right: 1rem;
+    font-size: 0.7rem;
+}
+.personal_potential_tab_list>p.subtitle{
+    padding-left: 0;
+    padding-right: 0;
+    font-size: 0.75rem;
+}
+.personal_potential_tab_list>p.tip{
+    padding: 0 1rem;
+}
+.subtitle span:first-child{
+    display: inline-block;
+    margin-top: -1rem;
+    width: 0;
+    height: 0;
+    border-width: 0.5rem 0.35rem 0;
+    border-style:solid ;
+    border-color:#1154A3 transparent transparent;
+
+}
+.subtitle span:last-child{
+    color: #1154A3;
+    font-weight: bold;
+}
+
+.tab_list>p.tip span{
+    display: block;
+    text-align: right;
+    color: #666666;
+    font-size: 0.5rem;
+}
+.tab_list.bg{
+    display: block;
+}
+.tab_list>span{
+    font-weight: bold;
+}
+
+/*-----------------------------个人劣势潜能解析*/
+.personal_potential_inferiority{
+    margin: 0 auto;
+    width: 90%;
+    font-size: 0.75rem;
+}
+.personal_potential_inferiority>p{
+    padding: 0 1rem;
+    line-height: 1.125rem;
+    font-size: 0.75rem;
+    color: #000000;
+}
+.personal_potential_inferiority>p.subtitle{
+    padding: 1rem 0 0.5rem !important;
+}
+.personal_potential_inferiority>p.no_bottom_padding{
+    padding-bottom: 0 !important;
+}
+.inferiority_ul{
+    display: flex;
+    display: -webkit-flex;
+    flex-wrap: wrap;
+    -webkit-flex: wrap;
+    overflow: hidden;
+    border-radius: 0.8rem 0.8rem 0 0;
+    border: 0.05rem solid #FF9A08;
+    box-shadow:0.4rem 0.1rem 0.6rem rgba(35,31,32,.1);
+}
+.inferiority_ul li{
+    width: 50%;
+    text-align: center;
+    padding: 0.3rem 0;
+    font-size: 0.7rem;
+    color: #000000;
+}
+.inferiority_ul li:last-child{
+    border-top-right-radius: 0.8rem;
+}
+.inferiority_ul li.bg{
+    color: #FFFFFF;
+    background: #FF9A08;
+}
+.inferiority_list{
+    display: none;
+    padding: 1.2rem 0.65rem 0;
+    font-size: 0.75rem;
+}
+.inferiority_list.bg{
+    display: block;
+}
+.inferiority_list>p{
+    padding-bottom: 0.5rem;
+    font-size: 0.7rem;
+}
+
+.subheading::before{
+    content: " ";
+    position: absolute;
+    top: 0.35rem;
+    left: -0.5rem;
+    width: 0.3rem;
+    height: 0.3rem;
+    background: #000000;
+    border-radius: 50%;
+}
+.inferiority_list p span{
+    font-weight: bold;
+    line-height: 1.2rem;
+}
+
+/*------------------个人专业兴趣解析*/
+.personal_potential_interest>h4{
+    width: 7.8rem;
+}
+.personal_potential_interest>h4>span{
+    color: #3470D4;
+    text-decoration: underline;
+}
+.personal_potential_interest_div{
+    padding: 1rem 1rem 0;
+}
+.personal_potential_interest_div>p{
+    position: relative;
+    font-size: 0.7rem;
+}
+.personal_potential_interest_div>p:last-child{
+    padding-bottom: 0;
+}
+/*----------------------个人潜能与个人兴趣/最佳匹配点解析*/
+.mate_report{
+    padding: 0 1rem;
+    font-size: 0.75rem;
+}
+.mate_report .subtitle span{
+    font-weight: 700;
+}
+.mate_report>p{
+    padding-bottom: 0.5rem;
+    line-height: 1.125rem;
+    font-size: 0.7rem;
+}
+
+.mate_report .report_content_title{
+    height: 3rem;
+    line-height: 1.25rem;
+    width: 79.7%;
+    text-align: center;
+}
+.look_detail{
+    padding-left: 0.2rem;
+    font-size: 0.6rem;
+    font-weight: 100 !important;
+    text-decoration: underline;
+}
+.mate_report .tip{
+    padding: 0 1rem 0.6rem
+}
+.circle_box{
+    position: relative;
+    margin: 0.9rem auto 0;
+    padding: 0 1rem 1.5rem;
+    width: 64%;
+}
+.cricle{
+    width: 5.25rem;
+    height: 5.25rem;
+    border-radius: 50%;
+    color: #FFFFFF;
+}
+.cricle span{
+    display: inline-block;
+    margin-left: 1rem !important;
+    padding-top: 1.5rem;
+    color: #FFFFFF;
+    font-size: 0.55rem;
+    width: 1.4rem;
+}
+.pink_cricle{
+    background:linear-gradient(90deg,rgba(189,21,92,0.8) 0%,rgba(246,148,189,0.8) 100%);
+}
+.blue_cricle{
+    position: absolute;
+    top:0;
+    left: 4rem;
+    background:linear-gradient(-90deg,rgba(15,103,178,0.8) 0%,rgba(108,182,250,0.8) 100%);
+}
+.blue_cricle span:nth-child(1){
+    margin-left:0.2rem !important;
+    width: 1.8rem;
+    text-align: center;
+}
+.blue_cricle span:nth-child(2){
+    margin-left: 1rem !important;
+}
+.mate_report_div .subheading{
+    position: relative;
+    font-weight: bold;
+    color: #1154A3;
+    padding-bottom: 0 !important;
+}
+.mate_report_div>p:last-child{
+    padding-bottom: 0 !important;
+}
+.mate_report_ul{
+    width: 100%;
+}
+.mate_report_div{
+    padding-left: 1rem;
+    padding-right: 1rem;
+    width: 100%;
+}
+.mate_report_div>p{
+    font-size: 0.7rem;
+}
+#quality,#matchGraph{
+    margin: 0 auto;
+    width: 80%;
+    height: 26rem;
+}
+
+/*-------------------------结语*/
+.bottom_box{
+    margin-top: 2.125rem;
+    padding-top: 0.3rem;
+}
+.bottom_langue{
+    background: #FFFFFF;
+}
+.bottom_langue p{
+    font-size: 0.75rem;
+    padding:0 2rem  1.2rem;
+}
+.bottom_box .list_report_title{
+    margin: 0 auto 1.2rem;
+    padding-left: 5.5rem;
+    padding-bottom: 1.5rem;
+}
+.bottom_epilogue{
+    border-top: 0.5rem solid #f2f2f2;
+    padding: 1rem 1rem 2.5rem;
+    background: #FFFFFF;
+}
+.report_logo{
+    display: block;
+    margin: 0 auto 0.4rem;
+    width: 6.45rem;
+}
+
+/*轮播*/
+
+.swiper-slide{
+    margin: 1.5rem auto 0.425rem;
+    padding-top: 1.4rem;
+    padding-bottom: 1.1rem;
+    box-shadow:0.8rem 0px 0.95rem rgba(0,0,0,0.12);
+    border-radius: 0.2rem;
+    overflow: hidden;
+    width: 89%;
+}
+.bottom_epilogue_left{
+    display: block;
+    margin-left: 15%;
+    width: 3.5rem;
+    height: 3.5rem;
+    vertical-align: middle;
+}
+.bottom_epilogue_right{
+    padding-top: 0.6rem;
+    padding-right: 15%;
+}
+.bottom_epilogue_right p{
+    font-size: 0.7rem;
+}
+
+.swiper-button-next, .swiper-button-prev{
+    top: 65%;
+    background-size: 100% 100% !important;
+    color: #666666;
+}
+.swiper-button-next, .swiper-container-rtl .swiper-button-prev{
+    right: 0.5rem;
+    background-image:url(../images/arrow_right.png);
+    width: 0.4rem;
+    height: 1rem;
+}
+
+.swiper-button-prev, .swiper-container-rtl .swiper-button-next{
+    left: 0.5rem;
+    background-image:url(../images/arrow_left.png);
+    width: 0.4rem;
+    height: 1rem;
+}
+
+/*-----------二维码------------------*/
+.er_code{
+    display: block;
+    margin: 2rem auto 0;
+    width: 4.1rem;
+}
+.bottom_follow_p{
+    padding: 0.45rem 0 1rem !important;
+    font-size: 0.5rem;
+    color: #666666;
+    text-align: center;
+}
+.bottom_iphone{
+    display: block;
+    font-size: 0.6rem;
+    text-align: center;
+    color: #000000;
+}
+.link_gw{
+    display: block;
+    font-size: 0.6rem;
+    color: #004797;
+    text-align: center;
+    text-decoration: underline;
+}
+
+/*********************************弹框*/
+.mark{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,0.6);
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+}
+.mark_box{
+    margin: 5rem auto 0;
+    padding:1.6rem 1.175rem 2.3rem;
+    width: 90%;
+    background: #FFFFFF;
+    border-radius: 0.4rem;
+}
+.mark_box h4{
+
+    font-size: 0.9rem;
+    text-align: center;
+}
+.mark_box p{
+    font-size: 0.75rem;
+    color: #000000;
+    line-height: 1.35rem;
+}
+.closeBtn{
+    position: absolute;
+    top: 3.775rem;
+    right: 1rem;
+    font-size: 1.6rem;
+    color: #FFFFFF;
+}
+.report_mark_icon{
+    display: block;
+    margin: 0 auto;
+    padding-bottom: 1.575rem;
+    width: 7.125rem;
+}

@@ -1,0 +1,115 @@
+$(function() {
+	//导航联动
+	$('.left_nav>li').click(function() {
+		var ind = $(this).index();
+		var indexHtml=$('.scrollTop').eq(ind).find('.navTitle').text();
+		scrollTo($('.scrollTop').eq(ind), 500);
+		$('.report_title').html(indexHtml);
+	})
+	//滚动方法
+	function scrollTo(ele, speed) {
+		if(!speed) speed = 300;
+		if(!ele) {
+			$("html,body").animate({
+				scrollTop: 0
+			}, speed);
+		} else {
+			if(ele.length > 0) $("html,body").animate({
+				scrollTop: $(ele).offset().top - 30
+				
+			}, speed);
+			
+		}
+		return false;
+		console.log('00000000')
+	}
+	
+	//手机滑动事件
+	window.onscroll=function(){
+		$('.scrollTop').each(function(index,item){
+			var scrollHeight=$(item).offset().top;
+			var indexHtml=$(item).find('.navTitle').text();
+			if($(window).scrollTop()>=scrollHeight){
+				$('.report_title').html(indexHtml);
+			}
+			if($(window).scrollTop()<=$(window).height()){
+				$('.report_title').html('首页');
+			}
+		})
+	}
+	
+	//导航动画效果
+	$('.switchBtn').hover(function() {
+		$('.left_nav').slideDown();
+		$(this).removeClass('icon-zhankai').addClass('icon-shouqiicon')
+	}, function() {
+		$('.left_nav').slideUp();
+		$(this).removeClass('icon-shouqiicon').addClass('icon-zhankai')
+	});
+
+	//点击查看
+	$('.click_show').click(function() {
+		$('.select_import_p').slideToggle();
+		$(this).children('span').toggleClass('top_arrow');
+		$(this).children('p').html($('.select_import_p').is(":hidden") ? '点击产看更多' : '点击收起');
+	})
+	//我的优势潜能选项卡
+	$('.personal_potential_tab>li').click(function() {
+		var _index = $(this).index();
+		$(this).addClass('bg').siblings().removeClass('bg');
+		$('.personal_potential_tab_list').eq(_index).addClass('bg').siblings('.personal_potential_tab_list').removeClass('bg')
+	})
+	//我的劣势潜能选项卡
+	$('.inferiority_ul>li').click(function() {
+		var _index = $(this).index();
+		$(this).addClass('bg').siblings().removeClass('bg');
+		$('.inferiority_list').eq(_index).addClass('bg').siblings('.inferiority_list').removeClass('bg')
+	})
+	//优势兴趣解析选项卡
+	$('.personal_potential_interest_ul>li').click(function() {
+		var _index = $(this).index();
+		$(this).addClass('bg').siblings().removeClass('bg');
+		$('.personal_potential_interest_div').eq(_index).addClass('bg').siblings('.personal_potential_interest_div').removeClass('bg')
+	})
+	//如下为您的最佳匹配点选项卡
+	$('.mate_report_ul>li').click(function() {
+		var _index = $(this).index();
+		$(this).addClass('bg').siblings().removeClass('bg');
+		$('.mate_report_div').eq(_index).addClass('bg').siblings('.mate_report_div').removeClass('bg')
+	})
+
+	//查看案例
+	$('.lookCase').click(function() {
+		$('.mark').show()
+	})
+	//查看案例关闭弹框
+	$('.closeBtn').click(function() {
+		$('.mark').hide()
+	})
+	//轮播
+	var swiper = new Swiper('.swiper-container', {
+		spaceBetween: 30,
+		centeredSlides: true,
+		autoplay: {
+			delay: 2500,
+			disableOnInteraction: false,
+		},
+
+		navigation: {
+			nextEl: '.swiper-button-next',
+			prevEl: '.swiper-button-prev',
+		},
+	});
+
+	//进度条
+	$('.circlechart').circlechart();
+	
+	
+	//适配iPhone X
+	if($(window).height()>=736){
+		$('.bottom_epilogue>p:nth-child(2)').css({
+			'padding-bottom':'3.2rem'
+		})
+	}
+
+})
